@@ -1,0 +1,164 @@
+---
+title: "Tworzenie ankiet Google z poziomu kodu"
+description: "Zamiast wyklikiwania ankiet w Google Forms można wykorzystać JavaScript i zautomatyzować swoją pracę."
+author: "Łukasz Wawrowski"
+date: "12-28-2017"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, error=FALSE)
+```
+
+Google udostępnia bardzo przyjazne i darmowe narzędzie do tworzenia ankiet: [Google Forms](https://docs.google.com/forms/). Dostępnych jest bardzo wiele typów pytań, które tworzone są w wygodnym edytorze. Istnieje jednak także inny sposób tworzenia ankiet - z wykorzystaniem kodu javascript. 
+
+Aby rozpocząć przygodę z kodowaniem ankiet (lub innych produktów Google) należy zapoznać się z [dokumentacją](https://developers.google.com/apps-script/reference/forms/). Z kolei napisane programy wykonujemy w [edytorze skryptów](https://script.google.com/).
+
+# Prosta ankieta
+
+Na początku utworzymy prostą ankietę składającą się z dwóch pytań - o płeć i ulubiony słodycz.
+
+```javascript
+
+function stworzAnkiete() {
+  
+  var form = FormApp.create('Ankieta');
+  
+  form.addMultipleChoiceItem()
+  .setTitle('Płeć')
+  .setChoiceValues(['Kobieta', 'Mężczyzna'])
+  .setRequired(true);
+  
+  form.addCheckboxItem()
+  .setTitle('Ulubiony słodycz')
+  .setChoiceValues(['Czekolada', 'Żelki', 'Batony', 'Owoce'])
+  .showOtherOption(true);
+  
+}
+
+```
+
+W pierwszym kroku tworzymy zmienną (w tym przypadku o nazwie `form`), która jest odpowiedzialna na utworzenie ankiety, a do której będziemy dodawać kolejne elementy. Jako argument funkcji podajemy nazwę ankiety.
+
+Następnie na obiekcie `form` wywołujemy funkcje dodające kolejne pytania. Funkcja `addMultipleChoiceItem()` to pytanie jednokrotnego wyboru. Ustalamy nazwę pytania oraz warianty odpowiedzi. Za pomocą funkcji `setRequired()` decydujemy czy odpowiedź na to pytanie ma być obowiązkowa.
+
+Z kolei funkcja `addCheckboxItem()` dodaje pytanie wielokrotnego wyboru. Tytuł i warianty odpowiedzi definiuje się tak samo, jak w poprzednim przypadku, ale dodatkowo mamy możliwość włączenia odpowiedzi _inne_ za pomocą funkcji `showOtherOption(true)`.
+
+W przypadku niektórych pytań niezbędna jest walidacja wprowadzonej przez respondenta wartości. Dodajmy do naszej ankiety pytanie o wzrost.
+
+```javascript
+function stworzAnkiete() {
+  
+  var form = FormApp.create('Ankieta');
+  
+  form.addMultipleChoiceItem()
+  .setTitle('Płeć')
+  .setChoiceValues(['Kobieta', 'Mężczyzna'])
+  .setRequired(true);
+  
+  form.addCheckboxItem()
+  .setTitle('Ulubiony słodycz')
+  .setChoiceValues(['Czekolada', 'Żelki', 'Batony', 'Owoce'])
+  .showOtherOption(true);
+  
+  var wzrost = form.addTextItem().setTitle('Wzrost (w cm)');
+  
+  var wzrostWalidacja = FormApp.createTextValidation()
+  .setHelpText('Wzrost musi być liczbą z przedziału 120 cm a 220 cm')
+  .requireNumberBetween(120,220)
+  .build();
+  
+  wzrost.setValidation(wzrostWalidacja);
+  
+}
+```
+
+Walidacja pytania o wzrost wiąże się z koniecznością przypisania samego pytania do zmiennej. Tworzona jest zmienna `wzrost`, która jest pytaniem typu tekstowego (`addTextItem()`), w związku z czym ankietowany mógłby wpisać tam dowolną wartość. 
+
+Ograniczenie tego typu praktyk jest możliwe dzięki utworzeniu nowego obiektu (np. o nazwie `wzrostWalidacja`) zawierającego kryteria walidacji. Możemy określić tekstową podpowiedź dotyczącą wartości (`setHelpText`), a także zdefiniować jakie wartości są dopuszczalne. W tym przypadku wzrost musi pochodzić z przedziału od 120 do 220 cm za co odpowiada funkcja `requireNumberBetween(120,220)`. Definiowanie kryteriów walidacji musi być zakończone funkcją `build()`.
+
+Utworzone zmienne `wzrost` i `wzrostWalidacja` nie są póki co ze sobą w żaden sposób powiązane. Aby zdefiniowana przez nas walidacja została zastosowana to na obiekcie `wzrost` musimy wywołać funkcję `setValidation(wzrostWalidacja)` z argumentem zawierającym kryteria walidacji. Dzięki tak określonej składni możliwe jest przypisanie jednego sposobu walidacji do wielu pytań w ankiecie.
+
+# Pytania filtrujące
+
+Google Forms umożliwia także tworzenie ścieżek w ankiecie w zależności od zaznaczonej przez respondenta odpowiedzi. Zmodyfikujemy zatem wcześniej omówioną ankietę w taki sposób, aby płeć stanowiła pytanie filtrujące. Jeśli ankietowany wskaże, że jest mężczyzną to będzie musiał odpowiedzieć na pytanie o ulubiony słodycz, natomiast kobiety zobaczą pytanie o wzrost.
+
+```javascript
+function stworzAnkiete2() {
+
+  var form = FormApp.create('Ankieta 2');
+    
+  var plec = form.addMultipleChoiceItem();
+  
+  var m = form.addPageBreakItem().setTitle('Mężczyzna');
+  
+  form.addCheckboxItem()
+  .setTitle('Ulubiony słodycz')
+  .setChoiceValues(['Czekolada', 'Żelki', 'Batony', 'Owoce'])
+  .showOtherOption(true);
+  
+  var k = form.addPageBreakItem().setTitle('Kobieta');
+  
+  var wzrost = form.addTextItem().setTitle('Wzrost (w cm)');
+  
+  var wzrostWalidacja = FormApp.createTextValidation()
+  .setHelpText('Wzrost musi być liczbą z przedziału 120 cm a 220 cm')
+  .requireNumberBetween(120,220)
+  .build();
+  
+  wzrost.setValidation(wzrostWalidacja);
+  
+  plec.setTitle('Płeć')
+  .setChoices([
+    plec.createChoice('Kobieta', k), 
+    plec.createChoice('Mężczyzna', m)])
+  .setRequired(true)
+   
+}
+
+```
+
+To co od razu rzuca się w oczy to dużo większa liczba zmiennych. Przede wszystkim pytanie filtrujące musi być zmienną, stąd jest przypisane do zmiennej o nazwie `plec`. Dodatkowo dodaliśmy zmienne (`m` i `k`), które przechowują podział sekcji (`addPageBreakItem()`) i mają odpowiednio nadane nazwy nowych stron. Pytania, które mają być zadane respondentowi po przejściu pytania filtrującego muszą się znaleźć poniżej podziału sekcji. 
+
+Sposób zachowywania się ankiety określamy na samym końcu kodu. Na obiekcie zawierającym pytanie filtrujące wywołujemy funkcję `setChoices` (wcześniej używaliśmy `setChoicesValues`). Jako argumenty tej funkcji definiujemy pary: odpowiedź w pytaniu filtrującym i zmienna podziału sekcji do której respondent ma być przekierowany. 
+
+# Tworzenie podobnych pytań w funkcji
+
+Czasem w ankiecie pojawia się wiele podobnych pytań np. w ankiecie mającej na celu ocenę przedmiotów na studiach będą zmieniały się tylko nazwy przedmiotów bądź prowadzący. Można oczywiście skopiować dane pytanie _n_ razy, ale w przypadku, gdy będziemy chcieli coś zmienić będzie się to wiązało ze zmianą w _n_ przypadkach.
+
+Utworzenie własnej funkcji, która będzie tworzyć pytanie zaoszczędzi nam kłopotów w przypadku jakichkolwiek zmian oraz zmniejszy liczbę linii kodu. 
+
+```javascript
+
+function main() {
+  
+  function zrozumialosc(przedmiot) {
+  
+    var p = przedmiot + ' - zrozumiałość treści'
+  
+    form.addMultipleChoiceItem()
+    .setTitle(p)
+    .setChoiceValues(['Bardzo zrozumiałe', 
+                      'Zrozumiałe', 
+                      'Nie zrozumiałe', 
+                      'Bardzo nie zrozumiałe']);
+  
+  }
+  
+  var form = FormApp.create('Badanie jakości kształcenia');
+  
+  zrozumialosc('Przedmiot A');
+  zrozumialosc('Przedmiot B');
+  zrozumialosc('Przedmiot C');
+  
+}
+
+
+```
+
+W powyższym kodzie funkcja `zrozumialosc` zawiera pytanie jednokrotnego wyboru o zrozumiałość treści danego przedmiotu, który deklaruje się jako argument funkcji. Żeby utworzyć takie pytanie wywołujemy funkcję `zrozumialosc` podając w nawiasie nazwę przedmiotu. Dzięki takiemu rozwiązaniu dodanie kolejnego wariantu odpowiedzi wiąże się ze zmianą tylko w jednym miejscu - funkcji zawierającej deklarację pytania. 
+
+Funkcje, w których deklarujemy pytania w ankiecie mogą być dużo bardziej rozbudowane i mogą zawierać więcej argumentów niż tylko jeden. Wszystko zależy od aktualnych potrzeb.
+
+# Podsumowanie
+
+Tworzenie prostych ankiet z poziomu kodu raczej nie ma większego sensu, ale zastosowanie tego narzędzia w przypadku złożonych kwestionariuszy składających się z podobnych pytań może zdecydowanie ułatwić nam pracę. 

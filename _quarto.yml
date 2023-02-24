@@ -1,0 +1,30 @@
+project:
+  type: website
+
+website:
+  title: "Łukasz Wawrowski"
+  navbar:
+    right:
+      - text: "Blog"
+        href: index.qmd
+      - text: "Publikacje"
+        href: publikacje.qmd
+      - text: "Projekty"
+        href: projekty.qmd
+      - text: "Dydaktyka"
+        href: dydaktyka.qmd  
+      - text: "O mnie"
+        href: about.qmd
+      - icon: github
+        href: https://github.com/lwawrowski
+      - icon: twitter
+        href: https://twitter.com/wawrluk
+      - icon: linkedin
+        href: https://www.linkedin.com/in/%c5%82ukasz-wawrowski-2b106a149/
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+
+

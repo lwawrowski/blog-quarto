@@ -1,0 +1,46 @@
+# Redirects from what the browser requests to what we serve
+[[redirects]]
+  from = "/post/"
+  to = "/"
+  
+[[redirects]]
+  from = "/2017/10/30/2017-10-25-lotto/"
+  to = "/posts/2017-10-30-analiza-danych-lotto/"
+[[redirects]]
+  from = "/2017/11/09/2017-11-09-imie-papiez/"
+  to = "/posts/2017-11-09-imie-papiez/"
+[[redirects]]
+  from = "/2017/12/28/2017-12-28-tworzenie-ankiet-google-z-poziomu-kodu/"
+  to = "/posts/2017-12-28-google-forms-kod/"
+[[redirects]]
+  from = "/2018/04/12/2018-04-12-analiza-imion/"
+  to = "/posts/2018-04-12-analiza-imion/"
+[[redirects]]
+  from = "/2020/01/12/2020-01-12-domy-hogwartu/"
+  to = "/posts/2020-01-12-domy-hogwartu/"
+[[redirects]]
+  from = "/2020/01/24/2020-01-24-smog-w-pszczynie-a-temperatura/"
+  to = "/posts/2020-01-24-smog-temperatura/"
+[[redirects]]
+  from = "/2020/02/18/2020-02-18-smog-w-pszczynie-a-wiatr/"
+  to = "/posts/2020-02-18-smog-wiatr/"
+[[redirects]]
+  from = "/2020/06/26/2020-06-26-dydaktyka-w-czasie-pandemii-analiza-logow-z-systemu-moodle/"
+  to = "/posts/2020-06-26-moodle-pandemia/"
+
+[[redirects]]
+  from = "/page/publikacje/"
+  to = "/publikacje.html"
+
+[[redirects]]
+  from = "/page/projekty/"
+  to = "/projekty.html"
+  
+[[redirects]]
+  from = "/page/dydaktyka/"
+  to = "/dydaktyka.html"
+
+[[redirects]]
+  from = "/page/about/"
+  to = "/about.html"
+

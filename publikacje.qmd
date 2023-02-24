@@ -1,0 +1,66 @@
+---
+title: "Publikacje"
+---
+
+- [Google Scholar](https://scholar.google.pl/citations?user=nQFr4NMAAAAJ)   
+- [ResearchGate](https://www.researchgate.net/profile/Lukasz_Wawrowski)   
+- [ORCID](https://orcid.org/0000-0002-1201-5344)
+
+
+# Ubóstwo i wykluczenie społeczne
+
+[Wawrowski, Ł., Beręsewicz, M., 2021, _Small area estimates of the low work intensity indicator at voivodeship level in Poland_, Statistics in Transition New Series, vol. 22(2), s. 155-172](articles/sit_2021.pdf)
+
+[Wawrowski, Ł., 2020, _Estymacja pośrednia wskaźników ubóstwa na poziomie powiatów_, Wiadomości Statystyczne, vol. 65 (8), s. 7-26](https://ws.stat.gov.pl/Article/2020/8/007-026)
+
+[Beręsewicz, M., Marchetti, S., Salvati, N., Szymkowiak, M., Wawrowski, Ł., 2018, _The use of a three level M-quantile model to map poverty at LAU 1 in Poland_, Journal of the Royal Statistical Society Series A, 181 (4), s. 1077-1104.](https://rss.onlinelibrary.wiley.com/doi/10.1111/rssa.12349)
+
+[Młodak, A., Szymkowiak, M., Wawrowski, Ł., 2017, _Mapping poverty at the level of subregions in Poland using indirect estimation_, Statistics in Transition - new series, 18 (4), s. 609-635.](articles/sit_2017.pdf)
+
+[Wawrowski, Ł., 2016, _The Spatial Fay-Herriot Model in Poverty Estimation_, Folia Oeconomica Stetinensia, 16 (2), s. 191-202.](articles/folia_2016.pdf)
+
+[Młodak, A., Józefowski, T., Wawrowski, Ł., 2016, _Zastosowanie metod taksonomicznych w estymacji wskaźników ubóstwa_, Wiadomości Statystyczne, 2, s. 1-24.](articles/ws_2016_02.pdf)
+
+Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykorzystaniem modelu Faya-Herriota_ w: Dorota Appenzeller (red.), Matematyka i informatyka na usługach ekonomii : analityka gospodarcza, metody i narzędzia., Wydawnictwo Uniwersytetu Ekonomicznego w Poznaniu (UEP), Poznań, s. 171-182.
+
+[Wawrowski, Ł., 2014, _Wykorzystanie metod statystyki małych obszarów do tworzenia map ubóstwa w Polsce_, Wiadomości Statystyczne, Zakład Wydawnictw Statystycznych, numer 9 (640),  Warszawa.](articles/ws_2014.pdf)
+
+[Wawrowski, Ł., 2012, _Analiza ubóstwa w przekroju powiatów w województwie wielkopolskim z wykorzystaniem metod statystyki małych obszarów_, Przegląd Statystyczny, Numer specjalny 2, PAN Warszawska Drukarnia Naukowa, Warszawa.](articles/ps_2012.pdf)
+
+# Wykrywanie anomalii
+
+[Adamczyk, B., Brzȩczek, M., Michalak, M., Kostorz, I., Wawrowski, Ł., Hermansa, M., Czerwiński, M., Jamiołkowski, A., 2022, _Dataset Generation Framework for Evaluation of IoT Linux Host–Based Intrusion Detection Systems_, 2022 IEEE International Conference on Big Data, 6179-6187, DOI: 10.1109/BigData55660.2022.10020442](https://ieeexplore.ieee.org/document/10020442)
+
+[Wawrowski Ł., Michalak M., Białas A., Kurianowicz R., Sikora M., Uchroński M., Kajzer A.: Detecting Anomalies and Attacks in Network Traffic Monitoring with Classification Methods and XAI-based Explainability, Procedia Computer Science, 192:2259-2268, 2021](articles/kes_2021.pdf)
+
+[Michalak M., Wawrowski Ł., Sikora M., Kurianowicz R., Kozłowski A., Białas A.: Open-source-based Environment for Network Traffic Anomaly Detection, (Proceedings of the 16th International Conference on Dependability of Computer Systems DepCoS-RELCOMEX), Advances in Intelligent Systems and Computing, 1389:284-295, 2021](https://link.springer.com/chapter/10.1007/978-3-030-76773-0_28)
+
+[Michalak, M., Wawrowski, Ł., Sikora, M., Kurianowicz, R., Kozłowski, A., Białas, A., 2021, _Outlier Detection in Network Traffic Monitoring_, In Proceedings of the 10th International Conference on Pattern Recognition Applications and Methods - Volume 1: ICPRAM, ISBN 978-989-758-486-2, s. 523-530, DOI: 10.5220/0010238205230530](articles/icpram_2021.pdf)
+
+# Estymacja dla małych przedsiębiorstw
+
+[Dehnel, G., Wawrowski, Ł., 2020, _Robust estimation of wages in small enterprises: the application to Poland’s districts_, Statistics in Transition new series, vol. 21 (1), s. 137-157](articles/sit_2020.pdf)
+
+[Dehnel, G., Wawrowski, Ł., 2019, _Estimation of the average wage in Polish small companies using the robust approach_, Przegląd Statystyczny, Statistical Review, vol. 66 (3), s. 200-213](articles/ps_2019.pdf)
+
+[Dehnel, G., Wawrowski, Ł., 2019, _Unit level models in the assessment of monthly wages of small enterprises employees_, in M. Papież and S. Śmiech (Eds.), The 13th Professor Aleksander Zelias International Conference on Modelling and Forecasting of Socio-Economic Phenomena. Conference Proceedings. Warszawa: Wydawnictwo C.H. Beck, s. 35-43. ISBN: 978-83-8158-734-1 (pdf)](articles/proc_2019.pdf)
+
+[Dehnel, G., Wawrowski, Ł., 2018, _Robust estimation of revenues of Polish small companies by NACE section and province_, The Socio-Economic Modelling and Forecasting, 1, s. 110-119.](articles/proc_2018.pdf)
+
+[Dehnel, G., Pietrzak, M., Wawrowski, Ł., 2017, _An evaluation of company performance using Fay-Herriot model_, Argumenta Oeconomica Cracoviensia,  16, s. 23-36.](articles/aoc_2017.pdf)
+
+[Dehnel, G., Pietrzak, M., Wawrowski, Ł., 2017, _Estymacja przychodu przedsiębiorstw na podstawie modelu Faya-Herriota_, Przegląd Statystyczny, 64 (1), s. 79-94.](articles/ps_2017.pdf)
+
+# Pozostałe
+
+[Henzel J., Wawrowski Ł., Kubina A., Sikora M., Wróbel Ł., 2022, _Demand forecasting in the fashion business — an example of customized nearest neighbour and linear mixed model approaches_, 2022 17th Conference on Computer Science and Intelligence Systems (FedCSIS), pp. 61-65, doi: 10.15439/2022F256.](https://ieeexplore.ieee.org/document/9909498)
+
+[Kulis J., Wawrowski Ł., Sędek Ł., Wróbel Ł., Słota Ł., van der Velden VHJ, Szczepański T., Sikora M., 2022, _Machine Learning Based Analysis of Relations between Antigen Expression and Genetic Aberrations in Childhood B-Cell Precursor Acute Lymphoblastic Leukaemia_, Journal of Clinical Medicine, 11(9):2281. https://doi.org/10.3390/jcm11092281](articles/jcm2022.pdf)
+
+[Soniewicki, M., Wawrowski, Ł., 2017, _The use of Knowledge Management Systems in the Polish Private and State Owned Companies_, Journal of Information and Organizational Sciences, 41 (2), s. 263-282.](articles/jios_2017.pdf)
+
+[Łysoń, P., Szymkowiak, M., Wawrowski, Ł., 2016, _Badania porównawcze atrakcyjności turystycznej powiatów z uwzględnieniem ich otoczenia_, Wiadomości Statystyczne, 12, s. 45-57](articles/ws_2016_12.pdf)
+
+[Soniewicki, M. and Wawrowski, Ł., 2015, _The use of external knowledge sources by Polish private-owned and state-owned enterprises in the internationalization process_, Journal of Economics and Management, 22, s. 75-96](articles/jem_2015.pdf)
+
+Wawrowski, Ł., 2012, _Wykorzystanie metod porządkowania liniowego do analizy lokalnego rynku pracy_, I Ogólnopolska Konferencja Naukowa ,,Narzędzia Analityczne w Naukach Ekonomicznych'' - recenzowane materiały pokonferencyjne, Fundacja Uniwersytetu Ekonomicznego w Krakowie, Kraków.

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Łukasz Wawrowski">
+<meta name="dcterms.date" content="2017-12-28">
+<meta name="description" content="Zamiast wyklikiwania ankiet w Google Forms można wykorzystać JavaScript i zautomatyzować swoją pracę.">
+
+<title>Łukasz Wawrowski - Tworzenie ankiet Google z poziomu kodu</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Łukasz Wawrowski</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publikacje.html">Publikacje</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projekty.html">Projekty</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dydaktyka.html">Dydaktyka</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">O mnie</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lwawrowski"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/wawrluk"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/%c5%82ukasz-wawrowski-2b106a149/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Tworzenie ankiet Google z poziomu kodu</h1>
+                  <div>
+        <div class="description">
+          Zamiast wyklikiwania ankiet w Google Forms można wykorzystać JavaScript i zautomatyzować swoją pracę.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Łukasz Wawrowski </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 28, 2017</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Google udostępnia bardzo przyjazne i darmowe narzędzie do tworzenia ankiet: <a href="https://docs.google.com/forms/">Google Forms</a>. Dostępnych jest bardzo wiele typów pytań, które tworzone są w wygodnym edytorze. Istnieje jednak także inny sposób tworzenia ankiet - z wykorzystaniem kodu javascript.</p>
+<p>Aby rozpocząć przygodę z kodowaniem ankiet (lub innych produktów Google) należy zapoznać się z <a href="https://developers.google.com/apps-script/reference/forms/">dokumentacją</a>. Z kolei napisane programy wykonujemy w <a href="https://script.google.com/">edytorze skryptów</a>.</p>
+<section id="prosta-ankieta" class="level1">
+<h1>Prosta ankieta</h1>
+<p>Na początku utworzymy prostą ankietę składającą się z dwóch pytań - o płeć i ulubiony słodycz.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">stworzAnkiete</span>() {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> form <span class="op">=</span> FormApp<span class="op">.</span><span class="fu">create</span>(<span class="st">'Ankieta'</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">addMultipleChoiceItem</span>()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Płeć'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setChoiceValues</span>([<span class="st">'Kobieta'</span><span class="op">,</span> <span class="st">'Mężczyzna'</span>])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setRequired</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">addCheckboxItem</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Ulubiony słodycz'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setChoiceValues</span>([<span class="st">'Czekolada'</span><span class="op">,</span> <span class="st">'Żelki'</span><span class="op">,</span> <span class="st">'Batony'</span><span class="op">,</span> <span class="st">'Owoce'</span>])</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">showOtherOption</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W pierwszym kroku tworzymy zmienną (w tym przypadku o nazwie <code>form</code>), która jest odpowiedzialna na utworzenie ankiety, a do której będziemy dodawać kolejne elementy. Jako argument funkcji podajemy nazwę ankiety.</p>
+<p>Następnie na obiekcie <code>form</code> wywołujemy funkcje dodające kolejne pytania. Funkcja <code>addMultipleChoiceItem()</code> to pytanie jednokrotnego wyboru. Ustalamy nazwę pytania oraz warianty odpowiedzi. Za pomocą funkcji <code>setRequired()</code> decydujemy czy odpowiedź na to pytanie ma być obowiązkowa.</p>
+<p>Z kolei funkcja <code>addCheckboxItem()</code> dodaje pytanie wielokrotnego wyboru. Tytuł i warianty odpowiedzi definiuje się tak samo, jak w poprzednim przypadku, ale dodatkowo mamy możliwość włączenia odpowiedzi <em>inne</em> za pomocą funkcji <code>showOtherOption(true)</code>.</p>
+<p>W przypadku niektórych pytań niezbędna jest walidacja wprowadzonej przez respondenta wartości. Dodajmy do naszej ankiety pytanie o wzrost.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">stworzAnkiete</span>() {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> form <span class="op">=</span> FormApp<span class="op">.</span><span class="fu">create</span>(<span class="st">'Ankieta'</span>)<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">addMultipleChoiceItem</span>()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Płeć'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setChoiceValues</span>([<span class="st">'Kobieta'</span><span class="op">,</span> <span class="st">'Mężczyzna'</span>])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setRequired</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">addCheckboxItem</span>()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Ulubiony słodycz'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setChoiceValues</span>([<span class="st">'Czekolada'</span><span class="op">,</span> <span class="st">'Żelki'</span><span class="op">,</span> <span class="st">'Batony'</span><span class="op">,</span> <span class="st">'Owoce'</span>])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">showOtherOption</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> wzrost <span class="op">=</span> form<span class="op">.</span><span class="fu">addTextItem</span>()<span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Wzrost (w cm)'</span>)<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> wzrostWalidacja <span class="op">=</span> FormApp<span class="op">.</span><span class="fu">createTextValidation</span>()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setHelpText</span>(<span class="st">'Wzrost musi być liczbą z przedziału 120 cm a 220 cm'</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">requireNumberBetween</span>(<span class="dv">120</span><span class="op">,</span><span class="dv">220</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">build</span>()<span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  wzrost<span class="op">.</span><span class="fu">setValidation</span>(wzrostWalidacja)<span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Walidacja pytania o wzrost wiąże się z koniecznością przypisania samego pytania do zmiennej. Tworzona jest zmienna <code>wzrost</code>, która jest pytaniem typu tekstowego (<code>addTextItem()</code>), w związku z czym ankietowany mógłby wpisać tam dowolną wartość.</p>
+<p>Ograniczenie tego typu praktyk jest możliwe dzięki utworzeniu nowego obiektu (np. o nazwie <code>wzrostWalidacja</code>) zawierającego kryteria walidacji. Możemy określić tekstową podpowiedź dotyczącą wartości (<code>setHelpText</code>), a także zdefiniować jakie wartości są dopuszczalne. W tym przypadku wzrost musi pochodzić z przedziału od 120 do 220 cm za co odpowiada funkcja <code>requireNumberBetween(120,220)</code>. Definiowanie kryteriów walidacji musi być zakończone funkcją <code>build()</code>.</p>
+<p>Utworzone zmienne <code>wzrost</code> i <code>wzrostWalidacja</code> nie są póki co ze sobą w żaden sposób powiązane. Aby zdefiniowana przez nas walidacja została zastosowana to na obiekcie <code>wzrost</code> musimy wywołać funkcję <code>setValidation(wzrostWalidacja)</code> z argumentem zawierającym kryteria walidacji. Dzięki tak określonej składni możliwe jest przypisanie jednego sposobu walidacji do wielu pytań w ankiecie.</p>
+</section>
+<section id="pytania-filtrujące" class="level1">
+<h1>Pytania filtrujące</h1>
+<p>Google Forms umożliwia także tworzenie ścieżek w ankiecie w zależności od zaznaczonej przez respondenta odpowiedzi. Zmodyfikujemy zatem wcześniej omówioną ankietę w taki sposób, aby płeć stanowiła pytanie filtrujące. Jeśli ankietowany wskaże, że jest mężczyzną to będzie musiał odpowiedzieć na pytanie o ulubiony słodycz, natomiast kobiety zobaczą pytanie o wzrost.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">stworzAnkiete2</span>() {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> form <span class="op">=</span> FormApp<span class="op">.</span><span class="fu">create</span>(<span class="st">'Ankieta 2'</span>)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> plec <span class="op">=</span> form<span class="op">.</span><span class="fu">addMultipleChoiceItem</span>()<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> m <span class="op">=</span> form<span class="op">.</span><span class="fu">addPageBreakItem</span>()<span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Mężczyzna'</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">addCheckboxItem</span>()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Ulubiony słodycz'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setChoiceValues</span>([<span class="st">'Czekolada'</span><span class="op">,</span> <span class="st">'Żelki'</span><span class="op">,</span> <span class="st">'Batony'</span><span class="op">,</span> <span class="st">'Owoce'</span>])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">showOtherOption</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> k <span class="op">=</span> form<span class="op">.</span><span class="fu">addPageBreakItem</span>()<span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Kobieta'</span>)<span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> wzrost <span class="op">=</span> form<span class="op">.</span><span class="fu">addTextItem</span>()<span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Wzrost (w cm)'</span>)<span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> wzrostWalidacja <span class="op">=</span> FormApp<span class="op">.</span><span class="fu">createTextValidation</span>()</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setHelpText</span>(<span class="st">'Wzrost musi być liczbą z przedziału 120 cm a 220 cm'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">requireNumberBetween</span>(<span class="dv">120</span><span class="op">,</span><span class="dv">220</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">build</span>()<span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  wzrost<span class="op">.</span><span class="fu">setValidation</span>(wzrostWalidacja)<span class="op">;</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  plec<span class="op">.</span><span class="fu">setTitle</span>(<span class="st">'Płeć'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setChoices</span>([</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    plec<span class="op">.</span><span class="fu">createChoice</span>(<span class="st">'Kobieta'</span><span class="op">,</span> k)<span class="op">,</span> </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    plec<span class="op">.</span><span class="fu">createChoice</span>(<span class="st">'Mężczyzna'</span><span class="op">,</span> m)])</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setRequired</span>(<span class="kw">true</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To co od razu rzuca się w oczy to dużo większa liczba zmiennych. Przede wszystkim pytanie filtrujące musi być zmienną, stąd jest przypisane do zmiennej o nazwie <code>plec</code>. Dodatkowo dodaliśmy zmienne (<code>m</code> i <code>k</code>), które przechowują podział sekcji (<code>addPageBreakItem()</code>) i mają odpowiednio nadane nazwy nowych stron. Pytania, które mają być zadane respondentowi po przejściu pytania filtrującego muszą się znaleźć poniżej podziału sekcji.</p>
+<p>Sposób zachowywania się ankiety określamy na samym końcu kodu. Na obiekcie zawierającym pytanie filtrujące wywołujemy funkcję <code>setChoices</code> (wcześniej używaliśmy <code>setChoicesValues</code>). Jako argumenty tej funkcji definiujemy pary: odpowiedź w pytaniu filtrującym i zmienna podziału sekcji do której respondent ma być przekierowany.</p>
+</section>
+<section id="tworzenie-podobnych-pytań-w-funkcji" class="level1">
+<h1>Tworzenie podobnych pytań w funkcji</h1>
+<p>Czasem w ankiecie pojawia się wiele podobnych pytań np. w ankiecie mającej na celu ocenę przedmiotów na studiach będą zmieniały się tylko nazwy przedmiotów bądź prowadzący. Można oczywiście skopiować dane pytanie <em>n</em> razy, ale w przypadku, gdy będziemy chcieli coś zmienić będzie się to wiązało ze zmianą w <em>n</em> przypadkach.</p>
+<p>Utworzenie własnej funkcji, która będzie tworzyć pytanie zaoszczędzi nam kłopotów w przypadku jakichkolwiek zmian oraz zmniejszy liczbę linii kodu.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">main</span>() {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">zrozumialosc</span>(przedmiot) {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> p <span class="op">=</span> przedmiot <span class="op">+</span> <span class="st">' - zrozumiałość treści'</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    form<span class="op">.</span><span class="fu">addMultipleChoiceItem</span>()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">setTitle</span>(p)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">setChoiceValues</span>([<span class="st">'Bardzo zrozumiałe'</span><span class="op">,</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'Zrozumiałe'</span><span class="op">,</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'Nie zrozumiałe'</span><span class="op">,</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'Bardzo nie zrozumiałe'</span>])<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> form <span class="op">=</span> FormApp<span class="op">.</span><span class="fu">create</span>(<span class="st">'Badanie jakości kształcenia'</span>)<span class="op">;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zrozumialosc</span>(<span class="st">'Przedmiot A'</span>)<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zrozumialosc</span>(<span class="st">'Przedmiot B'</span>)<span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zrozumialosc</span>(<span class="st">'Przedmiot C'</span>)<span class="op">;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W powyższym kodzie funkcja <code>zrozumialosc</code> zawiera pytanie jednokrotnego wyboru o zrozumiałość treści danego przedmiotu, który deklaruje się jako argument funkcji. Żeby utworzyć takie pytanie wywołujemy funkcję <code>zrozumialosc</code> podając w nawiasie nazwę przedmiotu. Dzięki takiemu rozwiązaniu dodanie kolejnego wariantu odpowiedzi wiąże się ze zmianą tylko w jednym miejscu - funkcji zawierającej deklarację pytania.</p>
+<p>Funkcje, w których deklarujemy pytania w ankiecie mogą być dużo bardziej rozbudowane i mogą zawierać więcej argumentów niż tylko jeden. Wszystko zależy od aktualnych potrzeb.</p>
+</section>
+<section id="podsumowanie" class="level1">
+<h1>Podsumowanie</h1>
+<p>Tworzenie prostych ankiet z poziomu kodu raczej nie ma większego sensu, ale zastosowanie tego narzędzia w przypadku złożonych kwestionariuszy składających się z podobnych pytań może zdecydowanie ułatwić nam pracę.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
