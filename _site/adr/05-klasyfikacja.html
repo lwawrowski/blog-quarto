@@ -89,6 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./04-grupowanie.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -559,18 +560,18 @@ Dołączanie pakietu: 'h2o'</code></pre>
 H2O is not running yet, starting it now...
 
 Note:  In case of errors look at the following log files:
-    /tmp/RtmpAbMlTt/file16f471bc65e7/h2o_lukasz_started_from_r.out
-    /tmp/RtmpAbMlTt/file16f4205c4684/h2o_lukasz_started_from_r.err
+    /tmp/RtmpkJWOFJ/file3baa74f1963b5/h2o_lukasz_started_from_r.out
+    /tmp/RtmpkJWOFJ/file3baa74b6d7bb1/h2o_lukasz_started_from_r.err
 
 
 Starting H2O JVM and connecting: ... Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         1 seconds 633 milliseconds 
+    H2O cluster uptime:         1 seconds 641 milliseconds 
     H2O cluster timezone:       Europe/Warsaw 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.38.0.1 
-    H2O cluster version age:    5 months and 5 days !!! 
+    H2O cluster version age:    5 months and 20 days !!! 
     H2O cluster name:           H2O_started_from_R_lukasz_xpm862 
     H2O cluster total nodes:    1 
     H2O cluster total memory:   7.80 GB 
@@ -585,7 +586,7 @@ R is connected to the H2O cluster:
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in h2o.clusterInfo(): 
-Your H2O cluster version is too old (5 months and 5 days)!
+Your H2O cluster version is too old (5 months and 20 days)!
 Please download and install the latest version from http://h2o.ai/download/</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">h2o.no_progress</span>() <span class="co"># brak pasków postępu</span></span>
@@ -610,10 +611,10 @@ Please download and install the latest version from http://h2o.ai/download/</cod
 ==============
 
 H2OBinomialModel: gbm
-Model ID:  GBM_model_R_1677252273910_1 
+Model ID:  GBM_model_R_1678576169235_1 
 Model Summary: 
   number_of_trees number_of_internal_trees model_size_in_bytes min_depth
-1              50                       50               13761         5
+1              50                       50               13762         5
   max_depth mean_depth min_leaves max_leaves mean_leaves
 1         5    5.00000         10         26    17.38000
 
@@ -777,7 +778,7 @@ H2OBinomialModel: gbm
 Model ID:  gbm_grid_model_33 
 Model Summary: 
   number_of_trees number_of_internal_trees model_size_in_bytes min_depth
-1              80                       80                8424         2
+1              80                       80                8421         2
   max_depth mean_depth min_leaves max_leaves mean_leaves
 1         2    2.00000          3          4     3.75000
 
