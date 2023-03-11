@@ -29,6 +29,8 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 
 # Wykrywanie anomalii
 
+[Wawrowski Ł, Białas A, Kajzer A, Kozłowski A, Kurianowicz R, Sikora M, Szymańska-Kwiecień A, Uchroński M, Białczak M, Olejnik M, Michalak M., 2023, _Anomaly Detection Module for Network Traffic Monitoring in Public Institutions_, Sensors, 23(6):2974. https://doi.org/10.3390/s23062974](articles/sensors_2023.pdf)
+
 [Adamczyk, B., Brzȩczek, M., Michalak, M., Kostorz, I., Wawrowski, Ł., Hermansa, M., Czerwiński, M., Jamiołkowski, A., 2022, _Dataset Generation Framework for Evaluation of IoT Linux Host–Based Intrusion Detection Systems_, 2022 IEEE International Conference on Big Data, 6179-6187, DOI: 10.1109/BigData55660.2022.10020442](https://ieeexplore.ieee.org/document/10020442)
 
 [Wawrowski Ł., Michalak M., Białas A., Kurianowicz R., Sikora M., Uchroński M., Kajzer A.: Detecting Anomalies and Attacks in Network Traffic Monitoring with Classification Methods and XAI-based Explainability, Procedia Computer Science, 192:2259-2268, 2021](articles/kes_2021.pdf)
