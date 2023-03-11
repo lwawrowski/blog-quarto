@@ -6,7 +6,7 @@ title: "Dydaktyka"
 
 [Podstawy programowania w R](http://www.wawrowski.edu.pl/ppr/)
 
-[Statystyka opisowa](https://departmentofstatisticspue.github.io/statystyka-opisowa/)
+[Statystyka opisowa](http://www.wawrowski.edu.pl/stat/)
 
 [Metoda reprezentacyjna](https://github.com/lwawrowski/metoda-reprezentacyjna)
 

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statystyka opisowa - 7&nbsp; Analiza szeregu dynamicznego</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08-indeksy.html" rel="next">
+<link href="./06-sezonowosc.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analiza szeregu dynamicznego</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statystyka opisowa</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Wprowadzenie</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-zbiorowosc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zbiorowość, jednostka, cecha</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-wizualizacja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-analiza-struktury.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analiza struktury</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-korelacje.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Korelacje</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-regresja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresja</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-sezonowosc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sezonowość</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-szereg-dynamiczny.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analiza szeregu dynamicznego</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-indeksy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Indeksy indywidualne i zespołowe</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#przyrosty-absolutne" id="toc-przyrosty-absolutne" class="nav-link active" data-scroll-target="#przyrosty-absolutne"> <span class="header-section-number">7.1</span> Przyrosty absolutne</a></li>
+  <li><a href="#przyrosty-względne" id="toc-przyrosty-względne" class="nav-link" data-scroll-target="#przyrosty-względne"> <span class="header-section-number">7.2</span> Przyrosty względne</a></li>
+  <li><a href="#indeksy" id="toc-indeksy" class="nav-link" data-scroll-target="#indeksy"> <span class="header-section-number">7.3</span> Indeksy</a></li>
+  <li><a href="#średnie-tempo-zmian" id="toc-średnie-tempo-zmian" class="nav-link" data-scroll-target="#średnie-tempo-zmian"> <span class="header-section-number">7.4</span> Średnie tempo zmian</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analiza szeregu dynamicznego</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Badanie szeregu dynamicznego umożliwia dokładne określenie zmian jakie zachodzą w kolejnych okresach. Za przykład posłuży sprzedaż piwa w województwie wielkopolskim w kolejnych okresach.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">miesiac</th>
+<th style="text-align: right;">liczba_sztuk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Styczeń</td>
+<td style="text-align: right;">2113</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Luty</td>
+<td style="text-align: right;">1991</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzec</td>
+<td style="text-align: right;">2084</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kwiecień</td>
+<td style="text-align: right;">2775</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maj</td>
+<td style="text-align: right;">2594</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Czerwiec</td>
+<td style="text-align: right;">2654</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lipiec</td>
+<td style="text-align: right;">2771</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sierpień</td>
+<td style="text-align: right;">2983</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="07-szereg-dynamiczny_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="przyrosty-absolutne" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="przyrosty-absolutne"><span class="header-section-number">7.1</span> Przyrosty absolutne</h2>
+<p><strong>Odejmowanie</strong> dwóch wielkości liczbowych daje w wyniku dodatni lub ujemny <strong>przyrost absolutny (bezwzględny)</strong>. Przyrosty mogą być obliczane w stosunku do jednego okresu (momentu) lub też okresu (momentu) stale zmieniającego się.</p>
+<p>Jeśli poszczególne wyrazy szeregu dynamicznego oznaczymy przez:</p>
+<p><span class="math display">\[y_1, y_2, y_3, ..., y_n\]</span></p>
+<p>to ciąg przyrostów absolutnych o podstawie stałej <span class="math inline">\(y_1\)</span> <strong>(jednopodstawowych)</strong> przedstawia się następująco:</p>
+<p><span class="math display">\[y_2-y_1, y_3-y_1, ..., y_{n-1}-y_1, y_n-y_1\]</span></p>
+<p>Natomiast ciąg przyrostów absolutnych o podstawie zmiennej (<strong>łańcuchowych</strong>) ma postać:</p>
+<p><span class="math display">\[y_2-y_1, y_3-y_2, ..., y_{n-1}-y_{n-2}, y_n-y_{n-1}\]</span></p>
+<p>Przyrosty absolutne informują o tym, o ile jednostek wzrósł (znak plus) lub zmalał (znak minus) poziom badanego zjawiska w okresie (momencie) badanym w porównaniu z okresem (momentem) przyjętym za podstawę. Przyrosty absolutne są wyrażone w tych samych jednostkach miary co badane zjawisko.</p>
+<p>Przyrosty absolutne o podstawie w maju oraz przyrosty absolutne łańcuchowe przedstawione są w tabeli.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">miesiac</th>
+<th style="text-align: right;">liczba_sztuk</th>
+<th style="text-align: right;">Paj</th>
+<th style="text-align: right;">Pal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Styczeń</td>
+<td style="text-align: right;">2113</td>
+<td style="text-align: right;">-481</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Luty</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">-603</td>
+<td style="text-align: right;">-122</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzec</td>
+<td style="text-align: right;">2084</td>
+<td style="text-align: right;">-510</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kwiecień</td>
+<td style="text-align: right;">2775</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">691</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maj</td>
+<td style="text-align: right;">2594</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-181</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Czerwiec</td>
+<td style="text-align: right;">2654</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lipiec</td>
+<td style="text-align: right;">2771</td>
+<td style="text-align: right;">177</td>
+<td style="text-align: right;">117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sierpień</td>
+<td style="text-align: right;">2983</td>
+<td style="text-align: right;">389</td>
+<td style="text-align: right;">212</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Na podstawie przyrostów absolutnych jednopodstawowych stwierdzamy, że sprzedaż piwa w lutym była o 603 sztuki mniejsza w porównaniu do maja. Z kolei przyrosty absolutne łańcuchowe informują o tym, że lipcu liczba sprzedanych piw była większa o 117 sztuk w porówaniu do czerwca.</p>
+</section>
+<section id="przyrosty-względne" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="przyrosty-względne"><span class="header-section-number">7.2</span> Przyrosty względne</h2>
+<p><strong>Iloraz</strong> przyrostów absolutnych zjawiska i jego poziomu w okresie (momencie) przyjętym za podstawę porównań nazywamy <strong>przyrostem względnym</strong>.</p>
+<p>Ciąg wartości przyrostów względnych o stałej podstawie <span class="math inline">\(y_1\)</span> (<strong>jednopodstawowych</strong>) jest następujący:</p>
+<p><span class="math display">\[\frac{y_2-y_1}{y_1}, \frac{y_3-y_1}{y_1}, ..., \frac{y_{n-1}-y_1}{y_1}, \frac{y_n-y_1}{y_1}\]</span></p>
+<p>Ciąg wartości przyrostów względnych o podstawie zmiennej (<strong>łańcuchowych</strong>) ma postać:</p>
+<p><span class="math display">\[\frac{y_2-y_1}{y_1}, \frac{y_3-y_2}{y_2}, ..., \frac{y_{n-1}-y_{n-2}}{y_{n-2}}, \frac{y_n-y_{n-1}}{y_{n-1}}\]</span></p>
+<p>Przyrosty względne wyrażane są w procentach. Informują o ile wyższy lub niższy jest poziom badanego zjawiska w danym okresie w stosunku do okresu przyjętego za podstawę (przyrosty względne jednopodstawowe) lub w stosunku do okresu bezpośrednio poprzedzającego (przyrosty względne łańcuchowe). Przyrosty względne mogą być wartościami dodatnimi, ujemnymi lub równymi zero. Określane są niekiedy mianem wskaźników tempa przyrostu.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">miesiac</th>
+<th style="text-align: right;">liczba_sztuk</th>
+<th style="text-align: right;">Pwj</th>
+<th style="text-align: right;">Pwl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Styczeń</td>
+<td style="text-align: right;">2113</td>
+<td style="text-align: right;">-18.54</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Luty</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">-23.25</td>
+<td style="text-align: right;">-5.77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzec</td>
+<td style="text-align: right;">2084</td>
+<td style="text-align: right;">-19.66</td>
+<td style="text-align: right;">4.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kwiecień</td>
+<td style="text-align: right;">2775</td>
+<td style="text-align: right;">6.98</td>
+<td style="text-align: right;">33.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maj</td>
+<td style="text-align: right;">2594</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">-6.52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Czerwiec</td>
+<td style="text-align: right;">2654</td>
+<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">2.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lipiec</td>
+<td style="text-align: right;">2771</td>
+<td style="text-align: right;">6.82</td>
+<td style="text-align: right;">4.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sierpień</td>
+<td style="text-align: right;">2983</td>
+<td style="text-align: right;">15.00</td>
+<td style="text-align: right;">7.65</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Na podstawie przyrostów względnych jednopodstawowych stwierdzamy, że sprzedaż piwa w lutym była o 22,25% mniejsza w porównaniu do maja. Z kolei przyrosty względne łańcuchowe informują o tym, że lipcu liczba sprzedanych piw była większa o 4,41% w porówaniu do czerwca.</p>
+</section>
+<section id="indeksy" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="indeksy"><span class="header-section-number">7.3</span> Indeksy</h2>
+<p>Indeksem (wskaźnikiem dynamiki) nazywamy każdą liczbę względną powstałą przez podzielenie wielkości danego zjawiska w okresie badanym (sprawozdawczym) przez wielkość tego zjawiska w okresie podstawowym (bazowym). Jeżeli poziom zjawiska w okresie (momencie) badanym oznaczymy symbolem <span class="math inline">\(y_1\)</span>, a w okresie podstawowym symbolem <span class="math inline">\(y_0\)</span>, to ogólny wzór na indeks przyjmie postać: <span class="math inline">\(i=\frac{y_1}{y_0}\)</span>.</p>
+<p>Indeks jest wielkością niemianowaną i może być wyrażony w ułamku lub w procentach. Jeżeli indeks przyjmie wartość z przedziału <span class="math inline">\(0 \leq i &lt; 1\)</span>, świadczy to o spadku poziomu zjawiska w okresie badanym w stosunku do okresu podstawowego. Większa od 1 (lub od 100%) wartość indeksu informuje o wzroście poziomu zjawiska w okresie badanym w porównaniu z okresem podstawowym. Wreszcie indeks równy 1 oznacza, że poziomy zjawiska w okresach badanym i podstawowym są takie same.</p>
+<p>Ciąg indeksów o stałej podstawie <span class="math inline">\(y_1\)</span> (<strong>jednopodstawowych</strong>) można zapisać:</p>
+<p><span class="math display">\[\frac{y_1}{y_1}, \frac{y_2}{y_1}, ..., \frac{y_{n-1}}{y_1}, \frac{y_n}{y_1}\]</span></p>
+<p>Ciąg indeksów o podstawie zmiennej (<strong>łańcuchowych</strong>) ma postać:</p>
+<p><span class="math display">\[\frac{y_2}{y_1}, \frac{y_3}{y_2}, ..., \frac{y_{n-1}}{y_{n-2}}, \frac{y_n}{y_{n-1}}\]</span></p>
+<p>Między przyrostami względnymi a indeksami istnieje ścisły związek. Indeksy jednopodstawowe można otrzymać z przyrostów względnych o podstawie stałej poprzez dodanie 100 (lub jedności, jeśli posługujemy się ułamkami, a nie wielkościami procentowymi). W analogiczny sposób można dokonać przejścia z indeksów łańcuchowych na przyrosty względne łańcuchowe. Oczywiście można dokonać również operacji odwrotnej, tzn. zamienić indeksy na przyrosty względne.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">miesiac</th>
+<th style="text-align: right;">liczba_sztuk</th>
+<th style="text-align: right;">Ij</th>
+<th style="text-align: right;">Il</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Styczeń</td>
+<td style="text-align: right;">2113</td>
+<td style="text-align: right;">81.46</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Luty</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">76.75</td>
+<td style="text-align: right;">94.23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzec</td>
+<td style="text-align: right;">2084</td>
+<td style="text-align: right;">80.34</td>
+<td style="text-align: right;">104.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kwiecień</td>
+<td style="text-align: right;">2775</td>
+<td style="text-align: right;">106.98</td>
+<td style="text-align: right;">133.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maj</td>
+<td style="text-align: right;">2594</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">93.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Czerwiec</td>
+<td style="text-align: right;">2654</td>
+<td style="text-align: right;">102.31</td>
+<td style="text-align: right;">102.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lipiec</td>
+<td style="text-align: right;">2771</td>
+<td style="text-align: right;">106.82</td>
+<td style="text-align: right;">104.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sierpień</td>
+<td style="text-align: right;">2983</td>
+<td style="text-align: right;">115.00</td>
+<td style="text-align: right;">107.65</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>W praktyce badań statystycznych częściej wykorzystuje się indeksy niż przyrosty względne. Na indeksach wygodniej jest bowiem dokonywać określonych przekształceń i działań algebraicznych. Działania, jakie mogą być dokonywane na indeksach, sprowadzają się w zasadzie do zamiany indeksów jednopodstawowych na łańcuchowe i odwrotnie oraz do zmiany podstawy w szeregu indeksów o podstawie stałej.</p>
+<p><strong>Zamiany indeksów jednopodstawowych na łańcuchowe</strong> dokonuje się poprzez dzielenie indeksów jednopodstawowych przez siebie:</p>
+<p><span class="math display">\[\frac{y_i}{y_1}/\frac{y_{i-1}}{y_1}=\frac{y_i}{y_{i-1}}\]</span></p>
+<p>W praktyce indeksy łańcuchowe na podstawie indeksów jednopodstawowych liczymy tak samo jak zwykłe indeksy łańcuchowe, tylko zamiast wartości bezwzględnych podstawiamy wartości indeksów jednopodstawowych.</p>
+<p><strong>Zamiany indeksów łańcuchowych na jednopodstawowe</strong> dokonuje się według następujących zasad:</p>
+<ol type="1">
+<li>indeks jednopodstawowy w okresie przyjętym za podstawę wynosi 100%;</li>
+<li>indeks jednopodstawowy w okresie następującym bezpośrednio po okresie przyjętym za podstawę jest taki sam jak indeks łańcuchowy;</li>
+<li>dalsze indeksy jednopodstawowe po okresie przyjętym za podstawę otrzymujemy, mnożąc wyznaczony indeks jednopodstawowy z okresu wcześniejszego przez indeks łańcuchowy dla analizowanego okresu;</li>
+<li>indeksy jednopodstawowe przed okresem podstawowym są ilorazem indeksu jednopodstawowego z okresu następnego oraz indeksu łańcuchowego z okresu następnego.</li>
+</ol>
+<p><strong>Zmiany podstawy w indeksach jednopodstawowych</strong> dokonuje się poprzez dzielenie poszczególnych indeksów przy danej podstawie przez indeks jednopodstawowy tego okresu, który przyjmuje się za nową podstawę. Innymi słowy, indeks jednopodstawowy o nowej podstawie liczymy w taki sam sposób jak byśmy liczyli indeks jednopodstawowy na podstawie wartości bezwzględnych, ale zamiast nich podstawiamy wartości indeksów jednopodstawowych.</p>
+</section>
+<section id="średnie-tempo-zmian" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="średnie-tempo-zmian"><span class="header-section-number">7.4</span> Średnie tempo zmian</h2>
+<p>Indeksy jednopodstawowe i łańcuchowe pozwalają na ocenę zmian badanego zjawiska między dwoma wyróżnionymi okresami (momentami). Często jednak zachodzi konieczność oceny zmian danego zjawiska w całym okresie objętym obserwacją. Do tego celu wykorzystuje się średnią geometryczną.</p>
+<p>Średnia geometryczna jest pierwiastkiem <span class="math inline">\(n\)</span>-tego stopnia z iloczynu <span class="math inline">\(n\)</span> zmiennych. Średnie tempo zmian zjawisk ujętych w formie szregów czasowych oblicza się najczęściej na podstawie indeksów łańcuchowych. Ponieważ z <span class="math inline">\(n\)</span> wielkości absolutnych można utworzyć <span class="math inline">\(n-1\)</span> indeksów łańcuchowych, przez to wzór na średnią geometryczną indeksów łańcuchowych przyjmuje postać:</p>
+<p><span class="math display">\[\bar{y}_g=\sqrt[n-1]{\frac{y_2}{y_1}\cdot\frac{y_3}{y_2}\cdot\frac{y_4}{y_3}\cdot...\cdot\frac{y_{n-1}}{y_{n-2}}\cdot\frac{y_n}{y_{n-1}}}=\sqrt[n-1]{\prod_{i=2}^{n}{\frac{y_i}{y_{i-1}}}}=\sqrt[n-1]{\frac{y_n}{y_1}}\]</span></p>
+<p>Średnie tempo zmian wyrażone w procentach określa, jaki jest przeciętny okresowy przyrost procentowy analizowanego zjawiska w badanym przedziale czasowym.</p>
+<div class="cell">
+
+</div>
+<p>Średnia geometryczna indeksów łańcuchowych sprzedanych piw wynosi 105.05%, co oznacza, że liczba sprzedanych piw w województwie wielkopolskim rosła z miesiąca na miesiąc przeciętnie o 5.05%.</p>
+<p>Obliczone średnie tempo zmian można wykorzystać w celach prognostycznych. Zakładając, że w kolejnych okresach badane zjawisko będzie rozwijać się w dotychczasowym tempie:</p>
+<p><span class="math display">\[y_T=y_n\cdot \bar{y}_{g}^{(T-n)}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(T\)</span> — numer okresu prognozowanego,</li>
+<li><span class="math inline">\(n\)</span> — numer ostatniego okresu.</li>
+</ul>
+<p>Przeprowadzenie szacunku z wykorzystaniem powyższej metody wymaga jednak, by dotychczasowy rozwój tej zmiennej był jednokierunkowy i nie podlegał zbyt dużej zmienności. Stosując tę regułę nie można ustalić błędu prognozy.</p>
+<div class="cell">
+
+</div>
+<p>Zakładając, że we wrześniu popyt na piwo nie spadnie, prognozowana sprzedaż wyniesie 3134 sztuk.</p>
+<p>Znając wartość cechy w ostatnim okresie możemy, z wykorzystaniem indeksów łańcuchowych, odtworzyć wartości cechy dla okresów wcześniejszych dzieląc wartość cechy przez indeks łańcuchowy.</p>
+<p><em>Zadania</em></p>
+<ol type="1">
+<li>Na podstawie danych dotyczących liczby sprzedanych sztuk piwa w województwie mazowieckim:</li>
+</ol>
+<ul>
+<li>oblicz średnie tempo zmian i je zinterpretuj</li>
+<li>o ile procent zmieniła się sprzedaż piwa w marcu w porównaniu do czerwca?</li>
+<li>jaka jest prognozowana sprzedaż piwa w październiku?</li>
+</ul>
+<ol start="2" type="1">
+<li>Wyznacz indeksy łańcuchowe dla liczby sprzedanych sztuk piwa w sklepach sieci detalicznej. Wyłącznie na ich podstawie określ:</li>
+</ol>
+<ul>
+<li>o ile procent zmieniła się sprzedaż piwa w sierpniu w porównianiu do czerwca?</li>
+<li>sprzedaż piwa w listopadzie wiedząc, że w sierpniu sprzedano 4146 sztuk</li>
+<li>ile wynosiła sprzedaż piwa w lutym?</li>
+<li>w których miesiącach sprzedaż piwa była mniejsza niż w miesiącu poprzedzającym?</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06-sezonowosc.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sezonowość</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./08-indeksy.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Indeksy indywidualne i zespołowe</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

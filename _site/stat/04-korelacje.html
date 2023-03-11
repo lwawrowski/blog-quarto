@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statystyka opisowa - 4&nbsp; Korelacje</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-regresja.html" rel="next">
+<link href="./03-analiza-struktury.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Korelacje</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statystyka opisowa</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Wprowadzenie</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-zbiorowosc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zbiorowość, jednostka, cecha</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-wizualizacja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-analiza-struktury.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analiza struktury</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-korelacje.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Korelacje</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-regresja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresja</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-sezonowosc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sezonowość</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-szereg-dynamiczny.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analiza szeregu dynamicznego</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-indeksy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Indeksy indywidualne i zespołowe</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#cechy-jakościowe" id="toc-cechy-jakościowe" class="nav-link active" data-scroll-target="#cechy-jakościowe"> <span class="header-section-number">4.1</span> Cechy jakościowe</a></li>
+  <li><a href="#cechy-ciągłe" id="toc-cechy-ciągłe" class="nav-link" data-scroll-target="#cechy-ciągłe"> <span class="header-section-number">4.2</span> Cechy ciągłe</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Korelacje</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Korelacja [łac.], mat. wzajemne powiązanie, współzależność zjawisk lub obiektów; w teorii prawdopodobieństwa i statystyce — współzależność liniowa zmiennych losowych (jej liczbową miara jest współczynnik korelacji) [źródło: słownik PWN].</p>
+<section id="cechy-jakościowe" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="cechy-jakościowe"><span class="header-section-number">4.1</span> Cechy jakościowe</h2>
+<p>Celem analizy współzależności jest określenie siły związku pomiędzy dwiema cechami jakościowymi. Sprawdźmy czy istnieje zależność pomiędzy wynikiem z egzaminu a płcią?</p>
+<p>Podstawą takiej analizy jest tablica kontyngencji albo tablica krzyżowa. W przypadku obserwacji statystycznej dotyczącej dużej ilości zmiennych, operowanie wartościami szczegółowymi jest uciążliwe. W celu stwierdzenia istnienia lub braku związku korelacyjnego konstruuje się tablicę korelacyjną. Na skrzyżowaniu kolumn z wierszami wpisuje się liczebności jednostek zbiorowości statystycznej, u których zaobserwowano jednoczesne występowanie określonej wartości <span class="math inline">\(x_{i}\)</span> i <span class="math inline">\(y_{i}\)</span>. Ogólna postać tablicy krzyżowej jest następująca:</p>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>cecha X / cecha Y</th>
+<th><span class="math inline">\(y_{1}\)</span></th>
+<th><span class="math inline">\(y_{2}\)</span></th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(y_{j}\)</span></th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(y_{r}\)</span></th>
+<th><span class="math inline">\(\sum\limits_{j}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x_{1}\)</span></td>
+<td><span class="math inline">\(n_{11}\)</span></td>
+<td><span class="math inline">\(n_{12}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{1j}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{1r}\)</span></td>
+<td><span class="math inline">\(n_{1.}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_{2}\)</span></td>
+<td><span class="math inline">\(n_{21}\)</span></td>
+<td><span class="math inline">\(n_{22}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{2j}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{2r}\)</span></td>
+<td><span class="math inline">\(n_{2.}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_{i}\)</span></td>
+<td><span class="math inline">\(n_{i1}\)</span></td>
+<td><span class="math inline">\(n_{i2}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{ij}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{ir}\)</span></td>
+<td><span class="math inline">\(n_{i.}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_{k}\)</span></td>
+<td><span class="math inline">\(n_{k1}\)</span></td>
+<td><span class="math inline">\(n_{k2}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{kj}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{kr}\)</span></td>
+<td><span class="math inline">\(n_{k.}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sum\limits_{i}\)</span></td>
+<td><span class="math inline">\(n_{.1}\)</span></td>
+<td><span class="math inline">\(n_{.2}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{.j}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{.r}\)</span></td>
+<td><span class="math inline">\(n\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Jak wynika z tablicy zmienna losowa <span class="math inline">\(X\)</span> przyjmuje <span class="math inline">\(k\)</span> wariantów (i=1,2,…,k), zaś zmienna losowa <span class="math inline">\(Y\)</span> przyjmuje <span class="math inline">\(r\)</span> wariantów (j=1,2,…,r).</p>
+<p>Symbol <span class="math inline">\(n_{.j}\)</span> oznacza liczbę jednostek, które mają wariant <span class="math inline">\(y_{j}\)</span> zmiennej Y, natomiast symbol <span class="math inline">\(n_{i.}\)</span> - liczbę jednostek, które mają wariant <span class="math inline">\(x_{i}\)</span> zmiennej X. Symbole <span class="math inline">\(n_{ij}\)</span> oznaczają liczbę jednostek, które posiadają jednocześnie wariant <span class="math inline">\(x_{i}\)</span> cechy X i warianty <span class="math inline">\(y_{j}\)</span> cechy Y. Symbol <span class="math inline">\(n\)</span> oznacza liczebność próby, przy czym:</p>
+<p><span class="math display">\[n=\sum\limits_{i=1}^{k}{n_{i.}}=\sum\limits_{j=1}^{r}{n_{.j}}=\sum\limits_{i=1}^{k}\sum\limits_{j=1}^{r}{n_{ij}}\]</span></p>
+<p>W analizowanym przykładzie pozyskaliśmy informację od 500 osób na temat wyniku egzaminu oraz płci. Tablica krzyżowa tych danych wygląda następująco:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Płeć / Wynik</th>
+<th style="text-align: right;">Nie zdany</th>
+<th style="text-align: right;">Zdany</th>
+<th style="text-align: right;">Suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mężczyzna</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">170</td>
+</tr>
+<tr class="even">
+<td>Kobieta</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">330</td>
+</tr>
+<tr class="odd">
+<td>Suma</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">500</td>
+</tr>
+</tbody>
+</table>
+<p>Do odpowiedzi na pytanie czy istnieje zależność pomiędzy tymi cechami wykorzystamy statystykę chi-kwadrat (<span class="math inline">\(\chi^2\)</span>). Nazwę tej statystyki czytamy tak samo jak piszemy.</p>
+<p>W pierwszym kroku musimy obliczyć <strong>oczekiwane (teoretyczne) częstości</strong> dla każdej komórki czyli wartości jakie musiałyby występować, żeby zależności nie było. Wzór na liczebności teoretyczne jest następujący:</p>
+<p><span class="math display">\[\hat{n}_{ij}=\frac{n_{i.} \cdot n_{.j}}{n}\]</span></p>
+<p>Przykładowo, liczebność teoretyczna dla mężczyzn, którzy nie zdali egzaminu to iloczyn liczby wszystkich mężczyzn i liczby wszystkich, którzy nie zdali egzaminu podzielony przez wszystkie obserwacje:</p>
+<p><span class="math display">\[\hat{n}_{11}=\frac{170 \cdot 230}{500}=78,2\]</span></p>
+<p>Liczebności oczekiwane po wstawieniu do tabeli:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Płeć / Wynik</th>
+<th style="text-align: right;">Nie zdany</th>
+<th style="text-align: right;">Zdany</th>
+<th style="text-align: right;">Suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mężczyzna</td>
+<td style="text-align: right;">78,2</td>
+<td style="text-align: right;">91,8</td>
+<td style="text-align: right;">170</td>
+</tr>
+<tr class="even">
+<td>Kobieta</td>
+<td style="text-align: right;">151,8</td>
+<td style="text-align: right;">178,2</td>
+<td style="text-align: right;">330</td>
+</tr>
+<tr class="odd">
+<td>Suma</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">500</td>
+</tr>
+</tbody>
+</table>
+<p>Częstości teoretyczne nie muszą być wartościami całkowitymi, ale suma w wierszu, kolumnie i dla całej tablicy krzyżowej musi pozostać taka sama.</p>
+<p>W kolejnym kroku wyznaczamy <strong>standardowe współczynniki różnicy</strong> pomiędzy częstościami oczekiwanymi a zaobserwowanymi. Suma tych współczynników da nam wartość <strong>statystyki <span class="math inline">\(\chi^2\)</span></strong>.</p>
+<p><span class="math display">\[\chi^{2}=\sum\limits_{i=1}^{k}\sum\limits_{j=1}^{r}{\frac{(n_{ij}-\hat{n}_{ij})^2}{\hat{n}_{ij}}}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(r\)</span> - liczba wariantów cechy Y,</li>
+<li><span class="math inline">\(k\)</span> - liczba wariantów cechy X,</li>
+<li><span class="math inline">\(n_{ij}\)</span> - liczebności empiryczne dla i-tego wariantu cechy X i j-tego wariantu cechy Y,</li>
+<li><span class="math inline">\(\hat{n}_{ij}\)</span> - liczebności teoretyczne dla i-tego wariantu cechy X i j-tego wariantu cechy Y.</li>
+</ul>
+<p><span class="math display">\[\chi^{2}=\frac{(100-78,2)^2}{78,2}+\frac{(70-91,8)^2}{91,8}+\frac{(130-151,8)^2}{151,8}+\frac{(200-178,2)^2}{178,2}=17\]</span></p>
+<p>W przypadku, gdy dysponujemy tablicą o wymiarach 2x2 możemy skorzystać z prostszego sposobu wyznaczenia statystyki <span class="math inline">\(\chi^2\)</span> korzystając ze wzoru. Jeśli tablica kontyngencji jest w postaci:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>cecha X / cecha Y</th>
+<th><span class="math inline">\(y_{1}\)</span></th>
+<th><span class="math inline">\(y_{2}\)</span></th>
+<th><span class="math inline">\(n_{i.}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x_{1}\)</span></td>
+<td>a</td>
+<td>b</td>
+<td>a+b</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_{2}\)</span></td>
+<td>c</td>
+<td>d</td>
+<td>c+d</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n_{.j}\)</span></td>
+<td>a+c</td>
+<td>b+d</td>
+<td>n</td>
+</tr>
+</tbody>
+</table>
+<p>a liczebności w komórkach większe niż 5 to wzór na chi-kwadrat jest następujący:</p>
+<p><span class="math display">\[\chi^{2}=\frac{n \cdot (a \cdot d - b \cdot c)^2}{(a+b) \cdot (c+d) \cdot (a+c) \cdot (b+d)}\]</span></p>
+<p>W przypadku występowania częstości mniejszych od 5 musimy zastosować wzór uwzględniający poprawkę Yatesa:</p>
+<p><span class="math display">\[\chi^{2}=\frac{n \cdot (|a \cdot d - b \cdot c| - 0,5 \cdot n)^2}{(a+b) \cdot (c+d) \cdot (a+c) \cdot (b+d)}\]</span></p>
+<p>W analizowanym przypadku zależności płci i wyniku z egzaminu wartości w komórkach a, b, c i d są większe od 5, więc można wykorzystać pierwszą formułę:</p>
+<p><span class="math display">\[\chi^2=\frac{500\cdot(100\cdot200-70\cdot130)^2}{170\cdot330\cdot230\cdot270}=\frac{59405000000}{3483810000}=17\]</span></p>
+<p>Sama wartość statystyki chi-kwadrat nie informuje sile zależności pomiędzy analizowanymi zmiennymi. W celu określenia siły zależności musimy wyznaczyć jedną z dostępnych miar korelacji: <strong>współczynnik V-Cramera</strong> lub <strong>współczynnik zbieżności T-Czuprowa</strong>:</p>
+<p><span class="math display">\[V=\sqrt{\frac{\chi^2}{n \cdot min(k-1,r-1)}}\]</span></p>
+<p><span class="math display">\[T=\sqrt{\frac{\chi^2}{n \cdot \sqrt{(k-1)(r-1)}}}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\chi^2\)</span> - wyznaczona wartość statystyki <span class="math inline">\(\chi^2\)</span>,</li>
+<li><span class="math inline">\(n\)</span> - liczba wszystkich obserwacji,</li>
+<li><span class="math inline">\(k\)</span> - liczba kolumn tabeli kontyngencji bez sumy (liczba wariantów pierwszej cechy),</li>
+<li><span class="math inline">\(r\)</span> - liczba wierszy tabeli kontyngencji bez sumy (liczba wariantów drugiej cechy).</li>
+</ul>
+<p>Możemy przyjąć pewne umowne progi dotyczące interpretacji tych miar:</p>
+<ul>
+<li>od 0,00 do 0,29 - słaby związek pomiędzy zmiennymi,</li>
+<li>od 0,30 do 0,49 - umiarkowany związek pomiędzy zmiennymi,</li>
+<li>od 0,50 do 1,00 - silny związek pomiędzy zmiennymi.</li>
+</ul>
+<p>W naszym przykładzie współczynnik V-Cramera jest równy współczynnikowi T-Czuprowa i wynosi <span class="math inline">\(V=T=0,18\)</span>, co oznacza, że pomiędzy płcią a wynikiem z egzaminu występuje słaba zależność.</p>
+<p><strong>Miary korelacji cech jakościowych w Excelu</strong></p>
+<p>Niestety, aktualnie w MS Excel nie ma funkcji, które umożliwiają obliczenie statystyki <span class="math inline">\(\chi^2\)</span>. Istnieje natomiast funkcja <code>CHI.TEST</code>, która liczy statystykę <span class="math inline">\(\chi^2\)</span> ale jej nie zwraca. Informuje jedynie o istotności statystycznej, która wykracza poza zakres materiału realizowanego w ramach tych zajęć.</p>
+<p><em>Zadanie</em></p>
+<p>Oceń siłę zależności pomiędzy faktem wejścia promocji, a liczbą klientów (poniżej/powyżej średniej) w sklepie numer 7.</p>
+</section>
+<section id="cechy-ciągłe" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="cechy-ciągłe"><span class="header-section-number">4.2</span> Cechy ciągłe</h2>
+<p>W odróżnieniu do cech jakościowych, w przypadku cech ciągłych oprócz siły zależności określamy także kierunek tej zależności pomiędzy dwoma zmiennymi. Silnie skorelowane ze sobą zmienne zachowują się “jak gdyby równocześnie się poruszały”.</p>
+<p>Sprawdźmy czy liczba klientów jest skorelowana ze sprzedażą w sklepie nr 1. Pierwszym krokiem w analizie korelacji jest stworzenie wykresu rozrzutu:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="04-korelacje_files/figure-html/ross-scatter-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Na tej podstawie możemy już stwierdzić, że zależność jest dodatnia - wzrost wartości jednej cechy pociąga za sobą wzrost wartości drugiej cechy:</p>
+<ul>
+<li>wzrost temperatury, większa sprzedaż lodów;</li>
+<li>wzrost wynagrodzenia, zwiększenie wydatków;</li>
+<li>mniej czasu spędzonego na działaniach marketingowych, mniej klientów.</li>
+</ul>
+<p><a href="https://examples.yourdictionary.com/positive-correlation-examples.html">Więcej przykładów</a></p>
+<p>Z korelacją ujemną mielibyśmy do czynienia, gdy wartości jednej cechy by rosły, a drugiej malały. Przykłady ujemnej korelacji:</p>
+<ul>
+<li>liczba nieobecności na zajęciach jest zwykle związana z niższymi ocenami;</li>
+<li>większa prędkość pociągu, krótszy czas dotarcia do stacji końcowej;</li>
+<li>spadek temperatury, wzrost sprzedaży grzejników.</li>
+</ul>
+<p><a href="https://examples.yourdictionary.com/negative-correlation-examples.html">Więcej przykładów</a></p>
+<p>Wartością liczbową, która określa kierunek korelacji jest <strong>kowariancja</strong>. Wyznaczenie kowariancji polega na policzeniu różnic wartości obu cech od średniej, a następnie ich przemnożeniu i uśrednieniu, zgodnie ze wzorem:</p>
+<p><span class="math display">\[cov(x,y)=cov(y,x)=\frac{1}{n}\sum\limits_{i=1}^{n}{(x_{i}-\bar{x})\cdot(y_{i}-\bar{y})}\]</span></p>
+<p>Znak kowariancji determinuje kierunek zależności, który jest ustalany na podstawie iloczynu różnic pomiędzy wartościami średnich a analizowanymi cechami. Sumowane są wartości dodatnie i ujemne, co pokazuje poniższy wykres:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="04-korelacje_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Jeśli kowariancja będzie:</p>
+<ul>
+<li><span class="math inline">\(cov(x,y)=0\)</span> — brak zależności,</li>
+<li><span class="math inline">\(cov(x,y)&lt;0\)</span> — ujemna zależność,</li>
+<li><span class="math inline">\(cov(x,y)&gt;0\)</span> — dodatnia zależność.</li>
+</ul>
+<p>W przypadku sklepu nr 1 kowariancja wynosi 4.50279^{5}, co oczywiście pociąga za sobą dodatnią zależność. Na podstawie kowariancji nie możemy natomiast wyznaczyć siły zależności ponieważ jest wyznaczona w dziwnych jednostkach - osobo-euro. Poza tym może przyjąć wartości z całego zakresu liczb rzeczywistych: <span class="math inline">\((-\infty;+\infty)\)</span>.</p>
+<p>Standaryzując kowariancję z wykorzystaniem odchylenia standardowego każdej cechy otrzymamy <strong>współczynnik korelacji liniowej Pearsona</strong>:</p>
+<p><span class="math display">\[r_{xy}=r_{yx}=\frac{cov(X,Y)}{S_{x}\cdot S_{y}}\]</span></p>
+<p>lub</p>
+<p><span class="math display">\[r_{xy}=\frac{\sum\limits_{i=1}^{n}{(x_{i}-\bar{x})\cdot(y_{i}-\bar{y})}}{\sqrt{\sum\limits_{i=1}^{n}{(x_{i}-\bar{x})^2\cdot(y_{i}-\bar{y})^2}}}\]</span></p>
+<p>Współczynnik ten jest wielkością unormowaną, przyjmuje wartości z przedziału <span class="math inline">\(r\in&lt;-1;1&gt;\)</span>.</p>
+<p>Jeśli:</p>
+<ul>
+<li><span class="math inline">\(r_{xy}=1\)</span> — korelacja dodatnia doskonała,</li>
+<li><span class="math inline">\(0&lt;r_{xy}&lt;1\)</span> — korelacja dodatnia niedoskonała (słaba/umiarkowana/silna)</li>
+<li><span class="math inline">\(r_{xy}=0\)</span> — brak zależności,</li>
+<li><span class="math inline">\(-1&lt;r_{xy}&lt;0\)</span> — korelacja ujemna niedoskonała (słaba/umiarkowana/silna)</li>
+<li><span class="math inline">\(r_{xy}=-1\)</span> — korelacja ujemna doskonała.</li>
+</ul>
+<p>W sklepie nr 1 współczynnik korelacji liniowej Pearona wynosi 0.98, co oznacza, że pomiędzy wartością sprzedaży a liczbą klientów występuje silna dodatnia korelacja liniowa.</p>
+<p>W przypadku, gdy w zbiorze analizowanych cech znajdą się wartości odstające, które zaburzają liniowość relacji, współczynnik korelacji liniowej może nie spełniać swojej funkcji. Wówczas należy skorzystać ze <strong>współczynnika korelacji rang Spearmana</strong>, który jest współczynnikiem korelacji liniowej Pearsona, ale obliczanym na <strong>rangach</strong>.</p>
+<p>Rangowanie polega na posortowaniu wartości jednej cechy rosnąco - przypisanie kolejnych wartości od <span class="math inline">\(1\)</span> do <span class="math inline">\(n\)</span> (jak w sporcie), na następnie powtórzenie operacji dla drugiej cechy. Jeśli jakaś wartość będzie się powtarzać (<em>ex aequo</em>), wówczas wyznaczamy wartość tzn. rangi wiązanej - średniej arytmetycznej z rang tej wartości.</p>
+<p>W Excelu można wyznaczyć wyłącznie współczynnik korelacji liniowej Pearsona korzystając z funkcji:</p>
+<ul>
+<li>PEARSON(tablica1, tablica2).</li>
+</ul>
+<p>Korelacja nie oznacza przyczynowości - informuje jedynie o współwystępowaniu cech. Do analizy przyczyno-skutkowej służą metody regresji.</p>
+<p><a href="https://www.mathsisfun.com/data/correlation.html">Kilka dodatkowych wyjaśnień</a></p>
+<p><a href="https://www.tylervigen.com/spurious-correlations">Pozorne korelacje</a></p>
+<p><a href="http://guessthecorrelation.com/">Gra - zgadnij współczynnik korelacji</a></p>
+<p><em>Zadanie</em></p>
+<p>Przeanalizuj sprzedaż oraz liczbę klientów w sklepie nr 7 w maju. Utwórz wykres rozrzutu oraz oblicz i zinterpretuj współczynnik korelacji liniowej Pearsona korzystając z funkcji Excela.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-analiza-struktury.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analiza struktury</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-regresja.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresja</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

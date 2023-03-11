@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statystyka opisowa - 3&nbsp; Analiza struktury</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-korelacje.html" rel="next">
+<link href="./02-wizualizacja.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analiza struktury</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statystyka opisowa</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Wprowadzenie</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-zbiorowosc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zbiorowość, jednostka, cecha</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-wizualizacja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-analiza-struktury.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analiza struktury</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-korelacje.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Korelacje</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-regresja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresja</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-sezonowosc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sezonowość</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-szereg-dynamiczny.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analiza szeregu dynamicznego</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-indeksy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Indeksy indywidualne i zespołowe</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#miary-klasyczne" id="toc-miary-klasyczne" class="nav-link active" data-scroll-target="#miary-klasyczne"> <span class="header-section-number">3.1</span> Miary klasyczne</a></li>
+  <li><a href="#miary-pozycyjne" id="toc-miary-pozycyjne" class="nav-link" data-scroll-target="#miary-pozycyjne"> <span class="header-section-number">3.2</span> Miary pozycyjne</a></li>
+  <li><a href="#szereg-jednostkowy-i-przedziałowy" id="toc-szereg-jednostkowy-i-przedziałowy" class="nav-link" data-scroll-target="#szereg-jednostkowy-i-przedziałowy"> <span class="header-section-number">3.3</span> Szereg jednostkowy i przedziałowy</a>
+  <ul class="collapse">
+  <li><a href="#szereg-jednostkowy" id="toc-szereg-jednostkowy" class="nav-link" data-scroll-target="#szereg-jednostkowy"> <span class="header-section-number">3.3.1</span> Szereg jednostkowy</a></li>
+  <li><a href="#szereg-przedziałowy" id="toc-szereg-przedziałowy" class="nav-link" data-scroll-target="#szereg-przedziałowy"> <span class="header-section-number">3.3.2</span> Szereg przedziałowy</a></li>
+  </ul></li>
+  <li><a href="#podsumowanie-miar" id="toc-podsumowanie-miar" class="nav-link" data-scroll-target="#podsumowanie-miar"> <span class="header-section-number">3.4</span> Podsumowanie miar</a>
+  <ul class="collapse">
+  <li><a href="#schemat" id="toc-schemat" class="nav-link" data-scroll-target="#schemat"> <span class="header-section-number">3.4.1</span> Schemat</a></li>
+  <li><a href="#miary-klasyczne-1" id="toc-miary-klasyczne-1" class="nav-link" data-scroll-target="#miary-klasyczne-1"> <span class="header-section-number">3.4.2</span> Miary klasyczne</a></li>
+  <li><a href="#miary-pozycyjne-1" id="toc-miary-pozycyjne-1" class="nav-link" data-scroll-target="#miary-pozycyjne-1"> <span class="header-section-number">3.4.3</span> Miary pozycyjne</a></li>
+  </ul></li>
+  <li><a href="#przedziały-ufności" id="toc-przedziały-ufności" class="nav-link" data-scroll-target="#przedziały-ufności"> <span class="header-section-number">3.5</span> Przedziały ufności</a>
+  <ul class="collapse">
+  <li><a href="#średnia-w-populacji-normalnej-ze-znanym-odchyleniem-standardowym" id="toc-średnia-w-populacji-normalnej-ze-znanym-odchyleniem-standardowym" class="nav-link" data-scroll-target="#średnia-w-populacji-normalnej-ze-znanym-odchyleniem-standardowym"> <span class="header-section-number">3.5.1</span> Średnia w populacji normalnej ze znanym odchyleniem standardowym</a></li>
+  <li><a href="#średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---mała-próba" id="toc-średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---mała-próba" class="nav-link" data-scroll-target="#średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---mała-próba"> <span class="header-section-number">3.5.2</span> Średnia w populacji normalnej z nieznanym odchyleniem standardowym - mała próba</a></li>
+  <li><a href="#średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---duża-próba" id="toc-średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---duża-próba" class="nav-link" data-scroll-target="#średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---duża-próba"> <span class="header-section-number">3.5.3</span> Średnia w populacji normalnej z nieznanym odchyleniem standardowym - duża próba</a></li>
+  <li><a href="#proporcja" id="toc-proporcja" class="nav-link" data-scroll-target="#proporcja"> <span class="header-section-number">3.5.4</span> Proporcja</a></li>
+  </ul></li>
+  <li><a href="#testy-statystyczne" id="toc-testy-statystyczne" class="nav-link" data-scroll-target="#testy-statystyczne"> <span class="header-section-number">3.6</span> Testy statystyczne</a>
+  <ul class="collapse">
+  <li><a href="#test-t-dla-jednej-średniej" id="toc-test-t-dla-jednej-średniej" class="nav-link" data-scroll-target="#test-t-dla-jednej-średniej"> <span class="header-section-number">3.6.1</span> Test t dla jednej średniej</a></li>
+  <li><a href="#test-istotności-proporcji" id="toc-test-istotności-proporcji" class="nav-link" data-scroll-target="#test-istotności-proporcji"> <span class="header-section-number">3.6.2</span> Test istotności proporcji</a></li>
+  <li><a href="#test-t-dla-dwóch-średnich-niezależnych" id="toc-test-t-dla-dwóch-średnich-niezależnych" class="nav-link" data-scroll-target="#test-t-dla-dwóch-średnich-niezależnych"> <span class="header-section-number">3.6.3</span> Test t dla dwóch średnich niezależnych</a></li>
+  <li><a href="#test-istotności-dwóch-proporcji" id="toc-test-istotności-dwóch-proporcji" class="nav-link" data-scroll-target="#test-istotności-dwóch-proporcji"> <span class="header-section-number">3.6.4</span> Test istotności dwóch proporcji</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analiza struktury</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Kompleksowa analiza struktury</strong> oznacza wyczerpujący opis cech zbiorowości statystycznej. Do charakterystyk najczęściej wykorzystywanych przy opisie struktury zbiorowości należą:</p>
+<ul>
+<li>miary przeciętne - służące do określania tej wartości zmiennej opisanej przez rozkład, wokół której skupiają się pozostałe wartości zmiennej,</li>
+<li>miary rozproszenia (dyspersji) - służące do badania stopnia zróżnicowania wartości zmiennej,</li>
+<li>miary asymetrii - służące do badania asymetrii rozkładu,</li>
+<li>miary koncentracji - służące do analizy stopnia skupienia poszczególnych jednostek wokół średniej.</li>
+</ul>
+<p>Analiza struktury bazuje na dwóch typach miar:</p>
+<ul>
+<li>miary klasyczne - obliczane na podstawie wszystkich obserwacji,</li>
+<li>miary pozycyjne - wartość miary wskazuje dana jednostka.</li>
+</ul>
+<p>Celem analizy struktury jest dostarczenie kilku liczb, które w łatwy sposób pozwolą na opis i porównania badanych cech.</p>
+<p><strong>Dominanta</strong> czyli najczęściej występująca wartość. Inaczej moda, modalna, tryb (w Excelu - kalka językowa z angielskiego słowa <em>mode</em>. Wartość dominanty można ustalić jedynie dla rozkładów jednomodalnych.</p>
+<p>W Excelu jest funkcja:</p>
+<ul>
+<li>WYST.NAJCZĘSĆIEJ,</li>
+</ul>
+<p>jednak dla rozkładów wielomodalnych zwróci ona pierwszą modalną.</p>
+<section id="miary-klasyczne" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="miary-klasyczne"><span class="header-section-number">3.1</span> Miary klasyczne</h2>
+<p>Najpopularniejszym przedstawicielem miar klasycznych jest <strong>średnia arytmetyczna</strong>. Wyrażona jest wzorem:</p>
+<p><span class="math display">\[\bar{x}=\frac{\sum\limits_{i=1}^{N}{x_{i}}}{N},\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> - symbol średniej arytmetycznej,</li>
+<li><span class="math inline">\(x_{i}\)</span> - wariant cechy mierzalnej,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości.</li>
+</ul>
+<p>Co sprawia, że średnia jest tak powszechną i uniwersalną miarą? Jest to liczba, która ma najwięcej wspólnego z każdą wartością cechy w zbiorowości. Innymi słowy, odległość wartości cechy od średniej jest najmniejsza z możliwych.</p>
+<p>Przykładowo, dane są oceny jednego ze studentów: 3, 4, 5, 3+, 2, 4, 3</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/srednia-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Na powyższym wykresie punkty oznaczają kolejne oceny, natomiast średnia została zaznaczona kolorem czerwonym - wynosi ona 3,5.</p>
+<p>Jako miarę odległości poszczególnych ocen od średniej możemy przyjąć wartość bezwzględną różnicy danej oceny i średniej. W tej sytuacji pierwsza ocena różni się od średniej o 0,5, druga ocena także, natomiast trzecia o 1,5, itd. Po zsumowaniu tych wartości otrzymujemy sumę odchyleń równą 5. Jest to najmniejsza wartość jaką jesteśmy w stanie otrzymać. Jeżeli stwierdzimy, że w naszym mniemaniu wartość 3,55 jest lepszą miarą przeciętną to suma odchyleń będzie już większa i wyniesie 5.05.</p>
+<p>W Excelu istnieje funkcja:</p>
+<ul>
+<li>ŚREDNIA.</li>
+</ul>
+<p>Średnia stanowi także dobrą miarę jeśli chcemy porównać jakieś grupy. Co jednak zrobić w sytuacji, kiedy przykładowo dwaj studenci mają identyczne średnie ocen? Czy to oznacza, że ich oceny są także takie same? Taka sytuacja może się zdarzyć, ale występuje dosyć rzadko. Poniżej zostały przedstawione oceny dwóch studentów, którzy mają identyczną średnią.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/s2-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>To co możemy zauważyć gołym okiem to fakt, że oceny studenta nr 2 są bliżej średniej. Miarą zróżnicowania cechy jest <strong>wariancja</strong> dana formułą:</p>
+<p><span class="math display">\[s^2=\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}-\bar{x})^2}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(s^2\)</span> - symbol wariancji,</li>
+<li><span class="math inline">\(\bar{x}\)</span> - średnia arytmetyczna w zbiorowości,</li>
+<li><span class="math inline">\(x_{i}\)</span> - wariant cechy mierzalnej,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości.</li>
+</ul>
+<p>Jeżeli przeanalizujemy wzór na wariancję jest on bardzo logiczny. W pierwszym kroku liczymy odchylenia wartości cechy od średniej. Następnie otrzymane wartości podnosimy do kwadratu w celu uniknięcia wartości ujemnych, a następnie wszystko uśredniamy. Możemy zatem powiedzieć, że wariancja jest średnią kwadratów odchyleń wartości od średniej.</p>
+<p>Wariancja ocen pierwszego studenta wynosi 0.79, natomiast drugiego 0.14. Na podstawie tej miary jesteśmy w stanie stwierdzić, że większe zróżnicowanie ocen występuje u pierwszego studenta. Nie możemy jednak powiedzieć jak bardzo się różnią ponieważ wariancji nie jesteśmy w stanie zinterpretować. Wynika to z faktu, że wynik wariancji jest podawany w jednostkach do kwadratu, co zwykle jest pozbawione sensu.</p>
+<p>W Excelu dysponujemy dwiema funkcjami do wyliczenia wariancji:</p>
+<ul>
+<li>WARIANCJA.POP (we wzorze znajduje się <span class="math inline">\(\frac{1}{N}\)</span>),</li>
+<li>WARIANCJA.PRÓBKI (we wzorze znajduje się <span class="math inline">\(\frac{1}{N-1}\)</span>).</li>
+</ul>
+<p>W zależności od tego czy mamy informację o populacji czy tylko próbie powinniśmy stosować odpowiednią formułę. Podczas zajęć przyjmujemy, że dysponujemy całą populacją i będziemy stosować odpowiednie funkcje.</p>
+<p>Pierwiastek z wariancji czyli <strong>odchylenie standardowe</strong> umożliwia liczbowe określenie zróżnicowania. Informuje o ile jednostki zbiorowości różnią się średnio od średniej. W interpretacji odchylenia standardowego musimy pamiętać o pojawiającym się dwa razy słowie <em>średnia</em>. Pierwsze dotyczy średniej zastosowanej we wzorze na wariancje, a drugie określa policzoną wcześniej średnią arytmetyczną.</p>
+<div class="cell">
+
+</div>
+<p>O pierwszym studencie powiemy, że jego oceny różnią się średnio od średniej o 0.89 oceny, natomiast oceny drugiego studenta odchylają się średnio od średniej o 0.37 oceny.</p>
+<p>Podobnie jak w przypadku wariancji w Excelu znajdują się dwie funkcje do wyznaczania odchylenia standardowego:</p>
+<ul>
+<li>ODCH.STAND.POPUL,</li>
+<li>ODCH.STANDARD.PRÓBKI.</li>
+</ul>
+<p>Jeśli średnie są takie same to do oceny zróżnicowania wystarczy odchylenie standardowe. Sytuacja się jednak komplikuje w przypadku występowania różnic pomiędzy średnimi. Jak zatem porównać zróżnicowanie cech, które mają różne średnie i odchylenia standardowe?</p>
+<p>Przeprowadzono eksperyment, w którym 100 osobom zmierzono długość ręki i nogi.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/v_s-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Średnia długość nogi wynosiła 102.97 cm, a odchylenie standardowe 9.24 cm. Z kolei długość ręki charakteryzowała się wartością 74.78 cm z odchyleniem standardowym rzędu 9.33 cm. Ocena zróżnicowania cech o różnych średnich jest możliwe z wykorzystaniem <strong>klasycznego współczynnika zmienności</strong>:</p>
+<p><span class="math display">\[V_{s}=\frac{s}{\bar{x}}\cdot 100,\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe,</li>
+<li><span class="math inline">\(\bar{x}\)</span> - średnia arytmetyczna.</li>
+</ul>
+<p>Współczynnik zmienności wyrażony jest w procentach i można przyjąć kilka umownych progów:</p>
+<ul>
+<li>0%-20% - cecha mało zróżnicowana,</li>
+<li>21%-40% - cecha umiarkowanie zróżnicowana,</li>
+<li>41%-60% - cecha silnie zróżnicowana,</li>
+<li>powyżej 60% - cecha bardzo silnie zróżnicowana.</li>
+</ul>
+<p>Oczywiście wszystko zależy od tego jaką cechę analizujemy i jakie jest jej typowe zróżnicowanie.</p>
+<p>Obliczając wartość współczynnika zmienności dla długości nogi otrzymamy 8.97%, natomiast dla długości ręki 12.48%. Na tej podstawie możemy stwierdzić, że długość ręki charakteryzuje się większym zróżnicowaniem.</p>
+<p>Klasyczny współczynnik zmienności nie ma oprogramowanej odpowiedniej funkcji w Excelu. Można natomiast w prosty sposób tę wartość obliczyć.</p>
+<p>Odchylenie standardowe oraz średnią zestawiamy ze sobą także podczas wyznaczania <strong>typowego obszaru zmienności</strong>:</p>
+<p><span class="math display">\[\bar{x} - s &lt; x_{typ} &lt; \bar{x} + s\]</span></p>
+<p>Zgodnie z definicją w tym przedziale mieści się około 2/3 wszystkich jednostek analizowanej cechy.</p>
+<div class="cell">
+
+</div>
+<p>Typowy obszar zmienności dla długości nogi to przedział od 93.73 cm do 112.21 cm i w rzeczywistości zawiera 74% obserwacji.</p>
+<p>Patrz też: <a href="http://www.naukowiec.org/wiedza/statystyka/regula-trzech-sigm_709.html">Reguła trzech sigm</a>.</p>
+<p>Do kompletnego opisu struktury brakuje tylko miar określających asymetrię oraz skupienie wokół średniej. <strong>Klasyczny współczynnik asymetrii</strong> nazywany także trzecim momentem centralnym albo skośnością jest wyrażony wzorem:</p>
+<p><span class="math display">\[\alpha_{3}=\frac{\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}-\bar{x})^3}}{s^3},\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\alpha_{3}\)</span> - symbol klasycznego współczynnika asymetrii,<br>
+</li>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe w zbiorowości,</li>
+<li><span class="math inline">\(\bar{x}\)</span> - średnia arytmetyczna w zbiorowości,</li>
+<li><span class="math inline">\(x_{i}\)</span> - wariant cechy mierzalnej,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości.</li>
+</ul>
+<p>Pozwala określić czy rozkład cechy jest:</p>
+<ul>
+<li>symetryczny - rozkład jest symetryczny, <span class="math inline">\(\alpha_{3}=0\)</span>,</li>
+<li>lewostronnie asymetryczny - wydłużone lewe ramię rozkładu, <span class="math inline">\(\alpha_{3}&lt;0\)</span>,</li>
+<li>prawostronnie asymetryczny - wydłużone prawe ramię rozkładu, <span class="math inline">\(\alpha_{3}&gt;0\)</span>.</li>
+</ul>
+<p>Skośność dla długości nogi wynosi 0.1134617, co oznacza, że rozkład długości nóg cechuje się lekką prawostronną asymetrią.</p>
+<p>W Excelu znajduje się funkcja o nazwie:</p>
+<ul>
+<li>SKOŚNOŚĆ.</li>
+</ul>
+<p>Skupienie wokół średniej definiuje <strong>klasyczny współczynnik koncentracji</strong>, inaczej czwarty moment centralny lub kurtoza:</p>
+<p><span class="math display">\[\alpha_{4}=\frac{\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}-\bar{x})^4}}{s^4},\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\alpha_{4}\)</span> - symbol klasycznego współczynnika koncentracji,<br>
+</li>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe w zbiorowości,</li>
+<li><span class="math inline">\(\bar{x}\)</span> - średnia arytmetyczna w zbiorowości,</li>
+<li><span class="math inline">\(x_{i}\)</span> - wariant cechy mierzalnej,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości.</li>
+</ul>
+<p>Pozwala określić czy rozkład cechy jest:</p>
+<ul>
+<li>normalny - <span class="math inline">\(\alpha_{4}=3\)</span>,</li>
+<li>spłaszczony - wartości nie są mocno skoncentrowane wokół średniej, <span class="math inline">\(\alpha_{4}&lt;3\)</span>,</li>
+<li>wysmukły - wartości są mocno skoncentrowane wokół średniej, <span class="math inline">\(\alpha_{4}&gt;3\)</span>.</li>
+</ul>
+<p>Niektóre programy zamiast kurtozy wyznaczają tzw. eksces:</p>
+<p><span class="math inline">\(Ex=\alpha_{4}-3\)</span></p>
+<p>Wówczas wartość tej miary interpretujemy przyjmując za punkt odniesienia wartość 0.</p>
+<p>Kurtoza dla długości nogi wynosi 6.4025412, co oznacza, że rozkład długości nóg jest wysmukły.</p>
+<p>W Excelu znajduje się funkcja o nazwie:</p>
+<ul>
+<li>KURTOZA.</li>
+</ul>
+<p>W rzeczywistości wynikiem działania tej funkcji jest eksces. W interpretacji zatem wynik odnosimy do wartości 0.</p>
+<p>Do wyznaczenia powyższych miar można także wykorzystać dodatek programu Excel: Analiza danych znajdujący się po prawej stronie we wstążce DANE. Jeśli nie widzimy tego dodatku to klikamy <em>Przycisk pakietu Office</em> w lewym górnym rogu ekranu, następnie <em>Opcje</em>. W nowym oknie przechodzimy do <em>Dodatki</em> i na dole okna przycisk <em>Przejdź</em>. Zaznaczamy <em>Analysis ToolPak</em> i wybieramy <em>OK</em>.</p>
+<p><em>Przykład</em></p>
+<p>Wykorzystując zbiór danych na temat sklepów Rossmann przeprowadzimy kompleksową analizę porównawczą struktury sprzedaży w dwóch wybranych sklepach. Pierwszy ze sklepów (id=1) posiada asortyment podstawowy i jest typu <em>c</em>, natomiast drugi (id=7) posiada asortyment rozszerzony i jest typu <em>a</em>. W pierwszym kroku zobaczmy jak wygląda rozkład analizowanej cechy po wyeliminowaniu dni, w którym sklep był zamknięty.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/as-ross-hist-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Już na pierwszy rzut oka widać różnice w rozkładzie sprzedaży dla poszczególnych sklepów. Pierwszy z rozkładów jest bardziej wysmukły, natomiast w drugim przypadku obserwujemy wyższe wartości sprzedaży. Z wykorzystaniem miar klasycznych dokonamy analizy sprzedaży.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Sklep_1</th>
+<th style="text-align: right;">Sklep_7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">303.00</td>
+<td style="text-align: right;">305.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x_sr</td>
+<td style="text-align: right;">4730.72</td>
+<td style="text-align: right;">8975.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s</td>
+<td style="text-align: right;">1057.28</td>
+<td style="text-align: right;">2487.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">v_s</td>
+<td style="text-align: right;">22.35</td>
+<td style="text-align: right;">27.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha_3</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.58</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">alpha_4</td>
+<td style="text-align: right;">4.53</td>
+<td style="text-align: right;">2.83</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="miary-pozycyjne" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="miary-pozycyjne"><span class="header-section-number">3.2</span> Miary pozycyjne</h2>
+<p>Podstawowe miary pozycyjne nie są obliczane z wykorzystaniem wszystkich obserwacji, jak ma to miejsce w przypadku miar klasycznych, tylko szukamy obserwacji która wskazuje wartość wybranej miary pozycyjnej. Najpopularniejszą z miar pozycyjnych jest <strong>mediana</strong> (kwartyl 2, wartość środkowa, <span class="math inline">\(Q_2\)</span>), która wyznacza wartość dla której 50% jednostek zbiorowości ma wartości cechy niższe bądź równe medianie, a 50% równe bądź wyższe od mediany.</p>
+<p>Medianę wyznacza się poprzez posortowanie wartości cechy rosnąco i wybór wartości środkowej (jeśli <span class="math inline">\(N\)</span> jest nieparzyste) lub średniej z wartości środkowych (jeśli <span class="math inline">\(N\)</span> jest parzyste).</p>
+<p>Zaletą mediany jest mniejsza wrażliwość na obserwacje odstające. Rozważmy przypadek wynagrodzeń w pewnych przedsiębiorstwach:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/mediana-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>W firmie A wynagrodzenia pracowników nie są zróżnicowane, ale nie występują pomiędzy nimi zbyt duże różnice. Średnia pensja (kolor czerwony) wynosi 3357 zł, natomiast mediana (kolor niebieski) odpowiada wynagrodzeniom 7 i 8 pracownika - 3500 zł. Można powiedzieć, że obie wartości dobrze odzwierciedlają realne zarobki pracowników. Z kolei w firmie B nierówności dochodowe są znacznie większe, możliwe że zestawiono wynagrodzenia pracowników szeregowych oraz kadry zarządzającej. Średnia wynosząca 3104 zł nie oddaje prawdziwych zarobków ani pierwszej ani drugiej grupy. Natomiast wartość mediany wynosząca 2525 zł jest bardziej odporna na wartości odstające. Mediana wynagrodzenia w firmie B oznacza, że 50% pracowników otrzymuje pensję w wysokości 2525 zł lub mniej, natomiast drugie 50% zatrudnionych uzyskuje wynagrodzenie w wysokości 2525 zł lub więcej.</p>
+<p>W Excelu możemy skorzystać z funkcji:</p>
+<ul>
+<li>MEDIANA(wartości cechy),</li>
+<li>KWARTYL.PRZEDZ.ZAMK(wartości cechy, 2).</li>
+</ul>
+<p>Mediana podzieliła nam jednostki zbiorowości na dwie połowy. Jeśli podzielimy pierwszą połową ponownie na pół otrzymamy wartość <strong>kwartyla pierwszego (dolnego)</strong>, który informuje, że 25% jednostek zbiorowości ma wartości cechy niższe bądź równe kwartylowi pierwszemu <span class="math inline">\(Q_{1}\)</span>, a 75% równe bądź wyższe od tego kwartyla. Z kolei po podzieleniu drugiej połowy obserwacji uzyskujemy wartość <strong>kwartyla trzeciego (górnego)</strong>, który informuje, że 75% jednostek zbiorowości ma wartości cechy niższe bądź równe kwartylowi trzeciemu <span class="math inline">\(Q_{3}\)</span>, a 25% równe bądź wyższe od tego kwartyla.</p>
+<p>Do wyznaczenia wartości kwartyli w Excelu korzystamy z funkcji:</p>
+<ul>
+<li>KWARTYL.PRZEDZ.ZAMK(wartości cechy, numer kwartyla),</li>
+</ul>
+<p>gdzie numer kwartyla to:</p>
+<ul>
+<li>0 - minimum,</li>
+<li>1 - kwartyl dolny,</li>
+<li>2 - mediana,</li>
+<li>3 - kwartyl górny,</li>
+<li>4 - maksimum.</li>
+</ul>
+<p>W firmie A kwartyl dolny wynagrodzeń wyniósł 2550 zł, co oznacza, że 25% pracowników uzyskuje pensją równą bądź niższą niż 2550 zł, a 75% równą bądź wyższą niż 2550. Z kolei 75% pracowników otrzymuje wynagrodzenie mniejsze lub równe 4038 zł, a 25% większe bądź równe 4038 zł. W firmie B kwartyl pierwszy jest równy 2238 zł, a trzeci 4350 zł.</p>
+<p>Wartości kwartyli można przedstawić na wykresie pudełkowym (ang. boxplot):</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/boxplot-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>W miarach pozycyjnych opartych na kwartylach zróżnicowanie wartości od mediany mierzy <strong>odchylenie ćwiartkowe</strong>:</p>
+<p><span class="math display">\[Q=\frac{(Q_{3}-Q_{1})}{2}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(Q\)</span> - symbol odchylenia ćwiartkowego,</li>
+<li><span class="math inline">\(Q_{1}\)</span> - kwartyl pierwszy,</li>
+<li><span class="math inline">\(Q_{3}\)</span> - kwartyl trzeci.</li>
+</ul>
+<p>Mierzy ono przeciętne odchylenie wartości cechy zbiorowości od mediany u 50% środkowych jednostek - między kwartylem dolnym i górnym. Przykładowo w firmie A przeciętne odchylenie wynagrodzenia od mediany wynosi 744 zł.</p>
+<p>Zestawienie ochylenia ćwiartkowego oraz mediany pozwala na obliczenie <strong>pozycyjnego współczynnika zmienności</strong>:</p>
+<p><span class="math display">\[V_{Q}=\frac{Q}{Q_2} \cdot 100\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(V_{Q}\)</span> - symbol pozycyjnego współczynnika zmienności,</li>
+<li><span class="math inline">\(Q\)</span> - odchylenie ćwiartkowe,</li>
+<li><span class="math inline">\(Q_2\)</span> - mediana.</li>
+</ul>
+<p>Podobnie jak w przypadku klasycznego współczynnika zmienności korzystamy z umownych progów dotyczących zróżnicowania. W firmie A pozycyjny współczynnik zmienności był równy 21% co oznacza, że wynagrodzenia w tej firmie cechowały się umiarkowanym zróżnicowaniem, natomiast w firmie B było to 42% czyli silne zróżnicowanie wynagrodzeń.</p>
+<p>Ostatnią miarą opartą na kwartylach jest <strong>pozycyjny współczynnik asymetrii</strong>, który określa kierunek i siłę asymetrii jednostek znajdujących się między pierwszym i trzecim kwartylem:</p>
+<p><span class="math display">\[A_{Q}=\frac{(Q_{1}+Q_{3}-2 \cdot Q_2)}{(2 \cdot Q)}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(A_{Q}\)</span> — symbol pozycyjnego współczynnika asymetrii,</li>
+<li><span class="math inline">\(Q_{1}\)</span> — kwartyl pierwszy,</li>
+<li><span class="math inline">\(Q_{3}\)</span> — kwartyl trzeci,</li>
+<li><span class="math inline">\(Q_{2}\)</span> — mediana,</li>
+<li><span class="math inline">\(Q\)</span> — odchylenie ćwiartkowe.</li>
+</ul>
+<p>Interpretacja pozycyjnego współczynnika asymetrii przebiega identycznie jak w przypadku klasycznego współczynnika asymetrii:</p>
+<ul>
+<li>symetryczny - mediana pomiędzy wartościami kwartyli dolnego i górnego, <span class="math inline">\(A_{Q}=0\)</span>,</li>
+<li>lewostronnie asymetryczny - mediana bliżej wartości kwartyla górnego, <span class="math inline">\(A_{Q}&lt;0\)</span>,</li>
+<li>prawostronnie asymetryczny - mediana bliżej wartości kwartyla dolnego, <span class="math inline">\(A_{Q}&gt;0\)</span>.</li>
+</ul>
+<p>Tę informację możemy także odczytać z wykresu pudełkowego, określając umiejscowienie mediany względem pozostałych kwartyli:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/asymetria-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>W firmie A pozycyjny współczynnik asymetrii był równy -0.28, co pociąga za sobą informację o asymetrii lewostronnej, natomiast w firmie B występowała asymetria prawostronna (0.73).</p>
+<p><em>Przykład</em></p>
+<p>Wyznaczmy miary pozycyjne dla dwóch sklepów Rossmann analizowanych wcześciej:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Sklep_1</th>
+<th style="text-align: right;">Sklep_7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">303.00</td>
+<td style="text-align: right;">305.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">q1</td>
+<td style="text-align: right;">3908.00</td>
+<td style="text-align: right;">7129.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">q2</td>
+<td style="text-align: right;">4607.00</td>
+<td style="text-align: right;">8592.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">q3</td>
+<td style="text-align: right;">5286.00</td>
+<td style="text-align: right;">10681.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">q</td>
+<td style="text-align: right;">689.00</td>
+<td style="text-align: right;">1776.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">v_q</td>
+<td style="text-align: right;">14.96</td>
+<td style="text-align: right;">20.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aq</td>
+<td style="text-align: right;">-0.01</td>
+<td style="text-align: right;">0.18</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><em>Zadania</em></p>
+<p>Przeprowadzić kompleksową analizę struktury sprzedaży/liczby klientów dla poszczególnych dni tygodnia.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="szereg-jednostkowy-i-przedziałowy" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="szereg-jednostkowy-i-przedziałowy"><span class="header-section-number">3.3</span> Szereg jednostkowy i przedziałowy</h2>
+<p>Nie zawsze dysponujemy danymi zebranymi w szeregu prostym. W opracowaniach statystycznych dane publikowane są w postaci szeregów jednostkowych oraz przedziałowych. W tej części opracowania skupimy się na analizie struktury takich danych.</p>
+<section id="szereg-jednostkowy" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="szereg-jednostkowy"><span class="header-section-number">3.3.1</span> Szereg jednostkowy</h3>
+<p>W przypadku szeregu jednostkowego możliwe jest odtworzenie szeregu prostego bądź zastosowanie wzorów, w których odpowiednio przeważymy obserwacje. Odpowiednimi wagami będą liczebności.</p>
+<p><span class="math display">\[\bar{x}=\frac{1}{N}\sum\limits_{i=1}^{N}{x_{i}n_{i}}\]</span></p>
+<p><span class="math display">\[s^2=\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}-\bar{x})^2 \cdot n_{i}}\]</span></p>
+<p><span class="math display">\[\alpha_{3}=\frac{\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}-\bar{x})^3}\cdot n_{i}}{s^3}\]</span></p>
+<p><span class="math display">\[\alpha_{4}=\frac{\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}-\bar{x})^4 \cdot n_{i}}}{s^4}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> - średnia arytmetyczna w zbiorowości,</li>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe w zbiorowości,</li>
+<li><span class="math inline">\(\alpha_{3}\)</span> - symbol klasycznego współczynnika asymetrii,<br>
+</li>
+<li><span class="math inline">\(\alpha_{4}\)</span> - symbol klasycznego współczynnika koncentracji,<br>
+</li>
+<li><span class="math inline">\(x_{i}\)</span> - wariant cechy mierzalnej,</li>
+<li><span class="math inline">\(n_{i}\)</span> - liczba obserwacji dla wariantu,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości.</li>
+</ul>
+</section>
+<section id="szereg-przedziałowy" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="szereg-przedziałowy"><span class="header-section-number">3.3.2</span> Szereg przedziałowy</h3>
+<p>W przypadku szeregu przedziałowego przeprowadzanie analizy struktury nie jest już takie oczywiste. Nie mamy jednoznacznie określonego wariantu cechy. W związku z tym wyznaczamy środek przedziału klasowego i tą wartość traktujemy jako wariant cechy. Z takiego podejścia do sprawy wynikają dwie istotne kwestie:</p>
+<ul>
+<li>poniższe wzory możemy zastosować wyłącznie do analizy szeregów rozdzielczych przedziałowych zamkniętych o równych przedziałach klasowych,</li>
+<li>sposób utworzenia szeregu rozdzielczego będzie miał wpływ na precyzję wyników.</li>
+</ul>
+<p><span class="math display">\[\bar{x}=\frac{1}{N}\sum\limits_{i=1}^{N}{x_{i}'n_{i}}\]</span></p>
+<p><span class="math display">\[s^2=\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}'-\bar{x})^2 \cdot n_{i}}\]</span></p>
+<p><span class="math display">\[\alpha_{3}=\frac{\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}'-\bar{x})^3}\cdot n_{i}}{s^3}\]</span></p>
+<p><span class="math display">\[\alpha_{4}=\frac{\frac{1}{N}\sum\limits_{i=1}^{N}{(x_{i}'-\bar{x})^4 \cdot n_{i}}}{s^4}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> - średnia arytmetyczna w zbiorowości,</li>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe w zbiorowości,</li>
+<li><span class="math inline">\(\alpha_{3}\)</span> - symbol klasycznego współczynnika asymetrii,<br>
+</li>
+<li><span class="math inline">\(\alpha_{4}\)</span> - symbol klasycznego współczynnika koncentracji,<br>
+</li>
+<li><span class="math inline">\(x_{i}'\)</span> - środek przedziału klasowego dla wariantu cechy,</li>
+<li><span class="math inline">\(n_{i}\)</span> - liczba obserwacji dla wariantu,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości.</li>
+</ul>
+<p>Przy założeniu, że dominanta znajduje się w najliczniejszym przedziale możemy zastosować poniższy wzór:</p>
+<p><span class="math display">\[D=x_{D}+\frac{n_{D}-n_{D-1}}{2n_{D}-n_{D-1}-n_{D+1}}\cdot c_{D}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(D\)</span> - symbol dominanty,</li>
+<li><span class="math inline">\(x_{D}\)</span> - początek przedziału, w którym znajduje się dominanta,</li>
+<li><span class="math inline">\(n_{D}\)</span> - liczebność najliczniejszego przedziału,</li>
+<li><span class="math inline">\(n_{D-1}\)</span> - liczebność przedziału wcześniejszego niż najliczniejszy,</li>
+<li><span class="math inline">\(n_{D+1}\)</span> - liczebność przedziału późniejszego niż najliczniejszy,</li>
+<li><span class="math inline">\(c_{D}\)</span> - rozpiętość najliczniejszego przedziału.</li>
+</ul>
+<p>Dla szeregu rozdzielczego możemy także wyznaczyć wartości kwartyli stosując wzory interpolacyjne:</p>
+<p><span class="math display">\[Q_{1}=xQ_{1}+\frac{\frac{N}{4}-cumQ_{1}^{-1}}{nQ_{1}} \cdot cQ_{1}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(Q_{1}\)</span> - oznaczenie kwartyla pierwszego,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości,</li>
+<li><span class="math inline">\(xQ_{1}\)</span> - początek przedziału, w którym znajduje się kwartyl pierwszy,</li>
+<li><span class="math inline">\(cumQ_{1}^{-1}\)</span> - skumulowana liczebność z przedziału wcześniejszego niż ten, który zawiera kwartyl pierwszy,</li>
+<li><span class="math inline">\(nQ_{1}\)</span> - liczebność przedziału zawierającego kwartyl pierwszy,</li>
+<li><span class="math inline">\(cQ_{1}\)</span> - rozpiętość przedziału zawierającego kwartyl pierwszy.</li>
+</ul>
+<p><span class="math display">\[Q_{2}=xQ_{2}+\frac{\frac{N}{2}-cumQ_{2}^{-1}}{nQ_{2}} \cdot cQ_{2}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(Q_{2}\)</span> - oznaczenie mediany,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości,</li>
+<li><span class="math inline">\(xQ_{2}\)</span> - początek przedziału, w którym znajduje się mediana,</li>
+<li><span class="math inline">\(cumQ_{2}^{-1}\)</span> - skumulowana liczebność z przedziału wcześniejszego niż ten, który zawiera mediana,</li>
+<li><span class="math inline">\(nQ_{2}\)</span> - liczebność przedziału zawierającego medianę,</li>
+<li><span class="math inline">\(cQ_{2}\)</span> - rozpiętość przedziału zawierającego medianę.</li>
+</ul>
+<p><span class="math display">\[Q_{3}=xQ_{3}+\frac{\frac{3N}{4}-cumQ_{3}^{-1}}{nQ_{3}} \cdot cQ_{3}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(Q_{3}\)</span> - oznaczenie kwartyla trzeciego,</li>
+<li><span class="math inline">\(N\)</span> - liczebność badanej zbiorowości,</li>
+<li><span class="math inline">\(xQ_{3}\)</span> - początek przedziału, w którym znajduje się kwartyl trzeci,</li>
+<li><span class="math inline">\(cumQ_{3}^{-1}\)</span> - skumulowana liczebność z przedziału wcześniejszego niż ten, który zawiera kwartyl trzeci,</li>
+<li><span class="math inline">\(nQ_{3}\)</span> - liczebność przedziału zawierającego kwartyl trzeci,</li>
+<li><span class="math inline">\(cQ_{3}\)</span> - rozpiętość przedziału zawierającego kwartyl trzeci.</li>
+</ul>
+<p>Po wyznaczeniu wartości kwartyli pozostałe miary liczymy w tradycyjny sposób.</p>
+</section>
+</section>
+<section id="podsumowanie-miar" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="podsumowanie-miar"><span class="header-section-number">3.4</span> Podsumowanie miar</h2>
+<section id="schemat" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="schemat"><span class="header-section-number">3.4.1</span> Schemat</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/schemat.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Analiza struktury w zależności od typu szeregu</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="miary-klasyczne-1" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="miary-klasyczne-1"><span class="header-section-number">3.4.2</span> Miary klasyczne</h3>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 30%">
+<col style="width: 19%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Miara</th>
+<th>Oznaczenie</th>
+<th>Wzór</th>
+<th>Interpretacja i wykorzystanie</th>
+<th>Funkcja w Excelu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Średnia arytmetyczna</td>
+<td><span class="math inline">\(\bar{x}\)</span></td>
+<td><span class="math inline">\(\frac{\sum_{i=1}^N x_i}{N}\)</span></td>
+<td>Wartość przeciętna</td>
+<td><code>ŚREDNIA(x)</code></td>
+</tr>
+<tr class="even">
+<td>Średnia harmoniczna</td>
+<td><span class="math inline">\(\bar{x}_h\)</span></td>
+<td><span class="math inline">\(\frac{n}{\sum_{i=1}^N\frac{1}{x_i}}\)</span></td>
+<td>Wartość przeciętna</td>
+<td><code>ŚREDNIA.GEOMETRYCZNA(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Średnia geometryczna</td>
+<td><span class="math inline">\(\bar{x}_g\)</span></td>
+<td><span class="math inline">\(\sqrt{x_1 x_2 ... x_N}\)</span></td>
+<td>Wartość przeciętna</td>
+<td><code>ŚREDNIA.HARMONICZNA(x)</code></td>
+</tr>
+<tr class="even">
+<td>Odchylenie przeciętne (średnie)</td>
+<td><span class="math inline">\(d\)</span></td>
+<td><span class="math inline">\(\frac{1}{N}\sum \mid x_i - \bar{x} \mid\)</span></td>
+<td>O ile wszystkie jednostki badanej zbiorowości różnią się średnio ze względu na wartość zmiennej od średniej arytmetycznej tej zmiennej</td>
+<td><code>ODCH.ŚREDNIE(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Odchylenie kwadratowe</td>
+<td><span class="math inline">\(d^2\)</span></td>
+<td><span class="math inline">\(\sum_{i=1}^N (x_i - \bar{x})^2\)</span></td>
+<td>Kwadrat odchylenia przeciętnego</td>
+<td><code>ODCH.KWADRATOWE(x)</code></td>
+</tr>
+<tr class="even">
+<td>Odchylenie standardowe (dla populacji)</td>
+<td><span class="math inline">\(s\)</span></td>
+<td><span class="math inline">\(\sqrt{\frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N}}\)</span></td>
+<td>O ile przeciętnie odchylają się wartości od średniej</td>
+<td><code>ODCH.STAND.POPUL(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Odchylenie standardowe (dla próby)</td>
+<td><span class="math inline">\(s\)</span></td>
+<td><span class="math inline">\(\sqrt{\frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N-1}}\)</span></td>
+<td>O ile przeciętnie odchylają się wartości od średniej</td>
+<td><code>ODCH.STANDARD.PRÓBKI(x)</code></td>
+</tr>
+<tr class="even">
+<td>Wariancja (dla populacji)</td>
+<td><span class="math inline">\(s^2\)</span></td>
+<td><span class="math inline">\(\frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N}\)</span></td>
+<td>Informuje o zróżnicowaniu populacji</td>
+<td><code>WARIANCJA.POP(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Wariancja (dla próby)</td>
+<td><span class="math inline">\(s^2\)</span></td>
+<td><span class="math inline">\(\frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N-1}\)</span></td>
+<td>Informuje o zróżnicowaniu próby</td>
+<td><code>WARIANCJA.PRÓBKI(x)</code></td>
+</tr>
+<tr class="even">
+<td>Rozstęp</td>
+<td><span class="math inline">\(R\)</span></td>
+<td><span class="math inline">\(max(x) - min(x)\)</span></td>
+<td>Empiryczny obszar zmienności, wartość maksymalna cechy x minus wartość minimalna tej cechy</td>
+<td>–</td>
+</tr>
+<tr class="odd">
+<td>Typowy obszar zmienności</td>
+<td>–</td>
+<td><span class="math inline">\(\bar{x} - s &lt; x_{typ} &lt; \bar{x} + s\)</span></td>
+<td>Informuje o relatywnym zróżnicowaniu populacji (próby). Zwykle wykorzystujemy do porównań dwóch lub więcej grup.</td>
+<td>–</td>
+</tr>
+<tr class="even">
+<td>Współczynnik zmienności</td>
+<td><span class="math inline">\(V_x\)</span></td>
+<td><span class="math inline">\(\frac{s}{\bar{x}}\)</span></td>
+<td>Informuje o relatywnym zróżnicowaniu populacji (próby). Zwykle wykorzystujemy do porównań dwóch lub więcej grup. Wyrażamy w procentach.</td>
+<td>–</td>
+</tr>
+<tr class="odd">
+<td>Współczynnik asymetrii</td>
+<td><span class="math inline">\(\alpha_3\)</span></td>
+<td><span class="math inline">\(\frac{\frac{1}{N}\sum_{i=1}^{N}{(x_{i}-\bar{x})^3}}{s^3}\)</span></td>
+<td>Pozwala zidentyfikować czy rozkład jest symetryczny lub asymetryczny</td>
+<td><code>SKOŚNOŚĆ(x)</code></td>
+</tr>
+<tr class="even">
+<td>Współczynnik koncentracji</td>
+<td><span class="math inline">\(\alpha_4\)</span></td>
+<td><span class="math inline">\(\frac{\frac{1}{N}\sum_{i=1}^{N}{(x_{i}-\bar{x})^4}}{s^4}\)</span></td>
+<td>Pozwala zidentyfikować czy rozkład jest wysmukły czy spłaszczony</td>
+<td><code>KURTOZA(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Eksces</td>
+<td><span class="math inline">\(Ex\)</span></td>
+<td><span class="math inline">\(\alpha_4-3\)</span></td>
+<td>Pozwala zidentyfikować czy rozkład jest wysmukły czy spłaszczony (porównujemy do 0)</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="miary-pozycyjne-1" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="miary-pozycyjne-1"><span class="header-section-number">3.4.3</span> Miary pozycyjne</h3>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 30%">
+<col style="width: 19%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Miara</th>
+<th>Oznaczenie</th>
+<th>Wzór</th>
+<th>Interpretacja i wykorzystanie</th>
+<th>Funkcja w Excelu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kwartyl 1</td>
+<td><span class="math inline">\(Q_1\)</span></td>
+<td></td>
+<td>Dzieli populację na dwie części w stosunku 25 / 75</td>
+<td><code>KWARTYL.PRZEDZ.ZAMK(x,1)</code></td>
+</tr>
+<tr class="even">
+<td>Kwartyl 2, Mediana</td>
+<td><span class="math inline">\(Q_2, Me\)</span></td>
+<td></td>
+<td>Dzieli populację na dwie części w stosunku 50 / 50</td>
+<td><code>KWARTYL.PRZEDZ.ZAMK(,2)</code> lub <code>MEDIANA(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Kwartyl 3</td>
+<td><span class="math inline">\(Q_3\)</span></td>
+<td></td>
+<td>Dzieli populację na dwie części w stosunku 75 / 25</td>
+<td><code>KWARTYL.PRZEDZ.ZAMK(x,3)</code></td>
+</tr>
+<tr class="even">
+<td>Odchylenie ćwiartkowe</td>
+<td><span class="math inline">\(Q\)</span></td>
+<td><span class="math inline">\(Q=\frac{Q3-Q1}{2}\)</span></td>
+<td>Mierzy ono przeciętne odchylenie wartości cechy zbiorowości od mediany</td>
+<td>–</td>
+</tr>
+<tr class="odd">
+<td>Pozycyjny współczynnik zmienności</td>
+<td><span class="math inline">\(V_Q\)</span></td>
+<td><span class="math inline">\(\frac{Q}{Me}\)</span></td>
+<td>Mierzy przeciętne zróżnicowanie cechy</td>
+<td>–</td>
+</tr>
+<tr class="even">
+<td>Pozycyjny współczynnik asymetrii</td>
+<td><span class="math inline">\(A_Q\)</span></td>
+<td><span class="math inline">\(\frac{Q_1+Q3-2Me}{2Q}\)</span></td>
+<td>Mierzy (a)symetrię rozkładu</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="przedziały-ufności" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="przedziały-ufności"><span class="header-section-number">3.5</span> Przedziały ufności</h2>
+<p>Dotychczas analizowane dane dotyczyły populacji, zatem obliczone wartości statystyk można uznać za precyzyjne i nieobciążone błędem. Natomiast większość prowadzonych badań ogranicza się do analizy jedynie fragmentu populacji. Wówczas, oprócz obliczenia interesującej nas miary ważne jest także podanie możliwego błędu. Popularną praktyką jest obliczanie <strong>przedziałów ufności</strong>, które prezentują zakres, w którym z określonym prawdopodobieństwem znajduje się prawdziwa wartość parametru. Zwykle bierze się pod uwagę następujące prawdopodobieństwa: 90%, 95% i 99%, niemniej można wybrać dowolną wartość z przedziału 0-100%. We wzorach operuje się pojęciem <strong>poziomu istotności</strong> oznaczanym przez <span class="math inline">\(\alpha\)</span>.</p>
+<p>Skupimy się na wyznaczaniu następujących przedziałów ufności:</p>
+<ul>
+<li>dla średniej w populacji normalnym ze znanym odchyleniem standardowym,</li>
+<li>dla średniej w populacji normalnym z nieznanym odchyleniem standardowym dla małej próby,</li>
+<li>dla średniej w populacji normalnym z nieznanym odchyleniem standardowym dla dużej próby,</li>
+<li>dla odsetka (proporcji, frakcji).</li>
+</ul>
+<p>W każdym przypadku będziemy musieli wyznaczyć kwantyl rozkładu, który odpowiada przyjętemu poziomowi prawdopodobieństwa i tym samym obszar, który pokryje wyznaczony przedział ufności. Dla rozkładu normalnego ta sytuacja jest przedstawiona na wykresie:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>W tabeli przedstawiono relację przyjętego prawdopodobieństwa, poziomu istotności oraz wartości kwantyli rozkładu normalnego.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Prawdopodobieństwo</th>
+<th style="text-align: right;">Poziom istotności</th>
+<th style="text-align: right;">Kwantyl rozkł. norm.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">99% (0,99)</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">2,58</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">95% (0,95)</td>
+<td style="text-align: right;">0,05</td>
+<td style="text-align: right;">1,96</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90% (0,90)</td>
+<td style="text-align: right;">0,10</td>
+<td style="text-align: right;">1,64</td>
+</tr>
+</tbody>
+</table>
+<p>W Excelu te wartości można wyznaczyć z wykorzystaniem funkcji: ROZKŁ.NORMALNY.S.ODWR(1-<span class="math inline">\(\alpha\)</span>/2).</p>
+<p>Te wartości dla najpopularniejszych poziomów prawdopodobieństwa zawsze będą takie same. Natomiast w przypadku małych prób (<span class="math inline">\(n &lt; 30\)</span>) należy skorzystać z rozkładu <a href="https://pl.wikipedia.org/wiki/William_Sealy_Gosset">t-Studenta</a>. Kształt tego rozkładu jest zbliżony do normalnego, natomiast wartości kwantyli zależą od dwóch parametrów - przyjętego poziomu istotności oraz liczebności próby pomniejszonej o 1 (liczba stopni swobody).</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Do wyznaczenia wartości kwantyla z rozkładu t-Studenta wykorzystuje się funkcje: ROZKŁ.T.ODWR(1-<span class="math inline">\(\alpha\)</span>/2;<span class="math inline">\(n\)</span>-1) lub ROZKŁ.T.ODWR.DS(<span class="math inline">\(\alpha\)</span>;<span class="math inline">\(n\)</span>-1)</p>
+<section id="średnia-w-populacji-normalnej-ze-znanym-odchyleniem-standardowym" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="średnia-w-populacji-normalnej-ze-znanym-odchyleniem-standardowym"><span class="header-section-number">3.5.1</span> Średnia w populacji normalnej ze znanym odchyleniem standardowym</h3>
+<p>W sytuacji, w której znane jest odchylenie standardowe w populacji np. z wcześniejszych badań można wykorzystać następujący wzór:</p>
+<p><span class="math display">\[P\left\{\bar{X}-z_{(1-\alpha/2)}\frac{\sigma}{\sqrt{n}}&lt;m&lt;\bar{X}+z_{(1-\alpha/2)}\frac{\sigma}{\sqrt{n}}\right\}=1-\alpha\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(m\)</span> - prawdziwa wartość średniej w populacji,</li>
+<li><span class="math inline">\(\bar{X}\)</span> - estymator średniej,</li>
+<li><span class="math inline">\(z_{(1-\alpha/2)}\)</span> - kwantyl rozkładu normalnego obliczony dla poziomu istotności <span class="math inline">\(\alpha\)</span>,</li>
+<li><span class="math inline">\(\sigma\)</span> - znane odchylenie standardowe,</li>
+<li><span class="math inline">\(n\)</span> - liczebność próby.</li>
+</ul>
+<p><strong>Przykład</strong></p>
+<p>W zakładzie produkcyjnym postanowiono zbadać staż pracy pracowników. W tym celu z populacji pracowników wylosowano próbę o liczebności 196 osób, na podstawie której obliczono, że <span class="math inline">\(\bar{x}=6,9\)</span> lat. Dotychczasowe doświadczenie wskazuje, że rozkład stażu pracowników jest opisany rozkładem normalnym z odchyleniem standardowym 2,8 lat. Dla <span class="math inline">\(\alpha=0,05\)</span> zbudować przedział ufności.</p>
+<p>Kwantyl rozkładu normalnego można obliczyć z wykorzystaniem formuły <code>ROZKŁ.NORMALNY.S.ODWR</code>. W tym przypadku zostanie użyta formuła <code>ROZKŁ.NORMALNY.S.ODWR(1-0,05/2)</code>, co skutkuje otrzymaniem wartości 1,96. Po podstawieniu do wzoru:</p>
+<p><span class="math display">\[6,9-1,96\frac{2,8}{\sqrt{196}} &lt; m &lt; 6,9+1,96\frac{2,8}{\sqrt{196}}\]</span></p>
+<p><span class="math display">\[6,508 &lt; m &lt; 7,292\]</span></p>
+<p>Przedział od 6,5 do 7,3 lat z prawdopodobieństwem 95% pokrywa prawdziwą wartość stażu pracy wszystkich pracowników.</p>
+</section>
+<section id="średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---mała-próba" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---mała-próba"><span class="header-section-number">3.5.2</span> Średnia w populacji normalnej z nieznanym odchyleniem standardowym - mała próba</h3>
+<p>Jeśli odchylenie standardowe w populacji nie jest znane to można wykorzystać wzór, w którym używa się wartości odchylenia standardowego obliczonego na podstawie próbie. Trzeba jednak rozróżnić małą oraz dużą próbę. Przyjętym w statystyce progiem jest <span class="math inline">\(n &gt; 30\)</span>, kiedy uznaje się próbę za dużą. Podstawową różnicą jest wykorzystanie we wzorze przedziału ufności dla małej próby kwantyla rozkładu t-Studenta, a dla dużej kwantyla rozkładu normalnego.</p>
+<p><span class="math display">\[P\left\{\bar{X}-t_{(1-\alpha/2,n-1)}\frac{s}{\sqrt{n-1}}&lt;m&lt;\bar{X}+t_{(1-\alpha/2,n-1)}\frac{s}{\sqrt{n-1}}\right\}=1-\alpha\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(m\)</span> - prawdziwa wartość średniej w populacji,</li>
+<li><span class="math inline">\(\bar{X}\)</span> - estymator średniej,</li>
+<li><span class="math inline">\(t_{(1-\alpha/2,n-1)}\)</span> - kwantyl rozkładu t-Studenta dla poziomu istotności <span class="math inline">\(\alpha\)</span> z <span class="math inline">\(n-1\)</span> stopniami swobody,</li>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe z próby,</li>
+<li><span class="math inline">\(n\)</span> - liczebność próby.</li>
+</ul>
+<p><strong>Przykład</strong></p>
+<p>Postanowiono oszacować średni czas potrzebny do wykonania detalu. Z populacji robotników wylosowano próbę 17 osób i dokonano pomiaru czasu wykonywania detalu. Okazało się, że średni czas wykonania detalu wynosił 15 minut, a odchylenie standardowe 2 minuty. Rozkład czasu wykonania tego detalu ma rozkład normalny i przyjęto poziom istotności <span class="math inline">\(\alpha=0,05\)</span>.</p>
+<p>Wartość kwantyla rozkładu t-Studenta obliczamy za pomocą formuły <code>ROZKŁ.T.ODWR(1-0,05/2;16)</code> lub <code>ROZKŁ.T.ODWR.DS(0,05;16)</code>, co daje wartość 2,12.</p>
+<p><span class="math display">\[15-2,12\frac{2}{\sqrt{16}}&lt;m&lt;15+2,12\frac{2}{\sqrt{16}}\]</span></p>
+<p><span class="math display">\[13,94 &lt; m &lt; 16,06\]</span></p>
+<p>Średni czas wykonania detalu z 95% prawdopodobieństwem jest nie mniejszy niż 13,94 i nie większy niż 16,06 minuty.</p>
+</section>
+<section id="średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---duża-próba" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="średnia-w-populacji-normalnej-z-nieznanym-odchyleniem-standardowym---duża-próba"><span class="header-section-number">3.5.3</span> Średnia w populacji normalnej z nieznanym odchyleniem standardowym - duża próba</h3>
+<p>W przypadku dużej próby przedział ufności można przybliżyć z wykorzystaniem kwantyla rozkładu normalnego.</p>
+<p><span class="math display">\[P\left\{\bar{X}-z_{(1-\alpha/2)}\frac{s}{\sqrt{n}}&lt;m&lt;\bar{X}+z_{(1-\alpha/2)}\frac{s}{\sqrt{n}}\right\} \approx 1-\alpha\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(m\)</span> - prawdziwa wartość średniej w populacji,</li>
+<li><span class="math inline">\(\bar{X}\)</span> - estymator średniej,</li>
+<li><span class="math inline">\(z_{(1-\alpha/2)}\)</span> - kwantyl rozkładu normalnego obliczony dla poziomu istotności <span class="math inline">\(\alpha\)</span>,</li>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe z próby,</li>
+<li><span class="math inline">\(n\)</span> - liczebność próby.</li>
+</ul>
+</section>
+<section id="proporcja" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="proporcja"><span class="header-section-number">3.5.4</span> Proporcja</h3>
+<p>Na podobnej zasadzie można także wyznaczyć przdział ufności dla odsetka.</p>
+<p><span class="math display">\[  P\left\{\frac{m}{n}-z_{(1-\alpha/2)}\sqrt{\frac{\frac{m}{n}\left(1-\frac{m}{n}\right)}{n}}&lt;p&lt;\frac{m}{n}+z_{(1-\alpha/2)}\sqrt{\frac{\frac{m}{n}\left(1-\frac{m}{n}\right)}{n}}\right\} \approx 1-\alpha\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(p\)</span> - wartość proporcji w populacji,</li>
+<li><span class="math inline">\(z_{(1-\alpha/2)}\)</span> - kwantyl rozkładu normalnego obliczony dla poziomu istotności <span class="math inline">\(\alpha\)</span>,</li>
+<li><span class="math inline">\(m\)</span> - liczba jednostek posiadających daną cechę,</li>
+<li><span class="math inline">\(n\)</span> - liczebność</li>
+</ul>
+<p><strong>Przykład</strong></p>
+<p>Spośród 10 tysięcy pracowników wylosowano próbę liczącą 200 osób i przeprowadzono badanie dotyczące opuszczenia zakładu pracy. Okazało się, że 20 z 200 respondentów zamierza, z różnych względów, opuścić zakład pracy. Dla poziomu ufności 90% wyznaczyć przedział ufności dla wskaźnika pracowników planujących opuścić bieżące miejsce pracy.</p>
+<p><span class="math display">\[\frac{20}{200}-1,64\sqrt{\frac{\frac{20}{200}\left(1-\frac{20}{200}\right)}{200}} &lt; p &lt; \frac{20}{200}+1,64\sqrt{\frac{\frac{20}{200}\left(1-\frac{20}{200}\right)}{200}}\]</span></p>
+<p><span class="math display">\[0,065 &lt; p &lt; 0,135\]</span></p>
+<p><span class="math display">\[6,5\% &lt; p &lt; 13,5\%\]</span></p>
+<p>Z prawdopodobieństwem 90% możemy stwierdzić, że pracowników planujących opuścić zakład pracy jest nie mniej niż 6,5% i nie więcej niż 13,5%.</p>
+</section>
+</section>
+<section id="testy-statystyczne" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="testy-statystyczne"><span class="header-section-number">3.6</span> Testy statystyczne</h2>
+<p>Test statystyczna to procedura pozwalająca oszacować prawdopodobieństwo spełnienia pewnej hipotezy statystycznej w populacji na podstawie danych pochodzących z próby losowej. Hipoteza statystyczna to układ dwóch hipotez: zerowej i alternatywnej.</p>
+<ul>
+<li>hipoteza zerowa <span class="math inline">\(H_0\)</span> - zakładamy, że pomiędzy estymatorem i parametrem lub rozkładem empirycznym i teoretycznym nie ma różnic (<span class="math inline">\(H_0\)</span> zawsze zawiera znak równości):</li>
+</ul>
+<p><span class="math display">\[H_0: m=m_0\]</span></p>
+<ul>
+<li>hipoteza alternatywna <span class="math inline">\(H_1\)</span> - dopuszcza istnienie różnic pomiędzy estymatorem a parametrem. Może przyjmować trzy warianty:</li>
+</ul>
+<p><span class="math display">\[H_1: m \neq m_0\]</span></p>
+<p><span class="math display">\[H_1: m &gt; m_0\]</span></p>
+<p><span class="math display">\[H_1: m &lt; m_0\]</span></p>
+<p>gdzie <span class="math inline">\(m_0\)</span> - hipotetyczna wartość średniej w populacji generalnej.</p>
+<p>Weryfikacja testu statystycznego polega na obliczeniu wartości statystyki testowej oraz kwantyla odpowiedniego rozkładu i sprawdzenie czy wartość statystyki testowej wpada do przedziału odrzucenia. Jeśli wartość statystyki testowej jest większa od wartości kwantyla rozkładu (np. <span class="math inline">\(|t| \geq t_\alpha\)</span>) to są podstawy do odrzucenia hipotezy zerowej, natomiast w przypadku kiedy <span class="math inline">\(|t|&lt;t_\alpha\)</span> to nie ma podstaw do odrzucenia hipotezy zerowej.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-analiza-struktury_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="1536"></p>
+</div>
+</div>
+<p>Obecnie wszystkie programy do analiz statystycznych zwracają także wartość p czyli najmniejszy poziom istotności przy którym nie ma podstaw do odrzucenia hipotezy zerowej. Przyjmuje się, że jeśli <span class="math inline">\(p &lt; \alpha\)</span> to są podstawy do odrzucenia hipotezy zerowej, natomiast w przypadku <span class="math inline">\(p \geq \alpha\)</span> nie ma podstaw do odrzucenia <span class="math inline">\(H_0\)</span>. Jest to jednak bardzo uproszczona definicja i warto zgłębić temat np. korzystając z <a href="https://pl.wikipedia.org/wiki/Warto%C5%9B%C4%87_p">Wikipedii</a>.</p>
+<section id="test-t-dla-jednej-średniej" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="test-t-dla-jednej-średniej"><span class="header-section-number">3.6.1</span> Test t dla jednej średniej</h3>
+<p>Sprawdzamy czy średnia w populacji jest równa określonej wartości. Testowany jest jeden z poniższych układów hipotez:</p>
+<ul>
+<li><span class="math inline">\(H_0:m=m_0;H_1:m\neq m_0\)</span></li>
+<li><span class="math inline">\(H_0:m=m_0;H_1:m &gt; m_0\)</span></li>
+<li><span class="math inline">\(H_0:m=m_0;H_1:m &lt; m_0\)</span></li>
+</ul>
+<p>Statystyka testowa jest następująca:</p>
+<p><span class="math display">\[t=\frac{(\bar{x}-m_0)}{s}\sqrt{n}\]</span></p>
+<p>i ma rozkład t-Studenta o <span class="math inline">\(n-1\)</span> stopniach swobody.</p>
+<p>Jeśli wartość statystyki testowej jest większa od wartości kwantyla rozkładu (<span class="math inline">\(|t| \geq t_\alpha\)</span>) to są podstawy do odrzucenia hipotezy zerowej, natomiast w przypadku kiedy <span class="math inline">\(|t|&lt;t_\alpha\)</span> nie ma podstaw do odrzucenia hipotezy zerowej.</p>
+<p>Hipotezę zerową w teście t dla jednej średniej można także zweryfikować na podstawie przedziału ufności. Nie będzie podstaw do odrzucenia hipotezy zerowej jeśli weryfikowana wartość <span class="math inline">\(m_0\)</span> będzie znajdować się w wyznaczonym przedziale ufności. Jeśli będzie poza nim to są podstawy do odrzucenia <span class="math inline">\(H_0\)</span>.</p>
+<p><strong>Przykład</strong></p>
+<p>Z 24 gospodarstw zebrano dane na temat plonów żyta (w tonach na hektar): 30, 31, 27, 35, 31, 32, 36, 25, 31, 32, 28, 29, 24, 30, 25, 31, 25, 29, 25, 27, 22, 29, 32, 29. Czy prawdziwa jest hipoteza, że w gospodarstwach w województwie uzyskuje się średnio 30 ton z hektara żyta? Przyjmij poziom istotności 0,05.</p>
+<p>Układ hipotez jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0: m = 30\)</span></li>
+<li><span class="math inline">\(H_1: m \neq 30\)</span></li>
+</ul>
+<div class="cell">
+
+</div>
+<p>W pierwszej kolejności obliczamy wartość średnią, odchylenie standardowe i na tej podstawie wartość statystyki testowej:</p>
+<p><span class="math display">\[t=\frac{\bar{x}-m_0}{s}\sqrt{n}=\frac{29-30}{3,5}\sqrt{24}=-1,47\]</span></p>
+<p>Natomiast wartość kwantyla rozkładu t-Studenta z 23 stopniami swobody dla poziomu istotności <span class="math inline">\(\alpha=0,05\)</span> wynosi 2,07 (<code>ROZKŁ.T.ODWR(1-0,05/2;24-1)</code>). W takim razie obszar odrzucenia hipotezy zerowej to przedział od <span class="math inline">\(-\infty\)</span> do -2,07 i od 2,07 do <span class="math inline">\(+\infty\)</span>. Wartość statystyki testowej nie znajduje się w tym przedziale, zatem nie ma podstaw do odrzucenia hipotezy zerowej - średnia w populacji nie różni się od 30 ton z hektara.</p>
+<p>Z kolei przedział ufności dla średniej z plonów żyta to 27,46 do 30,46 ton i można zauważyć, że weryfikowana wartość <span class="math inline">\(m_0\)</span> znajduje się w tym przedziale.</p>
+<p>Natomiast w sytuacji, w której <span class="math inline">\(m_0\)</span> zostałoby przyjęte na poziomie 32 ton to wówczas statystyka testowa wynosi -4,29 i wpada do obszaru odrzucenia w rozkładzie t-Studenta. Ponadto można zauważyć, że ta wartość znajduje się poza wyznaczonym przedziałem ufności.</p>
+<p><strong>Zadania</strong></p>
+<ol type="1">
+<li><p>Na grupie 25 kobiet przeprowadzono badanie dotyczące zarobków i zebrano następujące wyniki: 4330, 3063, 3012, 3486, 3415, 3097, 2451, 3418, 2970, 4050, 2828, 4076, 3011, 3575, 3939, 3089, 3733, 3347, 2719, 3238, 4372, 3272, 2909, 3368, 3598. Przyjmując poziom istotności równy 0.1 zweryfikuj hipotezę, że średnie zarobki kobiet w populacji nie różnią się istotnie od 3500 zł.</p></li>
+<li><p>W 17 szkołach podstawowych przeprowadzono wśród uczniów testy kompetencji. Otrzymano następujące wyniki punktowe: 84, 82, 96, 78, 73, 83, 82, 77, 83, 80, 78, 85, 80, 71, 66, 79, 91. Zweryfikuj hipotezę, że średni wynik testu kompetencji w szkołach podstawowych wynosi 80 punktów przyjmując poziom istotności 0,01.</p></li>
+</ol>
+</section>
+<section id="test-istotności-proporcji" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="test-istotności-proporcji"><span class="header-section-number">3.6.2</span> Test istotności proporcji</h3>
+<p>Testowany jest jeden z poniższych układów hipotez:</p>
+<ul>
+<li><span class="math inline">\(H_0:p=p_0;H_1:p\neq p_0\)</span></li>
+<li><span class="math inline">\(H_0:p=p_0;H_1:p &gt; p_0\)</span></li>
+<li><span class="math inline">\(H_0:p=p_0;H_1:p &lt; p_0\)</span></li>
+</ul>
+<p>Statystyka testowa:</p>
+<p><span class="math display">\[z=\frac{(\frac{m}{n}-p_0)}{\sqrt{\frac{p_0(1-p_0)}{n}}}\]</span></p>
+<p>Statystyka testowa ma rozkład normalny standaryzowany.</p>
+<p><strong>Przykład</strong></p>
+<p>W pewnym mieście przeprowadzono badanie aktywności zawodowej. Przebadano 980 osób, spośród których 674 zadeklarowały się jako osoby pracujące. Na poziomie istotności 0,1 zweryfikuj hipotezę, że odsetek pracujących w tym mieście jest równy 72%.</p>
+<p>Układ hipotez jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0,72\)</span></li>
+<li><span class="math inline">\(H_1: p \neq 0,72\)</span></li>
+</ul>
+<div class="cell">
+
+</div>
+<p>W pierwszej kolejności obliczamy wartość średnią, odchylenie standardowe i na tej podstawie wartość statystyki testowej:</p>
+<p><span class="math display">\[z=\frac{(\frac{m}{n}-p_0)}{\sqrt{\frac{p_0(1-p_0)}{n}}}=\frac{(0,69-0,72)}{\sqrt{\frac{0,72(1-0,72)}{980}}}=-2,25\]</span></p>
+<p>Natomiast wartość kwantyla rozkładu normalnego dla poziomu istotności <span class="math inline">\(\alpha=0,1\)</span> wynosi 1,64 (<code>ROZKŁ.NORMALNY.S.ODWR(1-0,1/2)</code>). W takim razie obszar odrzucenia hipotezy zerowej to przedział od <span class="math inline">\(-\infty\)</span> do -1,64 i od 1,64 do <span class="math inline">\(+\infty\)</span>. Wartość statystyki testowej znajduje się w tym przedziale, zatem są podstawy do odrzucenia hipotezy zerowej - odsetek pracujących w całym mieście istotnie różni się od 72%.</p>
+<p><strong>Zadania</strong></p>
+<ol type="1">
+<li><p>Wysunięto przypuszczenie, że palacze papierosów stanowią 40% populacji. W celu sprawdzenia tej hipotezy wylosowano 500 osób. Okazało się, że wśród nich było 230 palaczy. Zweryfikować postawioną hipotezę na poziomie istotności 0,05.</p></li>
+<li><p>W pewnym powiecie na 119 przedsiębiorstw z sekcji PKD C w badaniu DG 1 wzięło udział 14 przedsiębiorstw. Na poziomie istotności 0,05 zweryfikuj hipotezę, że odsetek przedsiębiorstw biorących udział w badaniu wynosi 10%.</p></li>
+</ol>
+</section>
+<section id="test-t-dla-dwóch-średnich-niezależnych" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="test-t-dla-dwóch-średnich-niezależnych"><span class="header-section-number">3.6.3</span> Test t dla dwóch średnich niezależnych</h3>
+<p>Test ma za zadanie sprawdzić czy średnie w dwóch grupach różnią się od siebie w sposób istotny statystycznie. Możemy rozpatrywać następujące układy hipotez:</p>
+<ul>
+<li><span class="math inline">\(H_0:m_1=m_2;H_1:m_1 \neq m_2\)</span></li>
+<li><span class="math inline">\(H_0:m_1=m_2;H_1:m_1 &gt; m_2\)</span></li>
+<li><span class="math inline">\(H_0:m_1=m_2;H_1:m_1 &lt; m_2\)</span></li>
+</ul>
+<p>A statystyka testowa ma następującą postać:</p>
+<p><span class="math display">\[t=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}(\frac{1}{n_1}+\frac{1}{n_2})}}\]</span></p>
+<p>Statystyka testowa ma rozkład t-Studenta o <span class="math inline">\(n_1+n_2-2\)</span> stopniach swobody.</p>
+<p><strong>Przykład</strong></p>
+<p>Na grupie 50 mężczyzn i kobiet przeprowadzono badanie dotyczące zarobków i zebrano następujące wyniki:</p>
+<ul>
+<li>Kobiety: 4330, 3063, 3012, 3486, 3415, 3097, 2451, 3418, 2970, 4050, 2828, 4076, 3011, 3575, 3939, 3089, 3733, 3347, 2719, 3238, 4372, 3272, 2909, 3368, 3598</li>
+<li>Mężczyźni: 4182, 4258, 3840, 4266, 3494, 2862, 3611, 3594, 2874, 4025, 3486, 3710, 3165, 4019, 4556, 3449, 3755, 4579, 4174, 4565, 3798, 3739, 3596, 4374, 3286</li>
+</ul>
+<p>Czy średnie zarobki różnią się w grupach płci? Przyjmij poziom istotności równy 0,1.</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> średnie w grupach płci są takie same</li>
+<li><span class="math inline">\(H_0:\)</span> średnie w grupach płci różnią się</li>
+</ul>
+<div class="cell">
+
+</div>
+<p>W Excelu najprościej przeprowadzić ten test wykorzystując funkcję <code>T.TEST</code> zakładając rozkład dwustronny oraz równość wariancji. Funkcja w rezultacie zwraca wartość p, która wynosi 0,003034 i jest mniejsza od przyjętego poziomu istotności <span class="math inline">\(alfa=0,1\)</span>, co oznacza, że są podstawy do odrzucenia hipotezy zerowej. Średnie w grupach płci różnią się między sobą.</p>
+</section>
+<section id="test-istotności-dwóch-proporcji" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="test-istotności-dwóch-proporcji"><span class="header-section-number">3.6.4</span> Test istotności dwóch proporcji</h3>
+<p>Testowany jest jeden z poniższych układów hipotez:</p>
+<ul>
+<li><span class="math inline">\(H_0:p_1=p_2;H_1:p_1\neq p_2\)</span></li>
+<li><span class="math inline">\(H_0:p_1=p_2;H_1:p_1 &gt; p_2\)</span></li>
+<li><span class="math inline">\(H_0:p_1=p_2;H_1:p_1 &lt; p_2\)</span></li>
+</ul>
+<p>Statystyka testowa:</p>
+<p><span class="math display">\[Z=\frac{\frac{m_1}{n_1}-\frac{m_2}{n_2}}{\sqrt{\frac{\bar{p}\bar{q}}{n}}}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\bar{p}=\frac{m_1+m_2}{n_1+n_2}\)</span></li>
+<li><span class="math inline">\(\bar{q}=1-\bar{p}\)</span></li>
+<li><span class="math inline">\(n=\frac{n_1\cdot n_2}{n_1+n_2}\)</span></li>
+</ul>
+<p>Statystyka testowa ma rozkład normalny standaryzowany.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-wizualizacja.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-korelacje.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Korelacje</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

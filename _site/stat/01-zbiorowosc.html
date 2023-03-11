@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statystyka opisowa - 1&nbsp; Zbiorowość, jednostka, cecha</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-wizualizacja.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zbiorowość, jednostka, cecha</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statystyka opisowa</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Wprowadzenie</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-zbiorowosc.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zbiorowość, jednostka, cecha</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-wizualizacja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-analiza-struktury.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analiza struktury</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-korelacje.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Korelacje</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-regresja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresja</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-sezonowosc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sezonowość</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-szereg-dynamiczny.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analiza szeregu dynamicznego</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-indeksy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Indeksy indywidualne i zespołowe</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#zbiory-danych" id="toc-zbiory-danych" class="nav-link active" data-scroll-target="#zbiory-danych"> <span class="header-section-number">1.1</span> Zbiory danych</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="zbiorowosc" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zbiorowość, jednostka, cecha</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<blockquote class="blockquote">
+<p>Dane, dane, dane! - wołał niecierpliwie - Nie mogę lepić cegieł nie mając gliny.</p>
+<p>– <cite>Przygoda w Copper Beeches, Artur Conan Doyle</cite></p>
+</blockquote>
+<p>Statystyk do pracy potrzebuje danych. Te mogą być pozyskiwane na wiele różnych sposobów. Najpopularniejszym sposobem zbierania danych są badania ankietowe. Mogą być realizowane praktycznie przez każdego - osoby fizyczne (np. studentów), firmy, ośrodki badania opinii publicznej, administrację rządową, itd. W Polsce podmiotem odpowiedzialnym za przeprowadzanie badań społecznych jest Główny Urząd Statystyczny. Dzięki prowadzonym badaniom ankietowym dostarcza informacji na temat praktycznie każdej dziedziny życia obywatela Polski. Przykładowym badaniem prowadzonym przez GUS jest Badanie Aktywności Ekonomicznej Ludności. Zebranie informacji na temat profilu społeczno-demograficznego rynku pracy kosztuje rocznie ponad <a href="http://bip.stat.gov.pl/dzialalnosc-statystyki-publicznej/program-badan-statystycznych/pbssp-2017/">17 milionów złotych</a> (przygotowanie ankiet, zebranie danych, opracowanie wyników, druk publikacji). Próba badania to około 100 tys. osób czyli niecałe 3 promile całej populacji Polski.</p>
+<p>Innym źródłem danych są rejestry administracyjne, które gromadzą mniej danych, ale na temat całej zbiorowości - np. <a href="https://pl.wikipedia.org/wiki/PESEL">PESEL</a>.</p>
+<p>Poza tym ogrome ilości danych gromadzą firmy prywatne - banki, telekomy, towarzystwa ubezpieczeniowe, portale społecznościowe. Przykładowo dane Facebooka to 300 petabajtów z dziennym przyrostem rzędu 600 TB <a href="https://code.facebook.com/posts/229861827208629/scaling-the-facebook-data-warehouse-to-300-pb/">(dane z roku 2014)</a>.</p>
+<p>W odniesieniu do każdego zbioru danych można zdefiniować zbiorowość statystyczną, jednostkę statystyczną oraz cechy statystyczne - stałe i zmienne.</p>
+<p><strong>Zbiorowość statystyczna</strong> - zbiór elementów objętych badaniem statystycznym, posiadających co najmniej jedną cechę stałą (wspólną) oraz co najmniej jedną cechę zmienną (różniące te elementy między sobą). Przykładowo, ankietowano mieszkańców Poznania (cecha stała ponieważ wszyscy responendenci byli mieszkańcami Poznania) pod kątem sympatii do prezydenta (cecha zmienna ponieważ mieszkańcy udzielali różnych odpowiedzi). Zbiorowością będą oczywiście mieszkańcy Poznania.</p>
+<p><strong>Jednostka statystyczna</strong> - pojedynczy element zbiorowości. W wyżej przedstawionym przykładzie jednostką będzie mieszkaniec Poznania.</p>
+<p>Z kolei cechy zmienne dzielą się na:</p>
+<ul>
+<li>czasowe, np. rok urodzenia</li>
+<li>przestrzenne, np. miejsce zamieszkania</li>
+<li>rzeczowe
+<ul>
+<li>niemierzalne (jakościowe)
+<ul>
+<li>dychotomia, np. płeć</li>
+<li>politomia, np. wykształcenie</li>
+</ul></li>
+<li>mierzalne (ilościowe)
+<ul>
+<li>ciągłe, np. wzrost, waga, wiek, średnia ocen</li>
+<li>skokowe, np. liczba rodzeństwa, liczba pokoi</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Wyżej wprowadzone definicje najlepiej zobrazuje przykład ankiety.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ankieta1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Wprowadzenie do ankiety</figcaption><p></p>
+</figure>
+</div>
+<p>Na podstawie zdania wprowadzającego do ankiety możemy zdefiniować zbiorowość oraz jednostkę. Zbiorowością są studenci pierwszego roku UEP, co jest ich cechą stałą (wspólną). Jednostką jest z kolei student pierwszego roku UEP - pojedyńczy ankietowany.</p>
+<p>Cechy zmienne można z kolei przypisać do kolejnych pytań w ankiecie:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ankieta2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Pytania metryczkowe</figcaption><p></p>
+</figure>
+</div>
+<p>Płeć jest przykładem cechy rzeczowej, jakościowej i dychotomicznej. Data urodzenia to cecha czasowa, a miejsce urodzenia jest cechą przestrzenną.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ankieta3.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Kolejne pytania</figcaption><p></p>
+</figure>
+</div>
+<p>Preferowane miejsce pracy jest cechą rzeczową, jakościową i politomiczną, natomiast wysokość oczekiwanych zarobków brutto to cecha rzeczowa, ilościowa, ciągła.</p>
+<p><em>Zadania</em></p>
+<p>Zdefiniuj jednostkę oraz 3 przykładowe cechy wraz z rodzajem dla podanych zbiorowości:</p>
+<ol type="1">
+<li>użytkownicy Facebooka</li>
+<li>gospodarstwa domowe</li>
+<li>przedsiębiorstwa budowlane</li>
+<li>klienci banku</li>
+<li>drzewa w parku Sołackim</li>
+</ol>
+<section id="zbiory-danych" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="zbiory-danych"><span class="header-section-number">1.1</span> Zbiory danych</h2>
+<p>Podczas zajęć będziemy korzystać z dwóch zbiorów danych:</p>
+<ul>
+<li>dane sprzedażowe w sklepach Rossmann w Niemczech w 2014 roku - <a href="zbiory/rossmann.xlsx">plik</a></li>
+<li>dane dotyczące sprzedaży piwa 0,5 l w 2011 roku - <a href="zbiory/piwa.xlsx">plik</a></li>
+</ul>
+<p><strong>Rossmann</strong></p>
+<p>Zmienne</p>
+<ul>
+<li>sklep_id - identyfikator sklepu</li>
+<li>dzien_tyg - liczba oznaczająca dzień tygodnia</li>
+<li>data - data w formacie rok-miesiąc-dzień</li>
+<li>sprzedaz - dzienny obrót (w euro)</li>
+<li>liczba_klientow - liczba klientów</li>
+<li>czy_otwarty - czy sklep był otwarty danego dnia</li>
+<li>czy_promocja - czy danego dnia rozpoczęła się promocja</li>
+<li>czy_swieto - czy sklep był zamknięty w dane święto</li>
+<li>czy_swieto_szkolne - czy na sklep miały wpływ dni wolne od szkoły</li>
+<li>sklep_typ - typ sklepu</li>
+<li>sklep_asort - dostępny asortyment</li>
+<li>sklep_konkurencja - odległość w metrach do najbliższego konkurencyjnego sklepu</li>
+</ul>
+<p><strong>Piwa</strong></p>
+<p>Zmienne</p>
+<ul>
+<li>miesiac - miesiąc zakupu</li>
+<li>poj - pojemność piwa</li>
+<li>wojewodztwo - województwo</li>
+<li>sklepy - rodzaj sklepu</li>
+<li>browar - pochodzenie piwa</li>
+<li>cena - jednostkowa cena piwa</li>
+<li>sztuki - liczba zakupionych sztuk piwa</li>
+</ul>
+<p><em>Zadania</em></p>
+<p>Z wykorzystaniem narzędzia tabel przestawnych w Excelu (wstążka “Wstawianie” -&gt; Tabele przestawne) określ rodzaj cechy dla każdej zmiennej.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Wprowadzenie</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-wizualizacja.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
