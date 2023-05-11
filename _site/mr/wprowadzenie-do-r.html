@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Wprowadzenie do R | Metoda reprezentacyjna</title>
+  <meta name="description" content="Materiały dydaktyczne do kursu Metoda reprezentacyjna." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Wprowadzenie do R | Metoda reprezentacyjna" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Materiały dydaktyczne do kursu Metoda reprezentacyjna." />
+  <meta name="github-repo" content="lwawrowski/metoda-reprezentacyjna" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Wprowadzenie do R | Metoda reprezentacyjna" />
+  
+  <meta name="twitter:description" content="Materiały dydaktyczne do kursu Metoda reprezentacyjna." />
+  
+
+<meta name="author" content="Łukasz Wawrowski" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="wprowadzenie-do-metody-reprezentacyjnej.html"/>
+
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Metoda reprezentacyjna</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Literatura</a></li>
+<li class="chapter" data-level="1" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html"><i class="fa fa-check"></i><b>1</b> Wprowadzenie do metody reprezentacyjnej</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#metoda-reprezentacyjna"><i class="fa fa-check"></i><b>1.1</b> Metoda reprezentacyjna</a></li>
+<li class="chapter" data-level="1.2" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#rys-historyczny"><i class="fa fa-check"></i><b>1.2</b> Rys historyczny</a></li>
+<li class="chapter" data-level="1.3" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#błędy"><i class="fa fa-check"></i><b>1.3</b> Błędy</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#błąd-pomiaru-measurement-error"><i class="fa fa-check"></i><b>1.3.1</b> Błąd pomiaru (measurement error)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#błąd-przetwarzania-processing-error"><i class="fa fa-check"></i><b>1.3.2</b> Błąd przetwarzania (processing error)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#błąd-pokrycia-coverage-error"><i class="fa fa-check"></i><b>1.3.3</b> Błąd pokrycia (coverage error)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#błąd-losowania-sampling-error"><i class="fa fa-check"></i><b>1.3.4</b> Błąd losowania (sampling error)</a></li>
+<li class="chapter" data-level="1.3.5" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#błąd-braku-odpowiedzi-nonresponse-error"><i class="fa fa-check"></i><b>1.3.5</b> Błąd braku odpowiedzi (nonresponse error)</a></li>
+<li class="chapter" data-level="1.3.6" data-path="wprowadzenie-do-metody-reprezentacyjnej.html"><a href="wprowadzenie-do-metody-reprezentacyjnej.html#błąd-dopasowania-adjustement-error"><i class="fa fa-check"></i><b>1.3.6</b> Błąd dopasowania (adjustement error)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="wprowadzenie-do-r.html"><a href="wprowadzenie-do-r.html"><i class="fa fa-check"></i><b>2</b> Wprowadzenie do R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="wprowadzenie-do-r.html"><a href="wprowadzenie-do-r.html#wczytanie-danych"><i class="fa fa-check"></i><b>2.1</b> Wczytanie danych</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metoda reprezentacyjna</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="wprowadzenie-do-r" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Wprowadzenie do R</h1>
+<p><a href="presentations/02_wprowadzenieR.html">Prezentacja</a></p>
+<div id="wczytanie-danych" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Wczytanie danych</h2>
+<p>Wykorzystamy zbiór danych dotyczących wyników drugiej tury wyborów prezydenckich w Polsce na poziomie obwodów wyborczych. Dane pochodzą z serwisu <a href="https://prezydent20200628.pkw.gov.pl/prezydent20200628/pl/dane_w_arkuszach">PKW</a>, a plik Excel znajduje się <a href="data/wybory2020.xlsx">tutaj</a>.</p>
+<p>Dane wczytujemy z wykorzystaniem pakietu <em>readxl</em>, a następnie czyścimy nazwy kolumn oraz wybieramy te zawierające kluczowe informacje:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="wprowadzenie-do-r.html#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="wprowadzenie-do-r.html#cb1-2"></a></span>
+<span id="cb1-3"><a href="wprowadzenie-do-r.html#cb1-3"></a>wp &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="st">&quot;data/wybory2020.xlsx&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-4"><a href="wprowadzenie-do-r.html#cb1-4"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>(.) <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb1-5"><a href="wprowadzenie-do-r.html#cb1-5"></a><span class="st">  </span><span class="kw">select</span>(symbol_kontrolny<span class="op">:</span>percent_glosow_niewaznych, percent_glosow_waznych<span class="op">:</span>rafal_kazimierz_trzaskowski)</span>
+<span id="cb1-6"><a href="wprowadzenie-do-r.html#cb1-6"></a></span>
+<span id="cb1-7"><a href="wprowadzenie-do-r.html#cb1-7"></a><span class="kw">summary</span>(wp)</span></code></pre></div>
+<pre><code>##  symbol_kontrolny       nr_okw       kod_teryt          typ_gminy        
+##  Length:27227       Min.   : 1.00   Length:27227       Length:27227      
+##  Class :character   1st Qu.:14.00   Class :character   Class :character  
+##  Mode  :character   Median :26.00   Mode  :character   Mode  :character  
+##                     Mean   :25.45                                        
+##                     3rd Qu.:37.00                                        
+##                     Max.   :49.00                                        
+##                                                                          
+##   numer_obwodu     typ_obszaru         typ_obwodu          siedziba        
+##  Min.   :   1.00   Length:27227       Length:27227       Length:27227      
+##  1st Qu.:   3.00   Class :character   Class :character   Class :character  
+##  Median :   7.00   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :  38.29                                                           
+##  3rd Qu.:  18.00                                                           
+##  Max.   :1147.00                                                           
+##                                                                            
+##     gmina              powiat          wojewodztwo          frekwencja    
+##  Length:27227       Length:27227       Length:27227       Min.   :  0.00  
+##  Class :character   Class :character   Class :character   1st Qu.: 61.82  
+##  Mode  :character   Mode  :character   Mode  :character   Median : 67.18  
+##                                                           Mean   : 66.42  
+##                                                           3rd Qu.: 72.14  
+##                                                           Max.   :100.00  
+##                                                                           
+##  percent_glosow_niewaznych percent_glosow_waznych andrzej_sebastian_duda
+##  Min.   : 0.0000           Min.   : 66.67         Min.   :  0.00        
+##  1st Qu.: 0.5300           1st Qu.: 98.87         1st Qu.: 42.59        
+##  Median : 0.8200           Median : 99.18         Median : 54.81        
+##  Mean   : 0.9358           Mean   : 99.06         Mean   : 56.64        
+##  3rd Qu.: 1.1300           3rd Qu.: 99.47         3rd Qu.: 70.85        
+##  Max.   :33.3300           Max.   :100.00         Max.   :100.00        
+##  NA&#39;s   :3                 NA&#39;s   :3              NA&#39;s   :3             
+##  rafal_kazimierz_trzaskowski
+##  Min.   :  0.00             
+##  1st Qu.: 29.15             
+##  Median : 45.19             
+##  Mean   : 43.36             
+##  3rd Qu.: 57.41             
+##  Max.   :100.00             
+##  NA&#39;s   :3</code></pre>
+<p>Spróbujmy odpowiedzieć na kilka pytań dotyczących analizowanych danych.</p>
+<ol style="list-style-type: decimal">
+<li>Ile obwodów głosowania miało frekwencję powyżej 80%?</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="wprowadzenie-do-r.html#cb3-1"></a>wp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-2"><a href="wprowadzenie-do-r.html#cb3-2"></a><span class="st">  </span><span class="kw">filter</span>(frekwencja <span class="op">&gt;</span><span class="st"> </span><span class="dv">80</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="wprowadzenie-do-r.html#cb3-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1  1189</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Ile obwodów głosowania znajduje się w Poznaniu?</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="wprowadzenie-do-r.html#cb5-1"></a>wp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="wprowadzenie-do-r.html#cb5-2"></a><span class="st">  </span><span class="kw">filter</span>(powiat <span class="op">==</span><span class="st"> &quot;Poznań&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-3"><a href="wprowadzenie-do-r.html#cb5-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1   251</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Ile jest obwodów według typu obszaru?</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="wprowadzenie-do-r.html#cb7-1"></a>wp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="wprowadzenie-do-r.html#cb7-2"></a><span class="st">  </span><span class="kw">count</span>(typ_obszaru)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   typ_obszaru                    n
+##   &lt;chr&gt;                      &lt;int&gt;
+## 1 dzielnica w m.st. Warszawa   771
+## 2 miasto                     12538
+## 3 miasto i wieś                 82
+## 4 statek                         8
+## 5 wieś                       13661
+## 6 zagranica                    167</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Jaka była średnia frekwencja w województwach?</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="wprowadzenie-do-r.html#cb9-1"></a>wp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-2"><a href="wprowadzenie-do-r.html#cb9-2"></a><span class="st">  </span><span class="kw">group_by</span>(wojewodztwo) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-3"><a href="wprowadzenie-do-r.html#cb9-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">srednia_frekwencja=</span><span class="kw">mean</span>(frekwencja)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-4"><a href="wprowadzenie-do-r.html#cb9-4"></a><span class="st">  </span><span class="kw">arrange</span>(srednia_frekwencja)</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 2
+##    wojewodztwo         srednia_frekwencja
+##    &lt;chr&gt;                            &lt;dbl&gt;
+##  1 opolskie                          59.0
+##  2 warmińsko-mazurskie               59.9
+##  3 podlaskie                         63.2
+##  4 lubuskie                          63.3
+##  5 zachodniopomorskie                63.7
+##  6 kujawsko-pomorskie                63.8
+##  7 lubelskie                         64.8
+##  8 dolnośląskie                      65.2
+##  9 świętokrzyskie                    65.5
+## 10 podkarpackie                      65.8
+## 11 śląskie                           66.1
+## 12 pomorskie                         67.0
+## 13 wielkopolskie                     67.5
+## 14 łódzkie                           68.7
+## 15 małopolskie                       69.6
+## 16 mazowieckie                       72.0</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Gdzie była największa różnica pomiędzy kandydatami?</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="wprowadzenie-do-r.html#cb11-1"></a>diff &lt;-<span class="st"> </span>wp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="wprowadzenie-do-r.html#cb11-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">roznica =</span> <span class="kw">abs</span>(andrzej_sebastian_duda<span class="op">-</span>rafal_kazimierz_trzaskowski))</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="wprowadzenie-do-metody-reprezentacyjnej.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Wawrowski_MR.pdf", "Wawrowski_MR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
