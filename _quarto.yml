@@ -4,7 +4,9 @@ project:
 website:
   title: "Łukasz Wawrowski"
   favicon: favicon.png
+  google-analytics: "G-1WKMCTFB8Z"
   navbar:
+    background: primary
     right:
       - text: "Blog"
         href: index.qmd
