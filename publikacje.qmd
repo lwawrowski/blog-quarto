@@ -29,7 +29,9 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 
 # Explainable artificial intelligence
 
-[Janusz, A., Zalewska, A., Wawrowski, Ł., Biczyk, P., Ludziejewski, J., Sikora, M., Ślęzak, D. (2023). BrightBox — A rough set based technology for diagnosing mistakes of machine learning models. Applied Soft Computing, 110285.](https://www.sciencedirect.com/science/article/pii/S1568494623003034?casa_token=nDCjKI9F1m4AAAAA:64T2RssPagT6VatwfVQmfoSiWzzVu6La7YXuZMM5HOwoKhk_9TSQaqiZni4hSHdkNzPMofWP_CAN)
+[Janusz, A., Zalewska, A., Wawrowski, Ł., Biczyk, P., Ludziejewski, J., Sikora, M., Ślęzak, D., 2023, BrightBox — A rough set based technology for diagnosing mistakes of machine learning models. Applied Soft Computing, 110285.](https://www.sciencedirect.com/science/article/pii/S1568494623003034?casa_token=nDCjKI9F1m4AAAAA:64T2RssPagT6VatwfVQmfoSiWzzVu6La7YXuZMM5HOwoKhk_9TSQaqiZni4hSHdkNzPMofWP_CAN)
+
+[Biczyk P., Wawrowski Ł., 2023, Detecting and Isolating Adversarial Attacks Using Characteristics of the Surrogate Model Framework. Applied Sciences. 13(17):9698.](https://doi.org/10.3390/app13179698)
 
 # Wykrywanie anomalii
 
