@@ -29,11 +29,15 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 
 # Explainable artificial intelligence
 
-[Janusz, A., Zalewska, A., Wawrowski, Ł., Biczyk, P., Ludziejewski, J., Sikora, M., Ślęzak, D., 2023, BrightBox — A rough set based technology for diagnosing mistakes of machine learning models. Applied Soft Computing, 110285.](https://www.sciencedirect.com/science/article/pii/S1568494623003034?casa_token=nDCjKI9F1m4AAAAA:64T2RssPagT6VatwfVQmfoSiWzzVu6La7YXuZMM5HOwoKhk_9TSQaqiZni4hSHdkNzPMofWP_CAN)
+[Janusz, A., Zalewska, A., Wawrowski, Ł., Biczyk, P., Ludziejewski, J., Sikora, M., Ślęzak, D., 2023, _BrightBox — A rough set based technology for diagnosing mistakes of machine learning models_, Applied Soft Computing, 110285.](https://www.sciencedirect.com/science/article/pii/S1568494623003034?casa_token=nDCjKI9F1m4AAAAA:64T2RssPagT6VatwfVQmfoSiWzzVu6La7YXuZMM5HOwoKhk_9TSQaqiZni4hSHdkNzPMofWP_CAN)
 
-[Biczyk P., Wawrowski Ł., 2023, Detecting and Isolating Adversarial Attacks Using Characteristics of the Surrogate Model Framework. Applied Sciences. 13(17):9698.](https://doi.org/10.3390/app13179698)
+[Biczyk P., Wawrowski, Ł., 2023, _Detecting and Isolating Adversarial Attacks Using Characteristics of the Surrogate Model Framework_. Applied Sciences. 13(17):9698.](https://doi.org/10.3390/app13179698)
+
+[Biczyk, P., Wawrowski, Ł., 2023, _Towards automated detection of adversarial attacks on tabular data_, In: Ganzha, M., Maciaszek, L., Paprzycki, M., Ślęzak, D. (eds) Proceedings of the 18th Conference on Computer Science and Intelligence Systems. Annals of Computer Science and Information Systems, vol. 35, pp. 247–251. https://doi.org/10.15439/2023F3838](https://doi.org/10.15439/2023F3838)
 
 # Wykrywanie anomalii
+
+[Czerwiński, M., Michalak, M., Biczyk, P., Adamczyk, B., Iwanicki, D., Kostorz, I., Brzęczek, M., Janusz, A., Hermansa, M., Wawrowski, Ł., Kozłowski, A., 2023, _Cybersecurity threat detection in the behavior of IOT devices: Analysis of data mining competition results_, In: Ganzha, M., Maciaszek, L., Paprzycki, M., Ślęzak, D. (eds) Proceedings of the 18th Conference on Computer Science and Intelligence Systems. Annals of Computer Science and Information Systems, vol. 35, pp. 1289–1293. http://dx.doi.org/10.15439/2023F3089](http://dx.doi.org/10.15439/2023F3089)
 
 [Wawrowski Ł, Białas A, Kajzer A, Kozłowski A, Kurianowicz R, Sikora M, Szymańska-Kwiecień A, Uchroński M, Białczak M, Olejnik M, Michalak M., 2023, _Anomaly Detection Module for Network Traffic Monitoring in Public Institutions_, Sensors, 23(6):2974. https://doi.org/10.3390/s23062974](articles/sensors_2023.pdf)
 
