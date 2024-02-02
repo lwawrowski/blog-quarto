@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Łukasz Wawrowski">
 
-<title>Podstawy programowania w R - 5&nbsp; Programowanie w R</title>
+<title>Programowanie - zadania</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,147 +58,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./04-wizualizacja.html" rel="prev">
-<link href="./favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 20,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<script src="05_programowanie_zadania_files/libs/clipboard/clipboard.min.js"></script>
+<script src="05_programowanie_zadania_files/libs/quarto-html/quarto.js"></script>
+<script src="05_programowanie_zadania_files/libs/quarto-html/popper.min.js"></script>
+<script src="05_programowanie_zadania_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="05_programowanie_zadania_files/libs/quarto-html/anchor.min.js"></script>
+<link href="05_programowanie_zadania_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="05_programowanie_zadania_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="05_programowanie_zadania_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="05_programowanie_zadania_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="05_programowanie_zadania_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="fullcontent">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-programowanie.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Podstawy programowania w R</a> 
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wprowadzenie</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Wprowadzenie do R</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-struktury.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-przetwarzanie.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Przetwarzanie danych</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-wizualizacja.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-programowanie.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Spis treści</h2>
-   
-  <ul>
-  <li><a href="#instrukcje-warunkowe" id="toc-instrukcje-warunkowe" class="nav-link active" data-scroll-target="#instrukcje-warunkowe"><span class="header-section-number">5.1</span> Instrukcje warunkowe</a></li>
-  <li><a href="#funkcje" id="toc-funkcje" class="nav-link" data-scroll-target="#funkcje"><span class="header-section-number">5.2</span> Funkcje</a></li>
-  <li><a href="#pętle" id="toc-pętle" class="nav-link" data-scroll-target="#pętle"><span class="header-section-number">5.3</span> Pętle</a></li>
-  <li><a href="#zadania" id="toc-zadania" class="nav-link" data-scroll-target="#zadania"><span class="header-section-number">5.4</span> Zadania</a></li>
-  </ul>
-</nav>
-    </div>
-<!-- main -->
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></h1>
+<h1 class="title">Programowanie - zadania</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Łukasz Wawrowski </p>
+          </div>
+  </div>
     
   
     
@@ -206,51 +101,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><a href="presentations/05_programowanie.html">Prezentacja</a></p>
-<section id="instrukcje-warunkowe" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="instrukcje-warunkowe"><span class="header-section-number">5.1</span> Instrukcje warunkowe</h2>
-<p>Za pomocą instrukcji if możemy warunkowo wykonywać kod. Ogólna postać jest następująca:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(warunek){</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># kod wykonany jeśli warunek jest równy TRUE</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(warunek) {</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># kod wykonany jeśli warunek jest równy TRUE</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># kod wykonany jeśli warunek jest równy FALSE</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Element warunek musi zwracać wartość logiczną <code>TRUE</code> albo <code>FALSE</code>. Chcąć uwzględnić więcej niż jeden warunek należy wykorzystać odpowiedni operator łączenia:</p>
-<ul>
-<li>i : &amp;&amp;</li>
-<li>lub : ||</li>
-</ul>
+<section id="paradoks-dnia-urodzin" class="level1">
+<h1>Paradoks dnia urodzin</h1>
+<p><a href="https://pl.wikipedia.org/wiki/Paradoks_dnia_urodzin">Artykuł na wikipedii</a></p>
+<p>Ile minimalnie osób należy wybrać, żeby prawdopodobieństwo znalezienia wśród nich co najmniej dwóch osób obchodzących urodziny tego samego dnia było większe od 0,5.</p>
+<p>Rozwiązaniem problemu jest liczba 23. Ta zaskakująco mała liczba osób jest przyczyną określenia „Paradoks dnia urodzin”.</p>
+<section id="zadanie" class="level2">
+<h2 class="anchored" data-anchor-id="zadanie">Zadanie</h2>
+<p>Napisz funkcję, która jako argument będzie przyjmowała liczbę osób (max. 100), dla których ma wylosować datę urodzenia (bez roku). Następnie sprawdź czy któraś data powtarza się w ramach wylosowanych wartości i zapisz wynik (prawda lub fałsz). Powtórz losowanie 100000 razy. Wynikiem jest prawdopodobieństwo wyznaczone poprzez podzielenie liczby przypadków, gdzie data się powtórzyła przez liczbę wszystkich losowań.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paradoks_urodzin</span>(<span class="dv">23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>W grupie 23 osób prawdopodobieństwo, że dwie osoby będą miały urodziny tego samego dnia wynosi 50.95%.</code></p>
 </section>
-<section id="funkcje" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="funkcje"><span class="header-section-number">5.2</span> Funkcje</h2>
-<p>Funkcję ograniczają potrzebę kopiowania kodu i ułatwiają wprowadzanie zmian.</p>
-<p>Stworzenie funkcji wymaga:</p>
-<ul>
-<li>wymyślenia nazwy funkcji,</li>
-<li>określenia elementów wejściowych,</li>
-<li>umieszczenia kodu w ciele funkcji.</li>
-</ul>
-<p>Istnieją pewne dobre praktyki tworzenia funkcji:</p>
-<ul>
-<li>nazwy funkcji powinny być czasownikami,</li>
-<li>podkreślnik vs.&nbsp;notacja camelCase i konsekwencja stosowania,</li>
-<li>wspólny przedrostek np. rnorm, runif.</li>
-</ul>
 </section>
-<section id="pętle" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="pętle"><span class="header-section-number">5.3</span> Pętle</h2>
-<p>Pętlę są wykorzystywane w sytuacji, w której chcemy powtórzyć wykonanie kodu.</p>
+<section id="poszukiwacz-dzielników" class="level1">
+<h1>Poszukiwacz dzielników</h1>
+<p>Termin dzielnik liczby oznacza liczbę, która dzieli ją bez reszty.</p>
+<section id="zadanie-1" class="level2">
+<h2 class="anchored" data-anchor-id="zadanie-1">Zadanie</h2>
+<p>Napisz funkcję, która dla podanej liczby będzie zwracała jej dzielniki. Użyj pętli do sprawdzenia czy potencjalny dzielnik faktycznie dzieli się bez reszty.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dzielnik_liczby</span>(<span class="dv">26</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>Dzielniki liczby 26 to: 1, 2, 13, 26.</code></p>
 </section>
-<section id="zadania" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="zadania"><span class="header-section-number">5.4</span> Zadania</h2>
-<p>Wykonaj polecenia znajdujące się na <a href="presentations/05_programowanie_zadania.html">stronie</a>.</p>
-
-
+</section>
+<section id="papier-kamień-nożyce" class="level1">
+<h1>Papier, kamień, nożyce,</h1>
+<p><a href="https://pl.wikipedia.org/wiki/Papier,_kamie%C5%84,_no%C5%BCyce">Artykuł na wikipedii</a></p>
+<section id="zadanie-2" class="level2">
+<h2 class="anchored" data-anchor-id="zadanie-2">Zadanie</h2>
+<p>Napisz funkcję, która jako argument przyjmuje jeden z trzech symboli (kamień/nożyce/papier). Komputer może objąć trzy strategię: losowo wybierać symbol, zawsze wygrywać lub zawsze przegrywać. Możesz użyć funkcji opóźniającej podanie wyniki, aby zwiększyć emocje.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pkn</span>(<span class="at">symbol=</span><span class="st">"kamień"</span>, <span class="at">tryb=</span><span class="st">"losowy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>kamień vs. nożyce - wygrałeś!</code></p>
+<p><em>Źródło: https://inventwithpython.com/bigbookpython/</em></p>
+</section>
 </section>
 
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -484,15 +376,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./04-wizualizacja.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

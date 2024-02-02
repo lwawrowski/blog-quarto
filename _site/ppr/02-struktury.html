@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,16 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -41,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -116,10 +92,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -128,11 +106,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-struktury.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -140,85 +123,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Podstawy programowania w R</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Wprowadzenie</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wprowadzenie</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Wprowadzenie do R</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Wprowadzenie do R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-struktury.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></a>
+  <a href="./02-struktury.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-przetwarzanie.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Przetwarzanie danych</span></a>
+  <a href="./03-przetwarzanie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Przetwarzanie danych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-wizualizacja.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></a>
+  <a href="./04-wizualizacja.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-programowanie.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></a>
+  <a href="./05-programowanie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#obiekty" id="toc-obiekty" class="nav-link active" data-scroll-target="#obiekty"> <span class="header-section-number">2.1</span> Obiekty</a></li>
-  <li><a href="#wektor" id="toc-wektor" class="nav-link" data-scroll-target="#wektor"> <span class="header-section-number">2.2</span> Wektor</a>
+  <li><a href="#obiekty" id="toc-obiekty" class="nav-link active" data-scroll-target="#obiekty"><span class="header-section-number">2.1</span> Obiekty</a></li>
+  <li><a href="#wektor" id="toc-wektor" class="nav-link" data-scroll-target="#wektor"><span class="header-section-number">2.2</span> Wektor</a>
   <ul class="collapse">
-  <li><a href="#wektor-wartości-logicznych" id="toc-wektor-wartości-logicznych" class="nav-link" data-scroll-target="#wektor-wartości-logicznych"> <span class="header-section-number">2.2.1</span> Wektor wartości logicznych</a></li>
-  <li><a href="#wektor-wartości-liczbowych" id="toc-wektor-wartości-liczbowych" class="nav-link" data-scroll-target="#wektor-wartości-liczbowych"> <span class="header-section-number">2.2.2</span> Wektor wartości liczbowych</a></li>
-  <li><a href="#wektor-wartości-tekstowych" id="toc-wektor-wartości-tekstowych" class="nav-link" data-scroll-target="#wektor-wartości-tekstowych"> <span class="header-section-number">2.2.3</span> Wektor wartości tekstowych</a></li>
-  <li><a href="#przeciążanie-wektora" id="toc-przeciążanie-wektora" class="nav-link" data-scroll-target="#przeciążanie-wektora"> <span class="header-section-number">2.2.4</span> Przeciążanie wektora</a></li>
-  <li><a href="#operacje-na-wektorach" id="toc-operacje-na-wektorach" class="nav-link" data-scroll-target="#operacje-na-wektorach"> <span class="header-section-number">2.2.5</span> Operacje na wektorach</a></li>
-  <li><a href="#operacje-agregujące" id="toc-operacje-agregujące" class="nav-link" data-scroll-target="#operacje-agregujące"> <span class="header-section-number">2.2.6</span> Operacje agregujące</a></li>
-  <li><a href="#sprawdzanie-typu-wektora" id="toc-sprawdzanie-typu-wektora" class="nav-link" data-scroll-target="#sprawdzanie-typu-wektora"> <span class="header-section-number">2.2.7</span> Sprawdzanie typu wektora</a></li>
-  <li><a href="#rzutowanie-wektorów" id="toc-rzutowanie-wektorów" class="nav-link" data-scroll-target="#rzutowanie-wektorów"> <span class="header-section-number">2.2.8</span> Rzutowanie wektorów</a></li>
-  <li><a href="#indeksowanie-wektorów" id="toc-indeksowanie-wektorów" class="nav-link" data-scroll-target="#indeksowanie-wektorów"> <span class="header-section-number">2.2.9</span> Indeksowanie wektorów</a></li>
-  <li><a href="#wartości-nieliczbowe" id="toc-wartości-nieliczbowe" class="nav-link" data-scroll-target="#wartości-nieliczbowe"> <span class="header-section-number">2.2.10</span> Wartości nieliczbowe</a></li>
-  <li><a href="#zadania" id="toc-zadania" class="nav-link" data-scroll-target="#zadania"> <span class="header-section-number">2.2.11</span> Zadania</a></li>
+  <li><a href="#wektor-wartości-logicznych" id="toc-wektor-wartości-logicznych" class="nav-link" data-scroll-target="#wektor-wartości-logicznych"><span class="header-section-number">2.2.1</span> Wektor wartości logicznych</a></li>
+  <li><a href="#wektor-wartości-liczbowych" id="toc-wektor-wartości-liczbowych" class="nav-link" data-scroll-target="#wektor-wartości-liczbowych"><span class="header-section-number">2.2.2</span> Wektor wartości liczbowych</a></li>
+  <li><a href="#wektor-wartości-tekstowych" id="toc-wektor-wartości-tekstowych" class="nav-link" data-scroll-target="#wektor-wartości-tekstowych"><span class="header-section-number">2.2.3</span> Wektor wartości tekstowych</a></li>
+  <li><a href="#przeciążanie-wektora" id="toc-przeciążanie-wektora" class="nav-link" data-scroll-target="#przeciążanie-wektora"><span class="header-section-number">2.2.4</span> Przeciążanie wektora</a></li>
+  <li><a href="#operacje-na-wektorach" id="toc-operacje-na-wektorach" class="nav-link" data-scroll-target="#operacje-na-wektorach"><span class="header-section-number">2.2.5</span> Operacje na wektorach</a></li>
+  <li><a href="#operacje-agregujące" id="toc-operacje-agregujące" class="nav-link" data-scroll-target="#operacje-agregujące"><span class="header-section-number">2.2.6</span> Operacje agregujące</a></li>
+  <li><a href="#sprawdzanie-typu-wektora" id="toc-sprawdzanie-typu-wektora" class="nav-link" data-scroll-target="#sprawdzanie-typu-wektora"><span class="header-section-number">2.2.7</span> Sprawdzanie typu wektora</a></li>
+  <li><a href="#rzutowanie-wektorów" id="toc-rzutowanie-wektorów" class="nav-link" data-scroll-target="#rzutowanie-wektorów"><span class="header-section-number">2.2.8</span> Rzutowanie wektorów</a></li>
+  <li><a href="#indeksowanie-wektorów" id="toc-indeksowanie-wektorów" class="nav-link" data-scroll-target="#indeksowanie-wektorów"><span class="header-section-number">2.2.9</span> Indeksowanie wektorów</a></li>
+  <li><a href="#wartości-nieliczbowe" id="toc-wartości-nieliczbowe" class="nav-link" data-scroll-target="#wartości-nieliczbowe"><span class="header-section-number">2.2.10</span> Wartości nieliczbowe</a></li>
+  <li><a href="#zadania" id="toc-zadania" class="nav-link" data-scroll-target="#zadania"><span class="header-section-number">2.2.11</span> Zadania</a></li>
   </ul></li>
-  <li><a href="#macierz" id="toc-macierz" class="nav-link" data-scroll-target="#macierz"> <span class="header-section-number">2.3</span> Macierz</a>
+  <li><a href="#macierz" id="toc-macierz" class="nav-link" data-scroll-target="#macierz"><span class="header-section-number">2.3</span> Macierz</a>
   <ul class="collapse">
-  <li><a href="#łączenie-macierzy" id="toc-łączenie-macierzy" class="nav-link" data-scroll-target="#łączenie-macierzy"> <span class="header-section-number">2.3.1</span> Łączenie macierzy</a></li>
-  <li><a href="#indeksowanie-macierzy" id="toc-indeksowanie-macierzy" class="nav-link" data-scroll-target="#indeksowanie-macierzy"> <span class="header-section-number">2.3.2</span> Indeksowanie macierzy</a></li>
-  <li><a href="#operacje-na-macierzach" id="toc-operacje-na-macierzach" class="nav-link" data-scroll-target="#operacje-na-macierzach"> <span class="header-section-number">2.3.3</span> Operacje na macierzach</a></li>
-  <li><a href="#zadanie" id="toc-zadanie" class="nav-link" data-scroll-target="#zadanie"> <span class="header-section-number">2.3.4</span> Zadanie</a></li>
+  <li><a href="#łączenie-macierzy" id="toc-łączenie-macierzy" class="nav-link" data-scroll-target="#łączenie-macierzy"><span class="header-section-number">2.3.1</span> Łączenie macierzy</a></li>
+  <li><a href="#indeksowanie-macierzy" id="toc-indeksowanie-macierzy" class="nav-link" data-scroll-target="#indeksowanie-macierzy"><span class="header-section-number">2.3.2</span> Indeksowanie macierzy</a></li>
+  <li><a href="#operacje-na-macierzach" id="toc-operacje-na-macierzach" class="nav-link" data-scroll-target="#operacje-na-macierzach"><span class="header-section-number">2.3.3</span> Operacje na macierzach</a></li>
+  <li><a href="#zadanie" id="toc-zadanie" class="nav-link" data-scroll-target="#zadanie"><span class="header-section-number">2.3.4</span> Zadanie</a></li>
   </ul></li>
-  <li><a href="#czynnik" id="toc-czynnik" class="nav-link" data-scroll-target="#czynnik"> <span class="header-section-number">2.4</span> Czynnik</a></li>
-  <li><a href="#lista" id="toc-lista" class="nav-link" data-scroll-target="#lista"> <span class="header-section-number">2.5</span> Lista</a></li>
-  <li><a href="#ramka-danych" id="toc-ramka-danych" class="nav-link" data-scroll-target="#ramka-danych"> <span class="header-section-number">2.6</span> Ramka danych</a>
+  <li><a href="#czynnik" id="toc-czynnik" class="nav-link" data-scroll-target="#czynnik"><span class="header-section-number">2.4</span> Czynnik</a></li>
+  <li><a href="#lista" id="toc-lista" class="nav-link" data-scroll-target="#lista"><span class="header-section-number">2.5</span> Lista</a></li>
+  <li><a href="#ramka-danych" id="toc-ramka-danych" class="nav-link" data-scroll-target="#ramka-danych"><span class="header-section-number">2.6</span> Ramka danych</a>
   <ul class="collapse">
-  <li><a href="#zadania-1" id="toc-zadania-1" class="nav-link" data-scroll-target="#zadania-1"> <span class="header-section-number">2.6.1</span> Zadania</a></li>
+  <li><a href="#zadania-1" id="toc-zadania-1" class="nav-link" data-scroll-target="#zadania-1"><span class="header-section-number">2.6.1</span> Zadania</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -228,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></h1>
 </div>
 
 
@@ -236,6 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -382,7 +373,7 @@ obiekt -&gt; nazwa</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="at">by=</span><span class="dv">1</span>) <span class="co"># błędny zapis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in seq.default(10, 1, by = 1): błędny znak w argumencie 'by'</code></pre>
+<pre><code>Error in seq.default(10, 1, by = 1): wrong sign in 'by' argument</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="at">by=</span><span class="sc">-</span><span class="dv">1</span>) <span class="co"># poprawny zapis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -400,7 +391,7 @@ obiekt -&gt; nazwa</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9255702 0.4005793 0.6185917 0.3389147 0.7634406 0.5298063</code></pre>
+<pre><code>[1] 0.3195719 0.1278855 0.5032706 0.9783932 0.6031072 0.6790640</code></pre>
 </div>
 </div>
 <p>Obserwacje można także generować z innych rozkładów:</p>
@@ -415,11 +406,11 @@ obiekt -&gt; nazwa</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3541289 0.8072619 0.8551779 0.2689140 0.6105649</code></pre>
+<pre><code>[1] 0.1625951 0.3835654 0.5293908 0.4157393 0.3100997</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08098767 0.14763850 0.62207261 0.41483871 0.31297828</code></pre>
+<pre><code>[1] 0.8787186 0.9163193 0.9412319 0.1133653 0.1806800</code></pre>
 </div>
 </div>
 <p>Powtarzalność wyników możemy uzyskać ustalając ziarno generatora:</p>
@@ -513,8 +504,8 @@ obiekt -&gt; nazwa</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">*</span> <span class="fu">c</span>(T,F,T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in 1:10 * c(T, F, T): długość dłuszego obiektu nie jest wielokrotnością
-długości krótszego obiektu</code></pre>
+<pre><code>Warning in 1:10 * c(T, F, T): longer object length is not a multiple of shorter
+object length</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  0  3  4  0  6  7  0  9 10</code></pre>
@@ -525,11 +516,11 @@ długości krótszego obiektu</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"jeden"</span>, <span class="st">"dwa"</span>, <span class="st">"trzy"</span>, <span class="st">"cztery"</span>) <span class="sc">*</span> <span class="fu">c</span>(T,F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in c("jeden", "dwa", "trzy", "cztery") * c(T, F): argument nieliczbowy przekazany do operatora dwuargumentowego</code></pre>
+<pre><code>Error in c("jeden", "dwa", "trzy", "cztery") * c(T, F): non-numeric argument to binary operator</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"jeden"</span>, <span class="st">"dwa"</span>, <span class="st">"trzy"</span>, <span class="st">"cztery"</span>) <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in c("jeden", "dwa", "trzy", "cztery") + c(1, 2): argument nieliczbowy przekazany do operatora dwuargumentowego</code></pre>
+<pre><code>Error in c("jeden", "dwa", "trzy", "cztery") + c(1, 2): non-numeric argument to binary operator</code></pre>
 </div>
 </div>
 </section>
@@ -774,7 +765,7 @@ długości krótszego obiektu</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sqrt(-10): wyprodukowano wartości NaN</code></pre>
+<pre><code>Warning in sqrt(-10): NaNs produced</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NaN</code></pre>
@@ -856,8 +847,8 @@ długości krótszego obiektu</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in matrix(letters[1:7], nrow = 3, byrow = TRUE): długość danych [7] nie
-jest pod-wielokrotnością lub wielokrotnością liczby wierszy [3]</code></pre>
+<pre><code>Warning in matrix(letters[1:7], nrow = 3, byrow = TRUE): data length [7] is not
+a sub-multiple or multiple of the number of rows [3]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
@@ -1368,9 +1359,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1382,7 +1387,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1410,31 +1432,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
