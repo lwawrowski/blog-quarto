@@ -285,5 +285,12 @@
     "title": "5  Programowanie w R",
     "section": "5.4 Zadania",
     "text": "5.4 Zadania\nWykonaj polecenia znajdujące się na stronie."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Podstawy programowania w R",
+    "section": "",
+    "text": "Wprowadzenie\nPolecana literatura:\n\nGarret Grolemund, Hadley Wickham - R for Data Science (polska wersja)\nMarek Gągolewski - Programowanie w języku R. Analiza danych, obliczenia, symulacje.\n\nSkrypty z zajęć"
   }
 ]
