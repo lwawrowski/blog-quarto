@@ -6,27 +6,6 @@ title: "Publikacje"
 - [ResearchGate](https://www.researchgate.net/profile/Lukasz_Wawrowski)   
 - [ORCID](https://orcid.org/0000-0002-1201-5344)
 
-
-# Ubóstwo i wykluczenie społeczne
-
-[Wawrowski, Ł., Beręsewicz, M., 2021, _Small area estimates of the low work intensity indicator at voivodeship level in Poland_, Statistics in Transition New Series, vol. 22(2), s. 155-172](articles/sit_2021.pdf)
-
-[Wawrowski, Ł., 2020, _Estymacja pośrednia wskaźników ubóstwa na poziomie powiatów_, Wiadomości Statystyczne, vol. 65 (8), s. 7-26](https://ws.stat.gov.pl/Article/2020/8/007-026)
-
-[Beręsewicz, M., Marchetti, S., Salvati, N., Szymkowiak, M., Wawrowski, Ł., 2018, _The use of a three level M-quantile model to map poverty at LAU 1 in Poland_, Journal of the Royal Statistical Society Series A, 181 (4), s. 1077-1104.](https://rss.onlinelibrary.wiley.com/doi/10.1111/rssa.12349)
-
-[Młodak, A., Szymkowiak, M., Wawrowski, Ł., 2017, _Mapping poverty at the level of subregions in Poland using indirect estimation_, Statistics in Transition - new series, 18 (4), s. 609-635.](articles/sit_2017.pdf)
-
-[Wawrowski, Ł., 2016, _The Spatial Fay-Herriot Model in Poverty Estimation_, Folia Oeconomica Stetinensia, 16 (2), s. 191-202.](articles/folia_2016.pdf)
-
-[Młodak, A., Józefowski, T., Wawrowski, Ł., 2016, _Zastosowanie metod taksonomicznych w estymacji wskaźników ubóstwa_, Wiadomości Statystyczne, 2, s. 1-24.](articles/ws_2016_02.pdf)
-
-Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykorzystaniem modelu Faya-Herriota_ w: Dorota Appenzeller (red.), Matematyka i informatyka na usługach ekonomii : analityka gospodarcza, metody i narzędzia., Wydawnictwo Uniwersytetu Ekonomicznego w Poznaniu (UEP), Poznań, s. 171-182.
-
-[Wawrowski, Ł., 2014, _Wykorzystanie metod statystyki małych obszarów do tworzenia map ubóstwa w Polsce_, Wiadomości Statystyczne, Zakład Wydawnictw Statystycznych, numer 9 (640),  Warszawa.](articles/ws_2014.pdf)
-
-[Wawrowski, Ł., 2012, _Analiza ubóstwa w przekroju powiatów w województwie wielkopolskim z wykorzystaniem metod statystyki małych obszarów_, Przegląd Statystyczny, Numer specjalny 2, PAN Warszawska Drukarnia Naukowa, Warszawa.](articles/ps_2012.pdf)
-
 # Explainable artificial intelligence
 
 [Janusz, A., Zalewska, A., Wawrowski, Ł., Biczyk, P., Ludziejewski, J., Sikora, M., Ślęzak, D., 2023, _BrightBox — A rough set based technology for diagnosing mistakes of machine learning models_, Applied Soft Computing, 110285.](https://www.sciencedirect.com/science/article/pii/S1568494623003034?casa_token=nDCjKI9F1m4AAAAA:64T2RssPagT6VatwfVQmfoSiWzzVu6La7YXuZMM5HOwoKhk_9TSQaqiZni4hSHdkNzPMofWP_CAN)
@@ -50,6 +29,26 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 [Michalak M., Wawrowski Ł., Sikora M., Kurianowicz R., Kozłowski A., Białas A.: Open-source-based Environment for Network Traffic Anomaly Detection, (Proceedings of the 16th International Conference on Dependability of Computer Systems DepCoS-RELCOMEX), Advances in Intelligent Systems and Computing, 1389:284-295, 2021](https://link.springer.com/chapter/10.1007/978-3-030-76773-0_28)
 
 [Michalak, M., Wawrowski, Ł., Sikora, M., Kurianowicz, R., Kozłowski, A., Białas, A., 2021, _Outlier Detection in Network Traffic Monitoring_, In Proceedings of the 10th International Conference on Pattern Recognition Applications and Methods - Volume 1: ICPRAM, ISBN 978-989-758-486-2, s. 523-530, DOI: 10.5220/0010238205230530](articles/icpram_2021.pdf)
+
+# Ubóstwo i wykluczenie społeczne
+
+[Wawrowski, Ł., Beręsewicz, M., 2021, _Small area estimates of the low work intensity indicator at voivodeship level in Poland_, Statistics in Transition New Series, vol. 22(2), s. 155-172](articles/sit_2021.pdf)
+
+[Wawrowski, Ł., 2020, _Estymacja pośrednia wskaźników ubóstwa na poziomie powiatów_, Wiadomości Statystyczne, vol. 65 (8), s. 7-26](https://ws.stat.gov.pl/Article/2020/8/007-026)
+
+[Beręsewicz, M., Marchetti, S., Salvati, N., Szymkowiak, M., Wawrowski, Ł., 2018, _The use of a three level M-quantile model to map poverty at LAU 1 in Poland_, Journal of the Royal Statistical Society Series A, 181 (4), s. 1077-1104.](https://rss.onlinelibrary.wiley.com/doi/10.1111/rssa.12349)
+
+[Młodak, A., Szymkowiak, M., Wawrowski, Ł., 2017, _Mapping poverty at the level of subregions in Poland using indirect estimation_, Statistics in Transition - new series, 18 (4), s. 609-635.](articles/sit_2017.pdf)
+
+[Wawrowski, Ł., 2016, _The Spatial Fay-Herriot Model in Poverty Estimation_, Folia Oeconomica Stetinensia, 16 (2), s. 191-202.](articles/folia_2016.pdf)
+
+[Młodak, A., Józefowski, T., Wawrowski, Ł., 2016, _Zastosowanie metod taksonomicznych w estymacji wskaźników ubóstwa_, Wiadomości Statystyczne, 2, s. 1-24.](articles/ws_2016_02.pdf)
+
+Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykorzystaniem modelu Faya-Herriota_ w: Dorota Appenzeller (red.), Matematyka i informatyka na usługach ekonomii : analityka gospodarcza, metody i narzędzia., Wydawnictwo Uniwersytetu Ekonomicznego w Poznaniu (UEP), Poznań, s. 171-182.
+
+[Wawrowski, Ł., 2014, _Wykorzystanie metod statystyki małych obszarów do tworzenia map ubóstwa w Polsce_, Wiadomości Statystyczne, Zakład Wydawnictw Statystycznych, numer 9 (640),  Warszawa.](articles/ws_2014.pdf)
+
+[Wawrowski, Ł., 2012, _Analiza ubóstwa w przekroju powiatów w województwie wielkopolskim z wykorzystaniem metod statystyki małych obszarów_, Przegląd Statystyczny, Numer specjalny 2, PAN Warszawska Drukarnia Naukowa, Warszawa.](articles/ps_2012.pdf)
 
 # Estymacja dla małych przedsiębiorstw
 
