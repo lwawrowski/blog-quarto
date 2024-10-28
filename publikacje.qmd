@@ -35,7 +35,9 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 
 [Biczyk, P., Wawrowski, Ł., 2023, _Towards automated detection of adversarial attacks on tabular data_, In: Ganzha, M., Maciaszek, L., Paprzycki, M., Ślęzak, D. (eds) Proceedings of the 18th Conference on Computer Science and Intelligence Systems. Annals of Computer Science and Information Systems, vol. 35, pp. 247–251. https://doi.org/10.15439/2023F3838](https://doi.org/10.15439/2023F3838)
 
-# Wykrywanie anomalii
+# Cyberbezpieczeństwo i wykrywanie anomalii
+
+[Michalak, M., Biczyk, P., Adamczyk, B., Brzęczek, M., Hermansa, M., Kostorz, I., Wawrowski, Ł., Czerwiński, M. 2023, _A New Data Model for Behavioral Based Anomaly Detection in IoT Device Monitoring_. In International Joint Conference on Rough Sets, pp. 599-611. Cham: Springer Nature Switzerland.](https://link.springer.com/chapter/10.1007/978-3-031-50959-9_41)
 
 [Czerwiński, M., Michalak, M., Biczyk, P., Adamczyk, B., Iwanicki, D., Kostorz, I., Brzęczek, M., Janusz, A., Hermansa, M., Wawrowski, Ł., Kozłowski, A., 2023, _Cybersecurity threat detection in the behavior of IOT devices: Analysis of data mining competition results_, In: Ganzha, M., Maciaszek, L., Paprzycki, M., Ślęzak, D. (eds) Proceedings of the 18th Conference on Computer Science and Intelligence Systems. Annals of Computer Science and Information Systems, vol. 35, pp. 1289–1293. http://dx.doi.org/10.15439/2023F3089](http://dx.doi.org/10.15439/2023F3089)
 
