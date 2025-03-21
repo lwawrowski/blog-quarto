@@ -28,7 +28,9 @@ about:
 
 ## Current employment
 
-**[Research Network Łukasiewicz](https://emag.lukasiewicz.gov.pl/pl/)** | Data analyst 
+**[Research Network Łukasiewicz](https://emag.lukasiewicz.gov.pl/pl/)** | Senior Data Scientist
+
+**[University of Silesia](https://us.edu.pl/instytut/ii/strona-glowna/o-instytucie/)** | Assistant Professor
 
 ## Education
 
