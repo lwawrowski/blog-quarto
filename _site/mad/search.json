@@ -1,0 +1,252 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Metody przetwarzania i analizy danych",
+    "section": "",
+    "text": "Wprowadzenie\nLiteratura podstawowa:\n\nWprowadzenie do modelowania predycyjnego\nHands-On Machine Learning with R\n\nLiteratura dodatkowa:\n\nR for Data Science\nIntroduction to Data Science\nApplied Statistics with R\nData Science Live Book\nTidy Modeling with R\n\nSkrypty z zajęć",
+    "crumbs": [
+      "Wprowadzenie"
+    ]
+  },
+  {
+    "objectID": "01-dane.html",
+    "href": "01-dane.html",
+    "title": "1  Dane",
+    "section": "",
+    "text": "1.1 Wprowadzenie\nPrezentacja",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "01-dane.html#braki-danych",
+    "href": "01-dane.html#braki-danych",
+    "title": "1  Dane",
+    "section": "1.2 Braki danych",
+    "text": "1.2 Braki danych",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "01-dane.html#wartości-odstające",
+    "href": "01-dane.html#wartości-odstające",
+    "title": "1  Dane",
+    "section": "1.3 Wartości odstające",
+    "text": "1.3 Wartości odstające",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "01-dane.html#duplikaty",
+    "href": "01-dane.html#duplikaty",
+    "title": "1  Dane",
+    "section": "1.4 Duplikaty",
+    "text": "1.4 Duplikaty",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "01-dane.html#podział",
+    "href": "01-dane.html#podział",
+    "title": "1  Dane",
+    "section": "1.5 Podział",
+    "text": "1.5 Podział",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "02-klasyfikacja.html",
+    "href": "02-klasyfikacja.html",
+    "title": "2  Klasyfikacja",
+    "section": "",
+    "text": "2.1 Wprowadzenie\nPrezentacja",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "02-klasyfikacja.html#drzewo-decyzyjne",
+    "href": "02-klasyfikacja.html#drzewo-decyzyjne",
+    "title": "2  Klasyfikacja",
+    "section": "2.2 Drzewo decyzyjne",
+    "text": "2.2 Drzewo decyzyjne",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "02-klasyfikacja.html#lasy-losowe",
+    "href": "02-klasyfikacja.html#lasy-losowe",
+    "title": "2  Klasyfikacja",
+    "section": "2.3 Lasy losowe",
+    "text": "2.3 Lasy losowe",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "02-klasyfikacja.html#xgboost",
+    "href": "02-klasyfikacja.html#xgboost",
+    "title": "2  Klasyfikacja",
+    "section": "2.4 XGBoost",
+    "text": "2.4 XGBoost",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "02-klasyfikacja.html#xai",
+    "href": "02-klasyfikacja.html#xai",
+    "title": "2  Klasyfikacja",
+    "section": "2.5 XAI",
+    "text": "2.5 XAI",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "03-regresja.html",
+    "href": "03-regresja.html",
+    "title": "3  Regresja",
+    "section": "",
+    "text": "3.1 Wprowadzenie",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+    ]
+  },
+  {
+    "objectID": "03-regresja.html#regresja-liniowa",
+    "href": "03-regresja.html#regresja-liniowa",
+    "title": "3  Regresja",
+    "section": "3.2 Regresja liniowa",
+    "text": "3.2 Regresja liniowa",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+    ]
+  },
+  {
+    "objectID": "03-regresja.html#regresja-wieloraka",
+    "href": "03-regresja.html#regresja-wieloraka",
+    "title": "3  Regresja",
+    "section": "3.3 Regresja wieloraka",
+    "text": "3.3 Regresja wieloraka",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+    ]
+  },
+  {
+    "objectID": "03-regresja.html#xai",
+    "href": "03-regresja.html#xai",
+    "title": "3  Regresja",
+    "section": "3.4 XAI",
+    "text": "3.4 XAI",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+    ]
+  },
+  {
+    "objectID": "04-grupowanie.html",
+    "href": "04-grupowanie.html",
+    "title": "4  Grupowanie",
+    "section": "",
+    "text": "4.1 Wprowadzenie",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Grupowanie</span>"
+    ]
+  },
+  {
+    "objectID": "04-grupowanie.html#grupowanie-obiektów",
+    "href": "04-grupowanie.html#grupowanie-obiektów",
+    "title": "4  Grupowanie",
+    "section": "4.2 Grupowanie obiektów",
+    "text": "4.2 Grupowanie obiektów\n\n4.2.1 Metoda k-średnich\n\n\n4.2.2 Metoda hierarchiczna\n\n\n4.2.3 Wykrywanie anomalii",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Grupowanie</span>"
+    ]
+  },
+  {
+    "objectID": "04-grupowanie.html#grupowanie-cech",
+    "href": "04-grupowanie.html#grupowanie-cech",
+    "title": "4  Grupowanie",
+    "section": "4.3 Grupowanie cech",
+    "text": "4.3 Grupowanie cech\n\n4.3.1 Metoda głównych składowych\n\n\n4.3.2 UMAP",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Grupowanie</span>"
+    ]
+  },
+  {
+    "objectID": "05-testy.html",
+    "href": "05-testy.html",
+    "title": "5  Testy statystyczne",
+    "section": "",
+    "text": "5.1 Wprowadzenie",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+    ]
+  },
+  {
+    "objectID": "05-testy.html#hipoteza-statystyczna",
+    "href": "05-testy.html#hipoteza-statystyczna",
+    "title": "5  Testy statystyczne",
+    "section": "5.2 Hipoteza statystyczna",
+    "text": "5.2 Hipoteza statystyczna",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+    ]
+  },
+  {
+    "objectID": "05-testy.html#testy-parametryczne",
+    "href": "05-testy.html#testy-parametryczne",
+    "title": "5  Testy statystyczne",
+    "section": "5.3 Testy parametryczne",
+    "text": "5.3 Testy parametryczne",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+    ]
+  },
+  {
+    "objectID": "05-testy.html#testy-nieparametryczna",
+    "href": "05-testy.html#testy-nieparametryczna",
+    "title": "5  Testy statystyczne",
+    "section": "5.4 Testy nieparametryczna",
+    "text": "5.4 Testy nieparametryczna",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+    ]
+  },
+  {
+    "objectID": "06-raporty.html",
+    "href": "06-raporty.html",
+    "title": "6  Raporty",
+    "section": "",
+    "text": "6.1 Wprowadzenie",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Raporty</span>"
+    ]
+  },
+  {
+    "objectID": "06-raporty.html#markdown",
+    "href": "06-raporty.html#markdown",
+    "title": "6  Raporty",
+    "section": "6.2 Markdown",
+    "text": "6.2 Markdown",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Raporty</span>"
+    ]
+  },
+  {
+    "objectID": "06-raporty.html#quarto",
+    "href": "06-raporty.html#quarto",
+    "title": "6  Raporty",
+    "section": "6.3 Quarto",
+    "text": "6.3 Quarto",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Raporty</span>"
+    ]
+  }
+]

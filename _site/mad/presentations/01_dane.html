@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Metody przetwarzania  i analizy danych</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="© Łukasz Wawrowski" />
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <link rel="stylesheet" href="default.css" type="text/css" />
+    <link rel="stylesheet" href="default-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Metody przetwarzania <br>i analizy danych
+]
+.subtitle[
+## Dane
+]
+.author[
+### © Łukasz Wawrowski
+]
+
+---
+
+
+
+
+# Zbiór danych
+
+[German credit data](http://www.wawrowski.edu.pl/data/german_credit_data.csv)
+
+1.  Age (numeric)
+2.  Sex (text: male, female)
+3.  Job (numeric: 0 - unskilled and non-resident, 1 - unskilled and resident, 2 - skilled, 3 - highly skilled)
+4.  Housing (text: own, rent, or free)
+5.  Saving accounts (text - little, moderate, quite rich, rich)
+6.  Checking account (text, little, moderate, rich)
+7.  Credit amount (numeric, in DM)
+8.  Duration (numeric, in month)
+9.  Purpose (text: car, furniture/equipment, radio/TV, domestic appliances.. and so on...)
+10.  Risk (text: good/bad): it's our Target Variable, describes if client paid or didn't pay loan
+
+---
+
+# Dane 
+
+Dane surowe (raw data) bez odpowiedniego przygotowania nie będą się nadawać do zastosowania w uczeniu maszynowym. 
+
+
+![](img/data_clean.jpeg)
+
+---
+
+# Czyszczenie danych
+
+- czyszczenie nazw kolumn
+
+- usuwanie lub uzupełnianie braków danych
+
+- usuwanie wartości odstających
+
+- usuwanie duplikatów
+
+- ujednolicanie lub grupowanie kategorii
+
+---
+
+# Przetwarzanie danych
+
+- konwersja typów danych
+
+- kodowanie danych kategorycznych (one-hot-encoding)
+
+- normalizacja wartości numerycznych
+
+- tworzenie nowych cech (feature engineering)
+
+- podział zbioru
+
+---
+
+# Czyszczenie nazw kolumn
+
+Natywny python
+
+```python
+df.columns = (
+    df.columns
+    .str.strip()  # usuń spacje
+    .str.lower()  # małe litery
+    .str.replace(' ', '_')  # spacje na podkreślniki
+    .str.replace(r'[^\w]', '', regex=True)  # usuwanie znaków specjalnych
+)
+
+```
+
+Pakiet [pyjanitor](https://github.com/pyjanitor-devs/pyjanitor/tree/dev)
+
+```python 
+from janitor import clean_names
+
+df = df.clean_names()
+```
+
+---
+
+# Braki danych
+
+Możliwe rozwiązania
+
+- usunięcie obserwacji z brakami danych
+
+- imputacja statystyczna:
+
+   - metody deterministyczne - zawsze te same wartości imputacyjne:
+      
+      - zastępowanie wartością przeciętną, imputacja regresyjna,
+      - nie wprowadzają dodatkowego źródła błędu losowego,
+      - zniekształcają rozkłady zmiennych
+   
+   - metody stochastyczne - można uzyskać różne wartości imputacyjne:
+   
+      - metoda hot-deck, stochastyczna imputacja regresyjna,
+      - generują dodatkowy błąd,
+      - lepiej zachowują rozkłady zmiennych
+
+[Tomasz Piasecki - Imputacja dochodów w badaniach statystyki publicznej dotyczących gospodarstw domowych](https://stat.gov.pl/cps/rde/xbcr/lodz/ASSETS_Konferencja_MRS_2013_plakat_Piasecki_T_Imputacja_dochodow_w_badaniach_statystyki_publicznej.pdf)
+
+---
+
+class: inverse
+
+<div class="countdown" id="timer_b0cebf34" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+# <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg> Pytanie do słuchaczy
+
+Jaka statystyka najlepiej uzupełni braki w przypadku cechy numerycznej?
+
+https://pollev.com/lukaszw470
+
+---
+
+# Zastępowanie wybraną wartością
+
+Funkcja `fillna()` zastępuje braki danych wskazaną wartością.
+
+```python
+df['num_var'] = df['num_var'].fillna(df['num_var'].median()[0])
+df['cat_var'] = df['cat_var'].fillna(df['cat_var'].mode()[0])
+```
+
+---
+
+# `scikit-learn` - biblioteka do ML
+
+Jeden z najważniejszych pakietów w Pythonie dla analizy i modelowania danych
+
+- preprocessing danych (skalowanie, kodowanie, imputacja)
+
+- podział na zbiór treningowy/testowy
+
+- modele klasyfikacji, regresji, klasteryzacji
+
+- walidacja krzyżowa i metryki oceny modelu
+
+Dokumentacja: https://scikit-learn.org/
+
+---
+
+# Moduł `sklearn.impute`
+
+- `SimpleImputer`: proste strategie: średnia, mediana, najczęstsza wartość
+
+- `KNNImputer`: imputacja na podstawie najbliższych sąsiadów
+
+- `IterativeImputer`: zaawansowana iteracyjna imputacja (np. z regresją)
+
+- `MissingIndicator`: dodaje kolumny informujące o brakach
+
+Wybrane algorytmy ML radzą się z obecnością braków danych.
+
+Dokumentacja: https://scikit-learn.org/stable/modules/impute.html
+
+---
+
+# `SimpleImputer`
+
+Prosta imputacja medianą
+
+```python
+from sklearn.impute import SimpleImputer
+
+imputer = SimpleImputer(strategy='median')
+df[['num_var']] = imputer.fit_transform(df[['num_var']])
+
+```
+
+---
+
+# `KNNImputer`
+
+Uzupełnia brakujące dane na podstawie podobieństwa do innych rekordów. Dla każdej brakującej obserwacji: znajduje K najbliższych sąsiadów i wstawia średnią (ważoną) z tych wartości.
+
+```python
+from sklearn.impute import KNNImputer
+
+knn_imputer = KNNImputer(n_neighbors=5)
+df[['num_var']] = knn_imputer.fit_transform(df[['num_var']])
+```
+
+---
+
+class: inverse
+
+<div class="countdown" id="timer_8539b3bb" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+# <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg> Zadanie dla słuchaczy
+
+Porównaj rozkład cechy `checking_account` z wykorzystaniem obu przedstawionych metod.
+
+---
+
+# Wartości odstające
+
+Wykres pudełkowy i metoda  IQR (interquartile range)
+
+```python
+Q1 = df['num_var'].quantile(0.25)
+Q3 = df['num_var'].quantile(0.75)
+IQR = Q3 - Q1
+
+# Granice
+dolna = Q1 - 1.5 * IQR
+górna = Q3 + 1.5 * IQR
+
+# Usunięcie outlierów
+df_clean = df[(df['num_var'] &gt;= dolna) &amp; (df['num_var'] &lt;= górna)]
+
+```
+
+---
+
+# Usuwanie duplikatów 
+
+Funkcja `drop_dupliacates()` usuwa duplikaty ze zbioru danych.
+
+W argumencie subset można podać kolumny, które mają być brane pod uwagę w analizie duplikatów. Domyślnie uwzględniane są wszystkie kolumny.
+
+
+---
+
+# Kodowanie zmiennych kategorycznych
+
+One-Hot Encoding: zamiana wartości kategorycznych na kolumny binarne.
+
+- tworzy nową kolumnę dla każdej unikalnej wartości w zmiennej kategorycznej
+
+- wartość 1 oznacza obecność danej kategorii, 0 – jej brak
+
+```python
+df = pd.DataFrame({'płeć': ['kobieta', 'mężczyzna', 'kobieta']})
+df_encoded = pd.get_dummies(df, columns=['płeć'])
+```
+
+```bash
+   płeć_kobieta  płeć_mężczyzna
+0             1               0
+1             0               1
+2             1               0
+```
+
+W module sklearn.preprocessing jest `OneHotEncoder`.
+
+---
+
+# Normalizacja cech
+
+Modele oparte na odległościach (np. KNN, SVM) są wrażliwe na skalę cech. Zastosowanie normalizacji sprawia, że wszystkie cechy mają porównywalną skalę oraz przyspiesza i poprawia jakość uczenia modeli.
+
+- StandardScaler: przekształca cechy do rozkładu o średniej = 0 i odchyleniu standardowym = 1
+
+- MinMaxScaler: skaluje wartości do zakresu [0, 1]
+
+```python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+```
+
+---
+
+# Feature Engineering
+
+Proces modyfikowania, przekształcania lub tworzenia nowych zmiennych (cech), które lepiej opisują dane i ułatwiają modelowi naukę.
+
+Przykłady:
+
+- Ekstrakcja informacji np. z dat: rok, miesiąc, dzień tygodnia
+
+- Grupowanie wartości np. przedziały wiekowe (18–25, 26–40, itd.)
+
+- Tworzenie nowych cech np. BMI = waga / wzrost$^2$
+
+- Agregacje np. średni dochód na klienta
+
+- Transformacje np. logarytmy, standaryzacja
+
+---
+
+class: inverse
+
+<div class="countdown" id="timer_09828af5" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+# <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg> Pytanie do słuchaczy
+
+Jakie nowe cechy można zaproponować dla zbioru credit?
+
+https://pollev.com/lukaszw470
+
+---
+
+# Podział danych
+
+- dane uczące (treningowe) - zbiór przykładów używanych do dopasowania parametrów algorytmu
+
+- dane testowe - niezależny od danych uczących zbiór przykładów o takim samym rozkładzie jak dane uczące
+
+- dane walidacyjne - zbiór przykładów używanych do dopasowania hiperparametrów 
+
+Często nazewnictwo danych testowych i walidacyjnych jest mylone.
+
+[Wikipedia](https://en.wikipedia.org/wiki/Training%2C_validation%2C_and_test_sets)
+
+---
+
+# Podział zbioru na treningowy i testowy
+
+```python
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+```
+
+---
+
+class: inverse, center, middle
+
+# Pytania?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
