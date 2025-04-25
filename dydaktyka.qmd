@@ -2,11 +2,17 @@
 title: "Dydaktyka"
 ---
 
-[Metody przetwarzania i analizy danych w R](http://www.wawrowski.edu.pl/adr/)
+# Podręczniki
 
 [Podstawy programowania w R](http://www.wawrowski.edu.pl/ppr/)
 
+[Metody przetwarzania i analizy danych w R](http://www.wawrowski.edu.pl/adr/)
+
+[Metody przetwarzania i analizy danych w Python](http://www.wawrowski.edu.pl/mad/) (w przygotowaniu)
+
 [Statystyka opisowa](http://www.wawrowski.edu.pl/stat/)
+
+# Skrypty
 
 [Metoda reprezentacyjna](https://github.com/lwawrowski/metoda-reprezentacyjna)
 

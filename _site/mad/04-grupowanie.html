@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Grupowanie – Metody przetwarzania i analizy danych</title>
+<title>5&nbsp; Grupowanie – Metody przetwarzania i analizy danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-grupowanie.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grupowanie</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-grupowanie.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Grupowanie</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -110,43 +110,49 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wprowadzenie</span></a>
+ <span class="menu-text">Polecana literatura</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-instalacja.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalacja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-dane.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dane</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dane</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-klasyfikacja.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-regresja.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regresja</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-grupowanie.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grupowanie</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Grupowanie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-testy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-raporty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Raporty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Raporty</span></span></a>
   </div>
 </li>
     </ul>
@@ -159,17 +165,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</a></li>
-  <li><a href="#grupowanie-obiektów" id="toc-grupowanie-obiektów" class="nav-link" data-scroll-target="#grupowanie-obiektów"><span class="header-section-number">4.2</span> Grupowanie obiektów</a>
+  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</a></li>
+  <li><a href="#grupowanie-obiektów" id="toc-grupowanie-obiektów" class="nav-link" data-scroll-target="#grupowanie-obiektów"><span class="header-section-number">5.2</span> Grupowanie obiektów</a>
   <ul class="collapse">
-  <li><a href="#metoda-k-średnich" id="toc-metoda-k-średnich" class="nav-link" data-scroll-target="#metoda-k-średnich"><span class="header-section-number">4.2.1</span> Metoda k-średnich</a></li>
-  <li><a href="#metoda-hierarchiczna" id="toc-metoda-hierarchiczna" class="nav-link" data-scroll-target="#metoda-hierarchiczna"><span class="header-section-number">4.2.2</span> Metoda hierarchiczna</a></li>
-  <li><a href="#wykrywanie-anomalii" id="toc-wykrywanie-anomalii" class="nav-link" data-scroll-target="#wykrywanie-anomalii"><span class="header-section-number">4.2.3</span> Wykrywanie anomalii</a></li>
+  <li><a href="#metoda-k-średnich" id="toc-metoda-k-średnich" class="nav-link" data-scroll-target="#metoda-k-średnich"><span class="header-section-number">5.2.1</span> Metoda k-średnich</a></li>
+  <li><a href="#metoda-hierarchiczna" id="toc-metoda-hierarchiczna" class="nav-link" data-scroll-target="#metoda-hierarchiczna"><span class="header-section-number">5.2.2</span> Metoda hierarchiczna</a></li>
+  <li><a href="#wykrywanie-anomalii" id="toc-wykrywanie-anomalii" class="nav-link" data-scroll-target="#wykrywanie-anomalii"><span class="header-section-number">5.2.3</span> Wykrywanie anomalii</a></li>
   </ul></li>
-  <li><a href="#grupowanie-cech" id="toc-grupowanie-cech" class="nav-link" data-scroll-target="#grupowanie-cech"><span class="header-section-number">4.3</span> Grupowanie cech</a>
+  <li><a href="#grupowanie-cech" id="toc-grupowanie-cech" class="nav-link" data-scroll-target="#grupowanie-cech"><span class="header-section-number">5.3</span> Grupowanie cech</a>
   <ul class="collapse">
-  <li><a href="#metoda-głównych-składowych" id="toc-metoda-głównych-składowych" class="nav-link" data-scroll-target="#metoda-głównych-składowych"><span class="header-section-number">4.3.1</span> Metoda głównych składowych</a></li>
-  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap"><span class="header-section-number">4.3.2</span> UMAP</a></li>
+  <li><a href="#metoda-głównych-składowych" id="toc-metoda-głównych-składowych" class="nav-link" data-scroll-target="#metoda-głównych-składowych"><span class="header-section-number">5.3.1</span> Metoda głównych składowych</a></li>
+  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap"><span class="header-section-number">5.3.2</span> UMAP</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -179,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grupowanie</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Grupowanie</span></h1>
 </div>
 
 
@@ -196,28 +202,28 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="wprowadzenie" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</h2>
+<section id="wprowadzenie" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</h2>
 </section>
-<section id="grupowanie-obiektów" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="grupowanie-obiektów"><span class="header-section-number">4.2</span> Grupowanie obiektów</h2>
-<section id="metoda-k-średnich" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="metoda-k-średnich"><span class="header-section-number">4.2.1</span> Metoda k-średnich</h3>
+<section id="grupowanie-obiektów" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="grupowanie-obiektów"><span class="header-section-number">5.2</span> Grupowanie obiektów</h2>
+<section id="metoda-k-średnich" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="metoda-k-średnich"><span class="header-section-number">5.2.1</span> Metoda k-średnich</h3>
 </section>
-<section id="metoda-hierarchiczna" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="metoda-hierarchiczna"><span class="header-section-number">4.2.2</span> Metoda hierarchiczna</h3>
+<section id="metoda-hierarchiczna" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="metoda-hierarchiczna"><span class="header-section-number">5.2.2</span> Metoda hierarchiczna</h3>
 </section>
-<section id="wykrywanie-anomalii" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="wykrywanie-anomalii"><span class="header-section-number">4.2.3</span> Wykrywanie anomalii</h3>
+<section id="wykrywanie-anomalii" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="wykrywanie-anomalii"><span class="header-section-number">5.2.3</span> Wykrywanie anomalii</h3>
 </section>
 </section>
-<section id="grupowanie-cech" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="grupowanie-cech"><span class="header-section-number">4.3</span> Grupowanie cech</h2>
-<section id="metoda-głównych-składowych" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="metoda-głównych-składowych"><span class="header-section-number">4.3.1</span> Metoda głównych składowych</h3>
+<section id="grupowanie-cech" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="grupowanie-cech"><span class="header-section-number">5.3</span> Grupowanie cech</h2>
+<section id="metoda-głównych-składowych" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="metoda-głównych-składowych"><span class="header-section-number">5.3.1</span> Metoda głównych składowych</h3>
 </section>
-<section id="umap" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="umap"><span class="header-section-number">4.3.2</span> UMAP</h3>
+<section id="umap" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="umap"><span class="header-section-number">5.3.2</span> UMAP</h3>
 
 
 </section>
@@ -644,12 +650,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./03-regresja.html" class="pagination-link" aria-label="Regresja">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regresja</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresja</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./05-testy.html" class="pagination-link" aria-label="Testy statystyczne">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

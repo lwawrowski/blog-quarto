@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Regresja – Metody przetwarzania i analizy danych</title>
+<title>4&nbsp; Regresja – Metody przetwarzania i analizy danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-regresja.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regresja</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-regresja.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresja</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -110,43 +110,49 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wprowadzenie</span></a>
+ <span class="menu-text">Polecana literatura</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-instalacja.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalacja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-dane.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dane</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dane</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-klasyfikacja.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-regresja.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regresja</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-grupowanie.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grupowanie</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Grupowanie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-testy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-raporty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Raporty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Raporty</span></span></a>
   </div>
 </li>
     </ul>
@@ -159,10 +165,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">3.1</span> Wprowadzenie</a></li>
-  <li><a href="#regresja-liniowa" id="toc-regresja-liniowa" class="nav-link" data-scroll-target="#regresja-liniowa"><span class="header-section-number">3.2</span> Regresja liniowa</a></li>
-  <li><a href="#regresja-wieloraka" id="toc-regresja-wieloraka" class="nav-link" data-scroll-target="#regresja-wieloraka"><span class="header-section-number">3.3</span> Regresja wieloraka</a></li>
-  <li><a href="#xai" id="toc-xai" class="nav-link" data-scroll-target="#xai"><span class="header-section-number">3.4</span> XAI</a></li>
+  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</a></li>
+  <li><a href="#regresja-liniowa" id="toc-regresja-liniowa" class="nav-link" data-scroll-target="#regresja-liniowa"><span class="header-section-number">4.2</span> Regresja liniowa</a></li>
+  <li><a href="#regresja-wieloraka" id="toc-regresja-wieloraka" class="nav-link" data-scroll-target="#regresja-wieloraka"><span class="header-section-number">4.3</span> Regresja wieloraka</a></li>
+  <li><a href="#xai" id="toc-xai" class="nav-link" data-scroll-target="#xai"><span class="header-section-number">4.4</span> XAI</a></li>
   </ul>
 </nav>
     </div>
@@ -171,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regresja</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresja</span></h1>
 </div>
 
 
@@ -188,17 +194,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="wprowadzenie" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">3.1</span> Wprowadzenie</h2>
+<section id="wprowadzenie" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</h2>
 </section>
-<section id="regresja-liniowa" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="regresja-liniowa"><span class="header-section-number">3.2</span> Regresja liniowa</h2>
+<section id="regresja-liniowa" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="regresja-liniowa"><span class="header-section-number">4.2</span> Regresja liniowa</h2>
 </section>
-<section id="regresja-wieloraka" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="regresja-wieloraka"><span class="header-section-number">3.3</span> Regresja wieloraka</h2>
+<section id="regresja-wieloraka" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="regresja-wieloraka"><span class="header-section-number">4.3</span> Regresja wieloraka</h2>
 </section>
-<section id="xai" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="xai"><span class="header-section-number">3.4</span> XAI</h2>
+<section id="xai" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="xai"><span class="header-section-number">4.4</span> XAI</h2>
 
 
 </section>
@@ -624,12 +630,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./02-klasyfikacja.html" class="pagination-link" aria-label="Klasyfikacja">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./04-grupowanie.html" class="pagination-link" aria-label="Grupowanie">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grupowanie</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Grupowanie</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

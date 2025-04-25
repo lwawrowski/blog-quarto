@@ -4,249 +4,299 @@
     "href": "index.html",
     "title": "Metody przetwarzania i analizy danych",
     "section": "",
-    "text": "Wprowadzenie\nLiteratura podstawowa:\n\nWprowadzenie do modelowania predycyjnego\nHands-On Machine Learning with R\n\nLiteratura dodatkowa:\n\nR for Data Science\nIntroduction to Data Science\nApplied Statistics with R\nData Science Live Book\nTidy Modeling with R\n\nSkrypty z zajęć",
+    "text": "Polecana literatura\nWprowadzenie do modelowania predycyjnego - bardzo przyjemne w odbiorze wprowadzenie w języku polskim przedstawiające proces budowania modelu.\nAn Introduction to Statistical Learning - kultowa książka stworzona w wersji zarówno dla języka R, jak i Python. Solidna część teoretyczna\nData Science - A First Introduction with Python - aktualne wprowadzenie w wybrane zagadnienia poparte praktycznymi przykładami. Jest także wersja dla języka R\nWykonane podczas zajęć kody znajdują się w repozytorium github.",
     "crumbs": [
-      "Wprowadzenie"
+      "Polecana literatura"
+    ]
+  },
+  {
+    "objectID": "00-instalacja.html",
+    "href": "00-instalacja.html",
+    "title": "1  Instalacja",
+    "section": "",
+    "text": "1.1 Środowiska wirtualne\nJeden ze sposobów instalacji Pythona na Windowsie to pobranie instalatora z oficjalnej strony https://www.python.org/downloads/windows/\nWażne, żeby podczas instalacji zaznaczyć następujące opcje:\nKolejny krok to weryfikacja instalacji w konsoli (cmd/powershell):\nŚrodowisko wirtualne (ang. virtual environment, w skrócie venv) to jedna z rzeczy w Pythonie, która ułatwia zarządzanie projektami. To izolowane środowisko Pythona stworzone tylko dla jednego projektu. Zawiera swoją własną wersję interpretera Pythona i niezależny zestaw zainstalowanych pakietów. Korzystając ze środowiska wirtualnego każdy projekt może mieć inne wersje bibliotek.\nTworzenie wirtualnego środowiska o nazwie venv w katalogu projektu.\nAktywacja środowiska wirtualnego.\nW systemie Windows zdarza się, że jest zablokowane wywoływanie skryptów. Wtedy podczas tworzenia środowiska możemy dostać komunikat\nW takiej sytuacji należy uruchomić poniższą komendę:\ni spróbować ponownie stworzyć środowisko wirtualne.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
+    ]
+  },
+  {
+    "objectID": "00-instalacja.html#środowiska-wirtualne",
+    "href": "00-instalacja.html#środowiska-wirtualne",
+    "title": "1  Instalacja",
+    "section": "",
+    "text": "python -m venv venv\n\nvenv\\Scripts\\activate\n\n.\\venv\\Scripts\\activate : File \\venv\\Scripts\\Activate.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.\n\nSet-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
+    ]
+  },
+  {
+    "objectID": "00-instalacja.html#instalacja-pakietów",
+    "href": "00-instalacja.html#instalacja-pakietów",
+    "title": "1  Instalacja",
+    "section": "1.2 Instalacja pakietów",
+    "text": "1.2 Instalacja pakietów\nDo instalacji pakietów wykorzystuje się aplikację pip. Po stworzeniu i aktywacji środowiska możemy sprawdzić jakie pakiety są zainstalowane:\npip list\nA następnie zainstalować te, które wymagane są w naszym projekcie.\npip install pandas scikit-learn\nDobrą praktyką jest zapisywanie wykorzystywanych pakietów do pliku, dzięki czemu inna osoba może sprawdzić jakie wersje pakietów są wymagane do prawidłowego działania programu.\npip freeze &gt; requirements.txt\nW ten sposób łatwo też zainstalować wymagane pakiety przy migracji projektu.\npip install -r requirements.txt",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
+    ]
+  },
+  {
+    "objectID": "00-instalacja.html#anaconda",
+    "href": "00-instalacja.html#anaconda",
+    "title": "1  Instalacja",
+    "section": "1.3 Anaconda",
+    "text": "1.3 Anaconda\nAnaconda dostarcza zestaw narzędzi + python + jupyter + numpy + pandas itp. w pakiecie: https://www.anaconda.com/download\nPo instalacji anacondy dostajemy interfejs GUI do zarządzania pakietami i środowiskami wirtualnymi. Środowiska wirtualne w anacondzie są tworzone z reguły poza katalogiem projektu.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
+    ]
+  },
+  {
+    "objectID": "00-instalacja.html#ide",
+    "href": "00-instalacja.html#ide",
+    "title": "1  Instalacja",
+    "section": "1.4 IDE",
+    "text": "1.4 IDE\nDo wygodnego korzystania z pythona przyda się odpowiednie zintegrowane środowisko programistyczne:\n\nVisual Studio Code - obecnie najpopularniejsze\nPyCharm - świetny w wersji płatnej\nJupyter - notatnik pythonowy\nGoogle Colab - wersja online\nRStudio",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
     ]
   },
   {
     "objectID": "01-dane.html",
     "href": "01-dane.html",
-    "title": "1  Dane",
+    "title": "2  Dane",
     "section": "",
-    "text": "1.1 Wprowadzenie\nPrezentacja",
+    "text": "2.1 Wprowadzenie\nPrezentacja",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
     "objectID": "01-dane.html#braki-danych",
     "href": "01-dane.html#braki-danych",
-    "title": "1  Dane",
-    "section": "1.2 Braki danych",
-    "text": "1.2 Braki danych",
+    "title": "2  Dane",
+    "section": "2.2 Braki danych",
+    "text": "2.2 Braki danych",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
     "objectID": "01-dane.html#wartości-odstające",
     "href": "01-dane.html#wartości-odstające",
-    "title": "1  Dane",
-    "section": "1.3 Wartości odstające",
-    "text": "1.3 Wartości odstające",
+    "title": "2  Dane",
+    "section": "2.3 Wartości odstające",
+    "text": "2.3 Wartości odstające",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
     "objectID": "01-dane.html#duplikaty",
     "href": "01-dane.html#duplikaty",
-    "title": "1  Dane",
-    "section": "1.4 Duplikaty",
-    "text": "1.4 Duplikaty",
+    "title": "2  Dane",
+    "section": "2.4 Duplikaty",
+    "text": "2.4 Duplikaty",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
     "objectID": "01-dane.html#podział",
     "href": "01-dane.html#podział",
-    "title": "1  Dane",
-    "section": "1.5 Podział",
-    "text": "1.5 Podział",
+    "title": "2  Dane",
+    "section": "2.5 Podział",
+    "text": "2.5 Podział",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dane</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
     "objectID": "02-klasyfikacja.html",
     "href": "02-klasyfikacja.html",
-    "title": "2  Klasyfikacja",
+    "title": "3  Klasyfikacja",
     "section": "",
-    "text": "2.1 Wprowadzenie\nPrezentacja",
+    "text": "3.1 Wprowadzenie\nPrezentacja",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
     "objectID": "02-klasyfikacja.html#drzewo-decyzyjne",
     "href": "02-klasyfikacja.html#drzewo-decyzyjne",
-    "title": "2  Klasyfikacja",
-    "section": "2.2 Drzewo decyzyjne",
-    "text": "2.2 Drzewo decyzyjne",
+    "title": "3  Klasyfikacja",
+    "section": "3.2 Drzewo decyzyjne",
+    "text": "3.2 Drzewo decyzyjne",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
     "objectID": "02-klasyfikacja.html#lasy-losowe",
     "href": "02-klasyfikacja.html#lasy-losowe",
-    "title": "2  Klasyfikacja",
-    "section": "2.3 Lasy losowe",
-    "text": "2.3 Lasy losowe",
+    "title": "3  Klasyfikacja",
+    "section": "3.3 Lasy losowe",
+    "text": "3.3 Lasy losowe",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
     "objectID": "02-klasyfikacja.html#xgboost",
     "href": "02-klasyfikacja.html#xgboost",
-    "title": "2  Klasyfikacja",
-    "section": "2.4 XGBoost",
-    "text": "2.4 XGBoost",
+    "title": "3  Klasyfikacja",
+    "section": "3.4 XGBoost",
+    "text": "3.4 XGBoost",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
     "objectID": "02-klasyfikacja.html#xai",
     "href": "02-klasyfikacja.html#xai",
-    "title": "2  Klasyfikacja",
-    "section": "2.5 XAI",
-    "text": "2.5 XAI",
+    "title": "3  Klasyfikacja",
+    "section": "3.5 XAI",
+    "text": "3.5 XAI",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
     "objectID": "03-regresja.html",
     "href": "03-regresja.html",
-    "title": "3  Regresja",
+    "title": "4  Regresja",
     "section": "",
-    "text": "3.1 Wprowadzenie",
+    "text": "4.1 Wprowadzenie",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
     "objectID": "03-regresja.html#regresja-liniowa",
     "href": "03-regresja.html#regresja-liniowa",
-    "title": "3  Regresja",
-    "section": "3.2 Regresja liniowa",
-    "text": "3.2 Regresja liniowa",
+    "title": "4  Regresja",
+    "section": "4.2 Regresja liniowa",
+    "text": "4.2 Regresja liniowa",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
     "objectID": "03-regresja.html#regresja-wieloraka",
     "href": "03-regresja.html#regresja-wieloraka",
-    "title": "3  Regresja",
-    "section": "3.3 Regresja wieloraka",
-    "text": "3.3 Regresja wieloraka",
+    "title": "4  Regresja",
+    "section": "4.3 Regresja wieloraka",
+    "text": "4.3 Regresja wieloraka",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
     "objectID": "03-regresja.html#xai",
     "href": "03-regresja.html#xai",
-    "title": "3  Regresja",
-    "section": "3.4 XAI",
-    "text": "3.4 XAI",
+    "title": "4  Regresja",
+    "section": "4.4 XAI",
+    "text": "4.4 XAI",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
     "objectID": "04-grupowanie.html",
     "href": "04-grupowanie.html",
-    "title": "4  Grupowanie",
+    "title": "5  Grupowanie",
     "section": "",
-    "text": "4.1 Wprowadzenie",
+    "text": "5.1 Wprowadzenie",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Grupowanie</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
     ]
   },
   {
     "objectID": "04-grupowanie.html#grupowanie-obiektów",
     "href": "04-grupowanie.html#grupowanie-obiektów",
-    "title": "4  Grupowanie",
-    "section": "4.2 Grupowanie obiektów",
-    "text": "4.2 Grupowanie obiektów\n\n4.2.1 Metoda k-średnich\n\n\n4.2.2 Metoda hierarchiczna\n\n\n4.2.3 Wykrywanie anomalii",
+    "title": "5  Grupowanie",
+    "section": "5.2 Grupowanie obiektów",
+    "text": "5.2 Grupowanie obiektów\n\n5.2.1 Metoda k-średnich\n\n\n5.2.2 Metoda hierarchiczna\n\n\n5.2.3 Wykrywanie anomalii",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Grupowanie</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
     ]
   },
   {
     "objectID": "04-grupowanie.html#grupowanie-cech",
     "href": "04-grupowanie.html#grupowanie-cech",
-    "title": "4  Grupowanie",
-    "section": "4.3 Grupowanie cech",
-    "text": "4.3 Grupowanie cech\n\n4.3.1 Metoda głównych składowych\n\n\n4.3.2 UMAP",
+    "title": "5  Grupowanie",
+    "section": "5.3 Grupowanie cech",
+    "text": "5.3 Grupowanie cech\n\n5.3.1 Metoda głównych składowych\n\n\n5.3.2 UMAP",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Grupowanie</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
     ]
   },
   {
     "objectID": "05-testy.html",
     "href": "05-testy.html",
-    "title": "5  Testy statystyczne",
+    "title": "6  Testy statystyczne",
     "section": "",
-    "text": "5.1 Wprowadzenie",
+    "text": "6.1 Wprowadzenie",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
     ]
   },
   {
     "objectID": "05-testy.html#hipoteza-statystyczna",
     "href": "05-testy.html#hipoteza-statystyczna",
-    "title": "5  Testy statystyczne",
-    "section": "5.2 Hipoteza statystyczna",
-    "text": "5.2 Hipoteza statystyczna",
+    "title": "6  Testy statystyczne",
+    "section": "6.2 Hipoteza statystyczna",
+    "text": "6.2 Hipoteza statystyczna",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
     ]
   },
   {
     "objectID": "05-testy.html#testy-parametryczne",
     "href": "05-testy.html#testy-parametryczne",
-    "title": "5  Testy statystyczne",
-    "section": "5.3 Testy parametryczne",
-    "text": "5.3 Testy parametryczne",
+    "title": "6  Testy statystyczne",
+    "section": "6.3 Testy parametryczne",
+    "text": "6.3 Testy parametryczne",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
     ]
   },
   {
     "objectID": "05-testy.html#testy-nieparametryczna",
     "href": "05-testy.html#testy-nieparametryczna",
-    "title": "5  Testy statystyczne",
-    "section": "5.4 Testy nieparametryczna",
-    "text": "5.4 Testy nieparametryczna",
+    "title": "6  Testy statystyczne",
+    "section": "6.4 Testy nieparametryczna",
+    "text": "6.4 Testy nieparametryczna",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Testy statystyczne</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
     ]
   },
   {
     "objectID": "06-raporty.html",
     "href": "06-raporty.html",
-    "title": "6  Raporty",
+    "title": "7  Raporty",
     "section": "",
-    "text": "6.1 Wprowadzenie",
+    "text": "7.1 Wprowadzenie",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Raporty</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Raporty</span>"
     ]
   },
   {
     "objectID": "06-raporty.html#markdown",
     "href": "06-raporty.html#markdown",
-    "title": "6  Raporty",
-    "section": "6.2 Markdown",
-    "text": "6.2 Markdown",
+    "title": "7  Raporty",
+    "section": "7.2 Markdown",
+    "text": "7.2 Markdown",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Raporty</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Raporty</span>"
     ]
   },
   {
     "objectID": "06-raporty.html#quarto",
     "href": "06-raporty.html#quarto",
-    "title": "6  Raporty",
-    "section": "6.3 Quarto",
-    "text": "6.3 Quarto",
+    "title": "7  Raporty",
+    "section": "7.3 Quarto",
+    "text": "7.3 Quarto",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Raporty</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Raporty</span>"
     ]
   }
 ]

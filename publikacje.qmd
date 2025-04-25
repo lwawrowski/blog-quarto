@@ -8,6 +8,8 @@ title: "Publikacje"
 
 # Explainable artificial intelligence
 
+[Kozielski, M., Sikora, M., Wawrowski, Ł. 2025. _Towards consistency of rule-based explainer and black box model–fusion of rule induction and XAI-based feature importance_. Knowledge-Based Systems, 113092.](https://www.sciencedirect.com/science/article/abs/pii/S095070512500139X)
+
 [Janusz, A., Zalewska, A., Wawrowski, Ł., Biczyk, P., Ludziejewski, J., Sikora, M., Ślęzak, D., 2023, _BrightBox — A rough set based technology for diagnosing mistakes of machine learning models_, Applied Soft Computing, 110285.](https://www.sciencedirect.com/science/article/pii/S1568494623003034?casa_token=nDCjKI9F1m4AAAAA:64T2RssPagT6VatwfVQmfoSiWzzVu6La7YXuZMM5HOwoKhk_9TSQaqiZni4hSHdkNzPMofWP_CAN)
 
 [Biczyk P., Wawrowski, Ł., 2023, _Detecting and Isolating Adversarial Attacks Using Characteristics of the Surrogate Model Framework_. Applied Sciences. 13(17):9698.](https://doi.org/10.3390/app13179698)
@@ -52,6 +54,8 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 
 # Estymacja dla małych przedsiębiorstw
 
+[Dehnel, G., Wawrowski, Ł. 2024. _Wage Estimation for Small Business Statistics in Poland Using Area-Level Models with Register and Survey Data_. Central European Journal of Economic Modelling and Econometrics, 227-254.](https://journals.pan.pl/dlibra/publication/153641/edition/133860/content)
+
 [Dehnel, G., Wawrowski, Ł., 2020, _Robust estimation of wages in small enterprises: the application to Poland’s districts_, Statistics in Transition new series, vol. 21 (1), s. 137-157](articles/sit_2020.pdf)
 
 [Dehnel, G., Wawrowski, Ł., 2019, _Estimation of the average wage in Polish small companies using the robust approach_, Przegląd Statystyczny, Statistical Review, vol. 66 (3), s. 200-213](articles/ps_2019.pdf)
@@ -65,6 +69,8 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 [Dehnel, G., Pietrzak, M., Wawrowski, Ł., 2017, _Estymacja przychodu przedsiębiorstw na podstawie modelu Faya-Herriota_, Przegląd Statystyczny, 64 (1), s. 79-94.](articles/ps_2017.pdf)
 
 # Pozostałe
+
+[Bąk, A., Dehnel, G., Dudek, A., Gatnar, E., Kania, K., Walesiak, M., Wawrowski, Ł., Zaborski, A. 2025. _Analiza danych z Banku Danych Lokalnych z wykorzystaniem programu R_. Wydawnictwo Uniwersytetu Ekonomicznego we Wrocławiu.](https://www.researchgate.net/profile/Marek-Walesiak/publication/386748871_Analiza_danych_z_Banku_Danych_Lokalnych_z_wykorzystaniem_programu_R/links/678264e34f26bf2ca594f714/Analiza-danych-z-Banku-Danych-Lokalnych-z-wykorzystaniem-programu-R.pdf)
 
 [Henzel J., Wawrowski Ł., Kubina A., Sikora M., Wróbel Ł., 2022, _Demand forecasting in the fashion business — an example of customized nearest neighbour and linear mixed model approaches_, 2022 17th Conference on Computer Science and Intelligence Systems (FedCSIS), pp. 61-65, doi: 10.15439/2022F256.](https://ieeexplore.ieee.org/document/9909498)
 

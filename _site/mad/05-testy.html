@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Testy statystyczne – Metody przetwarzania i analizy danych</title>
+<title>6&nbsp; Testy statystyczne – Metody przetwarzania i analizy danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-testy.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-testy.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -110,43 +110,49 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wprowadzenie</span></a>
+ <span class="menu-text">Polecana literatura</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-instalacja.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalacja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-dane.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dane</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dane</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-klasyfikacja.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Klasyfikacja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-regresja.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regresja</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresja</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-grupowanie.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grupowanie</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Grupowanie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-testy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-raporty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Raporty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Raporty</span></span></a>
   </div>
 </li>
     </ul>
@@ -159,10 +165,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</a></li>
-  <li><a href="#hipoteza-statystyczna" id="toc-hipoteza-statystyczna" class="nav-link" data-scroll-target="#hipoteza-statystyczna"><span class="header-section-number">5.2</span> Hipoteza statystyczna</a></li>
-  <li><a href="#testy-parametryczne" id="toc-testy-parametryczne" class="nav-link" data-scroll-target="#testy-parametryczne"><span class="header-section-number">5.3</span> Testy parametryczne</a></li>
-  <li><a href="#testy-nieparametryczna" id="toc-testy-nieparametryczna" class="nav-link" data-scroll-target="#testy-nieparametryczna"><span class="header-section-number">5.4</span> Testy nieparametryczna</a></li>
+  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">6.1</span> Wprowadzenie</a></li>
+  <li><a href="#hipoteza-statystyczna" id="toc-hipoteza-statystyczna" class="nav-link" data-scroll-target="#hipoteza-statystyczna"><span class="header-section-number">6.2</span> Hipoteza statystyczna</a></li>
+  <li><a href="#testy-parametryczne" id="toc-testy-parametryczne" class="nav-link" data-scroll-target="#testy-parametryczne"><span class="header-section-number">6.3</span> Testy parametryczne</a></li>
+  <li><a href="#testy-nieparametryczna" id="toc-testy-nieparametryczna" class="nav-link" data-scroll-target="#testy-nieparametryczna"><span class="header-section-number">6.4</span> Testy nieparametryczna</a></li>
   </ul>
 </nav>
     </div>
@@ -171,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></h1>
 </div>
 
 
@@ -188,17 +194,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="wprowadzenie" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</h2>
+<section id="wprowadzenie" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">6.1</span> Wprowadzenie</h2>
 </section>
-<section id="hipoteza-statystyczna" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="hipoteza-statystyczna"><span class="header-section-number">5.2</span> Hipoteza statystyczna</h2>
+<section id="hipoteza-statystyczna" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="hipoteza-statystyczna"><span class="header-section-number">6.2</span> Hipoteza statystyczna</h2>
 </section>
-<section id="testy-parametryczne" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="testy-parametryczne"><span class="header-section-number">5.3</span> Testy parametryczne</h2>
+<section id="testy-parametryczne" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="testy-parametryczne"><span class="header-section-number">6.3</span> Testy parametryczne</h2>
 </section>
-<section id="testy-nieparametryczna" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="testy-nieparametryczna"><span class="header-section-number">5.4</span> Testy nieparametryczna</h2>
+<section id="testy-nieparametryczna" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="testy-nieparametryczna"><span class="header-section-number">6.4</span> Testy nieparametryczna</h2>
 
 
 </section>
@@ -624,12 +630,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./04-grupowanie.html" class="pagination-link" aria-label="Grupowanie">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grupowanie</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Grupowanie</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./06-raporty.html" class="pagination-link" aria-label="Raporty">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Raporty</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Raporty</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
