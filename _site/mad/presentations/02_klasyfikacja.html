@@ -163,6 +163,22 @@ Wyniki klasyfikacji można oceniać za pomocą wielu miar:
 
 ---
 
+# Krzywa ROC
+
+Krzywa ROC to jeden ze sposobów wizualizacji jakości klasyfikacji, pokazujący zależności wskaźników TPR (True Positive Rate) oraz FPR (False Positive Rate).
+
+1. obliczamy prawdopodobieństwo klasyfikacji do danej klasy
+
+2. testujemy wiele progów prawdopodobieństwa (domyślnie 0,5)
+
+3. dla każdego progu obliczamy macierz pomyłek
+
+Pole pod krzywą ROC - AUC (Area under curve) jest jedną z miar jakości klasyfikacji. AUC = 1 (klasyfikator idealny), AUC = 0.5 (klasyfikator losowy), AUC &lt; 0.5 (klasyfikator gorszy od losowego).
+
+[Źródło](https://algolytics.pl/tutorial-jak-ocenic-jakosc-i-poprawnosc-modeli-klasyfikacyjnych-czesc-4-krzywa-roc/)
+
+---
+
 # SVM - maszyna wektorów nośnych
 
 ![](img/svm1.png)
@@ -201,6 +217,8 @@ Wyniki klasyfikacji można oceniać za pomocą wielu miar:
 
 # Walidacja krzyżowa
 
+Technika oceny modelu, aby sprawdzić jego stabilność i generalizację na różnych podzbiorach danych.
+
 &lt;img src="img/cv.png" height="500px"&gt;
 
 [Źródło](https://ubc-dsci.github.io/introduction-to-datascience/)
@@ -223,27 +241,14 @@ Można przeszukiwać całą przestrzeń parametrów (intensywne obliczeniowo) al
 
 ---
 
-# Krzywa ROC
-
-Krzywa ROC to jeden ze sposobów wizualizacji jakości klasyfikacji, pokazujący zależności wskaźników TPR (True Positive Rate) oraz FPR (False Positive Rate).
-
-1. obliczamy prawdopodobieństwo klasyfikacji do danej klasy
-
-2. testujemy wiele progów prawdopodobieństwa (domyślnie 0,5)
-
-3. dla każdego progu obliczamy macierz pomyłek
-
-Pole pod krzywą ROC - AUC (Area under curve) jest jedną z miar jakości klasyfikacji. AUC = 1 (klasyfikator idealny), AUC = 0.5 (klasyfikator losowy), AUC &lt; 0.5 (klasyfikator gorszy od losowego).
-
-[Źródło](https://algolytics.pl/tutorial-jak-ocenic-jakosc-i-poprawnosc-modeli-klasyfikacyjnych-czesc-4-krzywa-roc/)
-
----
-
 # Objaśnianie modelu
 
-- Ważność cech - jak bardzo model wykorzystuje daną cechę do predycji.
+- Ważność cech - jak bardzo model wykorzystuje daną cechę do predykcji.
 
 - Partial dependency plots - jak zmienia się prawdopodobieństwo klasyfikacji w zależności od predyktora.
+
+- SHAP - oblicza udział każdej cechy w predykcji. 
+
 
 [Explanatory Model Analysis](https://pbiecek.github.io/ema/)
 
