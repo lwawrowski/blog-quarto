@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Język R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="© Łukasz Wawrowski" />
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <link rel="stylesheet" href="default.css" type="text/css" />
+    <link rel="stylesheet" href="default-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Język R
+]
+.subtitle[
+## Przetwarzanie danych
+]
+.author[
+### © Łukasz Wawrowski
+]
+
+---
+
+
+
+# Zestaw analityka - tidyverse
+
+.pull-left[
+```
+install.packages("tidyverse")
+```
+
+- readxl - wczytywanie plików Excela
+- haven - wczytywanie plików SAS, SPSS, Stata
+- jsonlite - wczytywanie JSON
+- xml2 - wczytywanie XML
+- httr - dostęp do stron html
+- rvest - web scraping
+- DBI - dostęp do baz danych
+- hms - operacje na czasie dnia
+- blob - przechowywanie danych binarnych
+- magrittr - przetwarzanie potokowe `%&gt;%`
+- glue - łączenie tekstów
+
+]
+
+.pull-right[
+```
+library("tidyverse")
+```
+
+- dplyr - przetwarzanie danych tabelarycznych
+- forcats - operacje na czynnikach
+- ggplot2 - wykresy
+- lubridate - operacje na datach
+- purrr - programowanie funkcyjne
+- readr - wczytywanie plików tekstowych
+- stringr - operacje na tekstach
+- tibble - nowoczesny data.frame
+- tidyr - porządkowanie danych
+
+]
+
+[Strona projektu Tidyverse](https://www.tidyverse.org/)
+
+---
+
+# Instalacja
+
+```bash
+sudo apt install libcurl4-openssl-dev
+sudo apt install libxml2-dev
+sudo apt install libfontconfig1-dev
+sudo apt install libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+sudo apt install libharfbuzz-dev libfribidi-dev
+```
+
+---
+
+# Instalacja vs. wczytywanie
+
+![](img/packages.jpg)
+---
+
+# Struktura projektu
+
+```
+project/
+├── data/
+├── docs/
+├── figs/
+├── output/
+├── 01_input.R
+└── 02_analysis.R
+```
+
+---
+
+# Pliki tekstowe i csv
+
+Pakiet _readr_:
+
+- `read_delim()` - ogólna funkcja do plików tekstowych
+
+- `read_csv()` - uwzględnia nagłówek, separator kolumn to przecinek, separator miejsc dziesiętnych to kropka
+
+- `read_csv2()` - uwzględnia nagłówek, separator kolumn to średnik, separator miejsc dziesiętnych to przecinek
+
+-- 
+
+R dostarcza także funkcje `read.csv()`, `read.csv2()`, `read.delim()`, które są starszymi odpowiednikami funkcji z pakietu _readr_.
+
+---
+
+# Pliki Excela
+
+Pakiet _readxl_:
+
+- `read_excel()` - określa format na podstawie pliku
+
+- `read_xls()` - wczytuje pliki .xls
+
+- `read_xlsx()` - wczytuje pliki .xlsx
+
+---
+
+# Pliki SAS, SPSS, Stata
+
+Pakiet _haven_:
+
+- `read_sas()` - wczytuje pliki .sas
+
+- `read_sav()` - wczytuje pliki .sav
+
+- `read_stata()` - wczytuje pliki .dta
+
+---
+
+# Pliki netCDF
+
+Pakiet _ncdf4_
+
+- `nc_open()` - wczytuje plik
+
+
+---
+
+## Wczytywanie danych o formacie R
+
+- `load("zbior.RData")`
+
+- `dane &lt;- readRDS("zbior.RDS")`
+
+---
+
+## Zapisywanie danych o formacie R
+
+Zapisywanie do formatu R:
+
+- `save(dane, file = "zbior.RData")`
+
+- `save(dane1, dane2, file = "zbior.RData")`
+
+- `saveRDS(dane, file = "zbior.RDS")`
+
+---
+
+# Zapisywanie danych
+
+Zapisywanie do pliku tekstowego (txt, csv):
+
+- `write_csv(x = obiekt, file = "plik.csv")`
+
+- `write_csv2(x = obiekt, file = "plik.csv")`
+
+Zapisywanie do pliku Excela z pakietem _openxlsx_:
+
+- `write.xlsx(x = obiekt, file = "plik.xlsx")`
+
+---
+
+# Wczytanie zbioru danych
+
+Importujemy zbiór danych dotyczący wyników wyborów parlamentarnych w 2023 roku.
+
+Plik z danymi: http://wawrowski.edu.pl/data/wybory2023.csv
+
+[Źródło](https://wybory.gov.pl/sejmsenat2023/pl/dane_w_arkuszach)
+
+---
+
+class: inverse
+
+# Zadanie
+
+Wywołaj funkcję `summary()` na wczytanym zbiorze danych.
+
+<div class="countdown" id="timer_a794f23d" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Pakiet _janitor_ 
+
+Surowe dane zwykle nie posiadają nazw kolumn przystosowanych do przetwarzania przez komputer
+
+- nazwy zmiennych nie powinny zawierać polskich liter i spacji
+
+- nazwy zmiennych nie powinny zaczynać się od liczby
+
+Te problemy rozwiązuje pakiet _janitor_ (dozorca, woźny) i funkcja `clean_names()`:
+
+```r
+
+zbior &lt;- janitor::clean_names(zbior)
+
+```
+
+- funkcja ta zamienia wielkie litery na małe, spacje na podkreślniki i znaki transliteruje do ASCII.
+
+---
+
+class: inverse
+
+# Zadanie
+
+Wczytaj do R plik movies: http://wawrowski.edu.pl/data/movies.csv i wywołaj na nim funkcję `summary()`.
+
+<div class="countdown" id="timer_5760ba98" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Rozpoczynanie pracy z R
+
+.pull-left[
+__Nowy projekt__
+
+1. Otwórz RStudio
+2. Stwórz nowy projekt
+3. Przenieś dane do folderu projektu
+4. Otwórz nowy skrypt R
+5. (Zainstaluj i) wczytaj biblioteki
+6. Wczytaj dane
+7. Analizuj
+
+]
+
+.pull-right[
+__Istniejący projekt__
+
+1. Otwórz RStudio
+2. Otwórz istniejący skrypt R
+3. Wczytaj biblioteki
+4. Wczytaj dane
+5. Kontyuuj analizę
+
+]
+
+---
+
+# R base vs. tidyverse
+
+**Podstawowe funkcje R**
+
+
+``` r
+widest_petals &lt;- by(iris, 
+                    INDICES = iris$Species, 
+                    FUN = function(x){
+                      x[x$Petal.Width == max(x$Petal.Width), ] 
+                    })
+
+do.call(rbind, widest_petals)
+```
+
+--
+
+**Funkcje pakietu tidyverse**
+
+
+``` r
+iris %&gt;% 
+  group_by(Species) %&gt;% 
+  filter(Petal.Width == max(Petal.Width))
+```
+
+[źródło](https://tavareshugo.github.io/data_carpentry_extras/base-r_tidyverse_equivalents/base-r_tidyverse_equivalents.html)
+
+---
+
+&lt;center&gt;&lt;img src="img/magrittr.png" height="600"&gt;&lt;/center&gt;
+
+---
+
+# Przetwarzanie potokowe
+
+Sekwencja zdarzeń - w życiu
+
+```
+obudź się %&gt;%
+  wyjdź z łóżka %&gt;%
+  skorzystaj z łazienki %&gt;%
+  zjedź śniadanie %&gt;%
+  ubierz się %&gt;%
+  idź do pracy
+```
+
+[źródło](https://twitter.com/WeAreRLadies/status/1172576445794803713)
+
+---
+
+# Przetwarzanie potokowe
+
+Użycie operatora **pipe**: `%&gt;%` (łącznik) ułatwia zarządzanie kodem i pisanie czytelnej składni poprzez wykorzystanie istniejących struktur danych:
+
+Nowe obiekty
+
+
+``` r
+iris_3kol &lt;- select(iris, Petal.Length, Petal.Width, Species)
+iris_3kol_wymiar &lt;- mutate(iris_3kol, petal_wymiar=Petal.Length+Petal.Width)
+iris_3kol_wymiar_setosa &lt;- filter(iris_3kol_wymiar, Species=="setosa")
+```
+
+--
+
+Zagnieżdżanie
+
+
+``` r
+iris_setosa &lt;- filter(mutate(select(iris, Petal.Length, Petal.Width, Species), 
+                             petal_wymiar=Petal.Length+Petal.Width),
+                      Species=="setosa")
+```
+
+---
+
+# Przetwarzanie potokowe
+
+Przetwarzanie potokowe
+
+
+``` r
+iris_setosa &lt;- iris %&gt;%
+  select(Petal.Length, Petal.Width, Species) %&gt;%
+  mutate(petal_wymiar=Petal.Length+Petal.Width) %&gt;%
+  filter(Species=="setosa")
+```
+
+--
+
+Znak `%&gt;%` oznacza, że jako argument wejściowy `data` w kolejnej funkcji zostanie wpisany wynik działania wcześniejszej funkcji.
+
+Skrót klawiszowy: ctrl + shift + m
+
+---
+
+# Wybrane funkcje
+
+- `select()` - wybór zmiennych
+
+- `filter()` - wybór obserwacji
+
+- `mutate()` - tworzenie/modyfikacja zmiennej
+
+- `rename()` - zmiana nazwy zmiennej
+
+- `count()` - zliczanie obserwacji
+
+- `summarise()` - podsumowania danych
+
+- `group_by()` - operowanie na grupach
+
+- `arrange()` - sortowanie
+
+---
+
+# Filtrowanie - `filter()`
+
+Porównywanie:
+
+- `=`  symbol przypisania (nie jest używany w filtrowaniu)
+
+- `==` symbol porównania (jest równe)
+
+- `!=` symbol negacji (jest różne)
+
+- `&gt;` i `&lt;` większe i mniejsze
+
+- `&gt;=` i `&lt;=` większe lub równe i mniejsze lub równe 
+
+Operatory:
+
+- `&amp;` - i
+
+- `|` - lub (alternatywa)
+
+- `%in%` - wartość ze zbioru
+
+- `!` - negacja
+
+---
+
+class: inverse
+
+# Zadanie
+
+Utwórz zbiór danych zawierający filmy, które są filmami akcji, miały swoją premierę po 2010 roku i trwały co najmniej 120 minut lub miały ocenę powyżej 8.0. Alternatywa ma dotyczyć tylko dwóch ostatnich warunków.
+
+<div class="countdown" id="timer_9c556945" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Braki danych
+
+Brak danych jest oznaczany jako `NA`. Jest to wartość nieliczbowa i **nie można** jej porównywać w następujący sposób:
+
+- `zmienna == NA`
+
+- `zmienna != NA`
+
+- `zmienna == "NA"`
+
+- `zmienna != "NA"`
+
+tylko z wykorzystaniem funkcji `is.na()`:
+
+- `is.na(zmienna)`
+
+- `!is.na(zmienna)`
+
+Funkcja `complete.cases()` służy do identyfikacji obserwacji, które nie zawierają braków danych w całym zbiorze danych.
+
+---
+
+# Wybieranie kolumn - `select()`
+
+Wybór kolumn, które mają się znaleźć w nowym zbiorze:
+
+
+``` r
+iris2 &lt;- iris %&gt;%
+  select(Species, Petal.Length, Petal.Width)
+```
+
+Które nie mają się znaleźć w nowym zbiorze:
+
+
+``` r
+iris2 &lt;- iris %&gt;%
+  select(-Petal.Length, -Petal.Width)
+```
+
+Które mają znaleźć się w nowym zbiorze z nową nazwą:
+
+
+``` r
+iris2 &lt;- iris %&gt;%
+  select(gatunek=Species, Petal.Length, Petal.Width)
+```
+
+---
+
+# Kolejność w przetwarzaniu potokowym
+
+.pull-left[
+
+DOBRZE
+
+
+``` r
+iris %&gt;%
+  filter(Petal.Width &lt; 0.5) %&gt;%
+  select(Species, Sepal.Length, Sepal.Width)
+```
+
+```
+##   Species Sepal.Length Sepal.Width
+## 1  setosa          5.1         3.5
+## 2  setosa          4.9         3.0
+## 3  setosa          4.7         3.2
+## 4  setosa          4.6         3.1
+## 5  setosa          5.0         3.6
+## 6  setosa          5.4         3.9
+```
+
+]
+
+--
+
+.pull-right[
+
+ŹLE
+
+
+``` r
+iris %&gt;%
+  select(Species, Sepal.Length, Sepal.Width) %&gt;%
+  filter(Petal.Width &lt; 0.5)
+```
+
+```
+## Error in `filter()`:
+## ℹ In argument: `Petal.Width &lt; 0.5`.
+## Caused by error:
+## ! object 'Petal.Width' not found
+```
+
+]
+
+---
+
+# Zmiana nazwy - `rename()`
+
+Zapis w konwencji `rename(nowa_nazwa=stara_nazwa)`
+
+Można także wykorzystać funkcję `select()` - zmieniając nazwę podczas wybierania zmiennych
+
+Funkcja `rename_with()` umożliwia zmianę nazw z wykorzystaniem funkcji np. zamieniając nazwy kolumn na zapisane wielkimi literami.
+
+---
+
+# Nowa zmienna/modyfikacja - `mutate()`
+
+
+``` r
+iris &lt;- iris %&gt;%
+  mutate(petal=Petal.Length+Petal.Width,
+         sepal=Sepal.Length+Sepal.Width,
+         iloraz=petal/sepal)
+```
+
+Funkcje:
+
+- `mutate_all` - modyfikacja wszystkich zmiennych według podanej formuły
+
+- `mutate_if` - modyfikacja wszystkich zmiennych spełniających warunek
+
+- `mutate_at` - modyfikacja wszystkich wskazanych zmiennych
+
+są zastępowane przez jedną funkcję `across`.
+
+---
+
+class: inverse
+
+# Zadanie
+
+W zbiorze dotyczącym wyborów stwórz nowe zmienne, które będą zawierały procentowy wynik komitetów.
+
+<div class="countdown" id="timer_3e91aa72" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+## Podsumowanie - `summarise()` i `summarize()`
+
+
+``` r
+iris %&gt;%
+  summarise(liczebnosc=n(),
+            srednia_pl=mean(Petal.Length),
+            mediana_sl=median(Sepal.Length))
+```
+
+```
+##   liczebnosc srednia_pl mediana_sl
+## 1        150      3.758        5.8
+```
+
+---
+
+class: inverse
+
+# Zadanie 
+
+Ile wynosiła średnia, mediana i odchylenie standardowe wartości frekwencji?
+
+<div class="countdown" id="timer_ec82dfb0" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Grupowanie - `group_by()`
+
+Najlepiej działa w połączeniu z `summarise()`:
+
+
+``` r
+iris %&gt;%
+  group_by(Species) %&gt;%
+  summarise(liczebnosc=n(),
+            srednia_pl=mean(Petal.Length))
+```
+
+```
+## # A tibble: 3 × 3
+##   Species    liczebnosc srednia_pl
+##   &lt;fct&gt;           &lt;int&gt;      &lt;dbl&gt;
+## 1 setosa             50       1.46
+## 2 versicolor         50       4.26
+## 3 virginica          50       5.55
+```
+
+---
+
+# Liczebności - `count()`
+
+Jeżeli chcemy tylko wyznaczyć liczebności grup to wystarczy funkcja `count()`:
+
+
+``` r
+iris %&gt;%
+  count(Species)
+```
+
+```
+##      Species  n
+## 1     setosa 50
+## 2 versicolor 50
+## 3  virginica 50
+```
+
+---
+
+# Sortowanie - `arrange()`
+
+Sortuje podane kolumny w porządku rosnącym.
+
+
+``` r
+iris %&gt;%
+  arrange(Sepal.Length, Sepal.Width) %&gt;% 
+  head()
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          4.3         3.0          1.1         0.1  setosa
+## 2          4.4         2.9          1.4         0.2  setosa
+## 3          4.4         3.0          1.3         0.2  setosa
+## 4          4.4         3.2          1.3         0.2  setosa
+## 5          4.5         2.3          1.3         0.3  setosa
+## 6          4.6         3.1          1.5         0.2  setosa
+```
+
+Posortowanie w porządku malejącym wymaga użycia funkcji `desc()` w odniesieniu do wybranej kolumny.
+
+---
+
+class: inverse
+
+# Zadanie
+
+Oblicz liczbę komisji w poszczególnych województwach oraz średnią liczbę nieważnych głosów.
+
+<div class="countdown" id="timer_625d0c2a" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Łączenie danych
+
+![](img/join.png)
+
+[źródło](https://rpubs.com/williamsurles/293454)
+
+---
+
+class: inverse
+
+# Zadanie
+
+Po wczytaniu zbioru danych [gus.RData](http://wawrowski.edu.pl/data/gus.RData) połącz ze sobą zbiory danych zawierające informacje o liczbie przedsiębiorstw na 10 tys. mieszkańców (zbiór _pod_10tys_), stopie bezrobocia (zbiór _bezrobocie_) oraz wynagrodzeniu (zbiór _wyn_).
+
+<div class="countdown" id="timer_45e7f549" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Szeroka i długa reprezentacja danych
+
+![](img/wide_long.png)
+
+[źródło](https://www.datasciencemadesimple.com%2Freshape-in-r-from-wide-to-long-from-long-to-wide)
+
+---
+
+# Animacja
+
+![](img/tidyr-spread-gather.gif)
+
+[źródło](https://github.com/gadenbuie/tidyexplain)
+
+---
+
+# Zbiór _iris_
+
+
+``` r
+head(iris)
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+```
+
+
+---
+
+# Wide -&gt; long - `pivot_longer()`
+
+
+``` r
+iris_long &lt;- iris %&gt;%
+  mutate(id=1:nrow(iris)) %&gt;% 
+  pivot_longer(Sepal.Length:Petal.Width)
+
+head(iris_long)
+```
+
+```
+## # A tibble: 6 × 4
+##   Species    id name         value
+##   &lt;fct&gt;   &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;
+## 1 setosa      1 Sepal.Length   5.1
+## 2 setosa      1 Sepal.Width    3.5
+## 3 setosa      1 Petal.Length   1.4
+## 4 setosa      1 Petal.Width    0.2
+## 5 setosa      2 Sepal.Length   4.9
+## 6 setosa      2 Sepal.Width    3
+```
+
+---
+
+# Long -&gt; wide - `pivot_wider()`
+
+
+``` r
+iris_wide &lt;- iris_long %&gt;%
+  pivot_wider()
+
+head(iris_wide)
+```
+
+```
+## # A tibble: 6 × 6
+##   Species    id Sepal.Length Sepal.Width Petal.Length Petal.Width
+##   &lt;fct&gt;   &lt;int&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+## 1 setosa      1          5.1         3.5          1.4         0.2
+## 2 setosa      2          4.9         3            1.4         0.2
+## 3 setosa      3          4.7         3.2          1.3         0.2
+## 4 setosa      4          4.6         3.1          1.5         0.2
+## 5 setosa      5          5           3.6          1.4         0.2
+## 6 setosa      6          5.4         3.9          1.7         0.4
+```
+
+---
+
+class: inverse
+
+# Zadania
+
+<div class="countdown" id="timer_efd55cab" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+1. Ile obwodów głosowania miało frekwencję powyżej 80%?
+
+2. Ile obwodów głosowania znajduje się w Poznaniu?   
+
+3. Jaka była średnia frekwencja w województwach?
+
+4. Gdzie była największa różnica pomiędzy wybranymi partiami?
+
+5. W jakich miastach za granicą utworzono najwięcej obwodów głosowania?
+
+
+
+
+---
+
+class: inverse, center, middle
+
+# Pytania?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

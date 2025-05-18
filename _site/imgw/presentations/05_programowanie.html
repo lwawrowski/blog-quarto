@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Podstawy programowania</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="© Łukasz Wawrowski" />
+    <script src="libs/header-attrs-2.22/header-attrs.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <link rel="stylesheet" href="default.css" type="text/css" />
+    <link rel="stylesheet" href="default-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Podstawy programowania
+]
+.subtitle[
+## Programowanie
+]
+.author[
+### © Łukasz Wawrowski
+]
+
+---
+
+
+
+
+# Wprowadzenie
+
+- mniej języka naturalnego, więcej operatorów
+
+- komunikacja człowiek-komputer
+
+- rozwiązywanie bardziej złożonych problemów za pomocą:
+
+  - funkcji
+  - warunków
+  - pętli
+
+
+---
+
+class: inverse, middle, center
+
+# Funkcje
+
+---
+
+# Funkcje
+
+&gt; Metoda Copy'ego i Paste'a jest potężnym narzędziem, ale nie powinna być nadużywana
+
+Funkcję ograniczają potrzebę kopiowania kodu i ułatwiają wprowadzanie zmian.
+
+1. Funkcję zawierającą dużo kodu można ładnie nazwać, co ułatwia rozumienie programu
+
+2. W przypadku potrzeby wprowadzenia zmian wystarczy to zrobić tylko w jednym miejscu
+
+3. Unikanie problemów przy kopiowaniu np. zamiana nazwy zmiennej 
+
+---
+
+# Przepis na funkcję
+
+Stworzenie funkcji wymaga:
+
+1. wymyślenia nazwy funkcji
+
+2. określenia elementów wejściowych
+
+3. umieszczenia kodu w ciele funkcji
+
+---
+
+# Dobre praktyki tworzenia funkcji
+
+- nazwy funkcji powinny być czasownikami
+
+- ustalona notacja: podkreślnik vs. camelCase
+
+- wspólny przedrostek
+
+```r
+# Good
+input_select()
+input_checkbox()
+input_text()
+
+# Not so good
+select_input()
+checkbox_input()
+text_input()
+```
+
+---
+
+# Składnia funkcji
+
+
+```r
+oblicz_srednia &lt;- function(liczby, zaokraglenie = 2){
+
+  srednia &lt;- mean(liczby)
+  
+  srednia_zaokr &lt;- round(x = srednia, digits = zaokraglenie)
+  
+  return(srednia_zaokr)
+
+}
+
+temp &lt;- c(-1, 7, 9, 11, 8, 4, 3, 2)
+
+oblicz_srednia(temp)
+```
+
+```
+## [1] 5.38
+```
+
+```r
+oblicz_srednia(liczby = temp, zaokraglenie = 0)
+```
+
+```
+## [1] 5
+```
+
+Funkcje to programowanie na wysokim poziomie abstrakcji. Tworzymy obliczenia dla _jakichś_ danych wejściowych, a wywołujemy je na _konkretnych_ obiektach.
+
+---
+
+# Przykład
+
+Obliczenie wskaźnika dla wybranych kolumn:
+
+`$$\text{wsk}=\frac{min(x)-max(x)}{\bar{x}}$$`
+
+---
+
+# Bardzo złe pomysły
+
+```r
+# Too short
+f()
+
+# Not a verb, or descriptive
+my_awesome_function()
+
+# Never do this!
+col_mins &lt;- function(x, y) {}
+rowMaxes &lt;- function(y, x) {}
+
+# Don't do this!
+T &lt;- FALSE
+c &lt;- 10
+mean &lt;- function(x) sum(x)
+```
+
+[Źródło](https://r4ds.had.co.nz/functions.html)
+
+---
+
+class: inverse
+
+# Zadanie
+
+Stwórz funkcję, która będzie normalizować wartości cechy w zakresie od 0 do 1 według wzoru:
+
+`$$z = \frac{x - min(x)}{max(x)-min(x)}$$`
+<div class="countdown" id="timer_25062307" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse, middle, center
+
+# Warunki
+
+---
+
+# Wykonywanie warunkowe
+
+Za pomocą instrukcji if możemy warunkowo wykonywać kod. Ogólna postać jest następująca:
+
+```r
+if(warunek1){
+  # kod wykonany jeśli warunek jest równy TRUE
+} else if(warunek2) {
+  # kod wykonany jeśli warunek1 jest równy FALSE, a warunek2 jest równy TRUE
+} else {
+  # kod wykonany jeśli warunek1 i warunek2 jest równy FALSE
+}
+```
+
+Warunek musi zwracać wartość logiczną `TRUE` albo `FALSE`.
+
+Szczególnie przydatne w funkcjach do sprawdzania poprawności argumentów wejściowych (patrz też: [`stopifnot`](https://rdrr.io/r/base/stopifnot.html)).
+
+---
+
+# Porównywanie
+
+
+```r
+x &lt;- 4
+x
+```
+
+```
+## [1] 4
+```
+
+```r
+x == 4
+```
+
+```
+## [1] TRUE
+```
+
+```r
+length(x) &gt; 0
+```
+
+```
+## [1] TRUE
+```
+
+```r
+x == NA
+```
+
+```
+## [1] NA
+```
+
+```r
+is.na(x)
+```
+
+```
+## [1] FALSE
+```
+
+---
+
+# Operatory łączenia
+
+Dopuszczalne operatory łączenia: `&amp;&amp;` (i), `||` (lub).
+
+
+```r
+x &lt;- 4
+x
+```
+
+```
+## [1] 4
+```
+
+```r
+x &gt; 2 &amp;&amp; x &lt; 6
+```
+
+```
+## [1] TRUE
+```
+
+```r
+x &gt; 2 &amp;&amp; x &lt; 3
+```
+
+```
+## [1] FALSE
+```
+
+```r
+x &gt; 2 || x &lt; 3
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+# Przykład
+
+Sprawdzenie czy liczba jest mniejsza, większa od 0 czy równa 0.
+
+---
+
+class: inverse
+
+# Zadanie
+
+Napisz funkcję, która na podstawie wartości liczby który zwróci różne komunikaty:
+
+- liczba podzielna przez 3,
+
+- liczba podzielna przez 5,
+
+- liczba podzielna przez 3 i 5,
+
+- liczba niepodzielna ani przez 3 ani przez 5.
+
+Operator zwracający resztę z dzielenia to `%%`:
+
+
+```r
+10 %% 2
+```
+
+```
+## [1] 0
+```
+
+```r
+10 %% 3
+```
+
+```
+## [1] 1
+```
+
+<div class="countdown" id="timer_f99a3663" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse, middle, center
+
+# Pętle
+
+---
+
+# Pętla
+
+- powtarzanie danej akcji z innymi danymi wejściowymi
+
+- w R zaimplementowane są pętle: for, while, repeat
+
+- zamiast pętli można wektoryzować przetwarzanie
+
+---
+
+# Pętla for
+
+Pętla składa się z trzech elementów:
+
+- wyjście - zarezerwowanie odpowiedniej ilości miejsca w pamięci na wynik
+
+- sekwencja - iterator i liczba wykonywanych razy (zakres)
+
+- ciało - przetwarzanie, którego wynik za każdym przebiegiem pętli będzie inny
+
+```r
+for(iterator in zakres){
+  # ciało pętli
+}
+```
+
+---
+
+# Wypisanie nazw miesięcy
+
+
+```r
+for(month in 1:length(month.name)){
+
+  print(month.name[month])
+  
+}
+```
+
+```
+## [1] "January"
+## [1] "February"
+## [1] "March"
+## [1] "April"
+## [1] "May"
+## [1] "June"
+## [1] "July"
+## [1] "August"
+## [1] "September"
+## [1] "October"
+## [1] "November"
+## [1] "December"
+```
+
+---
+
+# Wypisanie nazw miesięcy
+
+
+```r
+for(month in seq_along(month.name)){
+
+  print(month.name[month])
+  
+}
+```
+
+```
+## [1] "January"
+## [1] "February"
+## [1] "March"
+## [1] "April"
+## [1] "May"
+## [1] "June"
+## [1] "July"
+## [1] "August"
+## [1] "September"
+## [1] "October"
+## [1] "November"
+## [1] "December"
+```
+
+---
+
+# Przykład
+
+100 krotny rzut kostką.
+
+???
+
+
+```r
+wynik_kostka &lt;- numeric(100)
+
+for(rzut in seq_along(wynik_kostka)){
+  
+  wynik_kostka[rzut] &lt;- sample(1:6, 1)  
+  
+}
+
+table(wynik_kostka)
+```
+
+```
+## wynik_kostka
+##  1  2  3  4  5  6 
+## 19 12 18 18 16 17
+```
+
+---
+
+# Wektoryzacja
+
+Ile liczb w wektorze jest dodatnich.
+
+
+```r
+liczby &lt;- sample(x = seq(-100,100,1), size = 10000, replace = T)
+```
+
+
+.pull-left[
+
+
+```r
+f_petla &lt;- function(x){
+  
+  wynik &lt;- logical(length(x))
+  
+  for(i in seq_along(x)){
+    
+    wynik[i] &lt;- x[i] &gt; 0
+    
+  }
+  
+  return(sum(wynik))
+  
+}
+
+f_petla(liczby)
+```
+
+```
+## [1] 4936
+```
+]
+
+.pull-right[
+
+
+```r
+f_wektor &lt;- function(x){
+  
+  wynik &lt;- x &gt; 0
+  
+  return(sum(wynik))
+}
+
+f_wektor(liczby)
+```
+
+```
+## [1] 4936
+```
+
+]
+
+---
+
+# Wektoryzacja
+
+
+```r
+microbenchmark::microbenchmark(f_petla(liczby), f_wektor(liczby))
+```
+
+```
+## Unit: microseconds
+##              expr     min       lq      mean  median       uq      max neval
+##   f_petla(liczby) 605.902 620.2515 636.55099 625.201 631.7515 1087.501   100
+##  f_wektor(liczby)  40.601  48.6510  66.86496  49.602  50.5005 1794.601   100
+```
+
+
+---
+
+# Inne sposoby na pętle
+
+- funkcje z rodziny apply: `lapply`, `sapply`, `vapply` 
+
+- funkcje `map` z pakietu [purrr](https://purrr.tidyverse.org/) - napisane w C, operujące głównie na listach
+
+- przetwarzanie równoległego: pakiet parallel 
+
+---
+
+class: inverse
+
+# Zadanie
+
+Napisz pętlę, która wyświetli tekst piosenki [99 bottles of beer on the wall](https://pl.wikipedia.org/wiki/99_Bottles_of_Beer)
+
+<div class="countdown" id="timer_d57d2d36" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
