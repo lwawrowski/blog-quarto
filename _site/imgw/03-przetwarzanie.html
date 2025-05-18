@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Wczytywanie i przetwarzanie danych – Materiały szkoleniowe dla IMGW z języka R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-statystyka.html" rel="next">
+<link href="./02-struktury.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="robots" content="noindex, nofollow">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-przetwarzanie.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wczytywanie i przetwarzanie danych</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Materiały szkoleniowe dla IMGW z języka R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wprowadzenie</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-wprowadzenie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Wprowadzenie do R i RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-struktury.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-przetwarzanie.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wczytywanie i przetwarzanie danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-statystyka.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-wizualizacja.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-programowanie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System kontroli wersji</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#pakiet-tidyverse" id="toc-pakiet-tidyverse" class="nav-link active" data-scroll-target="#pakiet-tidyverse"><span class="header-section-number">3.1</span> Pakiet tidyverse</a></li>
+  <li><a href="#import-danych" id="toc-import-danych" class="nav-link" data-scroll-target="#import-danych"><span class="header-section-number">3.2</span> Import danych</a>
+  <ul class="collapse">
+  <li><a href="#pliki-csv" id="toc-pliki-csv" class="nav-link" data-scroll-target="#pliki-csv"><span class="header-section-number">3.2.1</span> Pliki CSV</a></li>
+  <li><a href="#pliki-excel" id="toc-pliki-excel" class="nav-link" data-scroll-target="#pliki-excel"><span class="header-section-number">3.2.2</span> Pliki excel</a></li>
+  <li><a href="#pliki-sas-spss" id="toc-pliki-sas-spss" class="nav-link" data-scroll-target="#pliki-sas-spss"><span class="header-section-number">3.2.3</span> Pliki SAS, SPSS</a></li>
+  <li><a href="#pliki-netcdf" id="toc-pliki-netcdf" class="nav-link" data-scroll-target="#pliki-netcdf"><span class="header-section-number">3.2.4</span> Pliki netCDF</a></li>
+  <li><a href="#natywne-pliki-r" id="toc-natywne-pliki-r" class="nav-link" data-scroll-target="#natywne-pliki-r"><span class="header-section-number">3.2.5</span> Natywne pliki R</a></li>
+  </ul></li>
+  <li><a href="#filtrowanie" id="toc-filtrowanie" class="nav-link" data-scroll-target="#filtrowanie"><span class="header-section-number">3.3</span> Filtrowanie</a></li>
+  <li><a href="#wybieranie-kolumn" id="toc-wybieranie-kolumn" class="nav-link" data-scroll-target="#wybieranie-kolumn"><span class="header-section-number">3.4</span> Wybieranie kolumn</a></li>
+  <li><a href="#tworzenie-nowych-zmiennych" id="toc-tworzenie-nowych-zmiennych" class="nav-link" data-scroll-target="#tworzenie-nowych-zmiennych"><span class="header-section-number">3.5</span> Tworzenie nowych zmiennych</a></li>
+  <li><a href="#zmiana-nazwy-zmiennej" id="toc-zmiana-nazwy-zmiennej" class="nav-link" data-scroll-target="#zmiana-nazwy-zmiennej"><span class="header-section-number">3.6</span> Zmiana nazwy zmiennej</a></li>
+  <li><a href="#podsumowanie-danych" id="toc-podsumowanie-danych" class="nav-link" data-scroll-target="#podsumowanie-danych"><span class="header-section-number">3.7</span> Podsumowanie danych</a></li>
+  <li><a href="#grupowanie" id="toc-grupowanie" class="nav-link" data-scroll-target="#grupowanie"><span class="header-section-number">3.8</span> Grupowanie</a></li>
+  <li><a href="#sortowanie" id="toc-sortowanie" class="nav-link" data-scroll-target="#sortowanie"><span class="header-section-number">3.9</span> Sortowanie</a></li>
+  <li><a href="#łączenie-zbiorów" id="toc-łączenie-zbiorów" class="nav-link" data-scroll-target="#łączenie-zbiorów"><span class="header-section-number">3.10</span> Łączenie zbiorów</a></li>
+  <li><a href="#szeroka-i-wąska-reprezentacja-danych" id="toc-szeroka-i-wąska-reprezentacja-danych" class="nav-link" data-scroll-target="#szeroka-i-wąska-reprezentacja-danych"><span class="header-section-number">3.11</span> Szeroka i wąska reprezentacja danych</a></li>
+  <li><a href="#zadania" id="toc-zadania" class="nav-link" data-scroll-target="#zadania"><span class="header-section-number">3.12</span> Zadania</a>
+  <ul class="collapse">
+  <li><a href="#rossmann" id="toc-rossmann" class="nav-link" data-scroll-target="#rossmann"><span class="header-section-number">3.12.1</span> Rossmann</a></li>
+  <li><a href="#wybory-2020" id="toc-wybory-2020" class="nav-link" data-scroll-target="#wybory-2020"><span class="header-section-number">3.12.2</span> Wybory 2020</a></li>
+  <li><a href="#mistrzostwa-świata" id="toc-mistrzostwa-świata" class="nav-link" data-scroll-target="#mistrzostwa-świata"><span class="header-section-number">3.12.3</span> Mistrzostwa Świata</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wczytywanie i przetwarzanie danych</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="pakiet-tidyverse" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="pakiet-tidyverse"><span class="header-section-number">3.1</span> Pakiet tidyverse</h2>
+<p>Pakiet <code>tidyverse</code> to zestaw pakietów do kompleksowego przetwarzania i wizualizacji danych. Ładuje następujące pakiety:</p>
+<ul>
+<li>ggplot2 - tworzenie wykresów,</li>
+<li>dplyr - przetwarzanie danych,</li>
+<li>tidyr - zmiana reprezentacji danych,</li>
+<li>readr - wczytywanie danych tekstowych,</li>
+<li>purrr - programowanie funkcyjne</li>
+<li>tibble - sposób przechowywania danych,</li>
+<li>stringr - przetwarzanie tekstów,</li>
+<li>forcats - przetwarzanie faktorów</li>
+<li>lubridate - operacje na datach</li>
+</ul>
+<p>Manifest tidyverse ustala następujące zasady:</p>
+<ul>
+<li>powtórne użycie istniejących struktur danych,</li>
+<li>tworzenie czytelnych kodów z operatorem pipe <code>%&gt;%</code> (ang. rura, przewód, łącznik). Od wersji R 4.1.0 dostępny jest natywny pipe <code>|&gt;</code> - można go włączyć w ustawieniach RStudio.</li>
+</ul>
+<p>Wobec tego załadujmy pakiet <code>tidyverse</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>W konsoli pojawi się informacja o wersji załadowanych pakietów oraz o konfliktach występujących pomiędzy pakietami. Konflikty te wynikają z takich samych nazw funkcji w różnych pakietach. Kolejność wczytywania pakietów ma znaczenie - kolejny pakiet przykryje funkcje z wcześniej wczytanego. Wywołanie przykrytej funkcji jest możliwe poprzez zapis <code>nazwa_pakietu::nazwa_funkcji</code>.</p>
+<p>Korzystanie z pakietu i zasad <code>tidyverse</code> to dużo bardziej czytelny kod w porównaniu do wbudowanych funkcji. Poniżej przedstawiony jest przykład przetwarzania danych polegający na filtrowaniu, wyborze kolumn oraz utworzeniu nowej zmiennej.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"ChickWeight"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># bez pakietu tidyverse</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>chick_15 <span class="ot">&lt;-</span> ChickWeight[ChickWeight<span class="sc">$</span>Chick<span class="sc">==</span><span class="st">"15"</span>,]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>chick_15 <span class="ot">&lt;-</span> chick_15[<span class="fu">c</span>(<span class="st">"weight"</span>, <span class="st">"Time"</span>, <span class="st">"Diet"</span>),]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>chick_15<span class="sc">$</span>weight_kg <span class="ot">&lt;-</span> chick_15<span class="sc">$</span>weight<span class="sc">/</span><span class="dv">1000</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># z pakietem tidyverse</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>chick_15 <span class="ot">&lt;-</span> ChickWeight <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Chick<span class="sc">==</span><span class="st">"15"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Chick) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight_kg=</span>weight<span class="sc">/</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Rozwiązanie z wykorzystaniem wbudowanych funkcji to 133 znaki, natomiast wykorzystanie <code>tidyverse</code> to 30% oszczędność miejsca i tylko 92 znaki.</p>
+</section>
+<section id="import-danych" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="import-danych"><span class="header-section-number">3.2</span> Import danych</h2>
+<p>Wczytywanie danych do R jest możliwe z wielu różnych źródeł. Funkcje, które to umożliwiają zwykle mają nazwę rozpoczynającą się od <code>read</code>.</p>
+<p>Będziemy korzystać z następujących zbiorów danych:</p>
+<ul>
+<li><a href="http://wawrowski.edu.pl/data/movies.csv">movies</a> - plik tekstowy zawierający informacje o filmach,</li>
+<li><a href="http://wawrowski.edu.pl/data/rossmann.xlsx">rossmann</a> - plik excel zawierający dane ze sklepów Rossmann,</li>
+<li><a href="http://wawrowski.edu.pl/data/smog_pszczyna.csv">smog</a> - plik tekstowy zawierający informacje pogodowe oraz PM10 w Pszczynie,</li>
+<li><a href="http://www.mbnet.com.pl/dl.txt">lotto</a> - plik tekstowy zawierający dane z losowań Lotto,</li>
+<li><a href="http://wawrowski.edu.pl/data/cru10min30_tmp.nc">cru10min30_tmp.nc</a> - CRU CL 2.0 1961-1990 Monthly Average Temperature (0.5-deg subset) pobrany ze <a href="https://pjbartlein.github.io/GeogDataAnalysis/datasets.html">strony</a>.</li>
+</ul>
+<section id="pliki-csv" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="pliki-csv"><span class="header-section-number">3.2.1</span> Pliki CSV</h3>
+<p>Do wczytywania plików csv można wykorzystać wbudowaną funkcję <code>read.csv()</code> lub tą pochodzącą z pakietu <code>readr</code> - <code>read_csv()</code>. W obu przypadkach wynik wczytania będzie podobny. Zaleca się oczywiście korzystanie z nowszej wersji.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CSV z separatorem przecinkowym</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>movies <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/movies.csv"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plik z separatorem średnikowym</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>smog <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"data/smog_pszczyna.csv"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plik tekstowy z niestandardowym separatorem (np. tabulacja)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># lotto &lt;- read_delim("http://www.mbnet.com.pl/dl.txt", delim = " ", col_names = c("id", "data", "numery"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Zapisywanie danych odbywa się z wykorzystaniem funkcji z przyrostkiem <code>write</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zapis do CSV</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(dane_csv, <span class="st">"wynik.csv"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zapis z separatorem średnikowym</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv2</span>(dane_csv, <span class="st">"wynik2.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pliki-excel" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="pliki-excel"><span class="header-section-number">3.2.2</span> Pliki excel</h3>
+<p>Do wczytywania plików z Excela niezbędny jest dodatkowy pakiet <code>readxl</code>. W funkcji <code>read_xlsx()</code> podajemy jako argument nazwę pliku. Możemy także dodać nazwę lub numer arkusza w argumencie (<code>sheet =</code>) oraz zakres komórek jako wartość argumentu <code>range =</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>rossmann <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> <span class="st">"data/rossmann.xlsx"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rossmann &lt;- read_xlsx(path = "data/rossmann.xlsx", sheet = 1)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># rossmann &lt;- read_xlsx(path = "data/rossmann.xlsx", sheet = "Sheet 1")</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># rossmann &lt;- read_xlsx(path = "data/rossmann.xlsx", range = "A1:L936")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pakiet <code>readxl</code> nie obsługuje zapisu do Excela. Użyj pakietu <code>writexl</code> lub <code>openxlsx</code> do zapisu.</p>
+</section>
+<section id="pliki-sas-spss" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="pliki-sas-spss"><span class="header-section-number">3.2.3</span> Pliki SAS, SPSS</h3>
+<p>Pakiet <code>haven</code> umożliwia wczytywanie danych z popularnych narzędzi statystycznych.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plik SPSS (.sav)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>dane_spss <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"plik.sav"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plik SAS (.sas7bdat)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>dane_sas <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">"plik.sas7bdat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Możliwe jest także zapisywanie danych w tych formatach</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zapis do SPSS</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sav</span>(dane_spss, <span class="st">"wynik.sav"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zapis do SAS</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sas</span>(dane_sas, <span class="st">"wynik.sas7bdat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pliki-netcdf" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="pliki-netcdf"><span class="header-section-number">3.2.4</span> Pliki netCDF</h3>
+<p><code>netCDF</code> (Network Common Data Form) to format używany głównie w naukach przyrodniczych (np. meteorologii).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Otwórz plik netCDF</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(<span class="st">"data/cru10min30_tmp.nc"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>File data/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+
+     2 variables (excluding dimension variables):
+        float time_bounds[nv,time]   
+        float tmp[lon,lat,time]   
+            long_name: air_temperature
+            units: degC
+            _FillValue: -99
+            source: E:\Projects\cru\data\cru_cl_2.0\nc_files\cru10min_tmp.nc
+
+     4 dimensions:
+        lon  Size:720 
+            standard_name: longitude
+            long_name: longitude
+            units: degrees_east
+            axis: X
+        lat  Size:360 
+            standard_name: latitude
+            long_name: latitude
+            units: degrees_north
+            axis: Y
+        time  Size:12 
+            standard_name: time
+            long_name: time
+            units: days since 1900-01-01 00:00:00.0 -0:00
+            axis: T
+            calendar: standard
+            climatology: climatology_bounds
+        nv  Size:2 (no dimvar)
+
+    7 global attributes:
+        data: CRU CL 2.0 1961-1990 Monthly Averages
+        title: CRU CL 2.0 -- 10min grid sampled every 0.5 degree
+        institution: http://www.cru.uea.ac.uk/
+        source: http://www.cru.uea.ac.uk/~markn/cru05/cru05_intro.html
+        references: New et al. (2002) Climate Res 21:1-25
+        history: Wed Oct 29 11:27:35 2014: ncrename -v climatology_bounds,time_bounds cru10min30_tmp.nc
+P.J. Bartlein, 19 Jun 2005
+        Conventions: CF-1.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista zmiennych</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nc<span class="sc">$</span>var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "time_bounds" "tmp"        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Odczyt konkretnej zmiennej</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>temperatura <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc, <span class="st">"tmp"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zamknięcie pliku</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>W tym przypadku wykorzystywane są różne funkcje do obsługi pliku:</p>
+<ul>
+<li><code>nc_open()</code>: otwiera plik.</li>
+<li><code>ncvar_get(nc, varname)</code>: pobiera dane zmiennej.</li>
+<li><code>nc_close(nc)</code>: zamyka plik.</li>
+</ul>
+<p>Zapisywanie do pliku netCDF jest bardziej złożone i wymaga:</p>
+<ol type="1">
+<li>zdefiniowania wymiarów (<code>ncdim_def()</code>),</li>
+<li>zdefiniowania zmiennych (<code>ncvar_def()</code>),</li>
+<li>utworzenia pliku (<code>nc_create()</code>),</li>
+<li>zapisania danych (<code>ncvar_put()</code>),</li>
+<li>zamknięcia pliku (<code>nc_close()</code>).</li>
+</ol>
+<p>Studium przypadku dotyczące tego pliku dostępne jest na stronie https://pjbartlein.github.io/REarthSysSci/netCDF.html</p>
+</section>
+<section id="natywne-pliki-r" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="natywne-pliki-r"><span class="header-section-number">3.2.5</span> Natywne pliki R</h3>
+<p>R oferuje możliwość przechowywania obiektów w specjalnym, binarnym formacie <code>.RData</code> lub <code>.rda</code>, który jest bardzo szybki i efektywny w kontekście dużych danych.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zapis jednego lub wielu obiektów do pliku</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(obiekt1, obiekt2, <span class="at">file =</span> <span class="st">"moje_dane.RData"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zapis wszystkich obiektów z pamięci roboczej</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">"wszystko.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Obowiązkowym argumentem tych funkcji jest <code>file</code>:</p>
+<ul>
+<li><code>file</code>: nazwa pliku wyjściowego.</li>
+<li><code>...</code>: nazwy obiektów do zapisania.</li>
+<li><code>compress</code>: czy kompresować dane (<code>TRUE</code>, <code>FALSE</code>, <code>"gzip"</code>, <code>"bzip2"</code>, <code>"xz"</code>).</li>
+</ul>
+<p>Wczytywanie danych z tego formatu:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie danych z pliku RData</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"moje_dane.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Po użyciu <code>load()</code> wszystkie obiekty zapisane w pliku trafiają do środowiska globalnego z zachowaniem ich oryginalnych nazw.</p>
+</section>
+</section>
+<section id="filtrowanie" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="filtrowanie"><span class="header-section-number">3.3</span> Filtrowanie</h2>
+<p>Do przetwarzania danych służą funkcje z pakietu <code>dplyr</code>. Większość z nich jako pierwszy argument przyjmuje przetwarzany zbiór danych, ale można tego uniknąć wykorzystując symbole <code>%&gt;%</code>.</p>
+<p>Filtrowanie polega na wybraniu obserwacji, które spełniają określony warunek lub warunki. Ze zbioru <code>smog</code> wybierzmy wszystkie dni, kiedy poziom PM10 był dopuszczalny:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> <span class="fu">filter</span>(smog, poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>lub alternatywnie:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Po zmiennej, która jest filtrowana musimy podać operator porównania czyli podwójny znak równości <code>==</code>. Jeśli chcemy filtrować po większej liczbie zmiennych to kolejne warunki dodajemy po przecinku:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>smog_dop_2015 <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>, rok <span class="sc">==</span> <span class="dv">2015</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wówczas oba warunki muszą zostać spełnione czyli pomiędzy nimi zachodzi relacja <code>i</code>. Równoważny zapis jest następujący:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>smog_dop_2015 <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span> <span class="sc">&amp;</span> rok <span class="sc">==</span> <span class="dv">2015</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pomiędzy warunkami może także zachodzić relacja <code>lub</code>. Wybieramy dni, kiedy poziom PM10 był dopuszczalny <strong>lub</strong> odnosiły się do pomiaru w 2015 roku.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>smog_dop_lub_2015 <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span> <span class="sc">|</span> rok <span class="sc">==</span> <span class="dv">2015</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Możliwy jest także wybór wielu kryteriów filtrowania poprzez operator <code>%in%</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>smog_poziomy <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"dopuszczalny"</span>, <span class="st">"w normie"</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>smog_2015_2017 <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rok <span class="sc">%in%</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2017</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="wybieranie-kolumn" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="wybieranie-kolumn"><span class="header-section-number">3.4</span> Wybieranie kolumn</h2>
+<p>Do wyboru kolumn służy funkcja <code>select()</code>. Zmodyfikujemy wcześniej utworzony zbiór <code>smog_dop</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, pm10, tmax_daily)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ten sam kod możemy zapisać zagnieżdżając funkcje, ale traci on w ten sposób na czytelności:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(smog, poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>), data, pm10, tmax_daily)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Możemy także wskazać, które zmienne nie mają znaleźć się w zbiorze wynikowym:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>poziom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Natomiast jeśli zmiennych jest więcej to musimy jest umieścić w wektorze, żeby nie pisać przed każdą zmienną znaku minus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>poziom, <span class="sc">-</span>dzien_tyg, <span class="sc">-</span>kwartal, <span class="sc">-</span>rok)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(poziom, dzien_tyg, kwartal, rok))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Z wykorzystaniem znaku dwukropka możemy także wskazywać zakresy zmiennych:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>poziom, <span class="sc">-</span><span class="fu">c</span>(dzien_tyg<span class="sc">:</span>rok))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tworzenie-nowych-zmiennych" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="tworzenie-nowych-zmiennych"><span class="header-section-number">3.5</span> Tworzenie nowych zmiennych</h2>
+<p>Do utworzenia nowej zmiennej wykorzystuje się funkcję <code>mutate()</code>. Utwórzmy w naszym zbiorze nową zmienną, która będzie różnicę pomiędzy najwyższą a najniższą temperaturą:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>smog_dop <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(poziom <span class="sc">==</span> <span class="st">"dopuszczalny"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>poziom, <span class="sc">-</span><span class="fu">c</span>(dzien_tyg<span class="sc">:</span>rok)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">amplituda=</span>tmax_daily<span class="sc">-</span>tmin_daily)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="zmiana-nazwy-zmiennej" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="zmiana-nazwy-zmiennej"><span class="header-section-number">3.6</span> Zmiana nazwy zmiennej</h2>
+<p>Do zmiany nazw zmiennych służy funkcja <code>rename()</code>. Najpierw podajemy nazwę nowej zmiennej, a po znaku równości starą nazwę:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>smog <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">tmean_daily=</span>t2m_mean_daily)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Zmiany nazwy można także dokonać z wykorzystaniem funkcji <code>select</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>smog_nowy <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, pm10, <span class="at">pm10_poziom=</span>poziom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>W takim przypadku trzeba jednak pamiętać o wypisaniu wszystkich zmiennych, które mają się znaleźć w zbiorze wynikowym.</p>
+</section>
+<section id="podsumowanie-danych" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="podsumowanie-danych"><span class="header-section-number">3.7</span> Podsumowanie danych</h2>
+<p>Funkcja <code>summarise()</code> służy do podsumowań danych w formie zagregowanej:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>smog <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm10_srednia=</span><span class="fu">mean</span>(pm10, <span class="at">na.rm=</span>T),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">pm10_mediana=</span><span class="fu">median</span>(pm10, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  pm10_srednia pm10_mediana
+         &lt;dbl&gt;        &lt;dbl&gt;
+1         51.6         34.5</code></pre>
+</div>
+</div>
+<p>Podsumowanie danych ma najwięcej sensu w połączeniu z funkcją grupującą.</p>
+</section>
+<section id="grupowanie" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="grupowanie"><span class="header-section-number">3.8</span> Grupowanie</h2>
+<p>Do grupowania obserwacji służy funkcja <code>group_by()</code>. Zobaczmy jak wyglądają statystyki PM10 w poszczególnych kwartałach:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>smog <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kwartal) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm10_srednia=</span><span class="fu">mean</span>(pm10, <span class="at">na.rm=</span>T),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pm10_mediana=</span><span class="fu">median</span>(pm10, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  kwartal   pm10_srednia pm10_mediana
+  &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt;
+1 Kwartał 1         86.6         67  
+2 Kwartał 2         32.4         29.0
+3 Kwartał 3         27.5         25.6
+4 Kwartał 4         62.0         49.4</code></pre>
+</div>
+</div>
+<p>Po przecinku w funkcji <code>group_by()</code> można wskazać kolejne zmienne grupujące:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>smog <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rok, kwartal) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm10_srednia=</span><span class="fu">mean</span>(pm10, <span class="at">na.rm=</span>T),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pm10_mediana=</span><span class="fu">median</span>(pm10, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'rok'. You can override using the `.groups`
+argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+# Groups:   rok [5]
+     rok kwartal   pm10_srednia pm10_mediana
+   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt;
+ 1  2015 Kwartał 1         76.2         69.1
+ 2  2015 Kwartał 2         32.0         28.9
+ 3  2015 Kwartał 3         30.0         29.5
+ 4  2015 Kwartał 4         71.6         53.8
+ 5  2016 Kwartał 1         85.2         57.5
+ 6  2016 Kwartał 2         36.4         33  
+ 7  2016 Kwartał 3         29.7         25.6
+ 8  2016 Kwartał 4         58.9         43.8
+ 9  2017 Kwartał 1        115.          75  
+10  2017 Kwartał 2         30.1         27.2
+11  2017 Kwartał 3         25.3         22.2
+12  2017 Kwartał 4         53.3         43.0
+13  2018 Kwartał 1         90.0         77.6
+14  2018 Kwartał 2         32.8         30.5
+15  2018 Kwartał 3         29.3         28  
+16  2018 Kwartał 4         67.2         53.0
+17  2019 Kwartał 1         65.2         51.8
+18  2019 Kwartał 2         30.6         26.3
+19  2019 Kwartał 3         23.4         21.8
+20  2019 Kwartał 4         59.6         51.7</code></pre>
+</div>
+</div>
+<p>Przydatna jest także funkcja <code>n()</code>, która nie przyjmuje żadnego argumentu i zwraca liczebność zbioru bądź grupy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>smog <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kwartal) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">liczebnosc=</span><span class="fu">n</span>(),</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pm10_srednia=</span><span class="fu">mean</span>(pm10, <span class="at">na.rm=</span>T),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">pm10_mediana=</span><span class="fu">median</span>(pm10, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  kwartal   liczebnosc pm10_srednia pm10_mediana
+  &lt;chr&gt;          &lt;int&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1 Kwartał 1        451         86.6         67  
+2 Kwartał 2        455         32.4         29.0
+3 Kwartał 3        460         27.5         25.6
+4 Kwartał 4        460         62.0         49.4</code></pre>
+</div>
+</div>
+<p>Jeżeli chcemy tylko wyznaczyć liczebności grup to możemy skorzystać z funkcji <code>count()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>smog <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kwartal) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+# Groups:   kwartal [4]
+  kwartal       n
+  &lt;chr&gt;     &lt;int&gt;
+1 Kwartał 1   451
+2 Kwartał 2   455
+3 Kwartał 3   460
+4 Kwartał 4   460</code></pre>
+</div>
+</div>
+<p>Jedną z kategorii zmiennej poziom jest brak danych (<code>NA</code>). Zamienimy tą wartość na kategorię <em>nieustalony</em> z wykorzystaniem funkcji <code>mutate()</code> oraz <code>if_else()</code>. Funkcja <code>if_else()</code> przyjmuje trzy argumenty - pierwszy (<code>condition =</code>) to warunek, który jest weryfikowany, następnie podajemy wartość, która ma być wprowadzona w przypadku spełnienia warunku (<code>true =</code>), a na końcu wartość dla niespełnionego warunku (<code>false =</code>). Jest to odpowiednik funkcji <code>JEŻELI</code> z Excela.</p>
+<p>W omawianym przykładzie warunkiem jest sprawdzenie czy wartości zmiennej <code>poziom</code> są równe <code>NA</code>. Jeśli tak to na ich miejsce wprowadzany jest tekst <em>nieustalony</em>, a w przeciwnym przypadku pozostaje oryginalna wartość.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>smog <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poziom=</span><span class="fu">if_else</span>(<span class="fu">is.na</span>(poziom), <span class="st">"nieustalony"</span>, poziom)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(poziom) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+# Groups:   poziom [5]
+  poziom           n
+  &lt;chr&gt;        &lt;int&gt;
+1 alarmowy        11
+2 dopuszczalny   521
+3 informowania    26
+4 nieustalony     36
+5 w normie      1232</code></pre>
+</div>
+</div>
+</section>
+<section id="sortowanie" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="sortowanie"><span class="header-section-number">3.9</span> Sortowanie</h2>
+<p>Sortowanie jest możliwe z wykorzystaniem funkcji <code>arrange()</code>. Jako argument podajemy zmienną według, której chcemy posortować zbiór. Domyślne zbiór sortowany jest rosnąco - od wartości najmniejszych do największych:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>smog_sort <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(pm10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Zmiana kierunku sortowania jest możliwa po zastosowaniu funkcji <code>desc()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>smog_sort <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(pm10))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sortowanie możemy także zastosować do wyników podsumowania danych:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>smog <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kwartal) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">liczebnosc=</span><span class="fu">n</span>(),</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pm10_srednia=</span><span class="fu">mean</span>(pm10, <span class="at">na.rm=</span>T),</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">pm10_mediana=</span><span class="fu">median</span>(pm10, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(pm10_mediana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  kwartal   liczebnosc pm10_srednia pm10_mediana
+  &lt;chr&gt;          &lt;int&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1 Kwartał 3        460         27.5         25.6
+2 Kwartał 2        455         32.4         29.0
+3 Kwartał 4        460         62.0         49.4
+4 Kwartał 1        451         86.6         67  </code></pre>
+</div>
+</div>
+</section>
+<section id="łączenie-zbiorów" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="łączenie-zbiorów"><span class="header-section-number">3.10</span> Łączenie zbiorów</h2>
+<p>W celu zaprezentowania funkcji łączących dane przygotujemy kilka zbiorów pomocniczych:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>dane_pm10 <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, pm10, poziom) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.))</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>dane_temp <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span> </span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, <span class="fu">starts_with</span>(<span class="st">"t"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.))</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>dane_wiatr <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span> </span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, <span class="fu">starts_with</span>(<span class="st">"rr"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Do łączenia dwóch zbiorów danych służy funkcja <code>inner_join()</code>, która jako argumenty przyjmuje nazwy zbiorów danych oraz klucz łączenia. Jeśli w obu zbiorach występują kolumny o takich samych nazwach to zostaną potraktowane jako klucz łączenia:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>dane_pm10_temp <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(dane_pm10, dane_temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(data)`</code></pre>
+</div>
+</div>
+<p>Jeśli takie kolumny nie będą istniały to wywołanie funkcji zwróci błąd. W takich przypadku należy wskazać klucz połączenia. Można to zrobić na kilka równoważnych sposobów:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>dane_pm10_temp <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(dane_pm10, dane_temp, <span class="at">by =</span> <span class="fu">join_by</span>(data))</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>dane_pm10_temp <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(dane_pm10, dane_temp, <span class="at">by =</span> <span class="st">"data"</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>dane_pm10_temp <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(dane_pm10, dane_temp, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"data"</span><span class="ot">=</span><span class="st">"data"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Jeśli w jednym ze zbiorów nie ma wszystkich identyfikatorów, które znajdują się w drugim zbiorze to zastosowanie funkcji <code>inner_join()</code> będzie skutkowało zbiorem, w którym znajdą się tylko te obserwacje, które udało się połączyć. Jeśli chcemy pozostawić niedopasowane obserwacje to należy wykorzystać jedną z funkcji - <code>left_join()</code> lub <code>right_join()</code> w zależności od tego dla którego zbioru chcemy pozostawić wszystkie informacje, lub <code>full_join()</code> w przypadku wszystkich obserwacji.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>dane_temp_pm10 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(dane_temp, dane_pm10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(data)`</code></pre>
+</div>
+</div>
+<p>W brakujących wierszach zostaną wstawione braki danych.</p>
+</section>
+<section id="szeroka-i-wąska-reprezentacja-danych" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="szeroka-i-wąska-reprezentacja-danych"><span class="header-section-number">3.11</span> Szeroka i wąska reprezentacja danych</h2>
+<p>Dane mogą występować w reprezentacji szerokiej i wąskiej. Reprezentacja szeroka to najczęściej spotykany format danych, kiedy w wierszach mamy obiekty, a w kolumnach dane opisujące te obiekty. Przykładem takiego zbioru może być np. zbiór <code>dane_temp</code>. Taka tabela jest przykładem szerokiej reprezentacji danych. Z kolei w niektórych sytuacjach wygodnie jest korzystać z wąskiej reprezentacji danych, a niektóre pakiety wręcz wymagają takich zbiorów wejściowych.</p>
+<p>Do transformacji danych z reprezentacji szerokiej na wąską służą funkcje z pakietu tidyr - w tym przypadku <code>pivot_longer()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>dane_long <span class="ot">&lt;-</span> dane_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(tmax_daily<span class="sc">:</span>tmin_soil)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dane_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  data       name        value
+  &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;
+1 2015-01-01 tmax_daily    0.2
+2 2015-01-01 tmin_daily   -4.6
+3 2015-01-01 tmean_daily  -2.3
+4 2015-01-01 tmin_soil    -4.4
+5 2015-01-02 tmax_daily    6.9
+6 2015-01-02 tmin_daily   -2.9</code></pre>
+</div>
+</div>
+<p>W takiej formie łatwiej podsumować dane:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>dane_long <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">srednia=</span><span class="fu">mean</span>(value),</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana=</span><span class="fu">median</span>(value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  name        srednia mediana
+  &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 tmax_daily    14.9     14.8
+2 tmean_daily    9.66     9.5
+3 tmin_daily     5.00     4.9
+4 tmin_soil      2.50     2.3</code></pre>
+</div>
+</div>
+<p>W porównaniu do szerokiej reprezentacji danych:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>dane_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(tmax_daily<span class="sc">:</span>tmin_soil,</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">list</span>(</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">srednia =</span> <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mediana =</span> <span class="sc">~</span><span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 8
+  tmax_daily_srednia tmax_daily_mediana tmin_daily_srednia tmin_daily_mediana
+               &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
+1               14.9               14.8               5.00                4.9
+# ℹ 4 more variables: tmean_daily_srednia &lt;dbl&gt;, tmean_daily_mediana &lt;dbl&gt;,
+#   tmin_soil_srednia &lt;dbl&gt;, tmin_soil_mediana &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Transformacja z wąskiej do szerokiej reprezentacji danych jest możliwa z zastosowaniem funkcji <code>pivot_wider()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>dane_wide <span class="ot">&lt;-</span> dane_long <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>()</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dane_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  data       tmax_daily tmin_daily tmean_daily tmin_soil
+  &lt;date&gt;          &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+1 2015-01-01        0.2       -4.6        -2.3      -4.4
+2 2015-01-02        6.9       -2.9         2.3      -4.4
+3 2015-01-03        3.4        0           1.3      -0.5
+4 2015-01-04        2.5       -0.5         1.1      -1.5
+5 2015-01-05        1.4       -3          -1.1     -10.9
+6 2015-01-06       -1.9       -8.7        -5.4     -13.9</code></pre>
+</div>
+</div>
+<p>Taka forma danych może być też przydatna do przygotowania zbiorów z podsumowaniami.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>smog_rok_kw <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rok, kwartal) <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm10_srednia=</span><span class="fu">round</span>(<span class="fu">mean</span>(pm10, <span class="at">na.rm=</span>T),<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'rok'. You can override using the `.groups`
+argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(smog_rok_kw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   rok [2]
+    rok kwartal   pm10_srednia
+  &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;
+1  2015 Kwartał 1         76.2
+2  2015 Kwartał 2         32  
+3  2015 Kwartał 3         30  
+4  2015 Kwartał 4         71.6
+5  2016 Kwartał 1         85.2
+6  2016 Kwartał 2         36.4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>smog_rok_kw <span class="sc">%&gt;%</span> </span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> kwartal, <span class="at">values_from =</span> pm10_srednia)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+# Groups:   rok [5]
+    rok `Kwartał 1` `Kwartał 2` `Kwartał 3` `Kwartał 4`
+  &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+1  2015        76.2        32          30          71.6
+2  2016        85.2        36.4        29.7        58.9
+3  2017       115          30.1        25.3        53.3
+4  2018        90          32.8        29.3        67.2
+5  2019        65.2        30.6        23.4        59.6</code></pre>
+</div>
+</div>
+</section>
+<section id="zadania" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="zadania"><span class="header-section-number">3.12</span> Zadania</h2>
+<section id="rossmann" class="level3" data-number="3.12.1">
+<h3 data-number="3.12.1" class="anchored" data-anchor-id="rossmann"><span class="header-section-number">3.12.1</span> Rossmann</h3>
+<p>Na podstawie <a href="http://wawrowski.edu.pl/data/rossmann.xlsx">zbioru Rossmann</a> odpowiedź na pytania:</p>
+<ol type="1">
+<li>Ile było sklepów o asortymencie rozszerzonym w dniu 25-02-2014?</li>
+<li>W jaki dzień tygodnia średnia liczba klientów była największa w sklepie nr 101?</li>
+<li>Sklep jakiego typu charakteryzuje się największą medianą sprzedaży?</li>
+<li>Czy w ciągu roku odległość do najbliższego sklepu konkurencji zmieniła się dla jakiegokolwiek sklepu Rossmann?</li>
+<li>Połącz dane ze sklepów Rossmann z danymi o średnim kursie EUR/PLN z 2014 roku, który można pobrać ze strony <a href="http://www.nbp.pl/home.aspx?f=/kursy/arch_a.html">NBP</a>. Przelicz wielkość sprzedaży na złotówki.</li>
+</ol>
+</section>
+<section id="wybory-2020" class="level3" data-number="3.12.2">
+<h3 data-number="3.12.2" class="anchored" data-anchor-id="wybory-2020"><span class="header-section-number">3.12.2</span> Wybory 2020</h3>
+<p>Na podstawie <a href="http://wawrowski.edu.pl/data/wybory2020.xlsx">zbioru dotyczącego wyborów prezydenckich w 2020 roku</a> odpowiedź na pytania:</p>
+<ol type="1">
+<li>Ile obwodów głosowania miało frekwencję powyżej 80%?</li>
+<li>Ile obwodów głosowania znajduje się w Poznaniu?<br>
+</li>
+<li>Ile jest obwodów według typu obszaru?</li>
+<li>Jaka była średnia frekwencja w województwach?</li>
+<li>Gdzie była największa różnica pomiędzy kandydatami?</li>
+</ol>
+</section>
+<section id="mistrzostwa-świata" class="level3" data-number="3.12.3">
+<h3 data-number="3.12.3" class="anchored" data-anchor-id="mistrzostwa-świata"><span class="header-section-number">3.12.3</span> Mistrzostwa Świata</h3>
+<p>Na podstawie <a href="http://wawrowski.edu.pl/data/WorldCupMatches.xlsx">zbioru dotyczącego wyników meczów rozegranych w ramach Mistrzostw Świata</a> odpowiedź na pytania:</p>
+<ol type="1">
+<li>Ile razy Włochy grały w finale MŚ?</li>
+<li>Jaka jest największa liczba bramek w jednym meczu?<br>
+</li>
+<li>Jakie miasto najczęściej gościło piłkarzy?</li>
+<li>Jaka była średnia liczba widzów?</li>
+<li>Ile było meczów, w których drużyna prowadząca po pierwszej połowie ostatecznie przegrywała?</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-struktury.html" class="pagination-link" aria-label="Struktury danych">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-statystyka.html" class="pagination-link" aria-label="Statystyka opisowa">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

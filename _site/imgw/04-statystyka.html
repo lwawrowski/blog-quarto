@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Statystyka opisowa – Materiały szkoleniowe dla IMGW z języka R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-wizualizacja.html" rel="next">
+<link href="./03-przetwarzanie.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="robots" content="noindex, nofollow">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-statystyka.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Materiały szkoleniowe dla IMGW z języka R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wprowadzenie</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-wprowadzenie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Wprowadzenie do R i RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-struktury.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-przetwarzanie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wczytywanie i przetwarzanie danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-statystyka.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-wizualizacja.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-programowanie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System kontroli wersji</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#miary-klasyczne---obliczane-na-podstawie-wszystkich-obserwacji" id="toc-miary-klasyczne---obliczane-na-podstawie-wszystkich-obserwacji" class="nav-link active" data-scroll-target="#miary-klasyczne---obliczane-na-podstawie-wszystkich-obserwacji"><span class="header-section-number">4.1</span> Miary klasyczne - obliczane na podstawie wszystkich obserwacji</a></li>
+  <li><a href="#miary-pozycyjne---wartość-miary-wskazuje-dana-jednostka." id="toc-miary-pozycyjne---wartość-miary-wskazuje-dana-jednostka." class="nav-link" data-scroll-target="#miary-pozycyjne---wartość-miary-wskazuje-dana-jednostka."><span class="header-section-number">4.2</span> Miary pozycyjne - wartość miary wskazuje dana jednostka.</a></li>
+  <li><a href="#wyznaczanie-przedziału-ufności-dla-średniej-i-odsetka." id="toc-wyznaczanie-przedziału-ufności-dla-średniej-i-odsetka." class="nav-link" data-scroll-target="#wyznaczanie-przedziału-ufności-dla-średniej-i-odsetka."><span class="header-section-number">4.3</span> Wyznaczanie przedziału ufności dla średniej i odsetka.</a>
+  <ul class="collapse">
+  <li><a href="#średnia" id="toc-średnia" class="nav-link" data-scroll-target="#średnia"><span class="header-section-number">4.3.1</span> Średnia</a></li>
+  <li><a href="#proporcja" id="toc-proporcja" class="nav-link" data-scroll-target="#proporcja"><span class="header-section-number">4.3.2</span> Proporcja</a></li>
+  </ul></li>
+  <li><a href="#analiza-zależności-pomiędzy-zmiennymi-ilościowymi" id="toc-analiza-zależności-pomiędzy-zmiennymi-ilościowymi" class="nav-link" data-scroll-target="#analiza-zależności-pomiędzy-zmiennymi-ilościowymi"><span class="header-section-number">4.4</span> Analiza zależności pomiędzy zmiennymi ilościowymi</a></li>
+  <li><a href="#analiza-zależności-pomiędzy-zmiennymi-jakościowymi" id="toc-analiza-zależności-pomiędzy-zmiennymi-jakościowymi" class="nav-link" data-scroll-target="#analiza-zależności-pomiędzy-zmiennymi-jakościowymi"><span class="header-section-number">4.5</span> Analiza zależności pomiędzy zmiennymi jakościowymi</a></li>
+  <li><a href="#analiza-zależności-pomiędzy-zmiennymi---zmienna-jakościowa-i-ilościowa" id="toc-analiza-zależności-pomiędzy-zmiennymi---zmienna-jakościowa-i-ilościowa" class="nav-link" data-scroll-target="#analiza-zależności-pomiędzy-zmiennymi---zmienna-jakościowa-i-ilościowa"><span class="header-section-number">4.6</span> Analiza zależności pomiędzy zmiennymi - zmienna jakościowa i ilościowa</a>
+  <ul class="collapse">
+  <li><a href="#test-t-średnich" id="toc-test-t-średnich" class="nav-link" data-scroll-target="#test-t-średnich"><span class="header-section-number">4.6.1</span> Test t-średnich</a></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">4.6.2</span> ANOVA</a></li>
+  <li><a href="#test-wilcoxona" id="toc-test-wilcoxona" class="nav-link" data-scroll-target="#test-wilcoxona"><span class="header-section-number">4.6.3</span> Test Wilcoxona</a></li>
+  <li><a href="#test-kruskala-wallisa" id="toc-test-kruskala-wallisa" class="nav-link" data-scroll-target="#test-kruskala-wallisa"><span class="header-section-number">4.6.4</span> Test Kruskala-Wallisa</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Do charakterystyk najczęściej wykorzystywanych przy opisie danych należą:</p>
+<ul>
+<li>miary przeciętne - służące do określania tej wartości zmiennej opisanej przez rozkład, wokół której skupiają się pozostałe wartości zmiennej,</li>
+<li>miary rozproszenia (dyspersji) - służące do badania stopnia zróżnicowania wartości zmiennej,</li>
+<li>miary asymetrii - służące do badania asymetrii rozkładu,</li>
+<li>miary koncentracji - służące do analizy stopnia skupienia poszczególnych jednostek wokół średniej.</li>
+</ul>
+<p>Analiza struktury bazuje na dwóch typach miar:</p>
+<section id="miary-klasyczne---obliczane-na-podstawie-wszystkich-obserwacji" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="miary-klasyczne---obliczane-na-podstawie-wszystkich-obserwacji"><span class="header-section-number">4.1</span> Miary klasyczne - obliczane na podstawie wszystkich obserwacji</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 4%">
+<col style="width: 24%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Miara</th>
+<th>Symbol</th>
+<th>Wzór</th>
+<th>Interpretacja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Średnia arytmetyczna</td>
+<td><span class="math inline">\(\bar{x}\)</span></td>
+<td><span class="math inline">\(\frac{\sum_{i=1}^N x_i}{N}\)</span></td>
+<td>Wartość przeciętna</td>
+</tr>
+<tr class="even">
+<td>Odchylenie kwadratowe</td>
+<td><span class="math inline">\(d^2\)</span></td>
+<td><span class="math inline">\(\sum_{i=1}^N (x_i - \bar{x})^2\)</span></td>
+<td>Kwadrat odchylenia przeciętnego</td>
+</tr>
+<tr class="odd">
+<td>Odchylenie standardowe (dla populacji)</td>
+<td><span class="math inline">\(s\)</span></td>
+<td><span class="math inline">\(\sqrt{\frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N}}\)</span></td>
+<td>O ile przeciętnie odchylają się wartości od średniej</td>
+</tr>
+<tr class="even">
+<td>Wariancja (dla próby)</td>
+<td><span class="math inline">\(s^2\)</span></td>
+<td><span class="math inline">\(\frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N-1}\)</span></td>
+<td>Informuje o zróżnicowaniu próby</td>
+</tr>
+<tr class="odd">
+<td>Rozstęp</td>
+<td><span class="math inline">\(R\)</span></td>
+<td><span class="math inline">\(max(x) - min(x)\)</span></td>
+<td>Empiryczny obszar zmienności, wartość maksymalna cechy x minus wartość minimalna tej cechy</td>
+</tr>
+<tr class="even">
+<td>Współczynnik zmienności</td>
+<td><span class="math inline">\(V_x\)</span></td>
+<td><span class="math inline">\(\frac{s}{\bar{x}}\)</span></td>
+<td>Informuje o relatywnym zróżnicowaniu populacji (próby). Zwykle wykorzystujemy do porównań dwóch lub więcej grup. Wyrażamy w procentach.</td>
+</tr>
+<tr class="odd">
+<td>Współczynnik asymetrii</td>
+<td><span class="math inline">\(\alpha_3\)</span></td>
+<td><span class="math inline">\(\frac{\frac{1}{N}\sum_{i=1}^{N}{(x_{i}-\bar{x})^3}}{s^3}\)</span></td>
+<td>Pozwala zidentyfikować czy rozkład jest symetryczny lub asymetryczny</td>
+</tr>
+<tr class="even">
+<td>Współczynnik koncentracji</td>
+<td><span class="math inline">\(\alpha_4\)</span></td>
+<td><span class="math inline">\(\frac{\frac{1}{N}\sum_{i=1}^{N}{(x_{i}-\bar{x})^4}}{s^4}\)</span></td>
+<td>Pozwala zidentyfikować czy rozkład jest wysmukły czy spłaszczony</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="miary-pozycyjne---wartość-miary-wskazuje-dana-jednostka." class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="miary-pozycyjne---wartość-miary-wskazuje-dana-jednostka."><span class="header-section-number">4.2</span> Miary pozycyjne - wartość miary wskazuje dana jednostka.</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 8%">
+<col style="width: 17%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Miara</th>
+<th>Symbol</th>
+<th>Wzór</th>
+<th>Interpretacja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kwartyl 1</td>
+<td><span class="math inline">\(Q_1\)</span></td>
+<td></td>
+<td>Dzieli populację na dwie części w stosunku 25 / 75</td>
+</tr>
+<tr class="even">
+<td>Kwartyl 2, Mediana</td>
+<td><span class="math inline">\(Q_2, Me\)</span></td>
+<td></td>
+<td>Dzieli populację na dwie części w stosunku 50 / 50</td>
+</tr>
+<tr class="odd">
+<td>Kwartyl 3</td>
+<td><span class="math inline">\(Q_3\)</span></td>
+<td></td>
+<td>Dzieli populację na dwie części w stosunku 75 / 25</td>
+</tr>
+<tr class="even">
+<td>Odchylenie ćwiartkowe</td>
+<td><span class="math inline">\(Q\)</span></td>
+<td><span class="math inline">\(Q=\frac{Q3-Q1}{2}\)</span></td>
+<td>Mierzy ono przeciętne odchylenie wartości cechy zbiorowości od mediany</td>
+</tr>
+<tr class="odd">
+<td>Pozycyjny współczynnik zmienności</td>
+<td><span class="math inline">\(V_Q\)</span></td>
+<td><span class="math inline">\(\frac{Q}{Me}\)</span></td>
+<td>Mierzy przeciętne zróżnicowanie cechy</td>
+</tr>
+<tr class="even">
+<td>Pozycyjny współczynnik asymetrii</td>
+<td><span class="math inline">\(A_Q\)</span></td>
+<td><span class="math inline">\(\frac{Q_1+Q3-2Me}{2Q}\)</span></td>
+<td>Mierzy (a)symetrię rozkładu</td>
+</tr>
+</tbody>
+</table>
+<p>Celem analizy struktury jest dostarczenie kilku liczb, które w łatwy sposób pozwolą na opis i porównania badanych cech.</p>
+<p>Dominanta (inaczej moda, modalna) czyli najczęściej występująca wartość i jest wyznaczana dla zmiennych jakościowych.</p>
+</section>
+<section id="wyznaczanie-przedziału-ufności-dla-średniej-i-odsetka." class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="wyznaczanie-przedziału-ufności-dla-średniej-i-odsetka."><span class="header-section-number">4.3</span> Wyznaczanie przedziału ufności dla średniej i odsetka.</h2>
+<p>większość prowadzonych badań ogranicza się do analizy jedynie fragmentu populacji. Wówczas, oprócz obliczenia interesującej nas miary ważne jest także podanie możliwego błędu. Popularną praktyką jest obliczanie <strong>przedziałów ufności</strong>, które prezentują zakres, w którym z określonym prawdopodobieństwem znajduje się prawdziwa wartość parametru. Zwykle bierze się pod uwagę następujące prawdopodobieństwa: 90%, 95% i 99%, niemniej można wybrać dowolną wartość z przedziału 0-100%. We wzorach operuje się pojęciem <strong>poziomu istotności</strong> oznaczanym przez <span class="math inline">\(\alpha\)</span>.</p>
+<p>Będziemy musieli wyznaczyć kwantyl rozkładu, który odpowiada przyjętemu poziomowi prawdopodobieństwa i tym samym obszar, który pokryje wyznaczony przedział ufności. Dla rozkładu normalnego ta sytuacja jest przedstawiona na wykresie:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-statystyka_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>W tabeli przedstawiono relację przyjętego prawdopodobieństwa, poziomu istotności oraz wartości kwantyli rozkładu normalnego.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Prawdopodobieństwo</th>
+<th style="text-align: right;">Poziom istotności</th>
+<th style="text-align: right;">Kwantyl rozkł. norm.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">99% (0,99)</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">2,58</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">95% (0,95)</td>
+<td style="text-align: right;">0,05</td>
+<td style="text-align: right;">1,96</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90% (0,90)</td>
+<td style="text-align: right;">0,10</td>
+<td style="text-align: right;">1,64</td>
+</tr>
+</tbody>
+</table>
+<p>Te wartości dla najpopularniejszych poziomów prawdopodobieństwa zawsze będą takie same. Natomiast w przypadku małych prób (<span class="math inline">\(n &lt; 30\)</span>) należy skorzystać z rozkładu <a href="https://pl.wikipedia.org/wiki/William_Sealy_Gosset">t-Studenta</a>. Kształt tego rozkładu jest zbliżony do normalnego, natomiast wartości kwantyli zależą od dwóch parametrów - przyjętego poziomu istotności oraz liczebności próby pomniejszonej o 1 (liczba stopni swobody).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-statystyka_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="średnia" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="średnia"><span class="header-section-number">4.3.1</span> Średnia</h3>
+<p>Jeśli odchylenie standardowe w populacji nie jest znane to można wykorzystać wzór, w którym używa się wartości odchylenia standardowego obliczonego na podstawie próbie. Trzeba jednak rozróżnić małą oraz dużą próbę. Przyjętym w statystyce progiem jest <span class="math inline">\(n &gt; 30\)</span>, kiedy uznaje się próbę za dużą. Podstawową różnicą jest wykorzystanie we wzorze przedziału ufności dla małej próby kwantyla rozkładu t-Studenta, a dla dużej kwantyla rozkładu normalnego.</p>
+<p><span class="math display">\[P\left\{\bar{X}-t_{(1-\alpha/2,n-1)}\frac{s}{\sqrt{n-1}}&lt;m&lt;\bar{X}+t_{(1-\alpha/2,n-1)}\frac{s}{\sqrt{n-1}}\right\}=1-\alpha\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(m\)</span> - prawdziwa wartość średniej w populacji,</li>
+<li><span class="math inline">\(\bar{X}\)</span> - estymator średniej,</li>
+<li><span class="math inline">\(t_{(1-\alpha/2,n-1)}\)</span> - kwantyl rozkładu t-Studenta dla poziomu istotności <span class="math inline">\(\alpha\)</span> z <span class="math inline">\(n-1\)</span> stopniami swobody,</li>
+<li><span class="math inline">\(s\)</span> - odchylenie standardowe z próby,</li>
+<li><span class="math inline">\(n\)</span> - liczebność próby.</li>
+</ul>
+<p><strong>Przykład</strong></p>
+<p>Postanowiono oszacować średni czas potrzebny do wykonania detalu. Z populacji robotników wylosowano próbę 17 osób i dokonano pomiaru czasu wykonywania detalu. Okazało się, że średni czas wykonania detalu wynosił 15 minut, a odchylenie standardowe 2 minuty. Rozkład czasu wykonania tego detalu ma rozkład normalny i przyjęto poziom istotności <span class="math inline">\(\alpha=0,05\)</span>.</p>
+<p>Wartość kwantyla rozkładu t-Studenta wynosi 2,12.</p>
+<p><span class="math display">\[15-2,12\frac{2}{\sqrt{16}}&lt;m&lt;15+2,12\frac{2}{\sqrt{16}}\]</span></p>
+<p><span class="math display">\[13,94 &lt; m &lt; 16,06\]</span></p>
+<p>Średni czas wykonania detalu z 95% prawdopodobieństwem jest nie mniejszy niż 13,94 i nie większy niż 16,06 minuty.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane wejściowe</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="dv">15</span>        <span class="co"># średnia próby</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">2</span>             <span class="co"># odchylenie standardowe próby</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">17</span>            <span class="co"># liczność próby</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>      <span class="co"># poziom istotności</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Wartość t dla 16 stopni swobody (n - 1)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Obliczenie błędu standardowego</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n<span class="dv">-1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Obliczenie przedziału ufności</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>CI_lower <span class="ot">&lt;-</span> x_bar <span class="sc">-</span> t_crit <span class="sc">*</span> SE</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>CI_upper <span class="ot">&lt;-</span> x_bar <span class="sc">+</span> t_crit <span class="sc">*</span> SE</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Wynik</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"95% przedział ufności dla średniego czasu wykonania detalu: ["</span>, </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(CI_lower, <span class="dv">2</span>), <span class="st">","</span>, <span class="fu">round</span>(CI_upper, <span class="dv">2</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>95% przedział ufności dla średniego czasu wykonania detalu: [ 13.94 , 16.06 ]</code></pre>
+</div>
+</div>
+</section>
+<section id="proporcja" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="proporcja"><span class="header-section-number">4.3.2</span> Proporcja</h3>
+<p>Na podobnej zasadzie można także wyznaczyć przdział ufności dla odsetka.</p>
+<p><span class="math display">\[  P\left\{\frac{m}{n}-z_{(1-\alpha/2)}\sqrt{\frac{\frac{m}{n}\left(1-\frac{m}{n}\right)}{n}}&lt;p&lt;\frac{m}{n}+z_{(1-\alpha/2)}\sqrt{\frac{\frac{m}{n}\left(1-\frac{m}{n}\right)}{n}}\right\} \approx 1-\alpha\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(p\)</span> - wartość proporcji w populacji,</li>
+<li><span class="math inline">\(z_{(1-\alpha/2)}\)</span> - kwantyl rozkładu normalnego obliczony dla poziomu istotności <span class="math inline">\(\alpha\)</span>,</li>
+<li><span class="math inline">\(m\)</span> - liczba jednostek posiadających daną cechę,</li>
+<li><span class="math inline">\(n\)</span> - liczebność</li>
+</ul>
+<p><strong>Przykład</strong></p>
+<p>Spośród 10 tysięcy pracowników wylosowano próbę liczącą 200 osób i przeprowadzono badanie dotyczące opuszczenia zakładu pracy. Okazało się, że 20 z 200 respondentów zamierza, z różnych względów, opuścić zakład pracy. Dla poziomu ufności 90% wyznaczyć przedział ufności dla wskaźnika pracowników planujących opuścić bieżące miejsce pracy.</p>
+<p><span class="math display">\[\frac{20}{200}-1,64\sqrt{\frac{\frac{20}{200}\left(1-\frac{20}{200}\right)}{200}} &lt; p &lt; \frac{20}{200}+1,64\sqrt{\frac{\frac{20}{200}\left(1-\frac{20}{200}\right)}{200}}\]</span></p>
+<p><span class="math display">\[0,065 &lt; p &lt; 0,135\]</span></p>
+<p><span class="math display">\[6,5\% &lt; p &lt; 13,5\%\]</span></p>
+<p>Z prawdopodobieństwem 90% możemy stwierdzić, że pracowników planujących opuścić zakład pracy jest nie mniej niż 6,5% i nie więcej niż 13,5%.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane wejściowe</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m_n <span class="ot">&lt;-</span> m <span class="sc">/</span> n</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.10</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>)  <span class="co"># z dla 90% CI</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Błąd standardowy</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(m_n <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> m_n) <span class="sc">/</span> n)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Przedział ufności</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>CI_lower <span class="ot">&lt;-</span> m_n <span class="sc">-</span> z_crit <span class="sc">*</span> SE </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>CI_upper <span class="ot">&lt;-</span> m_n <span class="sc">+</span> z_crit <span class="sc">*</span> SE</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Wynik</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"90% przedział ufności dla odsetka pracowników planujących odejście: ["</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(CI_lower, <span class="dv">4</span>), <span class="st">","</span>, <span class="fu">round</span>(CI_upper, <span class="dv">4</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>90% przedział ufności dla odsetka pracowników planujących odejście: [ 0.0651 , 0.1349 ]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="analiza-zależności-pomiędzy-zmiennymi-ilościowymi" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="analiza-zależności-pomiędzy-zmiennymi-ilościowymi"><span class="header-section-number">4.4</span> Analiza zależności pomiędzy zmiennymi ilościowymi</h2>
+<p>Korelacja [łac.], mat. wzajemne powiązanie, współzależność zjawisk lub obiektów; w teorii prawdopodobieństwa i statystyce — współzależność liniowa zmiennych losowych (jej liczbową miara jest współczynnik korelacji) [źródło: słownik PWN].</p>
+<p>Sprawdźmy czy liczba klientów jest skorelowana ze sprzedażą w sklepie nr 1. Pierwszym krokiem w analizie korelacji jest stworzenie wykresu rozrzutu:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-statystyka_files/figure-html/ross-scatter-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Na tej podstawie możemy już stwierdzić, że zależność jest dodatnia - wzrost wartości jednej cechy pociąga za sobą wzrost wartości drugiej cechy:</p>
+<ul>
+<li>wzrost temperatury, większa sprzedaż lodów;</li>
+<li>wzrost wynagrodzenia, zwiększenie wydatków;</li>
+<li>mniej czasu spędzonego na działaniach marketingowych, mniej klientów.</li>
+</ul>
+<p><a href="https://examples.yourdictionary.com/positive-correlation-examples.html">Więcej przykładów</a></p>
+<p>Z korelacją ujemną mielibyśmy do czynienia, gdy wartości jednej cechy by rosły, a drugiej malały. Przykłady ujemnej korelacji:</p>
+<ul>
+<li>liczba nieobecności na zajęciach jest zwykle związana z niższymi ocenami;</li>
+<li>większa prędkość pociągu, krótszy czas dotarcia do stacji końcowej;</li>
+<li>spadek temperatury, wzrost sprzedaży grzejników.</li>
+</ul>
+<p><a href="https://examples.yourdictionary.com/negative-correlation-examples.html">Więcej przykładów</a></p>
+<p>Wartością liczbową, która określa kierunek korelacji jest <strong>kowariancja</strong>. Wyznaczenie kowariancji polega na policzeniu różnic wartości obu cech od średniej, a następnie ich przemnożeniu i uśrednieniu, zgodnie ze wzorem:</p>
+<p><span class="math display">\[cov(x,y)=cov(y,x)=\frac{1}{n}\sum\limits_{i=1}^{n}{(x_{i}-\bar{x})\cdot(y_{i}-\bar{y})}\]</span></p>
+<p>Znak kowariancji determinuje kierunek zależności, który jest ustalany na podstawie iloczynu różnic pomiędzy wartościami średnich a analizowanymi cechami.</p>
+<p>Jeśli kowariancja będzie:</p>
+<ul>
+<li><span class="math inline">\(cov(x,y)=0\)</span> — brak zależności,</li>
+<li><span class="math inline">\(cov(x,y)&lt;0\)</span> — ujemna zależność,</li>
+<li><span class="math inline">\(cov(x,y)&gt;0\)</span> — dodatnia zależność.</li>
+</ul>
+<p>W przypadku sklepu nr 1 kowariancja wynosi 9.4843^{4}, co oczywiście pociąga za sobą dodatnią zależność. Na podstawie kowariancji nie możemy natomiast wyznaczyć siły zależności ponieważ jest wyznaczona w dziwnych jednostkach - osobo-euro. Poza tym może przyjąć wartości z całego zakresu liczb rzeczywistych: <span class="math inline">\((-\infty;+\infty)\)</span>.</p>
+<p>Standaryzując kowariancję z wykorzystaniem odchylenia standardowego każdej cechy otrzymamy <strong>współczynnik korelacji liniowej Pearsona</strong>:</p>
+<p><span class="math display">\[r_{xy}=r_{yx}=\frac{cov(X,Y)}{S_{x}\cdot S_{y}}\]</span></p>
+<p>lub</p>
+<p><span class="math display">\[r_{xy}=\frac{\sum\limits_{i=1}^{n}{(x_{i}-\bar{x})\cdot(y_{i}-\bar{y})}}{\sqrt{\sum\limits_{i=1}^{n}{(x_{i}-\bar{x})^2\cdot(y_{i}-\bar{y})^2}}}\]</span></p>
+<p>Współczynnik ten jest wielkością unormowaną, przyjmuje wartości z przedziału <span class="math inline">\(r\in&lt;-1;1&gt;\)</span>.</p>
+<p>Jeśli:</p>
+<ul>
+<li><span class="math inline">\(r_{xy}=1\)</span> — korelacja dodatnia doskonała,</li>
+<li><span class="math inline">\(0&lt;r_{xy}&lt;1\)</span> — korelacja dodatnia niedoskonała (słaba/umiarkowana/silna)</li>
+<li><span class="math inline">\(r_{xy}=0\)</span> — brak zależności,</li>
+<li><span class="math inline">\(-1&lt;r_{xy}&lt;0\)</span> — korelacja ujemna niedoskonała (słaba/umiarkowana/silna)</li>
+<li><span class="math inline">\(r_{xy}=-1\)</span> — korelacja ujemna doskonała.</li>
+</ul>
+<p>W sklepie nr 1 współczynnik korelacji liniowej Pearona wynosi 0.94, co oznacza, że pomiędzy wartością sprzedaży a liczbą klientów występuje silna dodatnia korelacja liniowa.</p>
+<p>W przypadku, gdy w zbiorze analizowanych cech znajdą się wartości odstające, które zaburzają liniowość relacji, współczynnik korelacji liniowej może nie spełniać swojej funkcji. Wówczas należy skorzystać ze <strong>współczynnika korelacji rang Spearmana</strong>, który jest współczynnikiem korelacji liniowej Pearsona, ale obliczanym na <strong>rangach</strong>.</p>
+<p>Rangowanie polega na posortowaniu wartości jednej cechy rosnąco - przypisanie kolejnych wartości od <span class="math inline">\(1\)</span> do <span class="math inline">\(n\)</span> (jak w sporcie), na następnie powtórzenie operacji dla drugiej cechy. Jeśli jakaś wartość będzie się powtarzać (<em>ex aequo</em>), wówczas wyznaczamy wartość tzn. rangi wiązanej - średniej arytmetycznej z rang tej wartości.</p>
+<p>W programie R do obliczenia korelacji dla cech ciągłych wykorzystuje się funkcję <code>cor()</code>. Domyślna metoda zwraca współczynnik korelacji liniowej Pearsona.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(rossmann_1<span class="sc">$</span>sprzedaz, rossmann_1<span class="sc">$</span>liczba_klientow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9432882</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(rossmann_1<span class="sc">$</span>sprzedaz, rossmann_1<span class="sc">$</span>liczba_klientow, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9432882</code></pre>
+</div>
+</div>
+<p>Z kolei do obliczenia korelacji rang Spearmana należy zmodyfikować argument <code>method</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(rossmann_1<span class="sc">$</span>sprzedaz, rossmann_1<span class="sc">$</span>liczba_klientow, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9240377</code></pre>
+</div>
+</div>
+<p>Do testowania istotności statystycznej wykorzystywana jest funkcja <code>cor.test</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(rossmann_1<span class="sc">$</span>sprzedaz, rossmann_1<span class="sc">$</span>liczba_klientow, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  rossmann_1$sprzedaz and rossmann_1$liczba_klientow
+t = 49.297, df = 301, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9293934 0.9545131
+sample estimates:
+      cor 
+0.9432882 </code></pre>
+</div>
+</div>
+<p>Na tej podstawie stwierdzamy, że współczynnik korelacji pomiędzy cechami sprzedaż i liczba klientów wynosi 0,94 i jest istotny statystycznie.</p>
+</section>
+<section id="analiza-zależności-pomiędzy-zmiennymi-jakościowymi" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="analiza-zależności-pomiędzy-zmiennymi-jakościowymi"><span class="header-section-number">4.5</span> Analiza zależności pomiędzy zmiennymi jakościowymi</h2>
+<p>Celem analizy współzależności jest określenie siły związku pomiędzy dwiema cechami jakościowymi. Sprawdźmy czy istnieje zależność pomiędzy wynikiem z egzaminu a płcią?</p>
+<p>Podstawą takiej analizy jest tablica kontyngencji albo tablica krzyżowa. W przypadku obserwacji statystycznej dotyczącej dużej ilości zmiennych, operowanie wartościami szczegółowymi jest uciążliwe. W celu stwierdzenia istnienia lub braku związku korelacyjnego konstruuje się tablicę korelacyjną. Na skrzyżowaniu kolumn z wierszami wpisuje się liczebności jednostek zbiorowości statystycznej, u których zaobserwowano jednoczesne występowanie określonej wartości <span class="math inline">\(x_{i}\)</span> i <span class="math inline">\(y_{i}\)</span>. Ogólna postać tablicy krzyżowej jest następująca:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>cecha X / cecha Y</th>
+<th><span class="math inline">\(y_{1}\)</span></th>
+<th><span class="math inline">\(y_{2}\)</span></th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(y_{j}\)</span></th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(y_{r}\)</span></th>
+<th><span class="math inline">\(\sum\limits_{j}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x_{1}\)</span></td>
+<td><span class="math inline">\(n_{11}\)</span></td>
+<td><span class="math inline">\(n_{12}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{1j}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{1r}\)</span></td>
+<td><span class="math inline">\(n_{1.}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_{2}\)</span></td>
+<td><span class="math inline">\(n_{21}\)</span></td>
+<td><span class="math inline">\(n_{22}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{2j}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{2r}\)</span></td>
+<td><span class="math inline">\(n_{2.}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_{i}\)</span></td>
+<td><span class="math inline">\(n_{i1}\)</span></td>
+<td><span class="math inline">\(n_{i2}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{ij}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{ir}\)</span></td>
+<td><span class="math inline">\(n_{i.}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_{k}\)</span></td>
+<td><span class="math inline">\(n_{k1}\)</span></td>
+<td><span class="math inline">\(n_{k2}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{kj}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{kr}\)</span></td>
+<td><span class="math inline">\(n_{k.}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sum\limits_{i}\)</span></td>
+<td><span class="math inline">\(n_{.1}\)</span></td>
+<td><span class="math inline">\(n_{.2}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{.j}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_{.r}\)</span></td>
+<td><span class="math inline">\(n\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Jak wynika z tablicy zmienna losowa <span class="math inline">\(X\)</span> przyjmuje <span class="math inline">\(k\)</span> wariantów (i=1,2,…,k), zaś zmienna losowa <span class="math inline">\(Y\)</span> przyjmuje <span class="math inline">\(r\)</span> wariantów (j=1,2,…,r).</p>
+<p>Symbol <span class="math inline">\(n_{.j}\)</span> oznacza liczbę jednostek, które mają wariant <span class="math inline">\(y_{j}\)</span> zmiennej Y, natomiast symbol <span class="math inline">\(n_{i.}\)</span> - liczbę jednostek, które mają wariant <span class="math inline">\(x_{i}\)</span> zmiennej X. Symbole <span class="math inline">\(n_{ij}\)</span> oznaczają liczbę jednostek, które posiadają jednocześnie wariant <span class="math inline">\(x_{i}\)</span> cechy X i warianty <span class="math inline">\(y_{j}\)</span> cechy Y. Symbol <span class="math inline">\(n\)</span> oznacza liczebność próby, przy czym:</p>
+<p><span class="math display">\[n=\sum\limits_{i=1}^{k}{n_{i.}}=\sum\limits_{j=1}^{r}{n_{.j}}=\sum\limits_{i=1}^{k}\sum\limits_{j=1}^{r}{n_{ij}}\]</span></p>
+<p>W analizowanym przykładzie pozyskaliśmy informację od 500 osób na temat wyniku egzaminu oraz płci. Tablica krzyżowa tych danych wygląda następująco:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Płeć / Wynik</th>
+<th style="text-align: right;">Nie zdany</th>
+<th style="text-align: right;">Zdany</th>
+<th style="text-align: right;">Suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mężczyzna</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">170</td>
+</tr>
+<tr class="even">
+<td>Kobieta</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">330</td>
+</tr>
+<tr class="odd">
+<td>Suma</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">500</td>
+</tr>
+</tbody>
+</table>
+<p>Do odpowiedzi na pytanie czy istnieje zależność pomiędzy tymi cechami wykorzystamy statystykę chi-kwadrat (<span class="math inline">\(\chi^2\)</span>). W pierwszym kroku musimy obliczyć <strong>oczekiwane (teoretyczne) częstości</strong> dla każdej komórki czyli wartości jakie musiałyby występować, żeby zależności nie było. Wzór na liczebności teoretyczne jest następujący <span class="math inline">\(\hat{n}_{ij}=\frac{n_{i.} \cdot n_{.j}}{n}\)</span>. Na tej postawie wyznacza się wartość statystyki:</p>
+<p><span class="math display">\[\chi^{2}=\sum\limits_{i=1}^{k}\sum\limits_{j=1}^{r}{\frac{(n_{ij}-\hat{n}_{ij})^2}{\hat{n}_{ij}}}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(r\)</span> - liczba wariantów cechy Y,</li>
+<li><span class="math inline">\(k\)</span> - liczba wariantów cechy X,</li>
+<li><span class="math inline">\(n_{ij}\)</span> - liczebności empiryczne dla i-tego wariantu cechy X i j-tego wariantu cechy Y,</li>
+<li><span class="math inline">\(\hat{n}_{ij}\)</span> - liczebności teoretyczne dla i-tego wariantu cechy X i j-tego wariantu cechy Y.</li>
+</ul>
+<p>Sama wartość statystyki chi-kwadrat nie informuje sile zależności pomiędzy analizowanymi zmiennymi. W celu określenia siły zależności musimy wyznaczyć jedną z dostępnych miar korelacji: <strong>współczynnik V-Cramera</strong> lub <strong>współczynnik zbieżności T-Czuprowa</strong>:</p>
+<p><span class="math display">\[V=\sqrt{\frac{\chi^2}{n \cdot min(k-1,r-1)}}\]</span></p>
+<p><span class="math display">\[T=\sqrt{\frac{\chi^2}{n \cdot \sqrt{(k-1)(r-1)}}}\]</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(\chi^2\)</span> - wyznaczona wartość statystyki <span class="math inline">\(\chi^2\)</span>,</li>
+<li><span class="math inline">\(n\)</span> - liczba wszystkich obserwacji,</li>
+<li><span class="math inline">\(k\)</span> - liczba kolumn tabeli kontyngencji bez sumy (liczba wariantów pierwszej cechy),</li>
+<li><span class="math inline">\(r\)</span> - liczba wierszy tabeli kontyngencji bez sumy (liczba wariantów drugiej cechy).</li>
+</ul>
+<p>Możemy przyjąć pewne umowne progi dotyczące interpretacji tych miar:</p>
+<ul>
+<li>od 0,00 do 0,29 - słaby związek pomiędzy zmiennymi,</li>
+<li>od 0,30 do 0,49 - umiarkowany związek pomiędzy zmiennymi,</li>
+<li>od 0,50 do 1,00 - silny związek pomiędzy zmiennymi.</li>
+</ul>
+<p>W celu sprawdzenia istotności statystycznej pomiędzy cechami wykorzystuje się funkcję <code>chisq.test()</code>.</p>
+<p>Układ hipotez jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> zmienne są niezależne,</li>
+<li><span class="math inline">\(H_1:\)</span> zmienne nie są niezależne.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">70</span>, <span class="dv">130</span>, <span class="dv">200</span>), <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dane</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]  100   70
+[2,]  130  200</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  dane
+X-squared = 16.279, df = 1, p-value = 5.468e-05</code></pre>
+</div>
+</div>
+<p>Na tej podstawie stwierdzamy, że zmienne są niezależne.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(confintr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cramersv</span>(<span class="fu">chisq.test</span>(dane))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1804357</code></pre>
+</div>
+</div>
+<p>Wartość współczynnika V-Cramera wskazuje na bardzo słabe powiązanie pomiędzy cechami.</p>
+</section>
+<section id="analiza-zależności-pomiędzy-zmiennymi---zmienna-jakościowa-i-ilościowa" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="analiza-zależności-pomiędzy-zmiennymi---zmienna-jakościowa-i-ilościowa"><span class="header-section-number">4.6</span> Analiza zależności pomiędzy zmiennymi - zmienna jakościowa i ilościowa</h2>
+<p>W przypadku testowania wartości przeciętnych należy wprowadzić pojęcie prób zależnych i niezależnych:</p>
+<ul>
+<li><p>próby zależne (paired) - analizowane są te same jednostki, ale różne cechy.</p></li>
+<li><p>próby niezależne (unpaired) - analizowane są różne jednostki, ale ta sama cecha.</p></li>
+</ul>
+<p>W zależności od tego czy spełnione są odpowiednie założenia dotyczące normalności cechy oraz równości wariancji należy wybrać odpowiedni test.</p>
+<section id="test-t-średnich" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="test-t-średnich"><span class="header-section-number">4.6.1</span> Test t-średnich</h3>
+<p>Weryfikacja równości średnich może odbywać się na zasadzie porównania wartości średniej w jednej grupie z arbitralnie przyjętym poziomem lub w dwóch różnych grupach. W pierwszym przypadku rozważamy układ hipotez:</p>
+<ul>
+<li><span class="math inline">\(H_0: m = m_0\)</span></li>
+<li><span class="math inline">\(H_1: m \neq m_0\)</span> lub <span class="math inline">\(H_1: m &lt; m_0\)</span> lub <span class="math inline">\(H_1: m &gt; m_0\)</span></li>
+</ul>
+<p>natomiast w drugim przypadku hipotezy będą wyglądać następująco:</p>
+<ul>
+<li><span class="math inline">\(H_0: m_1 = m_2\)</span></li>
+<li><span class="math inline">\(H_1: m_1 \neq m_2\)</span> lub <span class="math inline">\(H_1: m_1 &lt; m_2\)</span> lub <span class="math inline">\(H_1: m_1 &gt; m_2\)</span></li>
+</ul>
+<p>Alternatywnie hipotezę zerową można zapisać jako <span class="math inline">\(m_1 - m_2 = 0\)</span> czyli sprawdzamy czy różnica pomiędzy grupami istotnie różni się od zera.</p>
+<p>W funkcji <code>t.test()</code> z pakietu <em>stats</em> w przypadku jednej próby należy podać argument <code>x</code> czyli wektor z wartościami, które są analizowane oraz wartość, z którą tą średnią porównujemy (argument <code>mu</code>, który domyślnie jest równy 0). Dodatkowo w argumencie <code>alternative</code> wskazujemy jaką hipotezę alternatywną bierzemy pod uwagę.</p>
+<p>Dla weryfikacji równości średniej w dwóch próbach należy dodać argument <code>y</code> z wartościami w drugiej próbie. W tym przypadku mamy także możliwość określenia czy próby są zależne (argument <code>paired</code>) lub czy wariancja w obu próbach jest taka sama (<code>var.equal</code>). Jeżeli wariancje są różne to program R przeprowadzi test t Welcha i liczba stopni swobody nie będzie liczbą całkowitą.</p>
+</section>
+<section id="anova" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="anova"><span class="header-section-number">4.6.2</span> ANOVA</h3>
+<p>W przypadku większej liczby grup stosuje się jednoczynnikową analizę wariancji (ANOVA). Ta analiza wymaga spełnienia założenia o normalności rozkładu i równości wariancji w badanych grupach. Układ hipotez jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0: m_1 = m_2 = m_3 = ... = m_k\)</span></li>
+<li><span class="math inline">\(H_1: \exists_{i,j\in\{1,..,k\}} \; m_i \neq m_j\)</span></li>
+</ul>
+<p>Za pomocą funkcji <code>aov()</code> można w R przeprowadzić jednoczynnikową analizę wariancji. Jako argument funkcji należy podać formułę przedstawiającą zależność zmiennej badanej do zmiennej grupującej wykorzystując w tym celu symbol tyldy (<code>~</code>) w następującym kontekście: <code>zmienna_analizowana ~ zmienna_grupująca</code>. Przy takim zapisie należy także w argumencie <code>data</code> podać nazwę zbioru danych.</p>
+<p>W porównaniu do wcześniej opisanych funkcji, <code>aov()</code> nie zwraca w bezpośrednim wyniku wartości p.&nbsp;Aby uzyskać tę wartość należy wynik działania tej funkcji przypisać do obiektu, a następnie na nim wywołać funkcję <code>summary()</code>.</p>
+<p>W przypadku odrzucenia hipotezy zerowej można przeprowadzić test Tukeya w celu identyfikacji różniących się par wykorzystując funkcję <code>TukeyHSD()</code> i jako argument podając obiekt zawierający wynik ANOVA.</p>
+<p>W sytuacji, w której założenia użycia testu parametrycznego nie są spełnione, należy skorzystać z testów nieparametrycznych. W przypadku testowania miar tendencji centralnej różnica pomiędzy testami parametrycznymi a nieparametrycznymi polega na zastąpieniu wartości średniej medianą. Z punktu widzenia obliczeń w miejsce oryginalnych wartości cechy wprowadza się rangi czyli następuje osłabienie skali pomiarowej - z ilorazowej na porządkową.</p>
+</section>
+<section id="test-wilcoxona" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="test-wilcoxona"><span class="header-section-number">4.6.3</span> Test Wilcoxona</h3>
+<p>Test Wilcoxona jest nieparametryczną wersją testu t. Hipotezy w tym teście dotyczą równości rozkładów:</p>
+<ul>
+<li><span class="math inline">\(H_0: F_1=F_2\)</span></li>
+<li><span class="math inline">\(H_1: F_1 \neq F_2\)</span></li>
+</ul>
+<p>Wartość statystyki testowej będzie zależna od typu testu, natomiast w R funkcja, której należy użyć to <code>wilcox.test()</code>. Argumenty tej funkcji są takie same jak w przypadku testu t.</p>
+</section>
+<section id="test-kruskala-wallisa" class="level3" data-number="4.6.4">
+<h3 data-number="4.6.4" class="anchored" data-anchor-id="test-kruskala-wallisa"><span class="header-section-number">4.6.4</span> Test Kruskala-Wallisa</h3>
+<p>Z kolei test Kruskala-Wallisa jest nieparametrycznym odpowiednikiem ANOVA. Hipotezy są następujące:</p>
+<ul>
+<li><span class="math inline">\(H_0: F_1=F_2=F_3=...=F_k\)</span></li>
+<li><span class="math inline">\(H_1: \exists_{i,j\in\{1,..,k\}} \; F_i \neq F_j\)</span></li>
+</ul>
+<p>W programie R korzysta się z funkcji <code>kruskal.test()</code>, która przyjmuje takie same argumenty jak funkcja do metody ANOVA <code>aov()</code>. Główną różnicą jest sposób podawania wyniku testu, ponieważ w tym przypadku od razu otrzymujemy wartość p.&nbsp;W przypadku odrzucenia hipotezy zerowej należy sprawdzić, które grupy różnią się między sobą. Można to zrobić za pomocą funkcji <code>pairwise.wilcox.test()</code>.</p>
+<p><strong>Przykład</strong></p>
+<p>Sprawdzimy czy średni poziom PM10 w latach 2015 i 2016 różnił się od siebie.</p>
+<p><span class="math inline">\(H_0\)</span>: średni poziom PM10 w obu latach nie różni się</p>
+<p><span class="math inline">\(H_1\)</span>: średni poziom PM10 w obu latach różni się</p>
+<p>W związku z tym, że badana cecha nie ma rozkładu normalnego zostanie przeprowadzony test Wilcoxona. Mamy tutaj do czynienia z testem dla prób niezależnych - badana jest jedna cecha (poziom PM10) w ramach rozłącznych grup.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  smog_2015_2016$pm10
+W = 0.68989, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  smog_2015_2016$pm10 by smog_2015_2016$rok
+W = 66028, p-value = 0.1903
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>Przyjmując poziom istotności <span class="math inline">\(\alpha = 0,05\)</span> nie mamy podstaw do odrzucenia <span class="math inline">\(H_0\)</span> - średni poziom PM10 w obu latach nie różni się.</p>
+<p><strong>Przykład</strong></p>
+<p>Czy minimalna i maksymalna temperatura w ciągu dnia różni się od siebie w sposób istotny?</p>
+<p><span class="math inline">\(H_0\)</span>: minimalna i maksymalna temperatura w ciągu dnia nie różni się istotnie</p>
+<p><span class="math inline">\(H_1\)</span>: minimalna i maksymalna temperatura w ciągu dnia różni się istotnie</p>
+<p>W pierwszej kolejności weryfikujemy normalność rozkładu analizowanych cech.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>smog_2019 <span class="ot">&lt;-</span> smog <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rok <span class="sc">==</span> <span class="dv">2019</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(smog_2019<span class="sc">$</span>tmin_daily)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  smog_2019$tmin_daily
+W = 0.98742, p-value = 0.002985</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(smog_2019<span class="sc">$</span>tmax_daily)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  smog_2019$tmax_daily
+W = 0.97936, p-value = 4.377e-05</code></pre>
+</div>
+</div>
+<p>Temperatura w tym zbiorze danych nie ma rozkładu normalnego. W tym przypadku analizujemy próby zależne - badamy dwie różne cechy dla tych samych jednostek (obserwacji).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(<span class="at">x =</span> smog_2019<span class="sc">$</span>tmin_daily, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> smog_2019<span class="sc">$</span>tmax_daily,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  smog_2019$tmin_daily and smog_2019$tmax_daily
+V = 0, p-value &lt; 2.2e-16
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>Na podstawie podanej wartości p odrzucamy <span class="math inline">\(H_0\)</span> - minimalna i maksymalna temperatura w ciągu dnia różni się istotnie.</p>
+<p><strong>Przykład</strong></p>
+<p>Analogicznie można także sprawdzić czy np. poziom PM10 różni się w pomiędzy kwartałami - w takim przypadku rozpatrujemy głównie próby niezależne.</p>
+<p><span class="math inline">\(H_0\)</span>: poziom PM10 nie różni się w pomiędzy kwartałami</p>
+<p><span class="math inline">\(H_1\)</span>: poziom PM10 różni się w pomiędzy kwartałami - co najmniej jedna para jest różna</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(smog_2019<span class="sc">$</span>pm10 <span class="sc">~</span> smog_2019<span class="sc">$</span>kwartal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  smog_2019$pm10 by smog_2019$kwartal
+Kruskal-Wallis chi-squared = 83.318, df = 3, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Przyjmując poziom istotności <span class="math inline">\(\alpha = 0,05\)</span> odrzucamy hipotezę zerową - dla co najmniej jedna pary kwartałów występuje istotna różnica.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-przetwarzanie.html" class="pagination-link" aria-label="Wczytywanie i przetwarzanie danych">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wczytywanie i przetwarzanie danych</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-wizualizacja.html" class="pagination-link" aria-label="Wizualizacja danych">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
