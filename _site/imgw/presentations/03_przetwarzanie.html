@@ -101,6 +101,20 @@ project/
 
 ---
 
+# Wykorzystywane pliki
+
+- [Wybory](http://wawrowski.edu.pl/data/wybory2025.csv)
+
+- [Movies](http://wawrowski.edu.pl/data/movies.csv)
+
+- [GUS](http://wawrowski.edu.pl/data/gus.RData)
+
+- [CRU](http://wawrowski.edu.pl/data/cru10min30_tmp.nc)
+
+Alternatywnie: https://github.com/lwawrowski/blog-quarto/tree/master/_site/data
+
+---
+
 # Pliki tekstowe i csv
 
 Pakiet _readr_:
@@ -186,11 +200,11 @@ Zapisywanie do pliku Excela z pakietem _openxlsx_:
 
 # Wczytanie zbioru danych
 
-Importujemy zbiór danych dotyczący wyników wyborów parlamentarnych w 2023 roku.
+Importujemy zbiór danych dotyczący wyników wyborów prezydenckich w 2025 roku.
 
-Plik z danymi: http://wawrowski.edu.pl/data/wybory2023.csv
+Plik z danymi: http://wawrowski.edu.pl/data/wybory2025.csv
 
-[Źródło](https://wybory.gov.pl/sejmsenat2023/pl/dane_w_arkuszach)
+[Źródło](https://www.wybory.gov.pl/prezydent2025/pl/dane_w_arkuszach)
 
 ---
 
@@ -200,7 +214,7 @@ class: inverse
 
 Wywołaj funkcję `summary()` na wczytanym zbiorze danych.
 
-<div class="countdown" id="timer_a794f23d" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_ad5358f7" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -233,9 +247,9 @@ class: inverse
 
 Wczytaj do R plik movies: http://wawrowski.edu.pl/data/movies.csv i wywołaj na nim funkcję `summary()`.
 
-<div class="countdown" id="timer_5760ba98" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_6ac91114" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -359,7 +373,7 @@ iris_setosa &lt;- iris %&gt;%
 
 --
 
-Znak `%&gt;%` oznacza, że jako argument wejściowy `data` w kolejnej funkcji zostanie wpisany wynik działania wcześniejszej funkcji.
+Znak `%&gt;%` oznacza, że jako argument wejściowy `data` w kolejnej funkcji zostanie wpisany wynik działania wcześniejszej funkcji. Można także wykorzystać natywny pipe `|&gt;`.
 
 Skrót klawiszowy: ctrl + shift + m
 
@@ -417,7 +431,7 @@ class: inverse
 
 Utwórz zbiór danych zawierający filmy, które są filmami akcji, miały swoją premierę po 2010 roku i trwały co najmniej 120 minut lub miały ocenę powyżej 8.0. Alternatywa ma dotyczyć tylko dwóch ostatnich warunków.
 
-<div class="countdown" id="timer_9c556945" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_2e66c59e" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -443,6 +457,21 @@ tylko z wykorzystaniem funkcji `is.na()`:
 - `!is.na(zmienna)`
 
 Funkcja `complete.cases()` służy do identyfikacji obserwacji, które nie zawierają braków danych w całym zbiorze danych.
+
+---
+
+class: inverse
+
+# Zadania
+
+<div class="countdown" id="timer_027541f5" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+1. Ile obwodów głosowania miało frekwencję powyżej 80%?
+
+2. Ile obwodów głosowania znajduje się w Poznaniu?   
 
 ---
 
@@ -559,12 +588,22 @@ class: inverse
 
 # Zadanie
 
-W zbiorze dotyczącym wyborów stwórz nowe zmienne, które będą zawierały procentowy wynik komitetów.
+W zbiorze dotyczącym wyborów stwórz nowe zmienne, które będą zawierały procentowy wynik kandydatów. Gdzie była największa różnica pomiędzy wybranymi kandydatami?
 
-<div class="countdown" id="timer_3e91aa72" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_cfee9e0c" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
+
+---
+
+# Warunkowe tworzenie zmiennej
+
+Funkcje pozwalające na warunkowe tworzenie nowej zmiennej:
+
+- `if_else(condition, true, false)`
+
+- `case_when(condtion1 ~ value1, condition2 ~ value2, .default = value3)`
 
 ---
 
@@ -591,7 +630,7 @@ class: inverse
 
 Ile wynosiła średnia, mediana i odchylenie standardowe wartości frekwencji?
 
-<div class="countdown" id="timer_ec82dfb0" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_b022d308" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -671,10 +710,26 @@ class: inverse
 
 Oblicz liczbę komisji w poszczególnych województwach oraz średnią liczbę nieważnych głosów.
 
-<div class="countdown" id="timer_625d0c2a" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_c6919a47" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
+
+---
+
+class: inverse
+
+# Zadanie
+
+<div class="countdown" id="timer_b79bdd43" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+W jakich krajach i miastach za granicą utworzono najwięcej obwodów głosowania?
+
+
+
 
 ---
 
@@ -692,7 +747,7 @@ class: inverse
 
 Po wczytaniu zbioru danych [gus.RData](http://wawrowski.edu.pl/data/gus.RData) połącz ze sobą zbiory danych zawierające informacje o liczbie przedsiębiorstw na 10 tys. mieszkańców (zbiór _pod_10tys_), stopie bezrobocia (zbiór _bezrobocie_) oraz wynagrodzeniu (zbiór _wyn_).
 
-<div class="countdown" id="timer_45e7f549" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_5a007e1f" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -786,22 +841,14 @@ head(iris_wide)
 
 class: inverse
 
-# Zadania
+# Zadanie
 
-<div class="countdown" id="timer_efd55cab" data-update-every="1" tabindex="0" style="top:0;right:0;">
+Stwórz zbiór danych, który będzie zawierał średni wynik kandydatów w przekroju województw, na następnie zamień reprezentację tego zbioru na reprezentację długą.
+
+<div class="countdown" id="timer_edb230c1" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
-
-1. Ile obwodów głosowania miało frekwencję powyżej 80%?
-
-2. Ile obwodów głosowania znajduje się w Poznaniu?   
-
-3. Jaka była średnia frekwencja w województwach?
-
-4. Gdzie była największa różnica pomiędzy wybranymi partiami?
-
-5. W jakich miastach za granicą utworzono najwięcej obwodów głosowania?
 
 
 
