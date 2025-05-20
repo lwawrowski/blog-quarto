@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Podstawy programowania</title>
+    <title>Język R</title>
     <meta charset="utf-8" />
     <meta name="author" content="© Łukasz Wawrowski" />
-    <script src="libs/header-attrs-2.22/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
     <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
     <script src="libs/countdown-0.4.0/countdown.js"></script>
     <link rel="stylesheet" href="default.css" type="text/css" />
@@ -15,7 +15,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Podstawy programowania
+# Język R
 ]
 .subtitle[
 ## Programowanie
@@ -101,7 +101,7 @@ text_input()
 # Składnia funkcji
 
 
-```r
+``` r
 oblicz_srednia &lt;- function(liczby, zaokraglenie = 2){
 
   srednia &lt;- mean(liczby)
@@ -121,7 +121,7 @@ oblicz_srednia(temp)
 ## [1] 5.38
 ```
 
-```r
+``` r
 oblicz_srednia(liczby = temp, zaokraglenie = 0)
 ```
 
@@ -171,7 +171,7 @@ class: inverse
 Stwórz funkcję, która będzie normalizować wartości cechy w zakresie od 0 do 1 według wzoru:
 
 `$$z = \frac{x - min(x)}{max(x)-min(x)}$$`
-<div class="countdown" id="timer_25062307" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_2235c189" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -207,7 +207,7 @@ Szczególnie przydatne w funkcjach do sprawdzania poprawności argumentów wejś
 # Porównywanie
 
 
-```r
+``` r
 x &lt;- 4
 x
 ```
@@ -216,7 +216,7 @@ x
 ## [1] 4
 ```
 
-```r
+``` r
 x == 4
 ```
 
@@ -224,7 +224,7 @@ x == 4
 ## [1] TRUE
 ```
 
-```r
+``` r
 length(x) &gt; 0
 ```
 
@@ -232,7 +232,7 @@ length(x) &gt; 0
 ## [1] TRUE
 ```
 
-```r
+``` r
 x == NA
 ```
 
@@ -240,7 +240,7 @@ x == NA
 ## [1] NA
 ```
 
-```r
+``` r
 is.na(x)
 ```
 
@@ -255,7 +255,7 @@ is.na(x)
 Dopuszczalne operatory łączenia: `&amp;&amp;` (i), `||` (lub).
 
 
-```r
+``` r
 x &lt;- 4
 x
 ```
@@ -264,7 +264,7 @@ x
 ## [1] 4
 ```
 
-```r
+``` r
 x &gt; 2 &amp;&amp; x &lt; 6
 ```
 
@@ -272,7 +272,7 @@ x &gt; 2 &amp;&amp; x &lt; 6
 ## [1] TRUE
 ```
 
-```r
+``` r
 x &gt; 2 &amp;&amp; x &lt; 3
 ```
 
@@ -280,7 +280,7 @@ x &gt; 2 &amp;&amp; x &lt; 3
 ## [1] FALSE
 ```
 
-```r
+``` r
 x &gt; 2 || x &lt; 3
 ```
 
@@ -313,7 +313,7 @@ Napisz funkcję, która na podstawie wartości liczby który zwróci różne kom
 Operator zwracający resztę z dzielenia to `%%`:
 
 
-```r
+``` r
 10 %% 2
 ```
 
@@ -321,7 +321,7 @@ Operator zwracający resztę z dzielenia to `%%`:
 ## [1] 0
 ```
 
-```r
+``` r
 10 %% 3
 ```
 
@@ -329,7 +329,7 @@ Operator zwracający resztę z dzielenia to `%%`:
 ## [1] 1
 ```
 
-<div class="countdown" id="timer_f99a3663" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_aa2e72ad" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -373,7 +373,7 @@ for(iterator in zakres){
 # Wypisanie nazw miesięcy
 
 
-```r
+``` r
 for(month in 1:length(month.name)){
 
   print(month.name[month])
@@ -401,7 +401,7 @@ for(month in 1:length(month.name)){
 # Wypisanie nazw miesięcy
 
 
-```r
+``` r
 for(month in seq_along(month.name)){
 
   print(month.name[month])
@@ -433,7 +433,7 @@ for(month in seq_along(month.name)){
 ???
 
 
-```r
+``` r
 wynik_kostka &lt;- numeric(100)
 
 for(rzut in seq_along(wynik_kostka)){
@@ -448,7 +448,7 @@ table(wynik_kostka)
 ```
 ## wynik_kostka
 ##  1  2  3  4  5  6 
-## 19 12 18 18 16 17
+## 18 18 21 19 14 10
 ```
 
 ---
@@ -458,7 +458,7 @@ table(wynik_kostka)
 Ile liczb w wektorze jest dodatnich.
 
 
-```r
+``` r
 liczby &lt;- sample(x = seq(-100,100,1), size = 10000, replace = T)
 ```
 
@@ -466,7 +466,7 @@ liczby &lt;- sample(x = seq(-100,100,1), size = 10000, replace = T)
 .pull-left[
 
 
-```r
+``` r
 f_petla &lt;- function(x){
   
   wynik &lt;- logical(length(x))
@@ -485,14 +485,14 @@ f_petla(liczby)
 ```
 
 ```
-## [1] 4936
+## [1] 4907
 ```
 ]
 
 .pull-right[
 
 
-```r
+``` r
 f_wektor &lt;- function(x){
   
   wynik &lt;- x &gt; 0
@@ -504,7 +504,7 @@ f_wektor(liczby)
 ```
 
 ```
-## [1] 4936
+## [1] 4907
 ```
 
 ]
@@ -514,15 +514,15 @@ f_wektor(liczby)
 # Wektoryzacja
 
 
-```r
+``` r
 microbenchmark::microbenchmark(f_petla(liczby), f_wektor(liczby))
 ```
 
 ```
 ## Unit: microseconds
-##              expr     min       lq      mean  median       uq      max neval
-##   f_petla(liczby) 605.902 620.2515 636.55099 625.201 631.7515 1087.501   100
-##  f_wektor(liczby)  40.601  48.6510  66.86496  49.602  50.5005 1794.601   100
+##              expr   min    lq    mean median     uq    max neval
+##   f_petla(liczby) 252.4 259.1 265.010 262.10 265.75  406.2   100
+##  f_wektor(liczby)  22.2  27.4  39.608  28.35  30.30 1094.0   100
 ```
 
 
@@ -544,18 +544,24 @@ class: inverse
 
 Napisz pętlę, która wyświetli tekst piosenki [99 bottles of beer on the wall](https://pl.wikipedia.org/wiki/99_Bottles_of_Beer)
 
-<div class="countdown" id="timer_d57d2d36" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_e0803e59" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
+
+---
+
+class: inverse, center, middle
+
+# Pytania?
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

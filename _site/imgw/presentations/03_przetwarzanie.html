@@ -214,7 +214,7 @@ class: inverse
 
 Wywołaj funkcję `summary()` na wczytanym zbiorze danych.
 
-<div class="countdown" id="timer_ad5358f7" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_b4d9db1f" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -247,7 +247,7 @@ class: inverse
 
 Wczytaj do R plik movies: http://wawrowski.edu.pl/data/movies.csv i wywołaj na nim funkcję `summary()`.
 
-<div class="countdown" id="timer_6ac91114" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_2e15cb36" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -431,7 +431,7 @@ class: inverse
 
 Utwórz zbiór danych zawierający filmy, które są filmami akcji, miały swoją premierę po 2010 roku i trwały co najmniej 120 minut lub miały ocenę powyżej 8.0. Alternatywa ma dotyczyć tylko dwóch ostatnich warunków.
 
-<div class="countdown" id="timer_2e66c59e" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_f2841c4e" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -456,7 +456,7 @@ tylko z wykorzystaniem funkcji `is.na()`:
 
 - `!is.na(zmienna)`
 
-Funkcja `complete.cases()` służy do identyfikacji obserwacji, które nie zawierają braków danych w całym zbiorze danych.
+Funkcja `drop_na()` służy do usunięcia obserwacji, które zawierają braki danych w całym zbiorze danych.
 
 ---
 
@@ -464,14 +464,12 @@ class: inverse
 
 # Zadania
 
-<div class="countdown" id="timer_027541f5" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_23bcb39d" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
-1. Ile obwodów głosowania miało frekwencję powyżej 80%?
-
-2. Ile obwodów głosowania znajduje się w Poznaniu?   
+Ile obwodów głosowania znajduje się w Poznaniu?   
 
 ---
 
@@ -590,7 +588,7 @@ class: inverse
 
 W zbiorze dotyczącym wyborów stwórz nowe zmienne, które będą zawierały procentowy wynik kandydatów. Gdzie była największa różnica pomiędzy wybranymi kandydatami?
 
-<div class="countdown" id="timer_cfee9e0c" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_8fa28e06" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -604,6 +602,43 @@ Funkcje pozwalające na warunkowe tworzenie nowej zmiennej:
 - `if_else(condition, true, false)`
 
 - `case_when(condtion1 ~ value1, condition2 ~ value2, .default = value3)`
+
+---
+
+class: inverse
+
+# Zadanie
+
+Ile obwodów głosowania miało frekwencję powyżej 80%?
+
+<div class="countdown" id="timer_b36a9362" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse
+
+# Zadanie
+
+<div class="countdown" id="timer_08678307" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+Wczytaj zbiór danych dotyczący pomiarów jakości powietrza i warunków atmosferycznych: [smog w Pszczynie](http://wawrowski.edu.pl/data/smog_pszczyna.csv). Twoim zadaniem jest przekształcenie tego zbioru w poniższy sposób, wykorzystując **funkcje `tidyverse` w jednym pipeline**:
+
+1. Usuń wszystkie wiersze, w których brakuje danych w kolumnie `pm10`.
+2. Wybierz tylko kolumny: `data`, `pm10`, `tmax_daily`, `tmin_daily`, `t2m_mean_daily`, `ws_mean_daily`, `cloud_mean_daily`, `poziom`.
+3. Zmień nazwę kolumny `t2m_mean_daily` na `tmean_daily`, `ws_mean_daily` na `wiatr` i `cloud_mean_daily` na `zachmurzenie`.
+4. Na podstawie wartości `tmean_daily` utwórz nową kolumnę `kategoria_temp`, w której:
+
+   * jeśli temperatura &lt; -10 → `"ekstremalnie zimno"`
+   * -10 ≤ temperatura &lt; 0 → `"zimno"`
+   * 0 ≤ temperatura &lt; 10 → `"chłodno"`
+   * 10 ≤ temperatura &lt; 20 → `"umiarkowanie"`
+   * temperatura ≥ 20 → `"ciepło"`
 
 ---
 
@@ -630,7 +665,7 @@ class: inverse
 
 Ile wynosiła średnia, mediana i odchylenie standardowe wartości frekwencji?
 
-<div class="countdown" id="timer_b022d308" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_7b3b6acf" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -710,7 +745,7 @@ class: inverse
 
 Oblicz liczbę komisji w poszczególnych województwach oraz średnią liczbę nieważnych głosów.
 
-<div class="countdown" id="timer_c6919a47" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_2bbebcbb" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -721,7 +756,7 @@ class: inverse
 
 # Zadanie
 
-<div class="countdown" id="timer_b79bdd43" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_ce7be6dd" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -747,7 +782,7 @@ class: inverse
 
 Po wczytaniu zbioru danych [gus.RData](http://wawrowski.edu.pl/data/gus.RData) połącz ze sobą zbiory danych zawierające informacje o liczbie przedsiębiorstw na 10 tys. mieszkańców (zbiór _pod_10tys_), stopie bezrobocia (zbiór _bezrobocie_) oraz wynagrodzeniu (zbiór _wyn_).
 
-<div class="countdown" id="timer_5a007e1f" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_2fcfd5db" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -845,13 +880,10 @@ class: inverse
 
 Stwórz zbiór danych, który będzie zawierał średni wynik kandydatów w przekroju województw, na następnie zamień reprezentację tego zbioru na reprezentację długą.
 
-<div class="countdown" id="timer_edb230c1" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_bf6ae8f5" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
-
-
-
 
 ---
 

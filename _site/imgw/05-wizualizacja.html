@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Wizualizacja danych – Materiały szkoleniowe dla IMGW z języka R</title>
+<title>4&nbsp; Wizualizacja danych – Materiały szkoleniowe dla IMGW z języka R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./06-programowanie.html" rel="next">
-<link href="./04-statystyka.html" rel="prev">
+<link href="./03-przetwarzanie.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-wizualizacja.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-wizualizacja.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,20 +168,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-statystyka.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./05-wizualizacja.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-programowanie.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-statystyka.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -200,25 +200,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</a></li>
-  <li><a href="#pakiet-graphics" id="toc-pakiet-graphics" class="nav-link" data-scroll-target="#pakiet-graphics"><span class="header-section-number">5.2</span> Pakiet graphics</a>
+  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</a></li>
+  <li><a href="#pakiet-graphics" id="toc-pakiet-graphics" class="nav-link" data-scroll-target="#pakiet-graphics"><span class="header-section-number">4.2</span> Pakiet graphics</a>
   <ul class="collapse">
-  <li><a href="#wykres-punktowy" id="toc-wykres-punktowy" class="nav-link" data-scroll-target="#wykres-punktowy"><span class="header-section-number">5.2.1</span> Wykres punktowy</a></li>
-  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">5.2.2</span> Histogram</a></li>
-  <li><a href="#wykres-słupkowy" id="toc-wykres-słupkowy" class="nav-link" data-scroll-target="#wykres-słupkowy"><span class="header-section-number">5.2.3</span> Wykres słupkowy</a></li>
+  <li><a href="#wykres-punktowy" id="toc-wykres-punktowy" class="nav-link" data-scroll-target="#wykres-punktowy"><span class="header-section-number">4.2.1</span> Wykres punktowy</a></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">4.2.2</span> Histogram</a></li>
+  <li><a href="#wykres-słupkowy" id="toc-wykres-słupkowy" class="nav-link" data-scroll-target="#wykres-słupkowy"><span class="header-section-number">4.2.3</span> Wykres słupkowy</a></li>
   </ul></li>
-  <li><a href="#pakiet-ggplot2" id="toc-pakiet-ggplot2" class="nav-link" data-scroll-target="#pakiet-ggplot2"><span class="header-section-number">5.3</span> Pakiet ggplot2</a>
+  <li><a href="#pakiet-ggplot2" id="toc-pakiet-ggplot2" class="nav-link" data-scroll-target="#pakiet-ggplot2"><span class="header-section-number">4.3</span> Pakiet ggplot2</a>
   <ul class="collapse">
-  <li><a href="#wykres-punktowy-1" id="toc-wykres-punktowy-1" class="nav-link" data-scroll-target="#wykres-punktowy-1"><span class="header-section-number">5.3.1</span> Wykres punktowy</a></li>
+  <li><a href="#wykres-punktowy-1" id="toc-wykres-punktowy-1" class="nav-link" data-scroll-target="#wykres-punktowy-1"><span class="header-section-number">4.3.1</span> Wykres punktowy</a></li>
   </ul></li>
-  <li><a href="#histogram-1" id="toc-histogram-1" class="nav-link" data-scroll-target="#histogram-1"><span class="header-section-number">5.4</span> Histogram</a></li>
-  <li><a href="#wykres-pudełkowy" id="toc-wykres-pudełkowy" class="nav-link" data-scroll-target="#wykres-pudełkowy"><span class="header-section-number">5.5</span> Wykres pudełkowy</a></li>
-  <li><a href="#wykres-słupkowy-1" id="toc-wykres-słupkowy-1" class="nav-link" data-scroll-target="#wykres-słupkowy-1"><span class="header-section-number">5.6</span> Wykres słupkowy</a></li>
-  <li><a href="#wykres-kafelkowy" id="toc-wykres-kafelkowy" class="nav-link" data-scroll-target="#wykres-kafelkowy"><span class="header-section-number">5.7</span> Wykres kafelkowy</a></li>
-  <li><a href="#uwzględnienie-czasu" id="toc-uwzględnienie-czasu" class="nav-link" data-scroll-target="#uwzględnienie-czasu"><span class="header-section-number">5.8</span> Uwzględnienie czasu</a></li>
-  <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets"><span class="header-section-number">5.9</span> Facets</a></li>
-  <li><a href="#wykres-interaktywny" id="toc-wykres-interaktywny" class="nav-link" data-scroll-target="#wykres-interaktywny"><span class="header-section-number">5.10</span> Wykres interaktywny</a></li>
-  <li><a href="#zadania" id="toc-zadania" class="nav-link" data-scroll-target="#zadania"><span class="header-section-number">5.11</span> Zadania</a></li>
+  <li><a href="#histogram-1" id="toc-histogram-1" class="nav-link" data-scroll-target="#histogram-1"><span class="header-section-number">4.4</span> Histogram</a></li>
+  <li><a href="#wykres-pudełkowy" id="toc-wykres-pudełkowy" class="nav-link" data-scroll-target="#wykres-pudełkowy"><span class="header-section-number">4.5</span> Wykres pudełkowy</a></li>
+  <li><a href="#wykres-słupkowy-1" id="toc-wykres-słupkowy-1" class="nav-link" data-scroll-target="#wykres-słupkowy-1"><span class="header-section-number">4.6</span> Wykres słupkowy</a></li>
+  <li><a href="#wykres-kafelkowy" id="toc-wykres-kafelkowy" class="nav-link" data-scroll-target="#wykres-kafelkowy"><span class="header-section-number">4.7</span> Wykres kafelkowy</a></li>
+  <li><a href="#uwzględnienie-czasu" id="toc-uwzględnienie-czasu" class="nav-link" data-scroll-target="#uwzględnienie-czasu"><span class="header-section-number">4.8</span> Uwzględnienie czasu</a></li>
+  <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets"><span class="header-section-number">4.9</span> Facets</a></li>
+  <li><a href="#wykres-interaktywny" id="toc-wykres-interaktywny" class="nav-link" data-scroll-target="#wykres-interaktywny"><span class="header-section-number">4.10</span> Wykres interaktywny</a></li>
+  <li><a href="#zadania" id="toc-zadania" class="nav-link" data-scroll-target="#zadania"><span class="header-section-number">4.11</span> Zadania</a></li>
   </ul>
 </nav>
     </div>
@@ -227,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></h1>
 </div>
 
 
@@ -244,8 +244,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="wprowadzenie" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</h2>
+<p><a href="presentations/04_wizualizacja.html">Prezentacja</a></p>
+<section id="wprowadzenie" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</h2>
 <p>Będziemy działać na zbiorze dotyczącym sprzedaży w sklepach: <a href="http://wawrowski.edu.pl/data/rossmann.xlsx">rossmann.xlsx</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -257,12 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sklep_id<span class="sc">==</span><span class="dv">77</span>, czy_otwarty<span class="sc">==</span><span class="st">"Tak"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="pakiet-graphics" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="pakiet-graphics"><span class="header-section-number">5.2</span> Pakiet graphics</h2>
+<section id="pakiet-graphics" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="pakiet-graphics"><span class="header-section-number">4.2</span> Pakiet graphics</h2>
 <p>Do prostych wykresów można wykorzystać wbudowane funkcje z pakietu <code>graphics</code>.</p>
 <p>Pakiet <code>graphics</code> oferuje podstawowe funkcje do tworzenia wykresów w R. Ten pakiet jest szybki, prosty i wystarczający do wielu typowych zastosowań.</p>
-<section id="wykres-punktowy" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="wykres-punktowy"><span class="header-section-number">5.2.1</span> Wykres punktowy</h3>
+<section id="wykres-punktowy" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="wykres-punktowy"><span class="header-section-number">4.2.1</span> Wykres punktowy</h3>
 <p>Funkcja <code>plot()</code> jest bardzo elastyczna i może tworzyć różne typy wykresów w zależności od typu danych.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -318,8 +319,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>lwd</code>: grubość linii.</li>
 </ul>
 </section>
-<section id="histogram" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="histogram"><span class="header-section-number">5.2.2</span> Histogram</h3>
+<section id="histogram" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="histogram"><span class="header-section-number">4.2.2</span> Histogram</h3>
 <p>Służy do przedstawienia rozkładu zmiennej ciągłej.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
@@ -340,8 +341,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>main</code>, <code>xlab</code>: tytuł i etykieta osi.</li>
 </ul>
 </section>
-<section id="wykres-słupkowy" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="wykres-słupkowy"><span class="header-section-number">5.2.3</span> Wykres słupkowy</h3>
+<section id="wykres-słupkowy" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="wykres-słupkowy"><span class="header-section-number">4.2.3</span> Wykres słupkowy</h3>
 <p>Używany głównie do prezentacji danych kategorycznych.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>))</span>
@@ -364,16 +365,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="pakiet-ggplot2" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="pakiet-ggplot2"><span class="header-section-number">5.3</span> Pakiet ggplot2</h2>
+<section id="pakiet-ggplot2" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="pakiet-ggplot2"><span class="header-section-number">4.3</span> Pakiet ggplot2</h2>
 <p>Wiodącym pakietem do wizualizacji danych w R jest obecnie ggplot2:</p>
 <ul>
 <li>dokumentacja: https://ggplot2.tidyverse.org/</li>
 <li><a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">cheatsheet</a></li>
 <li>tworzenie wykresów poprzez dodawanie (<code>+</code>) kolejnych warstw</li>
 </ul>
-<section id="wykres-punktowy-1" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="wykres-punktowy-1"><span class="header-section-number">5.3.1</span> Wykres punktowy</h3>
+<section id="wykres-punktowy-1" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="wykres-punktowy-1"><span class="header-section-number">4.3.1</span> Wykres punktowy</h3>
 <p>Ten sam wykres co wcześniej, ale z wykorzystaniem pakietu ggplot2.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -567,8 +568,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="histogram-1" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="histogram-1"><span class="header-section-number">5.4</span> Histogram</h2>
+<section id="histogram-1" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="histogram-1"><span class="header-section-number">4.4</span> Histogram</h2>
 <p>Rozkład cechy można ocenić na podstawie histogramu - domyślnie rysowanych jest 30 słupków.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sklep77, <span class="fu">aes</span>(<span class="at">x=</span>sprzedaz)) <span class="sc">+</span></span>
@@ -654,8 +655,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="wykres-pudełkowy" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="wykres-pudełkowy"><span class="header-section-number">5.5</span> Wykres pudełkowy</h2>
+<section id="wykres-pudełkowy" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="wykres-pudełkowy"><span class="header-section-number">4.5</span> Wykres pudełkowy</h2>
 <p>Wykres pudełkowy umożliwia porównywanie rozkładów cechy wg zmiennej grupującej. Wymogiem jest aby na osi <code>x</code> znajdowała się zmienna grupująca, a na osi <code>y</code> cecha analizowana.</p>
 <p>Przeanalizujemy sprzedaż według kolejnych dni tygodnia.</p>
 <div class="cell">
@@ -717,8 +718,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="wykres-słupkowy-1" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="wykres-słupkowy-1"><span class="header-section-number">5.6</span> Wykres słupkowy</h2>
+<section id="wykres-słupkowy-1" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="wykres-słupkowy-1"><span class="header-section-number">4.6</span> Wykres słupkowy</h2>
 <p>W zależności od typu danych wejściowych, wykres słupkowy można stworzyć na dwa sposoby:</p>
 <ul>
 <li>dane jednostkowe - <code>geom_bar</code> - funkcja sama oblicza wartości do wyświetlenia,</li>
@@ -854,8 +855,8 @@ $ n           &lt;int&gt; 9, 593, 513</code></pre>
 </div>
 </div>
 </section>
-<section id="wykres-kafelkowy" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="wykres-kafelkowy"><span class="header-section-number">5.7</span> Wykres kafelkowy</h2>
+<section id="wykres-kafelkowy" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="wykres-kafelkowy"><span class="header-section-number">4.7</span> Wykres kafelkowy</h2>
 <p>Do wizualizacji tabeli częstości można użyć wykresu kafelkowego. W tym celu najpierw zliczamy wystąpienia wariantów cech czy_promocja oraz czy_swieto_szkolne i wynik przekazujemy bezpośrednio do funkcji <code>ggplot()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sklep77 <span class="sc">%&gt;%</span></span>
@@ -909,8 +910,8 @@ $ n           &lt;int&gt; 9, 593, 513</code></pre>
 </div>
 </div>
 </section>
-<section id="uwzględnienie-czasu" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="uwzględnienie-czasu"><span class="header-section-number">5.8</span> Uwzględnienie czasu</h2>
+<section id="uwzględnienie-czasu" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="uwzględnienie-czasu"><span class="header-section-number">4.8</span> Uwzględnienie czasu</h2>
 <p>Próba stworzenia wykresu przedstawiającego zmianę sprzedaży w czasie za pomocą oryginalnych danych spowoduje uzyskanie niezbyt czytelnej grafiki.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sklep77, <span class="fu">aes</span>(<span class="at">x=</span>data,</span>
@@ -962,8 +963,8 @@ $ n           &lt;int&gt; 9, 593, 513</code></pre>
 </div>
 </div>
 </section>
-<section id="facets" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="facets"><span class="header-section-number">5.9</span> Facets</h2>
+<section id="facets" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="facets"><span class="header-section-number">4.9</span> Facets</h2>
 <p>Wykorzystanie płaszczyzn (ang. facets) pozwala na dodawanie kolejnych cech jakościowych do wykresów nawet w przypadku wyczerpania wszystkich domyślnych ról takich jak <code>fill</code>, <code>color</code> czy <code>shape</code>. W przypadku jednej cechy jej użycie musimy poprzedzić symbolem tyldy.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sklep77, <span class="fu">aes</span>(<span class="at">x=</span>sprzedaz, <span class="at">y=</span>liczba_klientow)) <span class="sc">+</span></span>
@@ -1004,8 +1005,8 @@ $ n           &lt;int&gt; 9, 593, 513</code></pre>
 </div>
 </div>
 </section>
-<section id="wykres-interaktywny" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="wykres-interaktywny"><span class="header-section-number">5.10</span> Wykres interaktywny</h2>
+<section id="wykres-interaktywny" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="wykres-interaktywny"><span class="header-section-number">4.10</span> Wykres interaktywny</h2>
 <p>Za pomocą pakietu <code>plotly</code> w prosty sposób można zamienić statystyczny wykres <code>ggplot</code> na interaktywny.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
@@ -1022,8 +1023,8 @@ $ n           &lt;int&gt; 9, 593, 513</code></pre>
 <span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="zadania" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="zadania"><span class="header-section-number">5.11</span> Zadania</h2>
+<section id="zadania" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="zadania"><span class="header-section-number">4.11</span> Zadania</h2>
 <p>Wczytaj zbiór danych <a href="http://wawrowski.edu.pl/data/movies.csv">movies.csv</a> zawierający dane dotyczące filmów.</p>
 <ol type="1">
 <li>Stwórz wykres przedstawiający zależność pomiędzy oceną a długością filmu.</li>
@@ -1513,13 +1514,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04-statystyka.html" class="pagination-link" aria-label="Statystyka opisowa">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statystyka opisowa</span></span>
+      <a href="./03-przetwarzanie.html" class="pagination-link" aria-label="Wczytywanie i przetwarzanie danych">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wczytywanie i przetwarzanie danych</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./06-programowanie.html" class="pagination-link" aria-label="Programowanie w R">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
