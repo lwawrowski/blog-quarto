@@ -427,39 +427,39 @@ P.J. Bartlein, 19 Jun 2005
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Odczyt konkretnej zmiennej</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>temperatura <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc, <span class="st">"tmp"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>temperatura_styczen <span class="ot">=</span> temperatura[,,<span class="dv">1</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>temperatura_maj <span class="ot">=</span> temperatura[,,<span class="dv">5</span>]</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc, <span class="st">"lat"</span>)</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc, <span class="st">"lon"</span>)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>lonlat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">expand.grid</span>(lon,lat))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>tmp_vec <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(temperatura_styczen)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>tmp_vec <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(temperatura_maj)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>tmp_df01 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(lonlat,tmp_vec))</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tmp_df01) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lon"</span>,<span class="st">"lat"</span>,<span class="st">"temp"</span>)</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">na.omit</span>(tmp_df01), <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         lon    lat temp
-49186 -67.25 -55.75  8.2
-49901 -69.75 -55.25  7.9
-49902 -69.25 -55.25  8.4
-49903 -68.75 -55.25  7.8
-49904 -68.25 -55.25  8.9
-49905 -67.75 -55.25  9.1
-49906 -67.25 -55.25  9.0
-50617 -71.75 -54.75  8.8
-50619 -70.75 -54.75  8.7
-50620 -70.25 -54.75  7.9</code></pre>
+49186 -67.25 -55.75  3.1
+49901 -69.75 -55.25  3.2
+49902 -69.25 -55.25  3.5
+49903 -68.75 -55.25  2.6
+49904 -68.25 -55.25  3.3
+49905 -67.75 -55.25  3.3
+49906 -67.25 -55.25  3.2
+50617 -71.75 -54.75  4.1
+50619 -70.75 -54.75  3.7
+50620 -70.25 -54.75  2.8</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tmp_df01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      lon               lat              temp       
- Min.   :-179.75   Min.   :-89.75   Min.   :-51.60  
- 1st Qu.: -89.88   1st Qu.:-44.88   1st Qu.:-22.10  
- Median :   0.00   Median :  0.00   Median : -3.10  
- Mean   :   0.00   Mean   :  0.00   Mean   : -2.17  
- 3rd Qu.:  89.88   3rd Qu.: 44.88   3rd Qu.: 21.40  
- Max.   : 179.75   Max.   : 89.75   Max.   : 32.50  
+ Min.   :-179.75   Min.   :-89.75   Min.   :-22.20  
+ 1st Qu.: -89.88   1st Qu.:-44.88   1st Qu.:  3.70  
+ Median :   0.00   Median :  0.00   Median : 13.70  
+ Mean   :   0.00   Mean   :  0.00   Mean   : 12.59  
+ 3rd Qu.:  89.88   3rd Qu.: 44.88   3rd Qu.: 23.50  
+ Max.   : 179.75   Max.   : 89.75   Max.   : 35.90  
                                     NA's   :196239  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tmp_df01_cc <span class="ot">&lt;-</span> tmp_df01[<span class="fu">complete.cases</span>(tmp_df01),]</span>
@@ -481,8 +481,10 @@ P.J. Bartlein, 19 Jun 2005
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zamknięcie pliku</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(tmp_df01_cc, <span class="st">"data/temp_maj.csv"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Zamknięcie pliku</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>W tym przypadku wykorzystywane są różne funkcje do obsługi pliku:</p>
 <ul>
