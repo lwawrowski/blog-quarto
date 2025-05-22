@@ -199,15 +199,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji" id="toc-tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji" class="nav-link active" data-scroll-target="#tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji"><span class="header-section-number">7.1</span> Tworzenie i korzystanie z projektów z kontrolą wersji</a></li>
-  <li><a href="#podstawowy-przepływ-pracy-z-git-w-rstudio" id="toc-podstawowy-przepływ-pracy-z-git-w-rstudio" class="nav-link" data-scroll-target="#podstawowy-przepływ-pracy-z-git-w-rstudio"><span class="header-section-number">7.2</span> Podstawowy przepływ pracy z Git w RStudio</a></li>
-  <li><a href="#pomocne-pakiety-r-do-pracy-z-git" id="toc-pomocne-pakiety-r-do-pracy-z-git" class="nav-link" data-scroll-target="#pomocne-pakiety-r-do-pracy-z-git"><span class="header-section-number">7.3</span> Pomocne pakiety R do pracy z Git</a>
+  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">7.1</span> Wprowadzenie</a></li>
+  <li><a href="#tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji" id="toc-tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji" class="nav-link" data-scroll-target="#tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji"><span class="header-section-number">7.2</span> Tworzenie i korzystanie z projektów z kontrolą wersji</a></li>
+  <li><a href="#podstawowy-przepływ-pracy-z-git-w-rstudio" id="toc-podstawowy-przepływ-pracy-z-git-w-rstudio" class="nav-link" data-scroll-target="#podstawowy-przepływ-pracy-z-git-w-rstudio"><span class="header-section-number">7.3</span> Podstawowy przepływ pracy z Git w RStudio</a></li>
+  <li><a href="#pomocne-pakiety-r-do-pracy-z-git" id="toc-pomocne-pakiety-r-do-pracy-z-git" class="nav-link" data-scroll-target="#pomocne-pakiety-r-do-pracy-z-git"><span class="header-section-number">7.4</span> Pomocne pakiety R do pracy z Git</a>
   <ul class="collapse">
-  <li><a href="#usethis" id="toc-usethis" class="nav-link" data-scroll-target="#usethis"><span class="header-section-number">7.3.1</span> usethis</a></li>
-  <li><a href="#gert" id="toc-gert" class="nav-link" data-scroll-target="#gert"><span class="header-section-number">7.3.2</span> gert</a></li>
-  <li><a href="#remotes" id="toc-remotes" class="nav-link" data-scroll-target="#remotes"><span class="header-section-number">7.3.3</span> remotes</a></li>
+  <li><a href="#usethis" id="toc-usethis" class="nav-link" data-scroll-target="#usethis"><span class="header-section-number">7.4.1</span> usethis</a></li>
+  <li><a href="#gert" id="toc-gert" class="nav-link" data-scroll-target="#gert"><span class="header-section-number">7.4.2</span> gert</a></li>
+  <li><a href="#remotes" id="toc-remotes" class="nav-link" data-scroll-target="#remotes"><span class="header-section-number">7.4.3</span> remotes</a></li>
   </ul></li>
-  <li><a href="#przykładowe-scenariusze-pracy" id="toc-przykładowe-scenariusze-pracy" class="nav-link" data-scroll-target="#przykładowe-scenariusze-pracy"><span class="header-section-number">7.4</span> Przykładowe scenariusze pracy</a></li>
+  <li><a href="#przykładowe-scenariusze-pracy" id="toc-przykładowe-scenariusze-pracy" class="nav-link" data-scroll-target="#przykładowe-scenariusze-pracy"><span class="header-section-number">7.5</span> Przykładowe scenariusze pracy</a></li>
   </ul>
 </nav>
     </div>
@@ -233,6 +234,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><a href="presentations/07_git.html">Prezentacja</a></p>
+<section id="wprowadzenie" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">7.1</span> Wprowadzenie</h2>
 <p>Git to rozproszony system kontroli wersji, który umożliwia śledzenie zmian w kodzie, współpracę z innymi oraz zarządzanie różnymi wersjami projektu. RStudio oferuje wbudowaną integrację z Git, co znacznie ułatwia pracę z tym narzędziem bezpośrednio z poziomu interfejsu IDE.</p>
 <p>Korzyści z używania Git w projektach R</p>
 <ul>
@@ -252,15 +256,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Podstawowa konfiguracja Git (nazwa użytkownika i email) może być wykonana z terminala RStudio:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Twoje Imię i Nazwisko"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"twoj.email@przyklad.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji"><span class="header-section-number">7.1</span> Tworzenie i korzystanie z projektów z kontrolą wersji</h2>
+</section>
+<section id="tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="tworzenie-i-korzystanie-z-projektów-z-kontrolą-wersji"><span class="header-section-number">7.2</span> Tworzenie i korzystanie z projektów z kontrolą wersji</h2>
 <p>Metoda 1: Nowy projekt z kontrolą wersji 1. File → New Project → New Directory 2. Wybierz typ projektu (np. R Project) 3. Zaznacz opcję “Create a git repository” 4. Kliknij “Create Project”</p>
 <p>Metoda 2: Inicjalizacja Git w istniejącym projekcie 1. Otwórz istniejący projekt RStudio 2. Tools → Project Options → Git/SVN 3. Wybierz “Git” jako system kontroli wersji 4. Zatwierdź zmiany i uruchom ponownie RStudio, gdy zostaniesz o to poproszony</p>
 <p>Metoda 3: Klonowanie istniejącego repozytorium 1. File → New Project → Version Control → Git 2. Wklej URL repozytorium, które chcesz sklonować 3. Wybierz katalog docelowy 4. Kliknij “Create Project”</p>
 <p>Po utworzeniu lub otwarciu projektu z kontrolą wersji Git, pojawi się nowy panel “Git” w RStudio. Oferuje on dostęp do najczęściej używanych funkcji Git</p>
 </section>
-<section id="podstawowy-przepływ-pracy-z-git-w-rstudio" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="podstawowy-przepływ-pracy-z-git-w-rstudio"><span class="header-section-number">7.2</span> Podstawowy przepływ pracy z Git w RStudio</h2>
+<section id="podstawowy-przepływ-pracy-z-git-w-rstudio" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="podstawowy-przepływ-pracy-z-git-w-rstudio"><span class="header-section-number">7.3</span> Podstawowy przepływ pracy z Git w RStudio</h2>
 <p>Staging zmian</p>
 <ol type="1">
 <li>W panelu Git zobaczysz pliki, które zostały zmodyfikowane</li>
@@ -300,10 +305,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>W Internecie dostępne są pliki <code>.gitignore</code> dla różnych języków programowania np. https://github.com/github/gitignore, a także często podczas tworzenia zdalnego repozytorium możliwe jest wskazanie języka programowania i powiązanego dla niego pliku.</p>
 </section>
-<section id="pomocne-pakiety-r-do-pracy-z-git" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="pomocne-pakiety-r-do-pracy-z-git"><span class="header-section-number">7.3</span> Pomocne pakiety R do pracy z Git</h2>
-<section id="usethis" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="usethis"><span class="header-section-number">7.3.1</span> usethis</h3>
+<section id="pomocne-pakiety-r-do-pracy-z-git" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="pomocne-pakiety-r-do-pracy-z-git"><span class="header-section-number">7.4</span> Pomocne pakiety R do pracy z Git</h2>
+<section id="usethis" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="usethis"><span class="header-section-number">7.4.1</span> usethis</h3>
 <p>Pakiet <code>usethis</code> zawiera funkcje ułatwiające pracę z Git i GitHub:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalacja</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>)</span>
@@ -314,8 +319,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_ignore</span>(<span class="st">"*.csv"</span>) <span class="co"># Dodaje wzorzec do .gitignore</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_readme_md</span>()      <span class="co"># Tworzy plik README.md</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="gert" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="gert"><span class="header-section-number">7.3.2</span> gert</h3>
+<section id="gert" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="gert"><span class="header-section-number">7.4.2</span> gert</h3>
 <p>Pakiet <code>gert</code> umożliwia wykonywanie operacji Git bezpośrednio z kodu R:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalacja</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gert"</span>)</span>
@@ -327,8 +332,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git_commit</span>(<span class="st">"Opis commita"</span>)  <span class="co"># Utworzenie commita</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git_push</span>()          <span class="co"># Push do zdalnego repozytorium</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="remotes" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="remotes"><span class="header-section-number">7.3.3</span> remotes</h3>
+<section id="remotes" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="remotes"><span class="header-section-number">7.4.3</span> remotes</h3>
 <p>Pakiet <code>remotes</code> jest nieocenionym narzędziem do instalacji pakietów R z różnych źródeł, w tym z repozytoriów Git:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalacja</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
@@ -358,8 +363,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-<section id="przykładowe-scenariusze-pracy" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="przykładowe-scenariusze-pracy"><span class="header-section-number">7.4</span> Przykładowe scenariusze pracy</h2>
+<section id="przykładowe-scenariusze-pracy" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="przykładowe-scenariusze-pracy"><span class="header-section-number">7.5</span> Przykładowe scenariusze pracy</h2>
 <p>Rozpoczęcie nowego projektu analizy danych</p>
 <ol type="1">
 <li>Utwórz nowy projekt RStudio z kontrolą wersji Git</li>

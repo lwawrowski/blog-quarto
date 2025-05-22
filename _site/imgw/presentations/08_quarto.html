@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Język R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="© Łukasz Wawrowski" />
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <link rel="stylesheet" href="default.css" type="text/css" />
+    <link rel="stylesheet" href="default-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Język R
+]
+.subtitle[
+## Quarto
+]
+.author[
+### © Łukasz Wawrowski
+]
+
+---
+
+
+
+
+# Zbiór danych - [pracownicy](http://www.wawrowski.edu.pl/data/pracownicy.xlsx)
+
+- id - kod pracownika
+- plec - płeć pracownika (0 - mężczyzna, 1 - kobieta)
+- data_urodz - data urodzenia
+- edukacja - wykształcenie (w latach nauki)
+- kat_pracownika - grupa pracownicza (1 - specjalista, 2 - menedżer, 3 - konsultant)
+- bwynagrodzenie - bieżące wynagrodzenie
+- pwynagrodzenie - początkowe wynagrodzenie
+- staz - staż pracy (w miesiącach)
+- doswiadczenie - poprzednie zatrudnienie (w miesiącach)
+- zwiazki - przynależność do związków zawodowych (0 - nie, 1 - tak)
+- wiek - wiek (w latach)
+
+---
+
+# R jako narzędzie do raportowania
+
+Połączenie języka R lub Python z językiem znaczników _markdown_ z wykorzystaniem [Quarto](https://quarto.org/) umożliwia tworzenie plików zawierających zarówno kod, jak i tekst oraz wyniki obliczeń, które można eksportować do plików:
+
+- html,
+
+- docx,
+
+- pdf (potrzebny [MiKTeX](https://miktex.org/) albo [TinyTeX](https://yihui.org/tinytex/)).
+
+Pliki źródłowe mają zawsze rozszerzenie .qmd.
+
+--
+
+Poprzednikiem Quarto był R Markdown, który działa na bardzo podobnej zasadzie.
+
+---
+
+# Nowy dokument
+
+.pull-left[
+
+![](img/new_quarto.png)
+
+]
+
+.pull-right[
+
+![](img/new_document.png)
+
+]
+
+---
+
+# Preambuła
+
+.pull-left[
+
+__Podstawowa__
+
+```
+---
+title: "Pierwszy raport"
+---
+
+```
+
+__Rozszerzona__
+
+```
+---
+title: "Pierwszy raport"
+author: "Łukasz"
+format: html
+lang: pl
+self-contained: true
+toc: true
+---
+```
+
+]
+
+.pull-right[
+
+- pole `format` może przyjmować [różne wartości](https://quarto.org/docs/output-formats/all-formats.html):
+  - html
+  - pdf
+  - docx
+  - odt
+  - epub
+  
+- pliki html możemy publikować na [wiele różnych sposobów](https://quarto.org/docs/publishing/quarto-pub.html)
+
+- pole `self-contained` z wartością `true` tworzy tylko jeden plik wynikowy, co ułatwia dystrybucję np. przez wiadomość e-mail
+
+- pole `toc` z wartością `true` dodaje spis treści
+  
+]
+
+---
+
+# Markdown - tekst
+
+Raport zwykle zawiera opisy, które można formatować w następujący sposób:
+
+.pull-left[
+__Kod__
+```
+To jest zwykły tekst.
+_Kursywa_ i __pogrubienie__.
+Enter nie wystarczy, żeby przejść  
+do nowej linii - trzeba wstawić  
+co najmniej __dwie spacje__.
+```
+]
+.pull-right[
+__Wynik__   
+  
+To jest zwykły tekst.  
+_Kursywa_ i __pogrubienie__.  
+Enter nie wystarczy, żeby przejść  
+do nowej linii - trzeba wstawić  
+co najmniej __dwie spacje__.
+]
+
+---
+
+# Nagłówki
+
+Struktura dokumentu definiowa jest przez nagłówki.
+
+__Kod__
+```
+# Nagłówek pierwszego stopnia
+## Nagłówek drugiego stopnia
+### Nagłówek trzeciego stopnia
+```
+
+__Wynik__   
+   
+# Nagłówek pierwszego stopnia
+## Nagłówek drugiego stopnia
+### Nagłówek trzeciego stopnia
+
+---
+# Listy
+
+.pull-left[
+__Kod__
+```
+1. Pozycja 1
+1. Pozycja 2
+1. Pozycja 3
+    - Pozycja 3a
+    - Pozycja 3b
+```
+]
+.pull-right[
+__Wynik__   
+   
+1. Pozycja 1
+2. Pozycja 2
+3. Pozycja 3
+    - Pozycja 3a
+    - Pozycja 3b
+
+]
+
+---
+
+# Linki
+
+Adresy stron internetowych automatycznie zamieniają się na linki. Można też stworzyć tekst, który będzie prowadził do strony.
+
+__Kod__
+```
+https://www.wawrowski.edu.pl/
+
+[Łukasz Wawrowski - Blog](https://www.wawrowski.edu.pl/)
+```
+
+__Wynik__   
+   
+https://www.wawrowski.edu.pl/
+
+[Łukasz Wawrowski - Blog](https://www.wawrowski.edu.pl/)
+
+---
+
+# Tabela
+
+.pull-left[
+__Kod__
+```
+| abc | def | ghi |
+|-----|----:|:---:|
+|  1  |  2  |  3  |
+|  4  |  5  |  6  |
+|  7  |  8  |  9  |
+
+```
+]
+.pull-right[
+__Wynik__   
+   
+| abc | def | ghi |
+|-----|----:|:---:|
+|  1  |  2  |  3  |
+|  4  |  5  |  6  |
+|  7  |  8  |  9  |
+
+]
+
+- [generator tabel](https://tablesgenerator.com/markdown_tables)
+
+---
+
+# Wzory
+
+- składnia LaTeX
+
+.pull-left[
+__Kod__
+```
+$\frac{1}{2} \cdot \sqrt{4}=1$
+
+
+$$\sigma \sim N(0,1)$$
+
+```
+]
+.pull-right[
+__Wynik__   
+   
+`\(\frac{1}{2} \cdot \sqrt{4}=1\)`
+
+`$$\sigma \sim N(0,1)$$`
+
+]
+
+
+---
+
+# LaTeX
+
+Oprogramowanie do zautomatyzowanego składu tekstu, a także związany z nim język znaczników, służący do formatowania dokumentów tekstowych i tekstowo-graficznych.
+
+- praca lokalnie na komputerze wymaga zainstalowania programu [MikTeX](https://miktex.org/) oraz edytora składni: TeXworks (domyślny), [TeXstudio](https://www.texstudio.org/), [TeXnicCenter](http://www.texniccenter.org/).
+
+- edytor online: [overleaf](https://www.overleaf.com/) - podpowiadanie składni, dostęp przez przeglądarkę, dzielenie się projektami, dużo samouczków
+
+- [Książka kucharska LaTeX](http://www.ptm.org.pl/sites/default/files/latex-ksiazka-kucharska.pdf)
+
+---
+
+# Kod R
+
+- wstawienie chunka (kawałek, klocek, blok): `ctrl + alt + i` (jak insert)
+
+- wyniki pojawiają się poniżej chunka, a nie w konsoli lub dedykowanych zakładkach
+
+- trzeba pamiętać o spójności kodu, ponieważ w trakcie generowania dokumentu kod jest po kolei wykonywany
+
+- zaczyna się i kończy trzema [grawisami](https://pl.wikipedia.org/wiki/Grawis) (znak po lewej stronie klawisza 1 na klawiaturze)
+
+---
+
+# Opcje _chunka_
+
+Opcje można ustawiać globalnie (dla całego dokumentu) lub lokalnie (dla konkretnego chunka).
+
+- eval - wykonaj kod w chunku: domyślnie `true`, wartość `false` jedynie wyświetla kod
+- echo - wyświetl kod źródłowy w dokumencie 
+- output - wyświetl wynik działania kodu w dokumencie 
+- warning - wyświetl ostrzeżenia i komunikaty w dokumencie
+- error - zatrzymaj tworzenie dokumentu w przypadku wystąpienia błędu
+- fig-height - wysokość rysunku (w calach)
+- fig-width - szerokość rysunku (w calach)
+
+[Żródło](https://quarto.org/docs/reference/formats/html.html)
+
+---
+
+# Opcje _chunka_
+
+.pull-left[
+
+Ustawienia lokalne
+
+```
+#| echo: false
+#| fig-height: 4
+```
+]
+.pull-right[
+
+Ustawienia globalne
+
+```
+---
+execute:
+  echo: false
+  warning: false
+---
+```
+
+]
+
+---
+
+# Odnośniki i tytuły
+
+Quarto umożliwia także dodawanie odnośników do tabel, rysunków, kodu, sekcji i wzorów.
+
+.pull-left[
+
+__Tabela__
+
+- Stworzenie etykiety w chunku
+
+```
+#| label: tbl-iris
+#| tbl-cap: "6 obserwacji ze zbioru irysy"
+```
+
+- Odwołanie się w tekście
+
+@tbl-iris przedstawia dane ze zbioru irysy.
+
+]
+.pull-right[
+
+__Rysunek__
+
+- Stworzenie etykiety w chunku
+
+```
+#| label: fig-sepal-len-width
+#| fig-cap: "Wykres"
+```
+
+- Odwołanie się w tekście
+
+Na wykresie [-@fig-sepal-len-width] przedstawiono...
+
+]
+
+Należy pamiętać o odpowiednich przedrostkach, więcej informacji na temat odnośników znajduje się na stronie [quarto](https://quarto.org/docs/authoring/cross-references.html).
+
+---
+
+# Tabele ze zbioru
+
+Funkcja `kable()` z pakietu _knitr_ przekazuje zbiór do formatu html.
+
+
+``` r
+iris %&gt;% 
+  head() %&gt;% # pierwsze 6 obserwacji ze zbioru
+  knitr::kable()
+```
+
+
+
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species |
+|------------:|-----------:|------------:|-----------:|:-------|
+|          5.1|         3.5|          1.4|         0.2|setosa  |
+|          4.9|         3.0|          1.4|         0.2|setosa  |
+|          4.7|         3.2|          1.3|         0.2|setosa  |
+|          4.6|         3.1|          1.5|         0.2|setosa  |
+|          5.0|         3.6|          1.4|         0.2|setosa  |
+|          5.4|         3.9|          1.7|         0.4|setosa  |
+
+---
+
+# Tabele ze zbioru
+
+Dodanie następującej opcji do preambuły:
+
+```
+format: 
+  html: 
+    df-print: paged
+```
+
+umożliwia stworzenie przeglądarki do większych zbiorów danych. Wówczas w chunku wystarczy wpisać nazwę zbioru dla którego chcemy stworzyć taki element.
+
+---
+
+# Wyniki kodu w tekście
+
+W zwykłym tekście poza chunkiem można wstawiać wyniki obliczone przez R wstawiając grawisy, literę `r` oraz kod, który ma wyświetlić pożądany wynik.
+
+.pull-left[
+__Kod__  
+Średnia długość płatków irysów wynosi
+
+&amp;#x60; r round(mean(iris$Petal.Length),2) &amp;#x02CB;
+
+centymetry.
+]
+
+.pull-right[
+__Wynik__
+
+Średnia długość płatków irysów wynosi 3.76 centymetry.
+
+]
+
+---
+
+class: inverse
+
+# Zadanie
+
+1. Dodaj do dokumentu dowolny wykres stworzony na podstawie zbioru _pracownicy_. Nie wyświetlaj kodu tego wykresu.
+
+2. W raporcie umieść zdanie _Średni wiek pracowników wynosi X lat_, gdzie X to wartość obliczona na podstawie zbioru danych.
+
+3. Umieść w raporcie tabelę zawierającą średnie wynagrodzenia (początkowe i bieżące) w grupach kategorii pracownika.
+
+<div class="countdown" id="timer_d06468c0" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse, center, middle
+
+# Pytania?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
