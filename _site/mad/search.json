@@ -14,7 +14,7 @@
     "href": "00-instalacja.html",
     "title": "1  Instalacja",
     "section": "",
-    "text": "1.1 Środowiska wirtualne\nJeden ze sposobów instalacji Pythona na Windowsie to pobranie instalatora z oficjalnej strony https://www.python.org/downloads/windows/\nWażne, żeby podczas instalacji zaznaczyć następujące opcje:\nKolejny krok to weryfikacja instalacji w konsoli (cmd/powershell):\nŚrodowisko wirtualne (ang. virtual environment, w skrócie venv) to jedna z rzeczy w Pythonie, która ułatwia zarządzanie projektami. To izolowane środowisko Pythona stworzone tylko dla jednego projektu. Zawiera swoją własną wersję interpretera Pythona i niezależny zestaw zainstalowanych pakietów. Korzystając ze środowiska wirtualnego każdy projekt może mieć inne wersje bibliotek.\nTworzenie wirtualnego środowiska o nazwie venv w katalogu projektu.\nAktywacja środowiska wirtualnego.\nW systemie Windows zdarza się, że jest zablokowane wywoływanie skryptów. Wtedy podczas tworzenia środowiska możemy dostać komunikat\nW takiej sytuacji należy uruchomić poniższą komendę:\ni spróbować ponownie stworzyć środowisko wirtualne.",
+    "text": "1.1 Środowiska wirtualne\nJeden ze sposobów instalacji Pythona na Windowsie to pobranie instalatora z oficjalnej strony https://www.python.org/downloads/windows/\nWażne, żeby podczas instalacji zaznaczyć następujące opcje:\nKolejny krok to weryfikacja instalacji w konsoli (cmd/powershell):\nŚrodowisko wirtualne (ang. virtual environment, w skrócie venv) to jedna z rzeczy w Pythonie, która ułatwia zarządzanie projektami. To izolowane środowisko Pythona stworzone tylko dla jednego projektu. Zawiera swoją własną wersję interpretera Pythona i niezależny zestaw zainstalowanych pakietów. Korzystając ze środowiska wirtualnego każdy projekt może mieć inne wersje bibliotek.\nTworzenie wirtualnego środowiska o nazwie venv w katalogu projektu.\nAktywacja środowiska wirtualnego.\nW systemie Windows zdarza się, że jest zablokowane wywoływanie skryptów. Wtedy podczas tworzenia środowiska możemy dostać komunikat\nW takiej sytuacji należy uruchomić poniższą komendę:\ni spróbować ponownie uruchomić środowisko wirtualne.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
     ]
@@ -164,7 +164,7 @@
     "href": "03-regresja.html",
     "title": "4  Regresja",
     "section": "",
-    "text": "4.1 Wprowadzenie",
+    "text": "4.1 Wprowadzenie\nPrezentacja",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
     ]
