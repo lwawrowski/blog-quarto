@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Testy statystyczne – Podstawy programowania w R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-programowanie.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-testy.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Podstawy programowania w R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wprowadzenie</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Wprowadzenie do R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-struktury.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Struktury danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-przetwarzanie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Przetwarzanie danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-wizualizacja.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wizualizacja danych</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-programowanie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-testy.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">6.1</span> Wprowadzenie</a></li>
+  <li><a href="#hipoteza-statystyczna" id="toc-hipoteza-statystyczna" class="nav-link" data-scroll-target="#hipoteza-statystyczna"><span class="header-section-number">6.2</span> Hipoteza statystyczna</a></li>
+  <li><a href="#poziom-istotności-i-wartość-p" id="toc-poziom-istotności-i-wartość-p" class="nav-link" data-scroll-target="#poziom-istotności-i-wartość-p"><span class="header-section-number">6.3</span> Poziom istotności i wartość p</a></li>
+  <li><a href="#testy-statystyczne" id="toc-testy-statystyczne" class="nav-link" data-scroll-target="#testy-statystyczne"><span class="header-section-number">6.4</span> Testy statystyczne</a></li>
+  <li><a href="#zbiór-danych" id="toc-zbiór-danych" class="nav-link" data-scroll-target="#zbiór-danych"><span class="header-section-number">6.5</span> Zbiór danych</a></li>
+  <li><a href="#test-niezależności" id="toc-test-niezależności" class="nav-link" data-scroll-target="#test-niezależności"><span class="header-section-number">6.6</span> Test niezależności</a></li>
+  <li><a href="#test-proporcji" id="toc-test-proporcji" class="nav-link" data-scroll-target="#test-proporcji"><span class="header-section-number">6.7</span> Test proporcji</a></li>
+  <li><a href="#testowanie-normalności---test-shapiro-wilka" id="toc-testowanie-normalności---test-shapiro-wilka" class="nav-link" data-scroll-target="#testowanie-normalności---test-shapiro-wilka"><span class="header-section-number">6.8</span> Testowanie normalności - test Shapiro-Wilka</a></li>
+  <li><a href="#testowanie-normalności---wykres-kwantyl-kwantyl" id="toc-testowanie-normalności---wykres-kwantyl-kwantyl" class="nav-link" data-scroll-target="#testowanie-normalności---wykres-kwantyl-kwantyl"><span class="header-section-number">6.9</span> Testowanie normalności - wykres kwantyl-kwantyl</a></li>
+  <li><a href="#testowanie-wariancji---test-bartletta" id="toc-testowanie-wariancji---test-bartletta" class="nav-link" data-scroll-target="#testowanie-wariancji---test-bartletta"><span class="header-section-number">6.10</span> Testowanie wariancji - test Bartletta</a></li>
+  <li><a href="#testowanie-średnich" id="toc-testowanie-średnich" class="nav-link" data-scroll-target="#testowanie-średnich"><span class="header-section-number">6.11</span> Testowanie średnich</a>
+  <ul class="collapse">
+  <li><a href="#test-t-średnich" id="toc-test-t-średnich" class="nav-link" data-scroll-target="#test-t-średnich"><span class="header-section-number">6.11.1</span> Test t-średnich</a></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">6.11.2</span> ANOVA</a></li>
+  <li><a href="#test-wilcoxona" id="toc-test-wilcoxona" class="nav-link" data-scroll-target="#test-wilcoxona"><span class="header-section-number">6.11.3</span> Test Wilcoxona</a></li>
+  <li><a href="#test-kruskala-wallisa" id="toc-test-kruskala-wallisa" class="nav-link" data-scroll-target="#test-kruskala-wallisa"><span class="header-section-number">6.11.4</span> Test Kruskala-Wallisa</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testy statystyczne</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="presentations/06_testy.html">Prezentacja</a></p>
+<section id="wprowadzenie" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">6.1</span> Wprowadzenie</h2>
+<p>Do rozwiązania wybranych zagadnień analizy statystycznej wystarczą metody weryfikacji hipotez statystycznych. Taki proces można przedstawić w następujących krokach:</p>
+<ol type="1">
+<li>Sformułowanie dwóch wykluczających się hipotez - zerowej <span class="math inline">\(H_0\)</span> oraz alternatywnej <span class="math inline">\(H_1\)</span></li>
+<li>Wybór odpowiedniego testu statystycznego</li>
+<li>Określenie dopuszczalnego prawdopodobieństwo popełnienia błędu I rodzaju (czyli poziomu istotności <span class="math inline">\(\alpha\)</span>)</li>
+<li>Podjęcie decyzji</li>
+</ol>
+<p>Wymienione powyżej nowe pojęcia zostaną wyjaśnione poniżej.</p>
+</section>
+<section id="hipoteza-statystyczna" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="hipoteza-statystyczna"><span class="header-section-number">6.2</span> Hipoteza statystyczna</h2>
+<p>Przypuszczenie dotyczące własności analizowanej cechy, np. średnia w populacji jest równa 10, rozkład cechy jest normalny.</p>
+<p>Formułuje się zawsze dwie hipotezy: hipotezę zerową (<span class="math inline">\(H_0\)</span>) i hipotezę alternatywną (<span class="math inline">\(H_1\)</span>). Hipoteza zerowa jest hipotezą mówiącą o równości:</p>
+<p><span class="math inline">\(H_0: \bar{x}=10\)</span></p>
+<p>Z kolei hipoteza alternatywna zakłada coś przeciwnego:</p>
+<p><span class="math inline">\(H_1: \bar{x}\neq 10\)</span></p>
+<p>Zamiast znaku nierówności (<span class="math inline">\(\neq\)</span>) może się także pojawić znak mniejszości (<span class="math inline">\(&lt;\)</span>) lub większości (<span class="math inline">\(&gt;\)</span>).</p>
+</section>
+<section id="poziom-istotności-i-wartość-p" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="poziom-istotności-i-wartość-p"><span class="header-section-number">6.3</span> Poziom istotności i wartość p</h2>
+<p>Hipotezy statystyczne weryfikuje się przy określonym poziomie istotności <span class="math inline">\(\alpha\)</span>, który wskazuje maksymalny poziom akceptowalnego błędu (najczęściej <span class="math inline">\(\alpha=0,05\)</span>).</p>
+<p>Większość programów statystycznych podaje w wynikach testu wartość p.&nbsp;Jest to najostrzejszy poziom istotności, przy którym możemy odrzucić hipotezę <span class="math inline">\(H_0\)</span>. Jest to rozwiązanie bardzo popularne, ale nie pozbawione wad. Dokładny opis potencjalnych zagrożeń można znaleźć w <a href="http://cejsh.icm.edu.pl/cejsh/element/bwmeta1.element.cejsh-e3daa053-7cf2-4eee-9192-16c48c3a7a45/c/05.pdf">artykule</a>.</p>
+<p>Generalnie jeśli <span class="math inline">\(p &lt; \alpha\)</span> - odrzucamy hipotezę zerową.</p>
+</section>
+<section id="testy-statystyczne" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="testy-statystyczne"><span class="header-section-number">6.4</span> Testy statystyczne</h2>
+<p>W zależności od tego co chcemy weryfikować należy wybrać odpowiedni test. Tabela poniżej przedstawia dosyć wyczerpującą klasyfikację testów pobraną ze <a href="https://philipppro.github.io/Statistical_tests_overview/">strony</a>.</p>
+<p><img src="img/tests.png" class="img-fluid"></p>
+</section>
+<section id="zbiór-danych" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="zbiór-danych"><span class="header-section-number">6.5</span> Zbiór danych</h2>
+<p>Będziemy działać na zbiorze danych dotyczącym <a href="data/pracownicy.xlsx">pracowników przedsiębiorstwa</a>. Poniżej znajduje się opis cech znajdujących się w tym zbiorze,</p>
+<ul>
+<li>id - kod pracownika</li>
+<li>plec - płeć pracownika (0 - mężczyzna, 1 - kobieta)</li>
+<li>data_urodz - data urodzenia</li>
+<li>edukacja - wykształcenie (w latach nauki)</li>
+<li>kat_pracownika - grupa pracownicza (1 - specjalista, 2 - menedżer, 3 - konsultant)</li>
+<li>bwynagrodzenie - bieżące wynagrodzenie</li>
+<li>pwynagrodzenie - początkowe wynagrodzenie</li>
+<li>staz - staż pracy (w miesiącach)</li>
+<li>doswiadczenie - poprzednie zatrudnienie (w miesiącach)</li>
+<li>zwiazki - przynależność do związków zawodowych (0 - nie, 1 - tak)</li>
+<li>wiek - wiek (w latach)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pracownicy <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/pracownicy.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="test-niezależności" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="test-niezależności"><span class="header-section-number">6.6</span> Test niezależności</h2>
+<p>Za pomocą testu niezależności <span class="math inline">\(\chi^2\)</span> (chi-kwadrat) można sprawdzić czy pomiędzy dwiema cechami jakościowymi występuje zależność. Układ hipotez jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> zmienne są niezależne,</li>
+<li><span class="math inline">\(H_1:\)</span> zmienne nie są niezależne.</li>
+</ul>
+<p>W programie R test niezależności można wywołać za pomocą funkcji <code>chisq.test()</code> z pakietu <em>stats</em>. Jako argument tej funkcji należy podać tablicę kontyngencji. W przypadku operowania na danych jednostkowych można ją utworzyć poprzez funkcję <code>table()</code>. Jeżeli wprowadzamy liczebności ręcznie to należy zadbać o to, żeby wprowadzony obiekt był typu <code>matrix</code>.</p>
+<p><strong>Przykład</strong></p>
+<p>Czy pomiędzy zmienną płeć, a zmienną przynależność do związków zawodowych istnieje zależność?</p>
+<p>W pierwszym kroku określamy hipotezy badawcze:</p>
+<p><span class="math inline">\(H_0\)</span>: pomiędzy płcią a przynależnością do związków nie ma zależności</p>
+<p><span class="math inline">\(H_1\)</span>: pomiędzy płcią a przynależnością do związków jest zależność</p>
+<p>oraz przyjmujemy poziom istotności - weźmy standardową wartość <span class="math inline">\(\alpha = 0,05\)</span>.</p>
+<p>W pierwszej kolejności popatrzmy na tabelę krzyżową (kontyngencji) zawierającą liczebności poszczególnych kombinacji wariantów.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pracownicy<span class="sc">$</span>plec, pracownicy<span class="sc">$</span>zwiazki)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+      0   1
+  0 194  64
+  1 176  40</code></pre>
+</div>
+</div>
+<p>Wartości w tej tabeli nie wskazują na liczniejszą reprezentację jednej z płci w związkach zawodowych. Zweryfikujemy zatem wskazaną hipotezę zerową z wykorzystaniem testu <span class="math inline">\(\chi^2\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(pracownicy<span class="sc">$</span>plec, pracownicy<span class="sc">$</span>zwiazki))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  table(pracownicy$plec, pracownicy$zwiazki)
+X-squared = 2.3592, df = 1, p-value = 0.1245</code></pre>
+</div>
+</div>
+<p>Przy poziomie istotności <span class="math inline">\(\alpha = 0,05\)</span>, wartości p (0.1245) jest większa od wartości <span class="math inline">\(\alpha\)</span>, zatem nie ma podstaw do odrzucenia hipotezy zerowej. Można stwierdzić, że nie ma zależności pomiędzy zmiennymi płeć i przynależność do związków zawodowych.</p>
+<p><strong>Przykład</strong></p>
+<p>Czy pomiędzy płcią, a grupami bieżącego wynagrodzenia zdefiniowanymi przez medianę istnieje zależność?</p>
+<p><span class="math inline">\(H_0\)</span>: pomiędzy płcią a grupami wynagrodzenia nie ma zależności</p>
+<p><span class="math inline">\(H_1\)</span>: pomiędzy płcią a grupami wynagrodzenia jest zależność</p>
+<p>W pierwszej kolejności tworzymy nową cechą zamieniając cechę <code>bwynagrodzenie</code> na zmienną jakościową posiadającą dwa warianty: poniżej mediany i powyżej mediany.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pracownicy <span class="ot">&lt;-</span> pracownicy <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bwyn_mediana=</span><span class="fu">cut</span>(<span class="at">x =</span> bwynagrodzenie,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fu">min</span>(bwynagrodzenie),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="fu">median</span>(bwynagrodzenie),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="fu">max</span>(bwynagrodzenie)),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pracownicy<span class="sc">$</span>plec, pracownicy<span class="sc">$</span>bwyn_mediana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+    [1.58e+04,2.89e+04] (2.89e+04,1.35e+05]
+  0                  73                 185
+  1                 164                  52</code></pre>
+</div>
+</div>
+<p>W tym przypadku wygląd tablicy krzyżowej może sugerować występowanie zależności.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(pracownicy<span class="sc">$</span>plec, pracownicy<span class="sc">$</span>bwyn_mediana))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  table(pracownicy$plec, pracownicy$bwyn_mediana)
+X-squared = 104.8, df = 1, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Test <span class="math inline">\(\chi^2\)</span> to potwierdza - mamy podstawy do odrzucenia hipotezy zerowej na korzyść hipotezy alternatywnej - istnieje zależność pomiędzy płcią, a grupami wynagrodzenia.</p>
+</section>
+<section id="test-proporcji" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="test-proporcji"><span class="header-section-number">6.7</span> Test proporcji</h2>
+<p>Test proporcji pozwala odpowiedzieć na pytanie czy odsetki w jednej, dwóch lub więcej grupach różnią się od siebie istotnie. Dla jednej próby układ hipotez został przedstawiony poniżej:</p>
+<ul>
+<li><span class="math inline">\(H_0: p=p_0\)</span></li>
+<li><span class="math inline">\(H_1: p \neq p_0\)</span> lub <span class="math inline">\(H_1: p &gt; p_0\)</span> lub <span class="math inline">\(H_1: p &lt; p_0\)</span></li>
+</ul>
+<p>Układ hipotez w przypadku dwóch prób jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0: p_1=p_2\)</span></li>
+<li><span class="math inline">\(H_1: p_1 \neq p_2\)</span> lub <span class="math inline">\(H_1: p_1 &gt; p_2\)</span> lub <span class="math inline">\(H_1: p_1 &lt; p_2\)</span></li>
+</ul>
+<p>Dla <span class="math inline">\(k\)</span> badanych prób hipotezę zerową i alternatywną można zapisać w następująco:</p>
+<ul>
+<li><span class="math inline">\(H_0: p_1=p_2=p3=...=p_k\)</span></li>
+<li><span class="math inline">\(H_1: \exists \; p_i \neq p_j\)</span></li>
+</ul>
+<p>W takim przypadku hipoteza alternatywna oznacza, że co najmniej jeden odsetek różni się istotnie od pozostałych.</p>
+<p>Funkcja <code>prop.test</code> z pakietu <em>stats</em> umożliwia przeprowadzanie testu proporcji w programie R. Jako argumenty należy podać wektor, który zawiera licznik badanych odsetków - <code>x</code>, oraz wektor zawierający wartości mianownika - <code>n</code>. W przypadku jednej próby należy jeszcze dodać argument <code>p</code>, którego wartość oznacza weryfikowany odsetek.</p>
+<p><strong>Przykład</strong></p>
+<p>Wysunięto przypuszczenie, że palacze papierosów stanowią jednakowy odsetek wśród mężczyzn i kobiet. W celu sprawdzenia tej hipotezy wylosowano 500 mężczyzn i 600 kobiet. Okazało się, że wśród mężczyzn było 200 palaczy, a wśród kobiet 250.</p>
+<p><span class="math inline">\(H_0\)</span>: odsetek palaczy wg płci jest taki sam</p>
+<p><span class="math inline">\(H_1\)</span>: odsetek palaczy różni się wg płci</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">200</span>,<span class="dv">250</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">500</span>,<span class="dv">600</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(200, 250) out of c(500, 600)
+X-squared = 0.24824, df = 1, p-value = 0.6183
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.07680992  0.04347659
+sample estimates:
+   prop 1    prop 2 
+0.4000000 0.4166667 </code></pre>
+</div>
+</div>
+<p>Przy poziomie istotności 0,05 nie ma podstaw do odrzucenia H0 - odsetek palaczy jest taki sam w grupach płci.</p>
+</section>
+<section id="testowanie-normalności---test-shapiro-wilka" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="testowanie-normalności---test-shapiro-wilka"><span class="header-section-number">6.8</span> Testowanie normalności - test Shapiro-Wilka</h2>
+<p>Testy parametryczne z reguły wymagają spełnienia założenia o normalności rozkładu. W celu weryfikacji tego założenia należy wykorzystać jeden z testów normalności.</p>
+<p>W celu formalnego zweryfikowania rozkładu cechy można wykorzystać test Shapiro-Wilka. Układ hipotez z tym teście jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0: F(x) = F_0(x)\)</span> - rozkład cechy ma rozkład normalny</li>
+<li><span class="math inline">\(H_1: F(x) \neq F_0(x)\)</span> - rozkład cechy nie ma rozkładu normalnego</li>
+</ul>
+<p>W przeprowadzonych dotychczas symulacjach wykazano, że test Shapiro-Wilka ma największą moc spośród testów normalności, niemniej jego ograniczeniem jest maksymalna liczba obserwacji, która wynosi 5000<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>W programie R test Shapiro-Wilka można uruchomić za pomocą funkcji <code>shapiro.test()</code> jako argument podając wektor wartości liczbowych, który chcemy zweryfikować.</p>
+</section>
+<section id="testowanie-normalności---wykres-kwantyl-kwantyl" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="testowanie-normalności---wykres-kwantyl-kwantyl"><span class="header-section-number">6.9</span> Testowanie normalności - wykres kwantyl-kwantyl</h2>
+<p>Normalność rozkładu może także zostać zweryfikowana poprzez utworzenie wykresu przedstawiającego porównanie wartości oryginalnych oraz odpowiadającym im wartości pochodzących z rozkładu normalnego. Dodatkowo prowadzona jest linia regresji pomiędzy otrzymanymi wartościami. Punkty przebiegające w pobliżu tej linii oznaczają, że rozkład tej cechy jest normalny.</p>
+<p>Na wykresie przedstawiony jest wykres kwantyl-kwantyl dla 50 wartości wylosowanych z rozkładu normalnego i z rozkładu jednostajnego.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-testy_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Jak można zauważyć punkty na wykresie po lewej stronie nie odbiegają znacząco od linii prostej, zatem można przypuszczać, że rozkład tej cechy jest normalny. Z kolei na wykresie po prawej stronie obserwuje się odstępstwo od rozkładu normalnego - wartości na krańcach linii są od niej oddalone.</p>
+<p><strong>Przykład</strong></p>
+<p>Czy cecha <em>doświadczenie</em> ma rozkład normalny? Sprawdź za pomocą odpowiedniego testu oraz wykresu kwantyl-kwantyl.</p>
+<p><span class="math inline">\(H_0\)</span>: doświadczenie ma rozkład normalny</p>
+<p><span class="math inline">\(H_1\)</span>: doświadczenie nie ma rozkładu normalnego</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(pracownicy<span class="sc">$</span>doswiadczenie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  pracownicy$doswiadczenie
+W = 0.8136, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Na poziomie <span class="math inline">\(\alpha = 0,05\)</span> Odrzucamy <span class="math inline">\(H_0\)</span> (p &lt; <span class="math inline">\(\alpha\)</span>) - doświadczenie nie ma rozkładu normalnego. Sprawdźmy jeszcze jak te wartości wyglądają na wykresie kwantyl-kwantyl.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pracownicy, <span class="fu">aes</span>(<span class="at">sample =</span> doswiadczenie)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-testy_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="testowanie-wariancji---test-bartletta" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="testowanie-wariancji---test-bartletta"><span class="header-section-number">6.10</span> Testowanie wariancji - test Bartletta</h2>
+<p>Oprócz założenia o normalności, niektóre metody statystyczne wymagają także równości wariancji.</p>
+<p>Jeśli chcemy sprawdzić homogeniczność wariancji w dwóch lub więcej grupach to należy skorzystać z testu Bartletta:</p>
+<ul>
+<li><span class="math inline">\(H_0: s^2_1=s^2_2= s^2_3 =...=s^2_k\)</span></li>
+<li><span class="math inline">\(H_1: \exists_{i,j\in\{1,..,k\}} \; s^2_i \neq s^2_j\)</span></li>
+</ul>
+<p>Funkcja <code>bartlett.test()</code> w programie R umożliwia zastosowanie tego testu. Argumenty do tej funkcji można przekazać na dwa sposoby. Pierwszy polega na przypisaniu do argumentu <code>x</code> wektora zawierającego wartości cechy, a do argumentu <code>g</code> wektora zawierającego identyfikatory poszczególnych grup. Drugi sposób to zadeklarowanie formuły w postaci <code>zmienna_analizowa ~ zmienna_grupująca</code> oraz podanie zbioru danych przypisanego do argumentu <code>data</code>.</p>
+<p><strong>Przykład</strong></p>
+<p>Sprawdźmy czy wariancje zmiennej <code>doświadczenie</code> w grupach płci są takie same.</p>
+<p><span class="math inline">\(H_0\)</span>: wariancje doświadczenia są takie same w grupach płci</p>
+<p><span class="math inline">\(H_1\)</span>: wariancje doświadczenia nie są takie same w grupach płci</p>
+<p>Funkcję weryfikującą <span class="math inline">\(H_0\)</span> można zapisać na dwa sposoby - wynik zawsze będzie taki sam.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(<span class="at">x =</span> pracownicy<span class="sc">$</span>doswiadczenie, <span class="at">g =</span> pracownicy<span class="sc">$</span>plec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  pracownicy$doswiadczenie and pracownicy$plec
+Bartlett's K-squared = 4.7659, df = 1, p-value = 0.02903</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(pracownicy<span class="sc">$</span>doswiadczenie <span class="sc">~</span> pracownicy<span class="sc">$</span>plec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  pracownicy$doswiadczenie by pracownicy$plec
+Bartlett's K-squared = 4.7659, df = 1, p-value = 0.02903</code></pre>
+</div>
+</div>
+<p>Przyjmując poziom istotności <span class="math inline">\(\alpha = 0,05\)</span> odrzucamy hipotezę zerową stwierdzając, że wariancje różnią się w grupach płci. Z kolei dopuszczając niższy poziom istotności <span class="math inline">\(\alpha = 0,01\)</span> podjęlibyśmy decyzję o braku podstaw do odrzucenia <span class="math inline">\(H_0\)</span> i nieistotnej różnicy pomiędzy grupami.</p>
+</section>
+<section id="testowanie-średnich" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="testowanie-średnich"><span class="header-section-number">6.11</span> Testowanie średnich</h2>
+<p>W przypadku testowania wartości przeciętnych należy wprowadzić pojęcie prób zależnych i niezależnych:</p>
+<ul>
+<li><p>próby zależne (paired) - analizowane są te same jednostki, ale różne cechy.</p></li>
+<li><p>próby niezależne (unpaired) - analizowane są różne jednostki, ale ta sama cecha.</p></li>
+</ul>
+<p>W zależności od tego czy spełnione są odpowiednie założenia dotyczące normalności cechy oraz równości wariancji należy wybrać odpowiedni test według poniższego diagramu.</p>
+<p><img src="img/07_testy_diagram_v3.png" class="img-fluid"></p>
+<section id="test-t-średnich" class="level3" data-number="6.11.1">
+<h3 data-number="6.11.1" class="anchored" data-anchor-id="test-t-średnich"><span class="header-section-number">6.11.1</span> Test t-średnich</h3>
+<p>Weryfikacja równości średnich może odbywać się na zasadzie porównania wartości średniej w jednej grupie z arbitralnie przyjętym poziomem lub w dwóch różnych grupach. W pierwszym przypadku rozważamy układ hipotez:</p>
+<ul>
+<li><span class="math inline">\(H_0: m = m_0\)</span></li>
+<li><span class="math inline">\(H_1: m \neq m_0\)</span> lub <span class="math inline">\(H_1: m &lt; m_0\)</span> lub <span class="math inline">\(H_1: m &gt; m_0\)</span></li>
+</ul>
+<p>natomiast w drugim przypadku hipotezy będą wyglądać następująco:</p>
+<ul>
+<li><span class="math inline">\(H_0: m_1 = m_2\)</span></li>
+<li><span class="math inline">\(H_1: m_1 \neq m_2\)</span> lub <span class="math inline">\(H_1: m_1 &lt; m_2\)</span> lub <span class="math inline">\(H_1: m_1 &gt; m_2\)</span></li>
+</ul>
+<p>Alternatywnie hipotezę zerową można zapisać jako <span class="math inline">\(m_1 - m_2 = 0\)</span> czyli sprawdzamy czy różnica pomiędzy grupami istotnie różni się od zera.</p>
+<p>W funkcji <code>t.test()</code> z pakietu <em>stats</em> w przypadku jednej próby należy podać argument <code>x</code> czyli wektor z wartościami, które są analizowane oraz wartość, z którą tą średnią porównujemy (argument <code>mu</code>, który domyślnie jest równy 0). Dodatkowo w argumencie <code>alternative</code> wskazujemy jaką hipotezę alternatywną bierzemy pod uwagę.</p>
+<p>Dla weryfikacji równości średniej w dwóch próbach należy dodać argument <code>y</code> z wartościami w drugiej próbie. W tym przypadku mamy także możliwość określenia czy próby są zależne (argument <code>paired</code>) lub czy wariancja w obu próbach jest taka sama (<code>var.equal</code>). Jeżeli wariancje są różne to program R przeprowadzi test t Welcha i liczba stopni swobody nie będzie liczbą całkowitą.</p>
+</section>
+<section id="anova" class="level3" data-number="6.11.2">
+<h3 data-number="6.11.2" class="anchored" data-anchor-id="anova"><span class="header-section-number">6.11.2</span> ANOVA</h3>
+<p>W przypadku większej liczby grup stosuje się jednoczynnikową analizę wariancji (ANOVA). Ta analiza wymaga spełnienia założenia o normalności rozkładu i równości wariancji w badanych grupach. Układ hipotez jest następujący:</p>
+<ul>
+<li><span class="math inline">\(H_0: m_1 = m_2 = m_3 = ... = m_k\)</span></li>
+<li><span class="math inline">\(H_1: \exists_{i,j\in\{1,..,k\}} \; m_i \neq m_j\)</span></li>
+</ul>
+<p>Za pomocą funkcji <code>aov()</code> można w R przeprowadzić jednoczynnikową analizę wariancji. Jako argument funkcji należy podać formułę przedstawiającą zależność zmiennej badanej do zmiennej grupującej wykorzystując w tym celu symbol tyldy (<code>~</code>) w następującym kontekście: <code>zmienna_analizowana ~ zmienna_grupująca</code>. Przy takim zapisie należy także w argumencie <code>data</code> podać nazwę zbioru danych.</p>
+<p>W porównaniu do wcześniej opisanych funkcji, <code>aov()</code> nie zwraca w bezpośrednim wyniku wartości p.&nbsp;Aby uzyskać tę wartość należy wynik działania tej funkcji przypisać do obiektu, a następnie na nim wywołać funkcję <code>summary()</code>.</p>
+<p>W przypadku odrzucenia hipotezy zerowej można przeprowadzić test Tukeya w celu identyfikacji różniących się par wykorzystując funkcję <code>TukeyHSD()</code> i jako argument podając obiekt zawierający wynik ANOVA.</p>
+<p>W sytuacji, w której założenia użycia testu parametrycznego nie są spełnione, należy skorzystać z testów nieparametrycznych. W przypadku testowania miar tendencji centralnej różnica pomiędzy testami parametrycznymi a nieparametrycznymi polega na zastąpieniu wartości średniej medianą. Z punktu widzenia obliczeń w miejsce oryginalnych wartości cechy wprowadza się rangi czyli następuje osłabienie skali pomiarowej - z ilorazowej na porządkową.</p>
+</section>
+<section id="test-wilcoxona" class="level3" data-number="6.11.3">
+<h3 data-number="6.11.3" class="anchored" data-anchor-id="test-wilcoxona"><span class="header-section-number">6.11.3</span> Test Wilcoxona</h3>
+<p>Test Wilcoxona jest nieparametryczną wersją testu t. Hipotezy w tym teście dotyczą równości rozkładów:</p>
+<ul>
+<li><span class="math inline">\(H_0: F_1=F_2\)</span></li>
+<li><span class="math inline">\(H_1: F_1 \neq F_2\)</span></li>
+</ul>
+<p>Wartość statystyki testowej będzie zależna od typu testu, natomiast w R funkcja, której należy użyć to <code>wilcox.test()</code>. Argumenty tej funkcji są takie same jak w przypadku testu t.</p>
+</section>
+<section id="test-kruskala-wallisa" class="level3" data-number="6.11.4">
+<h3 data-number="6.11.4" class="anchored" data-anchor-id="test-kruskala-wallisa"><span class="header-section-number">6.11.4</span> Test Kruskala-Wallisa</h3>
+<p>Z kolei test Kruskala-Wallisa jest nieparametrycznym odpowiednikiem ANOVA. Hipotezy są następujące:</p>
+<ul>
+<li><span class="math inline">\(H_0: F_1=F_2=F_3=...=F_k\)</span></li>
+<li><span class="math inline">\(H_1: \exists_{i,j\in\{1,..,k\}} \; F_i \neq F_j\)</span></li>
+</ul>
+<p>W programie R korzysta się z funkcji <code>kruskal.test()</code>, która przyjmuje takie same argumenty jak funkcja do metody ANOVA <code>aov()</code>. Główną różnicą jest sposób podawania wyniku testu, ponieważ w tym przypadku od razu otrzymujemy wartość p.&nbsp;W przypadku odrzucenia hipotezy zerowej należy sprawdzić, które grupy różnią się między sobą. Można to zrobić za pomocą funkcji <code>pairwise.wilcox.test()</code>.</p>
+<p><strong>Przykład</strong></p>
+<p>Sprawdzimy czy średnie doświadczenie w grupach płci jest takie same.</p>
+<p><span class="math inline">\(H_0\)</span>: średnie doświadczenie w grupach płci jest takie samo</p>
+<p><span class="math inline">\(H_1\)</span>: średnie doświadczenie w grupach płci nie jest takie samo</p>
+<p>W związku z tym, że badana cecha nie ma rozkładu normalnego zostanie przeprowadzony test Wilcoxona. Mamy tutaj do czynienia z testem dla prób niezależnych - badana jest jedna cecha (doświadczenie) w ramach rozłącznych grup płci.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(pracownicy<span class="sc">$</span>doswiadczenie <span class="sc">~</span> pracownicy<span class="sc">$</span>plec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  pracownicy$doswiadczenie by pracownicy$plec
+W = 36295, p-value = 1.372e-08
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>Przyjmując poziom istotności <span class="math inline">\(\alpha = 0,05\)</span> odrzucamy <span class="math inline">\(H_0\)</span> - średnie doświadczenie nie jest takie samo.</p>
+<p><strong>Przykład</strong></p>
+<p>Czy początkowe i bieżące wynagrodzenie różni się od siebie w sposób istotny?</p>
+<p><span class="math inline">\(H_0\)</span>: średnie początkowe i bieżące wynagrodzenie jest takie samo</p>
+<p><span class="math inline">\(H_1\)</span>: średnie początkowe i bieżące wynagrodzenie nie jest takie samo</p>
+<p>W pierwszej kolejności weryfikujemy normalność rozkładu analizowanych cech.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(pracownicy<span class="sc">$</span>pwynagrodzenie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  pracownicy$pwynagrodzenie
+W = 0.71535, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(pracownicy<span class="sc">$</span>bwynagrodzenie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  pracownicy$bwynagrodzenie
+W = 0.77061, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Wynagrodzenie w tym zbiorze danych zdecydowanie nie przypomina rozkładu normalnego. W tym przypadku analizujemy próby zależne - badamy dwie różne cechy dla tych samych jednostek (obserwacji).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(<span class="at">x =</span> pracownicy<span class="sc">$</span>pwynagrodzenie, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> pracownicy<span class="sc">$</span>bwynagrodzenie,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  pracownicy$pwynagrodzenie and pracownicy$bwynagrodzenie
+V = 0, p-value &lt; 2.2e-16
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>Na podstawie podanej wartości p odrzucamy <span class="math inline">\(H_0\)</span> - średnie początkowe i bieżące wynagrodzenie różni się od siebie istotnie statystycznie.</p>
+<p><strong>Przykład</strong></p>
+<p>Analogicznie można także sprawdzić czy np. doświadczenie różni się w ramach więcej niż dwóch grup - w takim przypadku rozpatrujemy głównie próby niezależne.</p>
+<p><span class="math inline">\(H_0\)</span>: średnie doświadczenie w grupach kategorii pracownika jest takie same</p>
+<p><span class="math inline">\(H_1\)</span>: średnie doświadczenie w grupach kategorii pracownika nie jest takie same - co najmniej jedna para jest różna</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(pracownicy<span class="sc">$</span>doswiadczenie <span class="sc">~</span> pracownicy<span class="sc">$</span>kat_pracownika)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  pracownicy$doswiadczenie by pracownicy$kat_pracownika
+Kruskal-Wallis chi-squared = 57.466, df = 2, p-value = 3.322e-13</code></pre>
+</div>
+</div>
+<p>Przyjmując poziom istotności <span class="math inline">\(\alpha = 0,05\)</span> odrzucamy hipotezę zerową - co najmniej jedna para kategorii pracownika różni się pod względem średniego wynagrodzenia.</p>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>W przypadku liczniejszych prób można wykorzystać test Kołmogorowa-Smirnova.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-programowanie.html" class="pagination-link" aria-label="Programowanie w R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programowanie w R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
