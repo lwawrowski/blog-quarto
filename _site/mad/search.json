@@ -10,8 +10,8 @@
     ]
   },
   {
-    "objectID": "00-instalacja.html",
-    "href": "00-instalacja.html",
+    "objectID": "instalacja.html",
+    "href": "instalacja.html",
     "title": "1  Instalacja",
     "section": "",
     "text": "1.1 Środowiska wirtualne\nJeden ze sposobów instalacji Pythona na Windowsie to pobranie instalatora z oficjalnej strony https://www.python.org/downloads/windows/\nWażne, żeby podczas instalacji zaznaczyć następujące opcje:\nKolejny krok to weryfikacja instalacji w konsoli (cmd/powershell):\nŚrodowisko wirtualne (ang. virtual environment, w skrócie venv) to jedna z rzeczy w Pythonie, która ułatwia zarządzanie projektami. To izolowane środowisko Pythona stworzone tylko dla jednego projektu. Zawiera swoją własną wersję interpretera Pythona i niezależny zestaw zainstalowanych pakietów. Korzystając ze środowiska wirtualnego każdy projekt może mieć inne wersje bibliotek.\nTworzenie wirtualnego środowiska o nazwie venv w katalogu projektu.\nAktywacja środowiska wirtualnego.\nW systemie Windows zdarza się, że jest zablokowane wywoływanie skryptów. Wtedy podczas tworzenia środowiska możemy dostać komunikat\nW takiej sytuacji należy uruchomić poniższą komendę:\ni spróbować ponownie uruchomić środowisko wirtualne.",
@@ -20,8 +20,8 @@
     ]
   },
   {
-    "objectID": "00-instalacja.html#środowiska-wirtualne",
-    "href": "00-instalacja.html#środowiska-wirtualne",
+    "objectID": "instalacja.html#środowiska-wirtualne",
+    "href": "instalacja.html#środowiska-wirtualne",
     "title": "1  Instalacja",
     "section": "",
     "text": "python -m venv venv\n\nvenv\\Scripts\\activate\n\n.\\venv\\Scripts\\activate : File \\venv\\Scripts\\Activate.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.\n\nSet-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned",
@@ -30,8 +30,8 @@
     ]
   },
   {
-    "objectID": "00-instalacja.html#instalacja-pakietów",
-    "href": "00-instalacja.html#instalacja-pakietów",
+    "objectID": "instalacja.html#instalacja-pakietów",
+    "href": "instalacja.html#instalacja-pakietów",
     "title": "1  Instalacja",
     "section": "1.2 Instalacja pakietów",
     "text": "1.2 Instalacja pakietów\nDo instalacji pakietów wykorzystuje się aplikację pip. Po stworzeniu i aktywacji środowiska możemy sprawdzić jakie pakiety są zainstalowane:\npip list\nA następnie zainstalować te, które wymagane są w naszym projekcie.\npip install pandas scikit-learn\nDobrą praktyką jest zapisywanie wykorzystywanych pakietów do pliku, dzięki czemu inna osoba może sprawdzić jakie wersje pakietów są wymagane do prawidłowego działania programu.\npip freeze &gt; requirements.txt\nW ten sposób łatwo też zainstalować wymagane pakiety przy migracji projektu.\npip install -r requirements.txt",
@@ -40,8 +40,8 @@
     ]
   },
   {
-    "objectID": "00-instalacja.html#anaconda",
-    "href": "00-instalacja.html#anaconda",
+    "objectID": "instalacja.html#anaconda",
+    "href": "instalacja.html#anaconda",
     "title": "1  Instalacja",
     "section": "1.3 Anaconda",
     "text": "1.3 Anaconda\nAnaconda dostarcza zestaw narzędzi + python + jupyter + numpy + pandas itp. w pakiecie: https://www.anaconda.com/download\nPo instalacji anacondy dostajemy interfejs GUI do zarządzania pakietami i środowiskami wirtualnymi. Środowiska wirtualne w anacondzie są tworzone z reguły poza katalogiem projektu.",
@@ -50,8 +50,8 @@
     ]
   },
   {
-    "objectID": "00-instalacja.html#ide",
-    "href": "00-instalacja.html#ide",
+    "objectID": "instalacja.html#ide",
+    "href": "instalacja.html#ide",
     "title": "1  Instalacja",
     "section": "1.4 IDE",
     "text": "1.4 IDE\nDo wygodnego korzystania z pythona przyda się odpowiednie zintegrowane środowisko programistyczne:\n\nVisual Studio Code - obecnie najpopularniejsze\nPyCharm - świetny w wersji płatnej\nJupyter - notatnik pythonowy\nGoogle Colab - wersja online\nRStudio",
@@ -60,148 +60,218 @@
     ]
   },
   {
-    "objectID": "01-dane.html",
-    "href": "01-dane.html",
+    "objectID": "dane.html",
+    "href": "dane.html",
     "title": "2  Dane",
     "section": "",
-    "text": "2.1 Wprowadzenie\nPrezentacja",
+    "text": "2.1 Wprowadzenie\nPrezentacja\nDane surowe rzadko nadają się bezpośrednio do analizy lub modelowania. W praktyce zawierają niespójne nazwy kolumn, brakujące wartości, duplikaty lub kategorie zapisane w różny sposób. Proces przygotowania danych jest często najbardziej czasochłonną częścią projektu analitycznego.\nDobrą praktyką jest rozpoczęcie analizy od eksploracji danych: sprawdzenia typów kolumn, liczby braków danych oraz podstawowych statystyk opisowych. W Pythonie najczęściej wykorzystuje się do tego metody head(), info() oraz describe().\nW tym rozdziale skupimy się na zbiorze opisującym klientów banku i decyzję kredytową - German credit data, który zawiera następujące kolumny:\nW analizie danych oraz w uczeniu maszynowym rozróżnia się zmienną objaśnianą (target) oraz zmienne objaśniające (cechy). Zmienna objaśniana reprezentuje wynik, który model ma przewidywać, natomiast zmienne objaśniające dostarczają informacji wejściowych opisujących obserwacje. W przypadku zbioru German Credit Data zmienną objaśnianą jest risk, czyli informacja o tym, czy klient spłacił kredyt, natomiast pozostałe kolumny opisują cechy klienta i jego kredytu.\nW praktyce bardzo ważne jest, aby upewnić się, że zmienna objaśniana nie jest przypadkowo wykorzystywana podczas przygotowania cech (tzw. data leakage). Przed rozpoczęciem modelowania warto także sprawdzić rozkład zmiennej docelowej, ponieważ duża nierównowaga klas może wymagać zastosowania dodatkowych technik, takich jak ważenie klas lub resampling.\nCzyszczenie danych obejmuje usuwanie błędów i niespójności w zbiorze danych. Typowe operacje to ujednolicanie nazw kolumn, obsługa braków danych, identyfikacja wartości odstających oraz usuwanie duplikatów. Dzięki temu dane stają się spójne i gotowe do dalszego przetwarzania. Warto zapisywać kolejne kroki czyszczenia danych w postaci kodu, a nie wykonywać je ręcznie w arkuszach kalkulacyjnych. Pozwala to na odtworzenie całego procesu w przyszłości oraz ułatwia jego automatyzację.\nPo oczyszczeniu danych następuje etap ich przetwarzania, czyli przygotowania do wykorzystania w modelach statystycznych lub uczenia maszynowego. Obejmuje on m.in. konwersję typów danych, kodowanie zmiennych kategorycznych oraz skalowanie zmiennych numerycznych. Warto pamiętać, że wiele algorytmów wymaga danych w postaci numerycznej, dlatego zmienne tekstowe muszą zostać odpowiednio zakodowane. Dodatkowo właściwe przygotowanie danych często poprawia stabilność i skuteczność modeli.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
-    "objectID": "01-dane.html#braki-danych",
-    "href": "01-dane.html#braki-danych",
+    "objectID": "dane.html#wprowadzenie",
+    "href": "dane.html#wprowadzenie",
     "title": "2  Dane",
-    "section": "2.2 Braki danych",
-    "text": "2.2 Braki danych",
+    "section": "",
+    "text": "Age (numeric)\nSex (text: male, female)\nJob (numeric: 0 - unskilled and non-resident, 1 - unskilled and resident, 2 - skilled, 3 - highly skilled)\nHousing (text: own, rent, or free)\nSaving accounts (text - little, moderate, quite rich, rich)\nChecking account (text, little, moderate, rich)\nCredit amount (numeric, in DM)\nDuration (numeric, in month)\nPurpose (text: car, furniture/equipment, radio/TV, domestic appliances.. and so on…)\nRisk (text: good/bad): it’s our Target Variable, describes if client paid or didn’t pay loan",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
-    "objectID": "01-dane.html#wartości-odstające",
-    "href": "01-dane.html#wartości-odstające",
+    "objectID": "dane.html#wczytanie-danych-i-wstępna-eksploracja",
+    "href": "dane.html#wczytanie-danych-i-wstępna-eksploracja",
     "title": "2  Dane",
-    "section": "2.3 Wartości odstające",
-    "text": "2.3 Wartości odstające",
+    "section": "2.2 Wczytanie danych i wstępna eksploracja",
+    "text": "2.2 Wczytanie danych i wstępna eksploracja\nNa początku notebooka dane zostały wczytane do obiektu DataFrame przy użyciu funkcji read_csv(). Następnie metoda head() pozwala wyświetlić kilka pierwszych rekordów i sprawdzić, czy dane zostały poprawnie załadowane.\nimport pandas as pd\n\ncredit = pd.read_csv('data/german_credit_data.csv')\ncredit.head()\nW praktyce jest to pierwszy krok eksploracji danych – umożliwia szybkie wykrycie problemów takich jak niepoprawne separatory, błędne kodowanie znaków czy niewłaściwe typy kolumn.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
-    "objectID": "01-dane.html#duplikaty",
-    "href": "01-dane.html#duplikaty",
+    "objectID": "dane.html#czyszczenie-nazw-kolumn",
+    "href": "dane.html#czyszczenie-nazw-kolumn",
     "title": "2  Dane",
-    "section": "2.4 Duplikaty",
-    "text": "2.4 Duplikaty",
+    "section": "2.3 Czyszczenie nazw kolumn",
+    "text": "2.3 Czyszczenie nazw kolumn\nNazwy kolumn w danych często zawierają spacje, wielkie litery lub znaki specjalne, co utrudnia ich użycie w kodzie. W notebooku zastosowano funkcję clean_names() z biblioteki pyjanitor, która automatycznie konwertuje nazwy kolumn do małych liter i zamienia spacje na podkreślenia.\nTakie ujednolicenie nazw kolumn jest dobrą praktyką w projektach analitycznych, ponieważ pozwala uniknąć błędów w kodzie i ułatwia pracę z danymi w różnych narzędziach. Alternatywnie można wykonać te operacje ręcznie przy użyciu metod stringowych biblioteki pandas.\nKod:\nfrom janitor import clean_names\ncredit = credit.clean_names()\nAby lepiej zrozumieć strukturę danych, wykorzystano metodę describe(), która oblicza podstawowe statystyki dla zmiennych numerycznych, takie jak średnia, odchylenie standardowe czy kwartyle.\ncredit.describe()\nAnaliza statystyk opisowych pomaga wykryć potencjalne błędy w danych, na przykład nierealistyczne wartości lub bardzo duże rozrzuty zmiennych. Warto również zwrócić uwagę na różnice w skali poszczególnych cech, ponieważ mogą one wpływać na działanie niektórych algorytmów.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
-    "objectID": "01-dane.html#podział",
-    "href": "01-dane.html#podział",
+    "objectID": "dane.html#braki-danych",
+    "href": "dane.html#braki-danych",
     "title": "2  Dane",
-    "section": "2.5 Podział",
-    "text": "2.5 Podział",
+    "section": "2.4 Braki danych",
+    "text": "2.4 Braki danych\nBraki danych są jednym z najczęstszych problemów w analizie danych. W notebooku sprawdzono obecność braków w kolumnach checking_account oraz saving_accounts, a następnie zastosowano różne strategie ich uzupełniania.\n# credit[\"checking_account\"].isna().sum()\ncredit_nan = credit[~credit[\"checking_account\"].isna() & ~credit[\"saving_accounts\"].isna()]\nPrzed imputacją warto zawsze sprawdzić, czy brak danych jest losowy. W niektórych przypadkach brak wartości może sam w sobie zawierać informację (np. brak konta bankowego), dlatego zamiast imputacji można rozważyć utworzenie dodatkowej kategorii.\nW przypadku zmiennej checking_account brakujące wartości zostały zastąpione najczęściej występującą kategorią. Najpierw obliczono dominantę przy użyciu metody mode(), a następnie użyto funkcji fillna().\ncheck_acc = credit[\"checking_account\"].mode()[0]\ncredit[\"checking_account\"] = credit[\"checking_account\"].fillna(check_acc)\nTakie podejście jest często stosowane dla zmiennych kategorycznych, jednak może prowadzić do zwiększenia liczebności jednej kategorii i zaburzenia rozkładu danych. Dlatego w bardziej zaawansowanych analizach warto rozważyć inne metody imputacji.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
   },
   {
-    "objectID": "02-klasyfikacja.html",
-    "href": "02-klasyfikacja.html",
-    "title": "3  Klasyfikacja",
+    "objectID": "dane.html#imputacja-z-wykorzystaniem-scikit-learn",
+    "href": "dane.html#imputacja-z-wykorzystaniem-scikit-learn",
+    "title": "2  Dane",
+    "section": "2.5 Imputacja z wykorzystaniem scikit-learn",
+    "text": "2.5 Imputacja z wykorzystaniem scikit-learn\nBiblioteka scikit-learn oferuje wiele narzędzi do przygotowania i analizy danych, w tym m.in. do automatycznej imputacji brakujących danych. W notebooku zastosowano klasę SimpleImputer, która zastępuje braki najczęściej występującą wartością w kolumnie.\nfrom sklearn.impute import SimpleImputer\n\nimputer = SimpleImputer(strategy=\"most_frequent\")\ncredit[['saving_accounts']] = imputer.fit_transform(credit[['saving_accounts']])\nZaletą tego podejścia jest możliwość łatwego włączenia imputacji do pipeline’u przetwarzania danych. W praktyce szczególnie ważne jest, aby imputacja była oparta tylko na danych treningowych, a następnie stosowana do danych testowych, w celu zastosowania tej samej reguły na obu zbiorach.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#usuwanie-duplikatów",
+    "href": "dane.html#usuwanie-duplikatów",
+    "title": "2  Dane",
+    "section": "2.6 Usuwanie duplikatów",
+    "text": "2.6 Usuwanie duplikatów\nDuplikaty mogą pojawić się w zbiorach danych w wyniku błędów podczas łączenia tabel lub importowania danych z różnych źródeł. W notebooku zastosowano funkcję drop_duplicates(), która usuwa identyczne rekordy.\ncredit_dedup = credit.drop_duplicates()\nPrzed usunięciem duplikatów warto upewnić się, że rzeczywiście są to błędy w danych, a nie powtarzające się, ale poprawne obserwacje. W niektórych analizach duplikaty mogą być bowiem naturalną częścią danych.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#feature-engineering",
+    "href": "dane.html#feature-engineering",
+    "title": "2  Dane",
+    "section": "2.7 Feature Engineering",
+    "text": "2.7 Feature Engineering\nFeature engineering polega na tworzeniu nowych cech, które mogą lepiej opisywać analizowane zjawisko. W notebooku utworzono kilka nowych zmiennych, m.in. grupy wiekowe, średnią ratę kredytu oraz relację kwoty kredytu do wieku klienta.\ncredit[\"age_groups\"] = pd.cut(credit[\"age\"], \n                              bins=[0, 30, 40, 50, 60, 70, 80], \n                              labels=[\"30\", \"30-40\", \"40-50\", \"50-60\", \"60-70\", \"70\"])\nTworzenie takich cech może znacząco poprawić jakość modeli, ponieważ wprowadza do danych dodatkową informację lub upraszcza złożone relacje. W praktyce warto jednak unikać tworzenia zbyt wielu cech, które mogą prowadzić do przeuczenia modelu.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#kodowanie-zmiennych-kategorycznych",
+    "href": "dane.html#kodowanie-zmiennych-kategorycznych",
+    "title": "2  Dane",
+    "section": "2.8 Kodowanie zmiennych kategorycznych",
+    "text": "2.8 Kodowanie zmiennych kategorycznych\nModele uczenia maszynowego zazwyczaj wymagają danych numerycznych, dlatego zmienne tekstowe muszą zostać zakodowane. W notebooku zastosowano kodowanie One-Hot Encoding przy użyciu funkcji get_dummies() z biblioteki pandas.\ncategorical_cols = [\"sex\", \"job\", \"housing\", \"saving_accounts\", \"checking_account\", \"purpose\", \"age_groups\"]\ncredit_ohe = pd.get_dummies(credit, columns=categorical_cols, dtype=int)\nKodowanie to tworzy osobną kolumnę dla każdej kategorii. W praktyce należy uważać na zmienne o bardzo dużej liczbie kategorii, ponieważ mogą one znacząco zwiększyć liczbę kolumn w zbiorze danych.\nAlternatywnie można skorzystać z klasy OneHotEncoder z biblioteki scikit-learn, która jest często wykorzystywana w pipeline’ach modelowania.\nfrom sklearn.preprocessing import OneHotEncoder\n\nencoder = OneHotEncoder()\ncredit_enc = encoder.fit_transform(credit[categorical_cols])\nZaletą tego podejścia jest możliwość łatwego zastosowania tego samego kodera do nowych danych. Jest to szczególnie ważne w systemach produkcyjnych, gdzie model musi przetwarzać dane napływające w czasie rzeczywistym.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#normalizacja-cech",
+    "href": "dane.html#normalizacja-cech",
+    "title": "2  Dane",
+    "section": "2.9 Normalizacja cech",
+    "text": "2.9 Normalizacja cech\nNiektóre algorytmy, zwłaszcza oparte na odległościach, są wrażliwe na skalę zmiennych. Dlatego w notebooku zastosowano StandardScaler, który przekształca dane tak, aby miały średnią równą zero i odchylenie standardowe równe jeden.\nfrom sklearn.preprocessing import StandardScaler\n\nscaler = StandardScaler()\ncredit_scaled = scaler.fit_transform(credit[numeric_cols])\nSkalowanie powinno być wykonywane dopiero po podziale danych na zbiór treningowy i testowy. W przeciwnym razie model może nieświadomie uzyskać informacje o danych testowych.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#kodowanie-zmiennej-objaśnianej",
+    "href": "dane.html#kodowanie-zmiennej-objaśnianej",
+    "title": "2  Dane",
+    "section": "2.10 Kodowanie zmiennej objaśnianej",
+    "text": "2.10 Kodowanie zmiennej objaśnianej\nZmienne kategoryczne używane jako zmienna docelowa również muszą zostać zakodowane numerycznie. W notebooku wykorzystano klasę LabelEncoder, która przypisuje każdej kategorii unikalną wartość liczbową.\nfrom sklearn.preprocessing import LabelEncoder\n\nle = LabelEncoder()\nle_risk = le.fit_transform(credit[\"risk\"])\nTakie kodowanie jest szczególnie przydatne w zadaniach klasyfikacyjnych. Warto jednak pamiętać, że liczby przypisane kategoriom nie mają znaczenia porządkowego – są jedynie identyfikatorami klas.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#budowa-końcowego-zbioru-danych",
+    "href": "dane.html#budowa-końcowego-zbioru-danych",
+    "title": "2  Dane",
+    "section": "2.11 Budowa końcowego zbioru danych",
+    "text": "2.11 Budowa końcowego zbioru danych\nNa końcu wszystkie przetworzone dane zostały połączone w jeden zbiór danych zawierający przeskalowane zmienne numeryczne, zakodowane zmienne kategoryczne oraz zakodowaną zmienną docelową.\ncredit_final = pd.concat([credit_scaled_df, credit_enc_df, pd.Series(le_risk, name=\"risk\")], axis=1)\ncredit_final.to_csv(\"data/german_credit_final.csv\", index=False)\nW praktyce warto zapisywać zarówno surowe dane, jak i ich przetworzoną wersję, aby umożliwić łatwe odtworzenie całego procesu analitycznego.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "regresja.html",
+    "href": "regresja.html",
+    "title": "3  Regresja",
     "section": "",
     "text": "3.1 Wprowadzenie\nPrezentacja",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
-    "objectID": "02-klasyfikacja.html#drzewo-decyzyjne",
-    "href": "02-klasyfikacja.html#drzewo-decyzyjne",
-    "title": "3  Klasyfikacja",
-    "section": "3.2 Drzewo decyzyjne",
-    "text": "3.2 Drzewo decyzyjne",
+    "objectID": "regresja.html#regresja-liniowa",
+    "href": "regresja.html#regresja-liniowa",
+    "title": "3  Regresja",
+    "section": "3.2 Regresja liniowa",
+    "text": "3.2 Regresja liniowa",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
-    "objectID": "02-klasyfikacja.html#lasy-losowe",
-    "href": "02-klasyfikacja.html#lasy-losowe",
-    "title": "3  Klasyfikacja",
-    "section": "3.3 Lasy losowe",
-    "text": "3.3 Lasy losowe",
+    "objectID": "regresja.html#regresja-wieloraka",
+    "href": "regresja.html#regresja-wieloraka",
+    "title": "3  Regresja",
+    "section": "3.3 Regresja wieloraka",
+    "text": "3.3 Regresja wieloraka",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
-    "objectID": "02-klasyfikacja.html#xgboost",
-    "href": "02-klasyfikacja.html#xgboost",
-    "title": "3  Klasyfikacja",
-    "section": "3.4 XGBoost",
-    "text": "3.4 XGBoost",
+    "objectID": "regresja.html#xai",
+    "href": "regresja.html#xai",
+    "title": "3  Regresja",
+    "section": "3.4 XAI",
+    "text": "3.4 XAI",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
-    "objectID": "02-klasyfikacja.html#xai",
-    "href": "02-klasyfikacja.html#xai",
-    "title": "3  Klasyfikacja",
-    "section": "3.5 XAI",
-    "text": "3.5 XAI",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Klasyfikacja</span>"
-    ]
-  },
-  {
-    "objectID": "03-regresja.html",
-    "href": "03-regresja.html",
-    "title": "4  Regresja",
+    "objectID": "klasyfikacja.html",
+    "href": "klasyfikacja.html",
+    "title": "4  Klasyfikacja",
     "section": "",
     "text": "4.1 Wprowadzenie\nPrezentacja",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
-    "objectID": "03-regresja.html#regresja-liniowa",
-    "href": "03-regresja.html#regresja-liniowa",
-    "title": "4  Regresja",
-    "section": "4.2 Regresja liniowa",
-    "text": "4.2 Regresja liniowa",
+    "objectID": "klasyfikacja.html#drzewo-decyzyjne",
+    "href": "klasyfikacja.html#drzewo-decyzyjne",
+    "title": "4  Klasyfikacja",
+    "section": "4.2 Drzewo decyzyjne",
+    "text": "4.2 Drzewo decyzyjne",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
-    "objectID": "03-regresja.html#regresja-wieloraka",
-    "href": "03-regresja.html#regresja-wieloraka",
-    "title": "4  Regresja",
-    "section": "4.3 Regresja wieloraka",
-    "text": "4.3 Regresja wieloraka",
+    "objectID": "klasyfikacja.html#lasy-losowe",
+    "href": "klasyfikacja.html#lasy-losowe",
+    "title": "4  Klasyfikacja",
+    "section": "4.3 Lasy losowe",
+    "text": "4.3 Lasy losowe",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
-    "objectID": "03-regresja.html#xai",
-    "href": "03-regresja.html#xai",
-    "title": "4  Regresja",
-    "section": "4.4 XAI",
-    "text": "4.4 XAI",
+    "objectID": "klasyfikacja.html#xgboost",
+    "href": "klasyfikacja.html#xgboost",
+    "title": "4  Klasyfikacja",
+    "section": "4.4 XGBoost",
+    "text": "4.4 XGBoost",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresja</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
-    "objectID": "04-grupowanie.html",
-    "href": "04-grupowanie.html",
+    "objectID": "klasyfikacja.html#xai",
+    "href": "klasyfikacja.html#xai",
+    "title": "4  Klasyfikacja",
+    "section": "4.5 XAI",
+    "text": "4.5 XAI",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "grupowanie.html",
+    "href": "grupowanie.html",
     "title": "5  Grupowanie",
     "section": "",
     "text": "5.1 Wprowadzenie\nPrezentacja",
@@ -210,8 +280,8 @@
     ]
   },
   {
-    "objectID": "04-grupowanie.html#grupowanie-obiektów",
-    "href": "04-grupowanie.html#grupowanie-obiektów",
+    "objectID": "grupowanie.html#grupowanie-obiektów",
+    "href": "grupowanie.html#grupowanie-obiektów",
     "title": "5  Grupowanie",
     "section": "5.2 Grupowanie obiektów",
     "text": "5.2 Grupowanie obiektów\n\n5.2.1 Metoda k-średnich\n\n\n5.2.2 Metoda hierarchiczna\n\n\n5.2.3 Wykrywanie anomalii",
@@ -220,83 +290,13 @@
     ]
   },
   {
-    "objectID": "04-grupowanie.html#grupowanie-cech",
-    "href": "04-grupowanie.html#grupowanie-cech",
+    "objectID": "grupowanie.html#grupowanie-cech",
+    "href": "grupowanie.html#grupowanie-cech",
     "title": "5  Grupowanie",
     "section": "5.3 Grupowanie cech",
     "text": "5.3 Grupowanie cech\n\n5.3.1 Metoda głównych składowych\n\n\n5.3.2 UMAP",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
-    ]
-  },
-  {
-    "objectID": "05-testy.html",
-    "href": "05-testy.html",
-    "title": "6  Testy statystyczne",
-    "section": "",
-    "text": "6.1 Wprowadzenie\nPrezentacja",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
-    ]
-  },
-  {
-    "objectID": "05-testy.html#hipoteza-statystyczna",
-    "href": "05-testy.html#hipoteza-statystyczna",
-    "title": "6  Testy statystyczne",
-    "section": "6.2 Hipoteza statystyczna",
-    "text": "6.2 Hipoteza statystyczna",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
-    ]
-  },
-  {
-    "objectID": "05-testy.html#testy-parametryczne",
-    "href": "05-testy.html#testy-parametryczne",
-    "title": "6  Testy statystyczne",
-    "section": "6.3 Testy parametryczne",
-    "text": "6.3 Testy parametryczne",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
-    ]
-  },
-  {
-    "objectID": "05-testy.html#testy-nieparametryczna",
-    "href": "05-testy.html#testy-nieparametryczna",
-    "title": "6  Testy statystyczne",
-    "section": "6.4 Testy nieparametryczna",
-    "text": "6.4 Testy nieparametryczna",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Testy statystyczne</span>"
-    ]
-  },
-  {
-    "objectID": "06-raporty.html",
-    "href": "06-raporty.html",
-    "title": "7  Raporty",
-    "section": "",
-    "text": "7.1 Wprowadzenie",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Raporty</span>"
-    ]
-  },
-  {
-    "objectID": "06-raporty.html#markdown",
-    "href": "06-raporty.html#markdown",
-    "title": "7  Raporty",
-    "section": "7.2 Markdown",
-    "text": "7.2 Markdown",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Raporty</span>"
-    ]
-  },
-  {
-    "objectID": "06-raporty.html#quarto",
-    "href": "06-raporty.html#quarto",
-    "title": "7  Raporty",
-    "section": "7.3 Quarto",
-    "text": "7.3 Quarto",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Raporty</span>"
     ]
   }
 ]
