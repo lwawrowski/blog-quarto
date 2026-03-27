@@ -1,0 +1,48 @@
+---
+title: "Seminarium dyplomowe 2025/2026"
+format:
+  html:
+    embed-resources: true
+---
+
+# Terminy seminarium 
+
+- 12.04 (niedziela) 16:15-18:30 (3h)
+- 17.05 (niedziela) 16:15-18:30 (3h)
+- 6.06 (sobota) 17:00-18:30 (2h)
+- 21.06 (niedziela) 16:15-18:30 (3h)
+
+Obrony:
+
+- 04.07.2026 (sobota)
+- 12.09.2026 (sobota)
+
+# Konspekt pracy dyplomowej
+
+1. Wstęp
+2. Rozdział 1. Opis badanego zjawiska
+3. Rozdział 2. Zastosowana metodyka badawcza
+4. Rozdział 3. Zastosowanie metod do zjawiska i otrzymane wyniki
+5. Zakończenie
+6. Bibliografia
+
+# Strategia pisania pracy dyplomowej
+
+1. Wybór problemu badawczego
+2. Analiza obecnego stanu wiedzy na podstawie https://scholar.google.pl/, https://arxiv.org/ 
+3. Wybór zbioru danych i przeprowadzenie analiz
+4. Opisanie rezultatów oraz części teoretycznych
+
+# Przykładowe źródła danych oraz tematy prac
+
+- Wykrywanie anomalii z wykorzystaniem analizy behawioralnej
+- Zastosowanie LLM w cyberbezpieczeństwie
+- Analiza danych pogodowych (https://danepubliczne.imgw.pl/pl/introduction, https://python.plainenglish.io/weather-prediction-with-machine-learning-90e04d86cea7)
+- Analiza sentymentu tekstów np. z google news
+- Predykcja autora tekstu, predykcja gatunku książki na podstawie opisu fabuły z Wikipedii (https://vgherard.github.io/posts/2024-04-25-grammar-as-a-biometric-for-authorship-verification/)
+- Analiza zmian w wynikach egzaminów (https://mapa.wyniki.edu.pl/MapaEgzaminow/)
+- Weryfikacja dostępności zasobów rządowych - webscraping i sprawdzanie linków
+- Dane od Meta https://ai.meta.com/ai-for-good/datasets/
+- Analiza danych przestrzennych https://rpubs.com/Pytlarz_Kapral/1269465
+- Analiza danych audio https://004822.xyz/pl/audio-analysis/
+- Zadania z Olimpiady AI https://github.com/OlimpiadaAI

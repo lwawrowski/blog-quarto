@@ -19,3 +19,7 @@ title: "Dydaktyka"
 [Geomarketing](https://github.com/lwawrowski/geomarketing)
 
 [Przetwarzanie danych w SAS](https://github.com/lwawrowski/przetwarzanie-danych-SAS)
+
+# Seminarium dyplomowe
+
+[CDV](seminarium.html)
