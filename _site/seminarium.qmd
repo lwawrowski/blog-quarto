@@ -3,11 +3,12 @@ title: "Seminarium dyplomowe 2025/2026"
 format:
   html:
     embed-resources: true
+    toc: true
 ---
 
 # Terminy seminarium 
 
-- 12.04 (niedziela) 16:15-18:30 (3h)
+- 10.04 (piątek) 18:00-20:15 (3h)
 - 17.05 (niedziela) 16:15-18:30 (3h)
 - 6.06 (sobota) 17:00-18:30 (2h)
 - 21.06 (niedziela) 16:15-18:30 (3h)
@@ -16,6 +17,47 @@ Obrony:
 
 - 04.07.2026 (sobota)
 - 12.09.2026 (sobota)
+
+# Minimalne wymagania techniczne pracy
+
+Każda praca dyplomowa powinna zawierać:
+
+1. **Opis problemu badawczego**
+
+   * jasno sformułowane pytanie badawcze
+   * uzasadnienie wyboru problemu
+
+2. **Opis zbioru danych**
+
+   * źródło danych
+   * liczba obserwacji
+   * liczba cech
+   * opis zmiennych
+
+3. **Eksploracyjną analizę danych (EDA)**
+
+   * statystyki opisowe
+   * wizualizacje danych
+   * identyfikacja braków danych i wartości odstających
+
+4. **Zastosowanie co najmniej dwóch metod analitycznych**, np.:
+
+   * modele klasyfikacyjne
+   * modele regresyjne
+   * metody klasteryzacji
+   * metody detekcji anomalii
+
+5. **Porównanie metod**
+
+   * metryki jakości (np. accuracy, F1, RMSE)
+   * interpretacja wyników
+
+6. **Interpretację wyników**
+
+   * znaczenie praktyczne
+   * ograniczenia analizy
+
+
 
 # Konspekt pracy dyplomowej
 
@@ -29,7 +71,10 @@ Obrony:
 # Strategia pisania pracy dyplomowej
 
 1. Wybór problemu badawczego
-2. Analiza obecnego stanu wiedzy na podstawie https://scholar.google.pl/, https://arxiv.org/ 
+2. Analiza obecnego stanu wiedzy na podstawie np.
+   * [https://scholar.google.pl/](https://scholar.google.pl/)
+   * [https://arxiv.org/](https://arxiv.org/)
+   * [https://dblp.org/](https://dblp.org/)
 3. Wybór zbioru danych i przeprowadzenie analiz
 4. Opisanie rezultatów oraz części teoretycznych
 
@@ -37,12 +82,116 @@ Obrony:
 
 - Wykrywanie anomalii z wykorzystaniem analizy behawioralnej
 - Zastosowanie LLM w cyberbezpieczeństwie
-- Analiza danych pogodowych (https://danepubliczne.imgw.pl/pl/introduction, https://python.plainenglish.io/weather-prediction-with-machine-learning-90e04d86cea7)
+- Analiza danych pogodowych [https://danepubliczne.imgw.pl/pl/introduction](https://danepubliczne.imgw.pl/pl/introduction), [https://python.plainenglish.io/weather-prediction-with-machine-learning-90e04d86cea7](https://python.plainenglish.io/weather-prediction-with-machine-learning-90e04d86cea7)
 - Analiza sentymentu tekstów np. z google news
-- Predykcja autora tekstu, predykcja gatunku książki na podstawie opisu fabuły z Wikipedii (https://vgherard.github.io/posts/2024-04-25-grammar-as-a-biometric-for-authorship-verification/)
-- Analiza zmian w wynikach egzaminów (https://mapa.wyniki.edu.pl/MapaEgzaminow/)
+- Predykcja autora tekstu, predykcja gatunku książki na podstawie opisu fabuły z Wikipedii [https://vgherard.github.io/posts/2024-04-25-grammar-as-a-biometric-for-authorship-verification/](https://vgherard.github.io/posts/2024-04-25-grammar-as-a-biometric-for-authorship-verification/)
+- Analiza zmian w wynikach egzaminów [https://mapa.wyniki.edu.pl/MapaEgzaminow/](https://mapa.wyniki.edu.pl/MapaEgzaminow/)
 - Weryfikacja dostępności zasobów rządowych - webscraping i sprawdzanie linków
-- Dane od Meta https://ai.meta.com/ai-for-good/datasets/
-- Analiza danych przestrzennych https://rpubs.com/Pytlarz_Kapral/1269465
-- Analiza danych audio https://004822.xyz/pl/audio-analysis/
-- Zadania z Olimpiady AI https://github.com/OlimpiadaAI
+- Dane od Meta [https://ai.meta.com/ai-for-good/datasets/](https://ai.meta.com/ai-for-good/datasets/)
+- Analiza danych przestrzennych [https://rpubs.com/Pytlarz_Kapral/1269465](https://rpubs.com/Pytlarz_Kapral/1269465)
+- Analiza danych audio [https://004822.xyz/pl/audio-analysis/](https://004822.xyz/pl/audio-analysis/)
+- Zadania z Olimpiady AI [https://github.com/OlimpiadaAI](https://github.com/OlimpiadaAI)
+- [https://www.kaggle.com/datasets](https://www.kaggle.com/datasets)
+- [https://huggingface.co/datasets](https://huggingface.co/datasets)
+- [https://registry.opendata.aws/](https://registry.opendata.aws/)
+- [https://zenodo.org/](https://zenodo.org/)
+- [https://data.europa.eu](https://data.europa.eu)
+- [https://archive.ics.uci.edu](https://archive.ics.uci.edu)
+- [https://data.gov.pl](https://data.gov.pl)
+
+# Tematy prac dyplomowych z poprzednich lat
+
+- Analiza korelacji między atrybutami akustycznymi a popularnością utworów muzycznych na platformie Spotify
+- Analiza przestrzenna rozmieszczenia parkometrów w Poznaniu w strefach płatnego parkowania
+- Nierówności regionalne w wynikach matury 2024 – analiza geograficzna i społeczna
+- Analiza wynagrodzeń absolwentów polskich uczelni w zależności od dziedziny i roku ukończenia studiów przy użyciu narzędzi Big Data
+- Analiza porównawcza repozytoriów GitHub w kontekście adopcji i charakterystyki procesów CI/CD z wykorzystaniem GitHub Actions
+- Identyfikacja czynników wpływających na sprzedaż mieszkań w Polsce – analiza na poziomie powiatowym w latach 2013–2023
+- Wydźwięk artykułów dotyczących Centralnego Portu Komunikacyjnego - analiza sentymentu na podstawie Google News
+- Analiza sentymentu w recenzjach produktów na Amazonie 
+- Wyjaśnienia kontrfaktyczne z wykorzystaniem symulacji Monte Carlo
+- Wykorzystanie metod n-gramów w analizie wzorców utworów nadawanych przez polskie stacje radiowe
+- Analiza danych sprzedażowych H&M z zastosowaniem systemu rekomendacji produktów
+
+# Zasady korzystania z modeli językowych (LLM)
+
+Modele językowe (np. ChatGPT, Claude, Gemini) mogą być wykorzystywane jako **narzędzia wspomagające**, ale nie jako źródło gotowej pracy.
+
+## Dozwolone zastosowania
+
+Modele językowe mogą być używane do:
+
+### Wyszukiwania literatury
+
+Przykłady zastosowań:
+
+* generowanie listy słów kluczowych
+* wyszukiwanie artykułów naukowych
+* streszczanie artykułów
+* porównywanie metod
+
+### Pomocy w pisaniu tekstu
+
+Możliwe zastosowania:
+
+* poprawa stylu językowego
+* parafrazowanie tekstu
+* sprawdzanie poprawności językowej
+* tłumaczenia
+
+Niedozwolone:
+
+* kopiowanie wygenerowanego tekstu bez weryfikacji
+* generowanie całych rozdziałów bez zrozumienia treści
+
+### Wyjaśniania metod analitycznych
+
+Modele mogą pomagać w:
+
+* interpretacji wyników
+* wyjaśnianiu działania algorytmów
+* proponowaniu metryk oceny
+
+### Tworzenia kodu
+
+Dozwolone:
+
+* generowanie fragmentów kodu
+* debugowanie
+* optymalizacja kodu
+
+Wymagane:
+
+* pełne zrozumienie działania kodu
+* samodzielna modyfikacja kodu
+
+## Niedozwolone zastosowania
+
+Nie wolno:
+
+* generować całej pracy dyplomowej
+* kopiować tekstów bez sprawdzenia źródeł
+* cytować nieistniejących publikacji
+* przedstawiać wygenerowanych treści jako własnych badań
+
+## Wymóg transparentności
+
+Jeśli model językowy był używany, należy to zaznaczyć w pracy.
+
+**Przykładowa formuła do umieszczenia w pracy:**
+
+> W pracy wykorzystano model językowy do wsparcia wyszukiwania literatury, poprawy stylistycznej tekstu oraz generowania przykładowych fragmentów kodu. Wszystkie wyniki analiz oraz interpretacje zostały wykonane samodzielnie przez autora.
+
+# Dodatkowe rekomendacje (z doświadczenia promotorskiego)
+
+## Wymagania formalne
+
+- minimalna liczba stron: 30
+- minimalna liczba źródeł: 15 (pakiety R i python też mogą być cytowane)
+- podpisy pod wykresami i tabelami 
+
+## Rekomendacje techniczne
+
+- stworzenie repozytorium na github np. [https://github.com/BartoszM-Analyst/End-to-End-Modern-Data-Platform-Lakehouse-Architecture](https://github.com/BartoszM-Analyst/End-to-End-Modern-Data-Platform-Lakehouse-Architecture)
+- wykorzystanie quarto do generowania tekstu pracy np. [https://github.com/lwawrowski/thesis-quarto](https://github.com/lwawrowski/thesis-quarto)
+
