@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -56,17 +90,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Brak wyników",
+    "search-matching-documents-text": "dopasowane dokumenty",
+    "search-copy-link-title": "Kopiuj link do wyszukiwania",
+    "search-hide-matches-text": "Ukryj dodatkowe dopasowania",
+    "search-more-match-text": "więcej dopasowań w tym dokumencie",
+    "search-more-matches-text": "więcej dopasowań w tym dokumencie",
+    "search-clear-button-title": "Wyczyść",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Anuluj",
+    "search-submit-button-title": "Zatwierdź",
+    "search-label": "Szukaj"
   }
 }</script>
 
@@ -79,13 +113,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Przełącz pasek boczny" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./regresja.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regresja</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Przełącz pasek boczny" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Szukaj" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -102,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Szukaj"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -154,9 +188,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">3.1</span> Wprowadzenie</a></li>
-  <li><a href="#regresja-liniowa" id="toc-regresja-liniowa" class="nav-link" data-scroll-target="#regresja-liniowa"><span class="header-section-number">3.2</span> Regresja liniowa</a></li>
-  <li><a href="#regresja-wieloraka" id="toc-regresja-wieloraka" class="nav-link" data-scroll-target="#regresja-wieloraka"><span class="header-section-number">3.3</span> Regresja wieloraka</a></li>
-  <li><a href="#xai" id="toc-xai" class="nav-link" data-scroll-target="#xai"><span class="header-section-number">3.4</span> XAI</a></li>
+  <li><a href="#regresja-prosta" id="toc-regresja-prosta" class="nav-link" data-scroll-target="#regresja-prosta"><span class="header-section-number">3.2</span> Regresja prosta</a></li>
+  <li><a href="#ocena-jakości-modelu-regresji" id="toc-ocena-jakości-modelu-regresji" class="nav-link" data-scroll-target="#ocena-jakości-modelu-regresji"><span class="header-section-number">3.3</span> Ocena jakości modelu regresji</a></li>
+  <li><a href="#regresja-wieloraka" id="toc-regresja-wieloraka" class="nav-link" data-scroll-target="#regresja-wieloraka"><span class="header-section-number">3.4</span> Regresja wieloraka</a></li>
+  <li><a href="#diagnostyka-modelu" id="toc-diagnostyka-modelu" class="nav-link" data-scroll-target="#diagnostyka-modelu"><span class="header-section-number">3.5</span> Diagnostyka modelu</a>
+  <ul class="collapse">
+  <li><a href="#współliniowość-zmiennych" id="toc-współliniowość-zmiennych" class="nav-link" data-scroll-target="#współliniowość-zmiennych"><span class="header-section-number">3.5.1</span> Współliniowość zmiennych</a></li>
+  <li><a href="#wartości-odstające-i-istotność-zmiennych" id="toc-wartości-odstające-i-istotność-zmiennych" class="nav-link" data-scroll-target="#wartości-odstające-i-istotność-zmiennych"><span class="header-section-number">3.5.2</span> Wartości odstające i istotność zmiennych</a></li>
+  </ul></li>
+  <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie"><span class="header-section-number">3.6</span> Podsumowanie</a></li>
   </ul>
 </nav>
     </div>
@@ -185,15 +225,123 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="presentations/03_regresja.html">Prezentacja</a></p>
 <section id="wprowadzenie" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">3.1</span> Wprowadzenie</h2>
+<p>Regresja liniowa jest jedną z podstawowych metod analizy danych wykorzystywanych zarówno w statystyce, jak i uczeniu maszynowym. Jej głównym celem jest opisanie zależności pomiędzy zmiennymi oraz przewidywanie wartości jednej zmiennej na podstawie innych. W praktyce regresja jest używana w bardzo wielu dziedzinach — od prognozowania sprzedaży, przez analizę wynagrodzeń, aż po modelowanie kosztów ubezpieczeń.</p>
+<p>W analizie regresji wyróżnia się dwa główne cele. Pierwszym jest <strong>cel poznawczy</strong>, czyli badanie zależności pomiędzy zmiennymi i próba odpowiedzi na pytanie, czy zmiana jednej cechy wpływa na zmianę drugiej. Drugim jest <strong>cel predykcyjny</strong>, polegający na prognozowaniu przyszłych wartości na podstawie obserwowanych danych.</p>
+<p>Należy pamiętać, że model regresji jest jedynie przybliżeniem rzeczywistości. Nawet jeśli model dobrze dopasowuje się do danych historycznych, nie oznacza to, że będzie idealnie przewidywał przyszłość. W praktyce szczególnie istotne jest sprawdzanie założeń modelu oraz jego jakości predykcyjnej.</p>
+<p>W regresji liniowej zakłada się, że zależność pomiędzy zmiennymi można opisać funkcją liniową. W najprostszym przypadku oznacza to dopasowanie prostej do punktów na wykresie. Kluczowym elementem tej metody jest minimalizacja różnic pomiędzy wartościami rzeczywistymi a przewidywanymi przez model.</p>
 </section>
-<section id="regresja-liniowa" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="regresja-liniowa"><span class="header-section-number">3.2</span> Regresja liniowa</h2>
+<section id="regresja-prosta" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="regresja-prosta"><span class="header-section-number">3.2</span> Regresja prosta</h2>
+<p>Regresja prosta opisuje zależność pomiędzy jedną zmienną objaśnianą (zależną) oraz jedną zmienną objaśniającą (niezależną). W praktyce oznacza to próbę znalezienia takiej prostej, która najlepiej opisuje relację pomiędzy zmiennymi. Typowym przykładem jest zależność wysokości wynagrodzenia od liczby lat doświadczenia zawodowego.</p>
+<p>Przed rozpoczęciem budowy modelu regresji należy zawsze przeprowadzić wstępną analizę danych. Jednym z najważniejszych narzędzi na tym etapie jest wykres rozrzutu, który pozwala ocenić charakter zależności pomiędzy zmiennymi.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>salary <span class="op">=</span> pd.read_csv(<span class="st">"salary.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(salary[<span class="st">"YearsExperience"</span>], salary[<span class="st">"Salary"</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Years of Experience"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Salary"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Relationship between experience and salary"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W powyższym kodzie dane są wczytywane przy użyciu biblioteki <code>pandas</code>, która stanowi podstawowe narzędzie do pracy z danymi tabelarycznymi w Pythonie. Następnie tworzony jest wykres rozrzutu za pomocą <code>matplotlib</code>, co pozwala wizualnie ocenić zależność pomiędzy zmiennymi.</p>
+<p>W praktyce wykres rozrzutu jest jednym z najważniejszych narzędzi diagnostycznych. Jeżeli punkty układają się w przybliżeniu wzdłuż linii prostej, istnieje duża szansa, że regresja liniowa będzie odpowiednim modelem. Jeśli natomiast zależność ma charakter krzywoliniowy, należy rozważyć transformacje zmiennych lub inne modele.</p>
+<p>Po wstępnej analizie danych można przejść do budowy modelu regresji liniowej. Jedną z najczęściej wykorzystywanych bibliotek w Pythonie jest <code>scikit-learn</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> salary[[<span class="st">"YearsExperience"</span>]]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> salary[<span class="st">"Salary"</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W tym fragmencie kodu tworzony jest obiekt modelu regresji liniowej oraz dopasowywany do danych za pomocą metody <code>fit()</code>. Ważne jest, aby zmienne objaśniające były przekazywane jako macierz (DataFrame), nawet jeśli zawierają tylko jedną kolumnę.</p>
+<p>W praktyce należy zwrócić uwagę na strukturę danych wejściowych. Jednym z najczęstszych błędów początkujących analityków jest przekazywanie zmiennej objaśniającej jako jednowymiarowej tablicy zamiast macierzy.</p>
+<p>Po dopasowaniu modelu można odczytać jego parametry.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Intercept:"</span>, model.intercept_)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Slope:"</span>, model.coef_[<span class="dv">0</span>])</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wyraz wolny (intercept) określa wartość zmiennej zależnej dla zerowej wartości zmiennej niezależnej. Współczynnik kierunkowy informuje natomiast, o ile przeciętnie zmieni się wartość zmiennej zależnej przy jednostkowym wzroście zmiennej niezależnej.</p>
+<p>W praktyce interpretacja wyrazu wolnego nie zawsze ma sens. Jeśli wartość zerowa zmiennej objaśniającej nie występuje w danych lub nie ma znaczenia praktycznego, parametr ten pełni jedynie funkcję matematyczną w modelu.</p>
+<p>Jedną z głównych zalet regresji liniowej jest możliwość prognozowania nowych wartości.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"YearsExperience"</span>: [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">10</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(new_data)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(predictions)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Metoda <code>predict()</code> pozwala obliczyć przewidywane wartości dla nowych obserwacji. W praktyce niezwykle ważne jest, aby nowe dane miały identyczną strukturę jak dane użyte do trenowania modelu.</p>
+<p>Częstym błędem jest wykonywanie predykcji na danych o innej skali lub strukturze niż dane treningowe. W takich przypadkach wyniki modelu mogą być całkowicie błędne.</p>
 </section>
-<section id="regresja-wieloraka" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="regresja-wieloraka"><span class="header-section-number">3.3</span> Regresja wieloraka</h2>
+<section id="ocena-jakości-modelu-regresji" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="ocena-jakości-modelu-regresji"><span class="header-section-number">3.3</span> Ocena jakości modelu regresji</h2>
+<p>Po dopasowaniu modelu należy ocenić jego jakość. Jedną z najważniejszych miar dopasowania jest współczynnik determinacji (R^2).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_score(y, y_pred)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"R^2:"</span>, r2)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Współczynnik (R^2) określa, jaki procent zmienności zmiennej zależnej został wyjaśniony przez model. Wartości bliskie jedności oznaczają dobre dopasowanie modelu do danych.</p>
+<p>W praktyce należy zachować ostrożność przy interpretacji wysokiego (R^2). Model może dobrze dopasowywać się do danych treningowych, ale jednocześnie słabo przewidywać nowe obserwacje — zjawisko to nazywa się przeuczeniem (overfitting).</p>
+<p>Oprócz współczynnika determinacji stosuje się także inne miary jakości modelu.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, mean_absolute_error</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mse <span class="op">=</span> mean_squared_error(y, y_pred)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> np.sqrt(mse)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> mean_absolute_error(y, y_pred)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MSE:"</span>, mse)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RMSE:"</span>, rmse)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MAE:"</span>, mae)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Miara MSE (Mean Squared Error) informuje o średnim kwadracie błędów, natomiast RMSE przedstawia błąd w tej samej jednostce co zmienna zależna. MAE z kolei określa średnią bezwzględną wartość błędów.</p>
+<p>W praktyce RMSE jest bardziej wrażliwy na duże błędy niż MAE. Dlatego analiza obu miar pozwala lepiej zrozumieć charakter błędów modelu.</p>
 </section>
-<section id="xai" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="xai"><span class="header-section-number">3.4</span> XAI</h2>
+<section id="regresja-wieloraka" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="regresja-wieloraka"><span class="header-section-number">3.4</span> Regresja wieloraka</h2>
+<p>Regresja wieloraka rozszerza model liniowy o wiele zmiennych objaśniających. Dzięki temu możliwe jest modelowanie bardziej złożonych zależności pomiędzy zmiennymi.</p>
+<p>W praktyce regresja wieloraka jest stosowana znacznie częściej niż regresja prosta, ponieważ większość zjawisk zależy od wielu czynników jednocześnie.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>insurance <span class="op">=</span> pd.read_csv(<span class="st">"insurance.csv"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> insurance[[<span class="st">"age"</span>, <span class="st">"bmi"</span>, <span class="st">"children"</span>]]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> insurance[<span class="st">"charges"</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>model_multi <span class="op">=</span> LinearRegression()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>model_multi.fit(X, y)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W tym przykładzie model regresji uwzględnia kilka zmiennych objaśniających jednocześnie. Każdy współczynnik modelu opisuje wpływ jednej zmiennej przy założeniu, że pozostałe pozostają stałe.</p>
+<p>W praktyce interpretacja współczynników w regresji wielorakiej wymaga szczególnej ostrożności. Wpływ jednej zmiennej może zależeć od obecności innych zmiennych w modelu.</p>
+</section>
+<section id="diagnostyka-modelu" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="diagnostyka-modelu"><span class="header-section-number">3.5</span> Diagnostyka modelu</h2>
+<section id="współliniowość-zmiennych" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="współliniowość-zmiennych"><span class="header-section-number">3.5.1</span> Współliniowość zmiennych</h3>
+<p>Jednym z najważniejszych problemów w regresji wielorakiej jest współliniowość zmiennych, czyli silna zależność pomiędzy zmiennymi objaśniającymi.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> X.corr()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(correlation_matrix)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Macierz korelacji pozwala zidentyfikować zmienne silnie ze sobą skorelowane. Wysoka korelacja pomiędzy zmiennymi może prowadzić do niestabilności współczynników modelu.</p>
+<p>W praktyce zmienne o bardzo wysokiej korelacji często należy usunąć lub połączyć w jedną zmienną. Pozwala to poprawić stabilność i interpretowalność modelu.</p>
+</section>
+<section id="wartości-odstające-i-istotność-zmiennych" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="wartości-odstające-i-istotność-zmiennych"><span class="header-section-number">3.5.2</span> Wartości odstające i istotność zmiennych</h3>
+<p>Wartości odstające mogą znacząco wpływać na dopasowanie modelu regresji liniowej. Nawet pojedyncza obserwacja może zmienić nachylenie prostej regresji.</p>
+<p>Do bardziej zaawansowanej diagnostyki modelu często wykorzystuje się bibliotekę <code>statsmodels</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X_const <span class="op">=</span> sm.add_constant(X)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>model_sm <span class="op">=</span> sm.OLS(y, X_const).fit()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_sm.summary())</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Raport generowany przez <code>summary()</code> zawiera wiele informacji statystycznych, takich jak wartości p, błędy standardowe oraz statystyki testowe.</p>
+<p>W praktyce analiza wartości p pozwala ocenić, czy dana zmienna ma istotny wpływ na zmienną zależną. Zmienne nieistotne statystycznie często można usunąć z modelu bez pogorszenia jego jakości.</p>
+</section>
+</section>
+<section id="podsumowanie" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="podsumowanie"><span class="header-section-number">3.6</span> Podsumowanie</h2>
+<p>Regresja liniowa stanowi podstawowe narzędzie analizy danych i jest jednym z najczęściej wykorzystywanych modeli predykcyjnych. Jej popularność wynika z prostoty interpretacji oraz stosunkowo niewielkich wymagań obliczeniowych. Pomimo swojej prostoty metoda ta pozostaje niezwykle skuteczna w wielu zastosowaniach praktycznych.</p>
+<p>W praktyce najważniejszym elementem pracy z regresją liniową nie jest samo dopasowanie modelu, lecz jego interpretacja oraz właściwa ocena jakości. Dobry model to nie tylko taki, który dobrze dopasowuje się do danych historycznych, ale przede wszystkim taki, który dostarcza użytecznych i wiarygodnych prognoz.</p>
 
 
 </section>
@@ -242,12 +390,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Skopiowano!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Skopiowano!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",

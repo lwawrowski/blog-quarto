@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
@@ -90,17 +90,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Brak wyników",
+    "search-matching-documents-text": "dopasowane dokumenty",
+    "search-copy-link-title": "Kopiuj link do wyszukiwania",
+    "search-hide-matches-text": "Ukryj dodatkowe dopasowania",
+    "search-more-match-text": "więcej dopasowań w tym dokumencie",
+    "search-more-matches-text": "więcej dopasowań w tym dokumencie",
+    "search-clear-button-title": "Wyczyść",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Anuluj",
+    "search-submit-button-title": "Zatwierdź",
+    "search-label": "Szukaj"
   }
 }</script>
 
@@ -113,13 +113,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Przełącz pasek boczny" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instalacja.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalacja</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Przełącz pasek boczny" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Szukaj" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -136,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Szukaj"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -189,8 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#środowiska-wirtualne" id="toc-środowiska-wirtualne" class="nav-link active" data-scroll-target="#środowiska-wirtualne"><span class="header-section-number">1.1</span> Środowiska wirtualne</a></li>
   <li><a href="#instalacja-pakietów" id="toc-instalacja-pakietów" class="nav-link" data-scroll-target="#instalacja-pakietów"><span class="header-section-number">1.2</span> Instalacja pakietów</a></li>
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda"><span class="header-section-number">1.3</span> Anaconda</a></li>
-  <li><a href="#ide" id="toc-ide" class="nav-link" data-scroll-target="#ide"><span class="header-section-number">1.4</span> IDE</a></li>
+  <li><a href="#ide" id="toc-ide" class="nav-link" data-scroll-target="#ide"><span class="header-section-number">1.3</span> IDE</a></li>
   </ul>
 </nav>
     </div>
@@ -217,6 +216,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Jeden ze sposobów instalacji Pythona na Windowsie to pobranie instalatora z oficjalnej strony <a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p>
+<p><img src="img/python.png" class="img-fluid"></p>
+<p>Wybieramy <a href="https://www.python.org/ftp/python/3.14.3/python-3.14.3-amd64.exe">Windows Installer (64-bit)</a></p>
 <p>Ważne, żeby podczas instalacji zaznaczyć następujące opcje:</p>
 <ul>
 <li><p><em>Add Python to PATH</em> (żeby mieć Pythona dostępnego w konsoli)</p></li>
@@ -231,38 +232,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Kolejny krok to weryfikacja instalacji w konsoli (cmd/powershell):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> <span class="at">--version</span></span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="środowiska-wirtualne" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="środowiska-wirtualne"><span class="header-section-number">1.1</span> Środowiska wirtualne</h2>
 <p>Środowisko wirtualne (ang. virtual environment, w skrócie venv) to jedna z rzeczy w Pythonie, która ułatwia zarządzanie projektami. To izolowane środowisko Pythona stworzone tylko dla jednego projektu. Zawiera swoją własną wersję interpretera Pythona i niezależny zestaw zainstalowanych pakietów. Korzystając ze środowiska wirtualnego każdy projekt może mieć inne wersje bibliotek.</p>
 <p>Tworzenie wirtualnego środowiska o nazwie <code>venv</code> w katalogu projektu.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv venv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv venv</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Aktywacja środowiska wirtualnego.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">venv\Scripts\activate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">venv\Scripts\activate</span></span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>W systemie Windows zdarza się, że jest zablokowane wywoływanie skryptów. Wtedy podczas tworzenia środowiska możemy dostać komunikat</p>
 <pre><code>.\venv\Scripts\activate : File \venv\Scripts\Activate.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.</code></pre>
 <p>W takiej sytuacji należy uruchomić poniższą komendę:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-Scope</span> CurrentUser <span class="at">-ExecutionPolicy</span> RemoteSigned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-Scope</span> CurrentUser <span class="at">-ExecutionPolicy</span> RemoteSigned</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>i spróbować ponownie uruchomić środowisko wirtualne.</p>
+<p><strong>venv</strong> to standardowe narzędzie do tworzenia środowisk wirtualnych dostępne w Pythonie od wersji 3.3. Umożliwia tworzenie izolowanych środowisk z własnymi bibliotekami, dzięki czemu różne projekty mogą używać różnych wersji pakietów bez konfliktów. Jest lekkie, proste w użyciu i nie wymaga instalacji dodatkowego oprogramowania.</p>
+<p><strong>conda</strong> to bardziej rozbudowany menedżer środowisk i pakietów, dostępny w dystrybucjach takich jak Anaconda czy Miniconda. W przeciwieństwie do venv pozwala instalować nie tylko pakiety Pythona, ale także zależności systemowe i biblioteki napisane w innych językach.</p>
+<p><strong>uv</strong> to nowoczesne narzędzie do zarządzania środowiskami i pakietami w Pythonie, zaprojektowane z myślą o bardzo wysokiej wydajności. Jest napisane w języku Rust i może pełnić rolę zamiennika dla narzędzi takich jak venv i pip, oferując znacznie szybsze tworzenie środowisk oraz instalowanie zależności.</p>
 </section>
 <section id="instalacja-pakietów" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="instalacja-pakietów"><span class="header-section-number">1.2</span> Instalacja pakietów</h2>
 <p>Do instalacji pakietów wykorzystuje się aplikację <code>pip</code>. Po stworzeniu i aktywacji środowiska możemy sprawdzić jakie pakiety są zainstalowane:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> list</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A następnie zainstalować te, które wymagane są w naszym projekcie.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas scikit-learn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas scikit-learn</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Dobrą praktyką jest zapisywanie wykorzystywanych pakietów do pliku, dzięki czemu inna osoba może sprawdzić jakie wersje pakietów są wymagane do prawidłowego działania programu.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>W ten sposób łatwo też zainstalować wymagane pakiety przy migracji projektu.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="anaconda" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="anaconda"><span class="header-section-number">1.3</span> Anaconda</h2>
-<p>Anaconda dostarcza zestaw narzędzi + python + jupyter + numpy + pandas itp. w pakiecie: <a href="https://www.anaconda.com/download">https://www.anaconda.com/download</a></p>
-<p>Po instalacji anacondy dostajemy interfejs GUI do zarządzania pakietami i środowiskami wirtualnymi. Środowiska wirtualne w anacondzie są tworzone z reguły poza katalogiem projektu.</p>
-</section>
-<section id="ide" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="ide"><span class="header-section-number">1.4</span> IDE</h2>
+<section id="ide" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="ide"><span class="header-section-number">1.3</span> IDE</h2>
 <p>Do wygodnego korzystania z pythona przyda się odpowiednie zintegrowane środowisko programistyczne:</p>
 <ul>
 <li><p><a href="https://code.visualstudio.com/">Visual Studio Code</a> - obecnie najpopularniejsze</p></li>
@@ -270,6 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://jupyter.org/install">Jupyter</a> - notatnik pythonowy</p></li>
 <li><p><a href="https://colab.research.google.com/">Google Colab</a> - wersja online</p></li>
 <li><p><a href="https://posit.co/download/rstudio-desktop/">RStudio</a></p></li>
+<li><p><a href="https://positron.posit.co/">Positron</a> - zmodyfikowany VSC pod analizę danych</p></li>
 </ul>
 
 
@@ -319,12 +319,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Skopiowano!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Skopiowano!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",

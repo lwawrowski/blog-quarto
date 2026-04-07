@@ -14,7 +14,7 @@
     "href": "instalacja.html",
     "title": "1  Instalacja",
     "section": "",
-    "text": "1.1 Środowiska wirtualne\nJeden ze sposobów instalacji Pythona na Windowsie to pobranie instalatora z oficjalnej strony https://www.python.org/downloads/windows/\nWażne, żeby podczas instalacji zaznaczyć następujące opcje:\nKolejny krok to weryfikacja instalacji w konsoli (cmd/powershell):\nŚrodowisko wirtualne (ang. virtual environment, w skrócie venv) to jedna z rzeczy w Pythonie, która ułatwia zarządzanie projektami. To izolowane środowisko Pythona stworzone tylko dla jednego projektu. Zawiera swoją własną wersję interpretera Pythona i niezależny zestaw zainstalowanych pakietów. Korzystając ze środowiska wirtualnego każdy projekt może mieć inne wersje bibliotek.\nTworzenie wirtualnego środowiska o nazwie venv w katalogu projektu.\nAktywacja środowiska wirtualnego.\nW systemie Windows zdarza się, że jest zablokowane wywoływanie skryptów. Wtedy podczas tworzenia środowiska możemy dostać komunikat\nW takiej sytuacji należy uruchomić poniższą komendę:\ni spróbować ponownie uruchomić środowisko wirtualne.",
+    "text": "1.1 Środowiska wirtualne\nJeden ze sposobów instalacji Pythona na Windowsie to pobranie instalatora z oficjalnej strony https://www.python.org/downloads/windows/\nWybieramy Windows Installer (64-bit)\nWażne, żeby podczas instalacji zaznaczyć następujące opcje:\nKolejny krok to weryfikacja instalacji w konsoli (cmd/powershell):\nŚrodowisko wirtualne (ang. virtual environment, w skrócie venv) to jedna z rzeczy w Pythonie, która ułatwia zarządzanie projektami. To izolowane środowisko Pythona stworzone tylko dla jednego projektu. Zawiera swoją własną wersję interpretera Pythona i niezależny zestaw zainstalowanych pakietów. Korzystając ze środowiska wirtualnego każdy projekt może mieć inne wersje bibliotek.\nTworzenie wirtualnego środowiska o nazwie venv w katalogu projektu.\nAktywacja środowiska wirtualnego.\nW systemie Windows zdarza się, że jest zablokowane wywoływanie skryptów. Wtedy podczas tworzenia środowiska możemy dostać komunikat\nW takiej sytuacji należy uruchomić poniższą komendę:\ni spróbować ponownie uruchomić środowisko wirtualne.\nvenv to standardowe narzędzie do tworzenia środowisk wirtualnych dostępne w Pythonie od wersji 3.3. Umożliwia tworzenie izolowanych środowisk z własnymi bibliotekami, dzięki czemu różne projekty mogą używać różnych wersji pakietów bez konfliktów. Jest lekkie, proste w użyciu i nie wymaga instalacji dodatkowego oprogramowania.\nconda to bardziej rozbudowany menedżer środowisk i pakietów, dostępny w dystrybucjach takich jak Anaconda czy Miniconda. W przeciwieństwie do venv pozwala instalować nie tylko pakiety Pythona, ale także zależności systemowe i biblioteki napisane w innych językach.\nuv to nowoczesne narzędzie do zarządzania środowiskami i pakietami w Pythonie, zaprojektowane z myślą o bardzo wysokiej wydajności. Jest napisane w języku Rust i może pełnić rolę zamiennika dla narzędzi takich jak venv i pip, oferując znacznie szybsze tworzenie środowisk oraz instalowanie zależności.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
     ]
@@ -40,21 +40,11 @@
     ]
   },
   {
-    "objectID": "instalacja.html#anaconda",
-    "href": "instalacja.html#anaconda",
-    "title": "1  Instalacja",
-    "section": "1.3 Anaconda",
-    "text": "1.3 Anaconda\nAnaconda dostarcza zestaw narzędzi + python + jupyter + numpy + pandas itp. w pakiecie: https://www.anaconda.com/download\nPo instalacji anacondy dostajemy interfejs GUI do zarządzania pakietami i środowiskami wirtualnymi. Środowiska wirtualne w anacondzie są tworzone z reguły poza katalogiem projektu.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
-    ]
-  },
-  {
     "objectID": "instalacja.html#ide",
     "href": "instalacja.html#ide",
     "title": "1  Instalacja",
-    "section": "1.4 IDE",
-    "text": "1.4 IDE\nDo wygodnego korzystania z pythona przyda się odpowiednie zintegrowane środowisko programistyczne:\n\nVisual Studio Code - obecnie najpopularniejsze\nPyCharm - świetny w wersji płatnej\nJupyter - notatnik pythonowy\nGoogle Colab - wersja online\nRStudio",
+    "section": "1.3 IDE",
+    "text": "1.3 IDE\nDo wygodnego korzystania z pythona przyda się odpowiednie zintegrowane środowisko programistyczne:\n\nVisual Studio Code - obecnie najpopularniejsze\nPyCharm - świetny w wersji płatnej\nJupyter - notatnik pythonowy\nGoogle Colab - wersja online\nRStudio\nPositron - zmodyfikowany VSC pod analizę danych",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Instalacja</span>"
     ]
@@ -100,11 +90,31 @@
     ]
   },
   {
+    "objectID": "dane.html#usuwanie-duplikatów",
+    "href": "dane.html#usuwanie-duplikatów",
+    "title": "2  Dane",
+    "section": "2.4 Usuwanie duplikatów",
+    "text": "2.4 Usuwanie duplikatów\nDuplikaty mogą pojawić się w zbiorach danych w wyniku błędów podczas łączenia tabel lub importowania danych z różnych źródeł. W notebooku zastosowano funkcję drop_duplicates(), która usuwa identyczne rekordy.\ncredit_dedup = credit.drop_duplicates()\nPrzed usunięciem duplikatów warto upewnić się, że rzeczywiście są to błędy w danych, a nie powtarzające się, ale poprawne obserwacje. W niektórych analizach duplikaty mogą być bowiem naturalną częścią danych.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#podział-danych-na-zbiór-treningowy-i-testowy",
+    "href": "dane.html#podział-danych-na-zbiór-treningowy-i-testowy",
+    "title": "2  Dane",
+    "section": "2.5 Podział danych na zbiór treningowy i testowy",
+    "text": "2.5 Podział danych na zbiór treningowy i testowy\nPodział zbioru danych na część treningową i testową powinien zostać wykonany przed rozpoczęciem właściwego przetwarzania danych, takiego jak imputacja braków, skalowanie czy tworzenie nowych cech. Zbiór treningowy służy do dopasowania parametrów przekształceń, natomiast zbiór testowy pozwala na obiektywną ocenę jakości modelu na danych, których wcześniej nie widział.\nW praktyce wiele operacji przygotowania danych, takich jak obliczanie średnich wartości czy standaryzacja zmiennych, wykorzystuje informacje statystyczne pochodzące z danych. Jeśli takie statystyki zostaną obliczone na całym zbiorze danych przed podziałem, model może nieświadomie wykorzystać informacje z danych testowych, co prowadzi do zjawiska określanego jako przeciek informacji (data leakage).\nfrom sklearn.model_selection import train_test_split\n\nX = credit.drop(columns=\"risk\")\ny = credit[\"risk\"]\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.2,\n    random_state=42,\n    stratify=y\n)\nW praktyce zaleca się stosowanie parametru stratify, który zapewnia podobny rozkład klas w zbiorze treningowym i testowym. Jest to szczególnie istotne w zadaniach klasyfikacyjnych, gdzie liczba obserwacji w poszczególnych klasach może być nierównomierna.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
     "objectID": "dane.html#braki-danych",
     "href": "dane.html#braki-danych",
     "title": "2  Dane",
-    "section": "2.4 Braki danych",
-    "text": "2.4 Braki danych\nBraki danych są jednym z najczęstszych problemów w analizie danych. W notebooku sprawdzono obecność braków w kolumnach checking_account oraz saving_accounts, a następnie zastosowano różne strategie ich uzupełniania.\n# credit[\"checking_account\"].isna().sum()\ncredit_nan = credit[~credit[\"checking_account\"].isna() & ~credit[\"saving_accounts\"].isna()]\nPrzed imputacją warto zawsze sprawdzić, czy brak danych jest losowy. W niektórych przypadkach brak wartości może sam w sobie zawierać informację (np. brak konta bankowego), dlatego zamiast imputacji można rozważyć utworzenie dodatkowej kategorii.\nW przypadku zmiennej checking_account brakujące wartości zostały zastąpione najczęściej występującą kategorią. Najpierw obliczono dominantę przy użyciu metody mode(), a następnie użyto funkcji fillna().\ncheck_acc = credit[\"checking_account\"].mode()[0]\ncredit[\"checking_account\"] = credit[\"checking_account\"].fillna(check_acc)\nTakie podejście jest często stosowane dla zmiennych kategorycznych, jednak może prowadzić do zwiększenia liczebności jednej kategorii i zaburzenia rozkładu danych. Dlatego w bardziej zaawansowanych analizach warto rozważyć inne metody imputacji.",
+    "section": "2.6 Braki danych",
+    "text": "2.6 Braki danych\nBraki danych są jednym z najczęstszych problemów w analizie danych. W notebooku sprawdzono obecność braków w kolumnach checking_account oraz saving_accounts, a następnie zastosowano różne strategie ich uzupełniania.\n# credit[\"checking_account\"].isna().sum()\ncredit_nan = credit[~credit[\"checking_account\"].isna() & ~credit[\"saving_accounts\"].isna()]\nPrzed imputacją warto zawsze sprawdzić, czy brak danych jest losowy. W niektórych przypadkach brak wartości może sam w sobie zawierać informację (np. brak konta bankowego), dlatego zamiast imputacji można rozważyć utworzenie dodatkowej kategorii.\nW przypadku zmiennej checking_account brakujące wartości zostały zastąpione najczęściej występującą kategorią. Najpierw obliczono dominantę przy użyciu metody mode(), a następnie użyto funkcji fillna().\ncheck_acc = credit[\"checking_account\"].mode()[0]\ncredit[\"checking_account\"] = credit[\"checking_account\"].fillna(check_acc)\nTakie podejście jest często stosowane dla zmiennych kategorycznych, jednak może prowadzić do zwiększenia liczebności jednej kategorii i zaburzenia rozkładu danych. Dlatego w bardziej zaawansowanych analizach warto rozważyć inne metody imputacji.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
@@ -113,18 +123,8 @@
     "objectID": "dane.html#imputacja-z-wykorzystaniem-scikit-learn",
     "href": "dane.html#imputacja-z-wykorzystaniem-scikit-learn",
     "title": "2  Dane",
-    "section": "2.5 Imputacja z wykorzystaniem scikit-learn",
-    "text": "2.5 Imputacja z wykorzystaniem scikit-learn\nBiblioteka scikit-learn oferuje wiele narzędzi do przygotowania i analizy danych, w tym m.in. do automatycznej imputacji brakujących danych. W notebooku zastosowano klasę SimpleImputer, która zastępuje braki najczęściej występującą wartością w kolumnie.\nfrom sklearn.impute import SimpleImputer\n\nimputer = SimpleImputer(strategy=\"most_frequent\")\ncredit[['saving_accounts']] = imputer.fit_transform(credit[['saving_accounts']])\nZaletą tego podejścia jest możliwość łatwego włączenia imputacji do pipeline’u przetwarzania danych. W praktyce szczególnie ważne jest, aby imputacja była oparta tylko na danych treningowych, a następnie stosowana do danych testowych, w celu zastosowania tej samej reguły na obu zbiorach.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
-    ]
-  },
-  {
-    "objectID": "dane.html#usuwanie-duplikatów",
-    "href": "dane.html#usuwanie-duplikatów",
-    "title": "2  Dane",
-    "section": "2.6 Usuwanie duplikatów",
-    "text": "2.6 Usuwanie duplikatów\nDuplikaty mogą pojawić się w zbiorach danych w wyniku błędów podczas łączenia tabel lub importowania danych z różnych źródeł. W notebooku zastosowano funkcję drop_duplicates(), która usuwa identyczne rekordy.\ncredit_dedup = credit.drop_duplicates()\nPrzed usunięciem duplikatów warto upewnić się, że rzeczywiście są to błędy w danych, a nie powtarzające się, ale poprawne obserwacje. W niektórych analizach duplikaty mogą być bowiem naturalną częścią danych.",
+    "section": "2.7 Imputacja z wykorzystaniem scikit-learn",
+    "text": "2.7 Imputacja z wykorzystaniem scikit-learn\nBiblioteka scikit-learn oferuje wiele narzędzi do przygotowania i analizy danych, w tym m.in. do automatycznej imputacji brakujących danych. W notebooku zastosowano klasę SimpleImputer, która zastępuje braki najczęściej występującą wartością w kolumnie.\nfrom sklearn.impute import SimpleImputer\n\nimputer = SimpleImputer(strategy=\"most_frequent\")\ncredit[['saving_accounts']] = imputer.fit_transform(credit[['saving_accounts']])\nZaletą tego podejścia jest możliwość łatwego włączenia imputacji do pipeline’u przetwarzania danych. W praktyce szczególnie ważne jest, aby imputacja była oparta tylko na danych treningowych, a następnie stosowana do danych testowych, w celu zastosowania tej samej reguły na obu zbiorach.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
@@ -133,8 +133,8 @@
     "objectID": "dane.html#feature-engineering",
     "href": "dane.html#feature-engineering",
     "title": "2  Dane",
-    "section": "2.7 Feature Engineering",
-    "text": "2.7 Feature Engineering\nFeature engineering polega na tworzeniu nowych cech, które mogą lepiej opisywać analizowane zjawisko. W notebooku utworzono kilka nowych zmiennych, m.in. grupy wiekowe, średnią ratę kredytu oraz relację kwoty kredytu do wieku klienta.\ncredit[\"age_groups\"] = pd.cut(credit[\"age\"], \n                              bins=[0, 30, 40, 50, 60, 70, 80], \n                              labels=[\"30\", \"30-40\", \"40-50\", \"50-60\", \"60-70\", \"70\"])\nTworzenie takich cech może znacząco poprawić jakość modeli, ponieważ wprowadza do danych dodatkową informację lub upraszcza złożone relacje. W praktyce warto jednak unikać tworzenia zbyt wielu cech, które mogą prowadzić do przeuczenia modelu.",
+    "section": "2.8 Feature Engineering",
+    "text": "2.8 Feature Engineering\nFeature engineering polega na tworzeniu nowych cech, które mogą lepiej opisywać analizowane zjawisko. W notebooku utworzono kilka nowych zmiennych, m.in. grupy wiekowe, średnią ratę kredytu oraz relację kwoty kredytu do wieku klienta.\ncredit[\"age_groups\"] = pd.cut(credit[\"age\"], \n                              bins=[0, 30, 40, 50, 60, 70, 80], \n                              labels=[\"30\", \"30-40\", \"40-50\", \"50-60\", \"60-70\", \"70\"])\nTworzenie takich cech może znacząco poprawić jakość modeli, ponieważ wprowadza do danych dodatkową informację lub upraszcza złożone relacje. W praktyce warto jednak unikać tworzenia zbyt wielu cech, które mogą prowadzić do przeuczenia modelu.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
@@ -143,8 +143,18 @@
     "objectID": "dane.html#kodowanie-zmiennych-kategorycznych",
     "href": "dane.html#kodowanie-zmiennych-kategorycznych",
     "title": "2  Dane",
-    "section": "2.8 Kodowanie zmiennych kategorycznych",
-    "text": "2.8 Kodowanie zmiennych kategorycznych\nModele uczenia maszynowego zazwyczaj wymagają danych numerycznych, dlatego zmienne tekstowe muszą zostać zakodowane. W notebooku zastosowano kodowanie One-Hot Encoding przy użyciu funkcji get_dummies() z biblioteki pandas.\ncategorical_cols = [\"sex\", \"job\", \"housing\", \"saving_accounts\", \"checking_account\", \"purpose\", \"age_groups\"]\ncredit_ohe = pd.get_dummies(credit, columns=categorical_cols, dtype=int)\nKodowanie to tworzy osobną kolumnę dla każdej kategorii. W praktyce należy uważać na zmienne o bardzo dużej liczbie kategorii, ponieważ mogą one znacząco zwiększyć liczbę kolumn w zbiorze danych.\nAlternatywnie można skorzystać z klasy OneHotEncoder z biblioteki scikit-learn, która jest często wykorzystywana w pipeline’ach modelowania.\nfrom sklearn.preprocessing import OneHotEncoder\n\nencoder = OneHotEncoder()\ncredit_enc = encoder.fit_transform(credit[categorical_cols])\nZaletą tego podejścia jest możliwość łatwego zastosowania tego samego kodera do nowych danych. Jest to szczególnie ważne w systemach produkcyjnych, gdzie model musi przetwarzać dane napływające w czasie rzeczywistym.",
+    "section": "2.9 Kodowanie zmiennych kategorycznych",
+    "text": "2.9 Kodowanie zmiennych kategorycznych\nModele uczenia maszynowego zazwyczaj wymagają danych numerycznych, dlatego zmienne tekstowe muszą zostać zakodowane. W notebooku zastosowano kodowanie One-Hot Encoding przy użyciu funkcji get_dummies() z biblioteki pandas.\ncategorical_cols = [\"sex\", \"job\", \"housing\", \"saving_accounts\", \"checking_account\", \"purpose\", \"age_groups\"]\ncredit_ohe = pd.get_dummies(credit, columns=categorical_cols, dtype=int)\nKodowanie to tworzy osobną kolumnę dla każdej kategorii. W praktyce należy uważać na zmienne o bardzo dużej liczbie kategorii, ponieważ mogą one znacząco zwiększyć liczbę kolumn w zbiorze danych.\nAlternatywnie można skorzystać z klasy OneHotEncoder z biblioteki scikit-learn, która jest często wykorzystywana w pipeline’ach modelowania.\nfrom sklearn.preprocessing import OneHotEncoder\n\nencoder = OneHotEncoder()\ncredit_enc = encoder.fit_transform(credit[categorical_cols])\nZaletą tego podejścia jest możliwość łatwego zastosowania tego samego kodera do nowych danych. Jest to szczególnie ważne w systemach produkcyjnych, gdzie model musi przetwarzać dane napływające w czasie rzeczywistym.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
+    ]
+  },
+  {
+    "objectID": "dane.html#kodowanie-zmiennych-porządkowych-ordinal-encoding",
+    "href": "dane.html#kodowanie-zmiennych-porządkowych-ordinal-encoding",
+    "title": "2  Dane",
+    "section": "2.10 Kodowanie zmiennych porządkowych (Ordinal Encoding)",
+    "text": "2.10 Kodowanie zmiennych porządkowych (Ordinal Encoding)\nNiektóre zmienne kategoryczne mają naturalny porządek wartości, dlatego nie powinny być kodowane metodą One-Hot Encoding. Przykładem w zbiorze kredytowym jest zmienna checking_account, gdzie wartości takie jak little, moderate i rich odzwierciedlają rosnący poziom zasobów finansowych klienta. W takich przypadkach warto zastosować kodowanie porządkowe (ordinal encoding), które zachowuje relacje między kategoriami.\nW przedstawionym kodzie wykorzystano klasę OrdinalEncoder z biblioteki scikit-learn, która przypisuje kolejnym kategoriom wartości liczbowe zgodnie z ich kolejnością występowania w danych. W praktyce zaleca się jednak jawne zdefiniowanie kolejności kategorii, ponieważ domyślne sortowanie alfabetyczne może nie odzwierciedlać rzeczywistego porządku logicznego. Dodatkowo przed kodowaniem należy upewnić się, że wszystkie wartości kategorii są zapisane w jednolity sposób, bez literówek i różnic w wielkości liter.\nKod:\nfrom sklearn.preprocessing import OrdinalEncoder\n\n# Jawne określenie kolejności kategorii\naccount_order = [[\"little\", \"moderate\", \"rich\"]]\n\nordinal_encoder = OrdinalEncoder(categories=account_order)\n\ncredit[\"checking_account_encoded\"] = ordinal_encoder.fit_transform(\n    credit[[\"checking_account\"]]\n)\nW praktyce kodowanie porządkowe jest szczególnie użyteczne w przypadku modeli liniowych oraz drzew decyzyjnych, które potrafią wykorzystać informację o uporządkowaniu wartości. Należy jednak pamiętać, że zastosowanie ordinal encodingu dla zmiennej bez naturalnego porządku może wprowadzić sztuczne zależności i pogorszyć jakość modelu.\n\n2.10.1 Tworzenie cechy na podstawie średniej wartości w grupie\nW przedstawionym kodzie utworzono nową zmienną job_avg_credit_amount, która zawiera średnią wartość kredytu (credit_amount) obliczoną w ramach każdej kategorii zmiennej job. Wykorzystanie funkcji groupby() w połączeniu z transform(\"mean\") pozwala przypisać każdemu rekordowi średnią wartość dla jego grupy, bez zmiany liczby wierszy w zbiorze danych.\ncredit[\"job_avg_credit_amount\"] = (\n    credit.groupby(\"job\")[\"credit_amount\"]\n    .transform(\"mean\")\n)\nW praktyce takie agregacyjne cechy często poprawiają jakość modeli, ponieważ dostarczają informacji o typowym zachowaniu danej grupy, co ułatwia wykrywanie nietypowych przypadków. Należy jednak pamiętać, aby tego typu statystyki obliczać wyłącznie na zbiorze treningowym, a następnie stosować je do danych testowych, aby uniknąć przecieku informacji (data leakage).",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
@@ -153,8 +163,8 @@
     "objectID": "dane.html#normalizacja-cech",
     "href": "dane.html#normalizacja-cech",
     "title": "2  Dane",
-    "section": "2.9 Normalizacja cech",
-    "text": "2.9 Normalizacja cech\nNiektóre algorytmy, zwłaszcza oparte na odległościach, są wrażliwe na skalę zmiennych. Dlatego w notebooku zastosowano StandardScaler, który przekształca dane tak, aby miały średnią równą zero i odchylenie standardowe równe jeden.\nfrom sklearn.preprocessing import StandardScaler\n\nscaler = StandardScaler()\ncredit_scaled = scaler.fit_transform(credit[numeric_cols])\nSkalowanie powinno być wykonywane dopiero po podziale danych na zbiór treningowy i testowy. W przeciwnym razie model może nieświadomie uzyskać informacje o danych testowych.",
+    "section": "2.11 Normalizacja cech",
+    "text": "2.11 Normalizacja cech\nNiektóre algorytmy, zwłaszcza oparte na odległościach, są wrażliwe na skalę zmiennych. Dlatego w notebooku zastosowano StandardScaler, który przekształca dane tak, aby miały średnią równą zero i odchylenie standardowe równe jeden.\nfrom sklearn.preprocessing import StandardScaler\n\nscaler = StandardScaler()\ncredit_scaled = scaler.fit_transform(credit[numeric_cols])\nSkalowanie powinno być wykonywane dopiero po podziale danych na zbiór treningowy i testowy. W przeciwnym razie model może nieświadomie uzyskać informacje o danych testowych.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
@@ -163,8 +173,8 @@
     "objectID": "dane.html#kodowanie-zmiennej-objaśnianej",
     "href": "dane.html#kodowanie-zmiennej-objaśnianej",
     "title": "2  Dane",
-    "section": "2.10 Kodowanie zmiennej objaśnianej",
-    "text": "2.10 Kodowanie zmiennej objaśnianej\nZmienne kategoryczne używane jako zmienna docelowa również muszą zostać zakodowane numerycznie. W notebooku wykorzystano klasę LabelEncoder, która przypisuje każdej kategorii unikalną wartość liczbową.\nfrom sklearn.preprocessing import LabelEncoder\n\nle = LabelEncoder()\nle_risk = le.fit_transform(credit[\"risk\"])\nTakie kodowanie jest szczególnie przydatne w zadaniach klasyfikacyjnych. Warto jednak pamiętać, że liczby przypisane kategoriom nie mają znaczenia porządkowego – są jedynie identyfikatorami klas.",
+    "section": "2.12 Kodowanie zmiennej objaśnianej",
+    "text": "2.12 Kodowanie zmiennej objaśnianej\nZmienne kategoryczne używane jako zmienna docelowa również muszą zostać zakodowane numerycznie. W notebooku wykorzystano klasę LabelEncoder, która przypisuje każdej kategorii unikalną wartość liczbową.\nfrom sklearn.preprocessing import LabelEncoder\n\nle = LabelEncoder()\nle_risk = le.fit_transform(credit[\"risk\"])\nTakie kodowanie jest szczególnie przydatne w zadaniach klasyfikacyjnych. Warto jednak pamiętać, że liczby przypisane kategoriom nie mają znaczenia porządkowego – są jedynie identyfikatorami klas.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
@@ -173,8 +183,8 @@
     "objectID": "dane.html#budowa-końcowego-zbioru-danych",
     "href": "dane.html#budowa-końcowego-zbioru-danych",
     "title": "2  Dane",
-    "section": "2.11 Budowa końcowego zbioru danych",
-    "text": "2.11 Budowa końcowego zbioru danych\nNa końcu wszystkie przetworzone dane zostały połączone w jeden zbiór danych zawierający przeskalowane zmienne numeryczne, zakodowane zmienne kategoryczne oraz zakodowaną zmienną docelową.\ncredit_final = pd.concat([credit_scaled_df, credit_enc_df, pd.Series(le_risk, name=\"risk\")], axis=1)\ncredit_final.to_csv(\"data/german_credit_final.csv\", index=False)\nW praktyce warto zapisywać zarówno surowe dane, jak i ich przetworzoną wersję, aby umożliwić łatwe odtworzenie całego procesu analitycznego.",
+    "section": "2.13 Budowa końcowego zbioru danych",
+    "text": "2.13 Budowa końcowego zbioru danych\nNa końcu wszystkie przetworzone dane zostały połączone w jeden zbiór danych zawierający przeskalowane zmienne numeryczne, zakodowane zmienne kategoryczne oraz zakodowaną zmienną docelową.\ncredit_final = pd.concat([credit_scaled_df, credit_enc_df, pd.Series(le_risk, name=\"risk\")], axis=1)\ncredit_final.to_csv(\"data/german_credit_final.csv\", index=False)\nW praktyce warto zapisywać zarówno surowe dane, jak i ich przetworzoną wersję, aby umożliwić łatwe odtworzenie całego procesu analitycznego.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Dane</span>"
     ]
@@ -184,17 +194,27 @@
     "href": "regresja.html",
     "title": "3  Regresja",
     "section": "",
-    "text": "3.1 Wprowadzenie\nPrezentacja",
+    "text": "3.1 Wprowadzenie\nPrezentacja\nRegresja liniowa jest jedną z podstawowych metod analizy danych wykorzystywanych zarówno w statystyce, jak i uczeniu maszynowym. Jej głównym celem jest opisanie zależności pomiędzy zmiennymi oraz przewidywanie wartości jednej zmiennej na podstawie innych. W praktyce regresja jest używana w bardzo wielu dziedzinach — od prognozowania sprzedaży, przez analizę wynagrodzeń, aż po modelowanie kosztów ubezpieczeń.\nW analizie regresji wyróżnia się dwa główne cele. Pierwszym jest cel poznawczy, czyli badanie zależności pomiędzy zmiennymi i próba odpowiedzi na pytanie, czy zmiana jednej cechy wpływa na zmianę drugiej. Drugim jest cel predykcyjny, polegający na prognozowaniu przyszłych wartości na podstawie obserwowanych danych.\nNależy pamiętać, że model regresji jest jedynie przybliżeniem rzeczywistości. Nawet jeśli model dobrze dopasowuje się do danych historycznych, nie oznacza to, że będzie idealnie przewidywał przyszłość. W praktyce szczególnie istotne jest sprawdzanie założeń modelu oraz jego jakości predykcyjnej.\nW regresji liniowej zakłada się, że zależność pomiędzy zmiennymi można opisać funkcją liniową. W najprostszym przypadku oznacza to dopasowanie prostej do punktów na wykresie. Kluczowym elementem tej metody jest minimalizacja różnic pomiędzy wartościami rzeczywistymi a przewidywanymi przez model.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
-    "objectID": "regresja.html#regresja-liniowa",
-    "href": "regresja.html#regresja-liniowa",
+    "objectID": "regresja.html#regresja-prosta",
+    "href": "regresja.html#regresja-prosta",
     "title": "3  Regresja",
-    "section": "3.2 Regresja liniowa",
-    "text": "3.2 Regresja liniowa",
+    "section": "3.2 Regresja prosta",
+    "text": "3.2 Regresja prosta\nRegresja prosta opisuje zależność pomiędzy jedną zmienną objaśnianą (zależną) oraz jedną zmienną objaśniającą (niezależną). W praktyce oznacza to próbę znalezienia takiej prostej, która najlepiej opisuje relację pomiędzy zmiennymi. Typowym przykładem jest zależność wysokości wynagrodzenia od liczby lat doświadczenia zawodowego.\nPrzed rozpoczęciem budowy modelu regresji należy zawsze przeprowadzić wstępną analizę danych. Jednym z najważniejszych narzędzi na tym etapie jest wykres rozrzutu, który pozwala ocenić charakter zależności pomiędzy zmiennymi.\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nsalary = pd.read_csv(\"salary.csv\")\n\nplt.scatter(salary[\"YearsExperience\"], salary[\"Salary\"])\nplt.xlabel(\"Years of Experience\")\nplt.ylabel(\"Salary\")\nplt.title(\"Relationship between experience and salary\")\nplt.show()\nW powyższym kodzie dane są wczytywane przy użyciu biblioteki pandas, która stanowi podstawowe narzędzie do pracy z danymi tabelarycznymi w Pythonie. Następnie tworzony jest wykres rozrzutu za pomocą matplotlib, co pozwala wizualnie ocenić zależność pomiędzy zmiennymi.\nW praktyce wykres rozrzutu jest jednym z najważniejszych narzędzi diagnostycznych. Jeżeli punkty układają się w przybliżeniu wzdłuż linii prostej, istnieje duża szansa, że regresja liniowa będzie odpowiednim modelem. Jeśli natomiast zależność ma charakter krzywoliniowy, należy rozważyć transformacje zmiennych lub inne modele.\nPo wstępnej analizie danych można przejść do budowy modelu regresji liniowej. Jedną z najczęściej wykorzystywanych bibliotek w Pythonie jest scikit-learn.\nfrom sklearn.linear_model import LinearRegression\n\nX = salary[[\"YearsExperience\"]]\ny = salary[\"Salary\"]\n\nmodel = LinearRegression()\nmodel.fit(X, y)\nW tym fragmencie kodu tworzony jest obiekt modelu regresji liniowej oraz dopasowywany do danych za pomocą metody fit(). Ważne jest, aby zmienne objaśniające były przekazywane jako macierz (DataFrame), nawet jeśli zawierają tylko jedną kolumnę.\nW praktyce należy zwrócić uwagę na strukturę danych wejściowych. Jednym z najczęstszych błędów początkujących analityków jest przekazywanie zmiennej objaśniającej jako jednowymiarowej tablicy zamiast macierzy.\nPo dopasowaniu modelu można odczytać jego parametry.\nprint(\"Intercept:\", model.intercept_)\nprint(\"Slope:\", model.coef_[0])\nWyraz wolny (intercept) określa wartość zmiennej zależnej dla zerowej wartości zmiennej niezależnej. Współczynnik kierunkowy informuje natomiast, o ile przeciętnie zmieni się wartość zmiennej zależnej przy jednostkowym wzroście zmiennej niezależnej.\nW praktyce interpretacja wyrazu wolnego nie zawsze ma sens. Jeśli wartość zerowa zmiennej objaśniającej nie występuje w danych lub nie ma znaczenia praktycznego, parametr ten pełni jedynie funkcję matematyczną w modelu.\nJedną z głównych zalet regresji liniowej jest możliwość prognozowania nowych wartości.\nnew_data = pd.DataFrame({\n    \"YearsExperience\": [3, 7, 10]\n})\n\npredictions = model.predict(new_data)\n\nprint(predictions)\nMetoda predict() pozwala obliczyć przewidywane wartości dla nowych obserwacji. W praktyce niezwykle ważne jest, aby nowe dane miały identyczną strukturę jak dane użyte do trenowania modelu.\nCzęstym błędem jest wykonywanie predykcji na danych o innej skali lub strukturze niż dane treningowe. W takich przypadkach wyniki modelu mogą być całkowicie błędne.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+    ]
+  },
+  {
+    "objectID": "regresja.html#ocena-jakości-modelu-regresji",
+    "href": "regresja.html#ocena-jakości-modelu-regresji",
+    "title": "3  Regresja",
+    "section": "3.3 Ocena jakości modelu regresji",
+    "text": "3.3 Ocena jakości modelu regresji\nPo dopasowaniu modelu należy ocenić jego jakość. Jedną z najważniejszych miar dopasowania jest współczynnik determinacji (R^2).\nfrom sklearn.metrics import r2_score\n\ny_pred = model.predict(X)\n\nr2 = r2_score(y, y_pred)\n\nprint(\"R^2:\", r2)\nWspółczynnik (R^2) określa, jaki procent zmienności zmiennej zależnej został wyjaśniony przez model. Wartości bliskie jedności oznaczają dobre dopasowanie modelu do danych.\nW praktyce należy zachować ostrożność przy interpretacji wysokiego (R^2). Model może dobrze dopasowywać się do danych treningowych, ale jednocześnie słabo przewidywać nowe obserwacje — zjawisko to nazywa się przeuczeniem (overfitting).\nOprócz współczynnika determinacji stosuje się także inne miary jakości modelu.\nfrom sklearn.metrics import mean_squared_error, mean_absolute_error\nimport numpy as np\n\nmse = mean_squared_error(y, y_pred)\nrmse = np.sqrt(mse)\nmae = mean_absolute_error(y, y_pred)\n\nprint(\"MSE:\", mse)\nprint(\"RMSE:\", rmse)\nprint(\"MAE:\", mae)\nMiara MSE (Mean Squared Error) informuje o średnim kwadracie błędów, natomiast RMSE przedstawia błąd w tej samej jednostce co zmienna zależna. MAE z kolei określa średnią bezwzględną wartość błędów.\nW praktyce RMSE jest bardziej wrażliwy na duże błędy niż MAE. Dlatego analiza obu miar pozwala lepiej zrozumieć charakter błędów modelu.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
@@ -203,18 +223,28 @@
     "objectID": "regresja.html#regresja-wieloraka",
     "href": "regresja.html#regresja-wieloraka",
     "title": "3  Regresja",
-    "section": "3.3 Regresja wieloraka",
-    "text": "3.3 Regresja wieloraka",
+    "section": "3.4 Regresja wieloraka",
+    "text": "3.4 Regresja wieloraka\nRegresja wieloraka rozszerza model liniowy o wiele zmiennych objaśniających. Dzięki temu możliwe jest modelowanie bardziej złożonych zależności pomiędzy zmiennymi.\nW praktyce regresja wieloraka jest stosowana znacznie częściej niż regresja prosta, ponieważ większość zjawisk zależy od wielu czynników jednocześnie.\ninsurance = pd.read_csv(\"insurance.csv\")\n\nX = insurance[[\"age\", \"bmi\", \"children\"]]\ny = insurance[\"charges\"]\n\nmodel_multi = LinearRegression()\nmodel_multi.fit(X, y)\nW tym przykładzie model regresji uwzględnia kilka zmiennych objaśniających jednocześnie. Każdy współczynnik modelu opisuje wpływ jednej zmiennej przy założeniu, że pozostałe pozostają stałe.\nW praktyce interpretacja współczynników w regresji wielorakiej wymaga szczególnej ostrożności. Wpływ jednej zmiennej może zależeć od obecności innych zmiennych w modelu.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
   },
   {
-    "objectID": "regresja.html#xai",
-    "href": "regresja.html#xai",
+    "objectID": "regresja.html#diagnostyka-modelu",
+    "href": "regresja.html#diagnostyka-modelu",
     "title": "3  Regresja",
-    "section": "3.4 XAI",
-    "text": "3.4 XAI",
+    "section": "3.5 Diagnostyka modelu",
+    "text": "3.5 Diagnostyka modelu\n\n3.5.1 Współliniowość zmiennych\nJednym z najważniejszych problemów w regresji wielorakiej jest współliniowość zmiennych, czyli silna zależność pomiędzy zmiennymi objaśniającymi.\ncorrelation_matrix = X.corr()\n\nprint(correlation_matrix)\nMacierz korelacji pozwala zidentyfikować zmienne silnie ze sobą skorelowane. Wysoka korelacja pomiędzy zmiennymi może prowadzić do niestabilności współczynników modelu.\nW praktyce zmienne o bardzo wysokiej korelacji często należy usunąć lub połączyć w jedną zmienną. Pozwala to poprawić stabilność i interpretowalność modelu.\n\n\n3.5.2 Wartości odstające i istotność zmiennych\nWartości odstające mogą znacząco wpływać na dopasowanie modelu regresji liniowej. Nawet pojedyncza obserwacja może zmienić nachylenie prostej regresji.\nDo bardziej zaawansowanej diagnostyki modelu często wykorzystuje się bibliotekę statsmodels.\nimport statsmodels.api as sm\n\nX_const = sm.add_constant(X)\n\nmodel_sm = sm.OLS(y, X_const).fit()\n\nprint(model_sm.summary())\nRaport generowany przez summary() zawiera wiele informacji statystycznych, takich jak wartości p, błędy standardowe oraz statystyki testowe.\nW praktyce analiza wartości p pozwala ocenić, czy dana zmienna ma istotny wpływ na zmienną zależną. Zmienne nieistotne statystycznie często można usunąć z modelu bez pogorszenia jego jakości.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
+    ]
+  },
+  {
+    "objectID": "regresja.html#podsumowanie",
+    "href": "regresja.html#podsumowanie",
+    "title": "3  Regresja",
+    "section": "3.6 Podsumowanie",
+    "text": "3.6 Podsumowanie\nRegresja liniowa stanowi podstawowe narzędzie analizy danych i jest jednym z najczęściej wykorzystywanych modeli predykcyjnych. Jej popularność wynika z prostoty interpretacji oraz stosunkowo niewielkich wymagań obliczeniowych. Pomimo swojej prostoty metoda ta pozostaje niezwykle skuteczna w wielu zastosowaniach praktycznych.\nW praktyce najważniejszym elementem pracy z regresją liniową nie jest samo dopasowanie modelu, lecz jego interpretacja oraz właściwa ocena jakości. Dobry model to nie tylko taki, który dobrze dopasowuje się do danych historycznych, ale przede wszystkim taki, który dostarcza użytecznych i wiarygodnych prognoz.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Regresja</span>"
     ]
