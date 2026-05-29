@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -154,10 +188,16 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</a></li>
-  <li><a href="#drzewo-decyzyjne" id="toc-drzewo-decyzyjne" class="nav-link" data-scroll-target="#drzewo-decyzyjne"><span class="header-section-number">4.2</span> Drzewo decyzyjne</a></li>
-  <li><a href="#lasy-losowe" id="toc-lasy-losowe" class="nav-link" data-scroll-target="#lasy-losowe"><span class="header-section-number">4.3</span> Lasy losowe</a></li>
-  <li><a href="#xgboost" id="toc-xgboost" class="nav-link" data-scroll-target="#xgboost"><span class="header-section-number">4.4</span> XGBoost</a></li>
-  <li><a href="#xai" id="toc-xai" class="nav-link" data-scroll-target="#xai"><span class="header-section-number">4.5</span> XAI</a></li>
+  <li><a href="#drzewa-decyzyjne" id="toc-drzewa-decyzyjne" class="nav-link" data-scroll-target="#drzewa-decyzyjne"><span class="header-section-number">4.2</span> Drzewa decyzyjne</a></li>
+  <li><a href="#miary-jakości-klasyfikacji" id="toc-miary-jakości-klasyfikacji" class="nav-link" data-scroll-target="#miary-jakości-klasyfikacji"><span class="header-section-number">4.3</span> Miary jakości klasyfikacji</a></li>
+  <li><a href="#maszyna-wektorów-nośnych" id="toc-maszyna-wektorów-nośnych" class="nav-link" data-scroll-target="#maszyna-wektorów-nośnych"><span class="header-section-number">4.4</span> Maszyna wektorów nośnych</a></li>
+  <li><a href="#lasy-losowe" id="toc-lasy-losowe" class="nav-link" data-scroll-target="#lasy-losowe"><span class="header-section-number">4.5</span> Lasy losowe</a></li>
+  <li><a href="#boosting-gradientowy" id="toc-boosting-gradientowy" class="nav-link" data-scroll-target="#boosting-gradientowy"><span class="header-section-number">4.6</span> Boosting gradientowy</a></li>
+  <li><a href="#krzywe-roc-i-auc" id="toc-krzywe-roc-i-auc" class="nav-link" data-scroll-target="#krzywe-roc-i-auc"><span class="header-section-number">4.7</span> Krzywe ROC i AUC</a></li>
+  <li><a href="#walidacja-krzyżowa" id="toc-walidacja-krzyżowa" class="nav-link" data-scroll-target="#walidacja-krzyżowa"><span class="header-section-number">4.8</span> Walidacja krzyżowa</a></li>
+  <li><a href="#tuning-hiperparametrów" id="toc-tuning-hiperparametrów" class="nav-link" data-scroll-target="#tuning-hiperparametrów"><span class="header-section-number">4.9</span> Tuning hiperparametrów</a></li>
+  <li><a href="#xai" id="toc-xai" class="nav-link" data-scroll-target="#xai"><span class="header-section-number">4.10</span> XAI</a></li>
+  <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie"><span class="header-section-number">4.11</span> Podsumowanie</a></li>
   </ul>
 </nav>
     </div>
@@ -186,18 +226,247 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="presentations/02_klasyfikacja.html">Prezentacja</a></p>
 <section id="wprowadzenie" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">4.1</span> Wprowadzenie</h2>
+<p>Klasyfikacja jest jedną z podstawowych metod uczenia nadzorowanego, w której celem jest przypisanie obserwacji do jednej z wcześniej zdefiniowanych klas. W praktyce klasyfikacja wykorzystywana jest m.in. do oceny ryzyka kredytowego, diagnoz medycznych, wykrywania spamu czy segmentacji klientów. Kluczową cechą uczenia nadzorowanego jest dostępność danych treningowych zawierających poprawne etykiety klas.</p>
+<p>Problemy klasyfikacyjne można podzielić na trzy podstawowe typy. W klasyfikacji binarnej model rozróżnia tylko dwie klasy, co jest najczęstszym przypadkiem w zastosowaniach biznesowych. Klasyfikacja wieloklasowa obejmuje więcej niż dwie klasy, natomiast klasyfikacja wieloetykietowa pozwala przypisać jednej obserwacji wiele etykiet jednocześnie, co jest typowe np. w analizie tekstów.</p>
+<p>W praktyce najważniejszą decyzją na początku pracy analitycznej jest poprawne zdefiniowanie zmiennej docelowej. Warto upewnić się, że etykiety klas są jednoznaczne i nie zawierają błędów, ponieważ nawet niewielkie zanieczyszczenia danych uczą model nieprawidłowych wzorców.</p>
+<p>Proces budowy modelu klasyfikacyjnego zawsze rozpoczyna się od przygotowania danych. Obejmuje to wczytanie danych, oczyszczenie nazw kolumn, obsługę braków danych oraz podział na zmienne objaśniające i zmienną docelową.</p>
+<p>Przykładowy kod wczytujący dane i przygotowujący strukturę danych może wyglądać następująco:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>credit <span class="op">=</span> pd.read_csv(<span class="st">"data/german_credit_final.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> credit.drop(<span class="st">"risk"</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> credit[<span class="st">"risk"</span>]</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Kolejnym krokiem jest podział danych na zbiór treningowy i testowy:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    X,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    y,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Podział danych na zbiór treningowy i testowy jest absolutnie kluczowy dla rzetelnej oceny modelu. Ustawienie parametru <code>random_state</code> zapewnia powtarzalność eksperymentów, co jest szczególnie ważne podczas strojenia modeli i porównywania wyników.</p>
+<p>Warto również sprawdzić proporcje klas:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>y.value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Jeżeli klasy są silnie niezrównoważone, model może nauczyć się przewidywać tylko dominującą klasę. W takich przypadkach warto stosować metody ważenia klas (<code>class_weight</code>) lub techniki równoważenia danych.</p>
 </section>
-<section id="drzewo-decyzyjne" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="drzewo-decyzyjne"><span class="header-section-number">4.2</span> Drzewo decyzyjne</h2>
+<section id="drzewa-decyzyjne" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="drzewa-decyzyjne"><span class="header-section-number">4.2</span> Drzewa decyzyjne</h2>
+<p>Drzewa decyzyjne należą do najbardziej intuicyjnych metod klasyfikacji. Model podejmuje decyzje poprzez kolejne podziały danych według wartości wybranych cech. Każdy podział ma na celu zwiększenie jednorodności klas w powstałych podzbiorach.</p>
+<p>Największą zaletą drzew decyzyjnych jest ich interpretowalność. Struktura drzewa pozwala zrozumieć logikę podejmowanych decyzji, co jest szczególnie istotne w zastosowaniach wymagających transparentności modeli.</p>
+<p>Przykład trenowania drzewa decyzyjnego:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>clf_tree <span class="op">=</span> DecisionTreeClassifier(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>clf_tree.fit(X_train, y_train)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Parametr <code>max_depth</code> ogranicza maksymalną głębokość drzewa i jest jednym z najważniejszych narzędzi kontroli przeuczenia. Drzewo bez ograniczeń bardzo szybko dopasowuje się idealnie do danych treningowych, ale traci zdolność generalizacji.</p>
+<p>W praktyce dobrą strategią jest rozpoczęcie od małej głębokości drzewa, a następnie jej stopniowe zwiększanie.</p>
+<p>Jedną z unikalnych cech drzew decyzyjnych jest możliwość ich wizualizacji. Dzięki temu można zidentyfikować najważniejsze cechy wpływające na klasyfikację.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">10</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plot_tree(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    clf_tree,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    feature_names<span class="op">=</span>X.columns,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    class_names<span class="op">=</span>[<span class="st">"bad"</span>, <span class="st">"good"</span>],</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    filled<span class="op">=</span><span class="va">True</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cechy pojawiające się w górnych poziomach drzewa mają zwykle największy wpływ na predykcję. Analiza struktury drzewa może ujawnić zależności, które nie są widoczne w klasycznych analizach statystycznych.</p>
+<p>W praktyce wizualizacja ma sens tylko dla stosunkowo płytkich drzew. W przypadku bardzo dużych modeli warto zamiast tego analizować ważność cech.</p>
 </section>
-<section id="lasy-losowe" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="lasy-losowe"><span class="header-section-number">4.3</span> Lasy losowe</h2>
+<section id="miary-jakości-klasyfikacji" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="miary-jakości-klasyfikacji"><span class="header-section-number">4.3</span> Miary jakości klasyfikacji</h2>
+<p>Po wytrenowaniu modelu można wygenerować predykcje dla nowych danych. Predykcja polega na przejściu przez strukturę drzewa zgodnie z wartościami cech.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y_pred_train <span class="op">=</span> clf_tree.predict(X_train)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y_pred_test <span class="op">=</span> clf_tree.predict(X_test)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Istotne jest, aby oddzielnie analizować wyniki dla zbioru treningowego i testowego. Jeżeli model osiąga bardzo wysoką skuteczność na danych treningowych, ale znacznie niższą na testowych, oznacza to przeuczenie.</p>
+<p>Ocena jakości modelu klasyfikacyjnego jest równie ważna jak jego trenowanie. Najczęściej stosowaną miarą jest dokładność (accuracy), która określa procent poprawnie sklasyfikowanych przypadków.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>accuracy_score(y_test, y_pred_test)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dokładność jest intuicyjna, ale w wielu przypadkach niewystarczająca. Szczególnie w sytuacjach, gdy klasy są niezrównoważone, model może osiągać wysoką dokładność mimo słabej jakości predykcji.</p>
+<p>Dlatego stosuje się również inne miary, takie jak precyzja, czułość oraz miara F1:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> recall_score</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> f1_score</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>precision_score(y_test, y_pred_test, pos_label<span class="op">=</span><span class="st">"good"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>recall_score(y_test, y_pred_test, pos_label<span class="op">=</span><span class="st">"good"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>f1_score(y_test, y_pred_test, pos_label<span class="op">=</span><span class="st">"good"</span>)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W praktyce wybór miary zależy od kontekstu problemu. W zadaniach medycznych ważniejsza jest czułość, ponieważ pominięcie chorego pacjenta może mieć poważne konsekwencje. W zadaniach finansowych większe znaczenie może mieć precyzja, aby uniknąć kosztownych błędów.</p>
+<p>Macierz pomyłek pozwala szczegółowo przeanalizować, jakie błędy popełnia model. Zawiera liczbę poprawnych i błędnych klasyfikacji dla każdej klasy.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred_test)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>cm</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Analiza macierzy pomyłek jest jedną z najbardziej wartościowych praktyk w analizie modeli. Zamiast skupiać się tylko na jednej liczbie, analityk może zobaczyć strukturę błędów i zdecydować, czy model spełnia wymagania biznesowe.</p>
 </section>
-<section id="xgboost" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="xgboost"><span class="header-section-number">4.4</span> XGBoost</h2>
+<section id="maszyna-wektorów-nośnych" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="maszyna-wektorów-nośnych"><span class="header-section-number">4.4</span> Maszyna wektorów nośnych</h2>
+<p>Maszyny wektorów nośnych (SVM — Support Vector Machines) należą do grupy algorytmów klasyfikacyjnych, które koncentrują się na znalezieniu optymalnej granicy decyzyjnej pomiędzy klasami. Kluczową ideą tej metody jest maksymalizacja marginesu, czyli odległości pomiędzy granicą decyzyjną a najbliższymi punktami danych należącymi do różnych klas. Punkty te nazywane są wektorami nośnymi i to właśnie one decydują o położeniu granicy klasyfikacyjnej.</p>
+<p>W praktyce SVM szczególnie dobrze radzi sobie z danymi, które nie są liniowo separowalne. Dzięki zastosowaniu funkcji jądra możliwe jest przekształcenie danych do przestrzeni o wyższym wymiarze, w której separacja klas staje się prostsza. Najczęściej stosowaną funkcją jądra jest funkcja radialna (RBF), która zapewnia dobrą jakość klasyfikacji w wielu zadaniach.</p>
+<p>Przykładowa implementacja modelu SVM z wykorzystaniem standaryzacji danych:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>pipeline_svm <span class="op">=</span> Pipeline([</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"scaler"</span>, StandardScaler()),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"svm"</span>, SVC(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        kernel<span class="op">=</span><span class="st">"rbf"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        C<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        gamma<span class="op">=</span><span class="st">"scale"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        probability<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>pipeline_svm.fit(X_train, y_train)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W praktyce niezwykle istotne jest skalowanie danych przed użyciem SVM. Różne zakresy wartości cech mogą znacząco wpłynąć na działanie modelu, ponieważ SVM opiera się na obliczeniach odległości między punktami.</p>
+<p>Dobrym zwyczajem jest rozpoczęcie pracy z parametrami <code>C=1</code> i <code>gamma="scale"</code>, a następnie ich stopniowa modyfikacja. Zbyt duże wartości parametrów prowadzą często do przeuczenia modelu.</p>
 </section>
-<section id="xai" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="xai"><span class="header-section-number">4.5</span> XAI</h2>
+<section id="lasy-losowe" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="lasy-losowe"><span class="header-section-number">4.5</span> Lasy losowe</h2>
+<p>Lasy losowe stanowią rozwinięcie drzew decyzyjnych i należą do najczęściej stosowanych metod klasyfikacyjnych w analizie danych tabelarycznych. Metoda ta polega na budowie wielu drzew decyzyjnych na losowych podzbiorach danych oraz losowych podzbiorach cech. Wynik końcowy uzyskiwany jest poprzez agregację predykcji wszystkich drzew.</p>
+<p>Główną zaletą lasów losowych jest redukcja przeuczenia, które często występuje w pojedynczych drzewach decyzyjnych. Losowość wprowadzana podczas budowy modelu powoduje, że poszczególne drzewa uczą się różnych aspektów danych, co zwiększa stabilność modelu.</p>
+<p>Przykładowa implementacja lasu losowego:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>clf_rf <span class="op">=</span> RandomForestClassifier(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">200</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">8</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>clf_rf.fit(X_train, y_train)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Parametr <code>n_estimators</code> określa liczbę drzew w lesie i ma bezpośredni wpływ na jakość modelu. W praktyce zwiększanie liczby drzew zwykle poprawia wyniki, jednak kosztem wydłużenia czasu obliczeń.</p>
+<p>Warto pamiętać, że lasy losowe dobrze radzą sobie z danymi o mieszanych typach zmiennych oraz nie wymagają skalowania danych, co stanowi ich istotną przewagę nad SVM.</p>
+</section>
+<section id="boosting-gradientowy" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="boosting-gradientowy"><span class="header-section-number">4.6</span> Boosting gradientowy</h2>
+<p>XGBoost należy do grupy metod boostingowych i jest jedną z najskuteczniejszych metod klasyfikacji dostępnych współcześnie. W odróżnieniu od lasów losowych, gdzie drzewa budowane są niezależnie, w boostingach kolejne drzewa uczą się na błędach poprzednich modeli.</p>
+<p>Idea działania XGBoost polega na stopniowym poprawianiu jakości modelu poprzez minimalizację funkcji kosztu. Dzięki zastosowaniu regularyzacji model ten jest odporny na przeuczenie oraz osiąga bardzo dobre wyniki w wielu konkursach analizy danych.</p>
+<p>Przykład implementacji modelu XGBoost:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>clf_xgb <span class="op">=</span> XGBClassifier(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">6</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    subsample<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    colsample_bytree<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>clf_xgb.fit(X_train, y_train)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Parametr <code>learning_rate</code> kontroluje tempo uczenia modelu. Mniejsze wartości powodują wolniejsze uczenie, ale zwykle prowadzą do lepszej jakości modelu.</p>
+<p>W praktyce XGBoost jest szczególnie skuteczny w zadaniach złożonych, jednak wymaga starannego strojenia parametrów. Z tego powodu często stosuje się go jako model końcowy po analizie prostszych metod.</p>
+</section>
+<section id="krzywe-roc-i-auc" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="krzywe-roc-i-auc"><span class="header-section-number">4.7</span> Krzywe ROC i AUC</h2>
+<p>Krzywa ROC (Receiver Operating Characteristic) jest narzędziem służącym do oceny jakości klasyfikatorów binarnych. Przedstawia zależność pomiędzy czułością (True Positive Rate) a odsetkiem fałszywych alarmów (False Positive Rate) dla różnych progów decyzyjnych.</p>
+<p>Pole pod krzywą ROC, czyli AUC (Area Under Curve), stanowi jedną z najważniejszych miar jakości modelu. Wartość AUC bliska 1 oznacza bardzo dobrą jakość klasyfikacji, natomiast wartość bliska 0.5 oznacza działanie porównywalne z losowym zgadywaniem.</p>
+<p>Przykład generowania krzywej ROC:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>y_prob <span class="op">=</span> clf_rf.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds <span class="op">=</span> roc_curve(y_test, y_prob)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr, tpr)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"False Positive Rate"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"True Positive Rate"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"ROC Curve"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>roc_auc_score(y_test, y_prob)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W praktyce analiza krzywej ROC pozwala dobrać optymalny próg decyzyjny. Domyślna wartość 0.5 nie zawsze jest najlepsza — w niektórych zadaniach warto stosować bardziej konserwatywne progi.</p>
+</section>
+<section id="walidacja-krzyżowa" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="walidacja-krzyżowa"><span class="header-section-number">4.8</span> Walidacja krzyżowa</h2>
+<p>Walidacja krzyżowa jest techniką oceny modelu polegającą na wielokrotnym trenowaniu i testowaniu modelu na różnych podzbiorach danych. Najczęściej stosowaną metodą jest walidacja k-krotna, w której dane dzielone są na k części.</p>
+<p>Główną zaletą walidacji krzyżowej jest bardziej wiarygodna ocena jakości modelu. Zamiast jednorazowego podziału danych, model oceniany jest na wielu różnych zestawach treningowych i testowych.</p>
+<p>Przykład zastosowania walidacji krzyżowej:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    clf_rf,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    X,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    y,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">"roc_auc"</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>scores.mean()</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W praktyce walidacja krzyżowa jest niezbędna podczas porównywania modeli. Pozwala uniknąć sytuacji, w której model przypadkowo dobrze dopasowuje się do jednego konkretnego podziału danych.</p>
+</section>
+<section id="tuning-hiperparametrów" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="tuning-hiperparametrów"><span class="header-section-number">4.9</span> Tuning hiperparametrów</h2>
+<p>Hiperparametry modelu mają ogromny wpływ na jego jakość. Domyślne wartości parametrów rzadko prowadzą do optymalnych wyników, dlatego konieczne jest ich dostrajanie.</p>
+<p>Najczęściej stosowaną metodą jest przeszukiwanie siatki parametrów (Grid Search) lub przeszukiwanie losowe (Random Search).</p>
+<p>Przykład strojenia parametrów lasu losowego:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_estimators"</span>: [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>],</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_depth"</span>: [<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">12</span>],</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"min_samples_split"</span>: [<span class="dv">2</span>, <span class="dv">5</span>]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    estimator<span class="op">=</span>clf_rf,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>param_grid,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">"roc_auc"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>grid_search.fit(X_train, y_train)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>grid_search.best_params_</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W praktyce należy uważać na zbyt duże przestrzenie parametrów, ponieważ mogą one znacząco wydłużyć czas obliczeń. Dobrym podejściem jest rozpoczęcie od losowego przeszukiwania parametrów, a następnie dokładniejsze strojenie w wybranym zakresie.</p>
+</section>
+<section id="xai" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="xai"><span class="header-section-number">4.10</span> XAI</h2>
+<p>Wyjaśnialna sztuczna inteligencja (Explainable AI — XAI) obejmuje metody pozwalające zrozumieć działanie modeli uczenia maszynowego. Wraz ze wzrostem złożoności modeli rośnie potrzeba ich interpretacji, szczególnie w zastosowaniach biznesowych i medycznych.</p>
+<p>Jedną z podstawowych metod interpretacji modeli jest analiza ważności cech. Pozwala ona określić, które zmienne mają największy wpływ na decyzje modelu.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>feature_importances <span class="op">=</span> clf_rf.feature_importances_</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>importance_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"feature"</span>: X.columns,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"importance"</span>: feature_importances</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}).sort_values(by<span class="op">=</span><span class="st">"importance"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>importance_df.head(<span class="dv">10</span>)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W bardziej zaawansowanych analizach stosuje się metody takie jak SHAP (SHapley Additive exPlanations), które pozwalają analizować wpływ cech na pojedyncze predykcje.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.TreeExplainer(clf_rf)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>shap_values <span class="op">=</span> explainer.shap_values(X_test)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>shap.summary_plot(shap_values, X_test)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>W praktyce interpretacja modeli jest równie ważna jak ich skuteczność. Model o wysokiej dokładności, którego działania nie można wyjaśnić, może być trudny do zastosowania w środowisku produkcyjnym.</p>
+</section>
+<section id="podsumowanie" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="podsumowanie"><span class="header-section-number">4.11</span> Podsumowanie</h2>
+<p>W pracy z modelami klasyfikacyjnymi najważniejsze jest podejście iteracyjne. Rzadko zdarza się, aby pierwszy model był najlepszym rozwiązaniem — zwykle konieczne jest wielokrotne testowanie różnych metod, parametrów oraz sposobów przygotowania danych.</p>
+<p>Dobrym podejściem jest rozpoczęcie od prostych modeli interpretowalnych, takich jak drzewa decyzyjne, a następnie przechodzenie do bardziej zaawansowanych metod, takich jak lasy losowe i boosting gradientowy. Dopiero po uzyskaniu stabilnych wyników warto skupić się na strojeniach parametrów i interpretacji modeli.</p>
+<p>Największy wpływ na jakość modelu ma zwykle nie sam algorytm, lecz jakość danych wejściowych oraz odpowiednie przygotowanie cech. Z tego powodu w praktyce znaczna część czasu analityka poświęcana jest nie na budowę modeli, lecz na przygotowanie i analizę danych.</p>
 
 
 </section>

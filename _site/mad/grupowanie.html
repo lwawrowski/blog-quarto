@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -69,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -153,17 +216,17 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</a></li>
-  <li><a href="#grupowanie-obiektów" id="toc-grupowanie-obiektów" class="nav-link" data-scroll-target="#grupowanie-obiektów"><span class="header-section-number">5.2</span> Grupowanie obiektów</a>
+  <li><a href="#standaryzacja-zmiennych" id="toc-standaryzacja-zmiennych" class="nav-link" data-scroll-target="#standaryzacja-zmiennych"><span class="header-section-number">5.2</span> Standaryzacja zmiennych</a></li>
+  <li><a href="#metoda-k-średnich" id="toc-metoda-k-średnich" class="nav-link" data-scroll-target="#metoda-k-średnich"><span class="header-section-number">5.3</span> Metoda k-średnich</a>
   <ul class="collapse">
-  <li><a href="#metoda-k-średnich" id="toc-metoda-k-średnich" class="nav-link" data-scroll-target="#metoda-k-średnich"><span class="header-section-number">5.2.1</span> Metoda k-średnich</a></li>
-  <li><a href="#metoda-hierarchiczna" id="toc-metoda-hierarchiczna" class="nav-link" data-scroll-target="#metoda-hierarchiczna"><span class="header-section-number">5.2.2</span> Metoda hierarchiczna</a></li>
-  <li><a href="#wykrywanie-anomalii" id="toc-wykrywanie-anomalii" class="nav-link" data-scroll-target="#wykrywanie-anomalii"><span class="header-section-number">5.2.3</span> Wykrywanie anomalii</a></li>
+  <li><a href="#wybór-optymalnej-liczby-klastrów" id="toc-wybór-optymalnej-liczby-klastrów" class="nav-link" data-scroll-target="#wybór-optymalnej-liczby-klastrów"><span class="header-section-number">5.3.1</span> Wybór optymalnej liczby klastrów</a></li>
   </ul></li>
-  <li><a href="#grupowanie-cech" id="toc-grupowanie-cech" class="nav-link" data-scroll-target="#grupowanie-cech"><span class="header-section-number">5.3</span> Grupowanie cech</a>
+  <li><a href="#metoda-hierarchiczna" id="toc-metoda-hierarchiczna" class="nav-link" data-scroll-target="#metoda-hierarchiczna"><span class="header-section-number">5.4</span> Metoda hierarchiczna</a>
   <ul class="collapse">
-  <li><a href="#metoda-głównych-składowych" id="toc-metoda-głównych-składowych" class="nav-link" data-scroll-target="#metoda-głównych-składowych"><span class="header-section-number">5.3.1</span> Metoda głównych składowych</a></li>
-  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap"><span class="header-section-number">5.3.2</span> UMAP</a></li>
+  <li><a href="#dendrogram" id="toc-dendrogram" class="nav-link" data-scroll-target="#dendrogram"><span class="header-section-number">5.4.1</span> Dendrogram</a></li>
   </ul></li>
+  <li><a href="#redukcja-wymiarowości" id="toc-redukcja-wymiarowości" class="nav-link" data-scroll-target="#redukcja-wymiarowości"><span class="header-section-number">5.5</span> Redukcja wymiarowości</a></li>
+  <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie"><span class="header-section-number">5.6</span> Podsumowanie</a></li>
   </ul>
 </nav>
     </div>
@@ -192,29 +255,124 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="presentations/04_grupowanie.html">Prezentacja</a></p>
 <section id="wprowadzenie" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="wprowadzenie"><span class="header-section-number">5.1</span> Wprowadzenie</h2>
+<p>Grupowanie (ang. <em>clustering</em>) należy do podstawowych metod uczenia nienadzorowanego. Jego celem jest podział zbioru obserwacji na grupy (klastry) w taki sposób, aby obiekty należące do tej samej grupy były do siebie możliwie podobne, natomiast obiekty z różnych grup różniły się od siebie jak najbardziej. W przeciwieństwie do metod klasyfikacji nie dysponujemy tutaj zmienną objaśnianą wskazującą poprawną przynależność do grup. Algorytm samodzielnie poszukuje naturalnych struktur występujących w danych.</p>
+<p>Podstawą większości metod grupowania jest wyznaczanie odległości pomiędzy obserwacjami. Najczęściej wykorzystywana jest odległość euklidesowa, jednak jej interpretacja wymaga zachowania porównywalnej skali wszystkich zmiennych. W praktyce dane opisujące obiekty często są wyrażone w różnych jednostkach. W analizie klientów mogą to być jednocześnie wiek wyrażony w latach, roczne wydatki w walucie oraz liczba wizyt w sklepie. Bez odpowiedniego przygotowania danych zmienna o największych wartościach liczbowych mogłaby całkowicie zdominować proces grupowania.</p>
 </section>
-<section id="grupowanie-obiektów" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="grupowanie-obiektów"><span class="header-section-number">5.2</span> Grupowanie obiektów</h2>
-<section id="metoda-k-średnich" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="metoda-k-średnich"><span class="header-section-number">5.2.1</span> Metoda k-średnich</h3>
+<section id="standaryzacja-zmiennych" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="standaryzacja-zmiennych"><span class="header-section-number">5.2</span> Standaryzacja zmiennych</h2>
+<p>Z tego względu przed wykonaniem grupowania zazwyczaj przeprowadza się normalizację danych. Najpopularniejszą metodą jest standaryzacja, polegająca na przekształceniu każdej obserwacji według wzoru:</p>
+<p><span class="math display">\[z=\frac{x-\bar{x}}{s}\]</span></p>
+<p>gdzie (<span class="math inline">\(\bar{x}\)</span>) oznacza średnią arytmetyczną, natomiast (<span class="math inline">\(s\)</span>) odchylenie standardowe danej cechy.</p>
+<p>Po standaryzacji każda zmienna ma średnią równą zero i odchylenie standardowe równe jeden. Dzięki temu wszystkie cechy wpływają na obliczane odległości w podobnym stopniu.</p>
+<p>W prezentacji zilustrowano wpływ standaryzacji na dane dotyczące sklepów. Wartości liczby klientów oraz sprzedaży zostały przeskalowane do wspólnej jednostki bezwymiarowej. Choć względne położenie punktów pozostaje takie samo, zmienia się skala osi, dzięki czemu żadna zmienna nie dominuje nad drugą podczas obliczania odległości.</p>
+<p>W notebooku proces ten realizowany jest przy pomocy klasy <code>StandardScaler</code> z biblioteki <code>scikit-learn</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> klienci[[<span class="st">"roczny_dochod"</span>, <span class="st">"wskaznik_wydatkow"</span>]]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> scaler.fit_transform(x)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Metoda <code>fit_transform()</code> najpierw oblicza średnie i odchylenia standardowe dla każdej zmiennej, a następnie dokonuje standaryzacji wszystkich obserwacji. Wynik zapisywany jest w macierzy <code>z</code>, która stanowi wejście dla algorytmów grupowania.</p>
 </section>
-<section id="metoda-hierarchiczna" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="metoda-hierarchiczna"><span class="header-section-number">5.2.2</span> Metoda hierarchiczna</h3>
+<section id="metoda-k-średnich" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="metoda-k-średnich"><span class="header-section-number">5.3</span> Metoda k-średnich</h2>
+<p>Jedną z najpopularniejszych metod grupowania jest algorytm k-średnich (<em>k-means</em>). Jego zadaniem jest podział danych na zadaną wcześniej liczbę grup (k). Algorytm rozpoczyna działanie od losowego wyboru punktów reprezentujących środki klastrów, nazywane centroidami. Następnie każda obserwacja zostaje przypisana do najbliższego centroidu. Po wykonaniu przypisania obliczane są nowe położenia środków grup jako średnie wartości wszystkich obiektów należących do danego klastra. Procedura jest powtarzana aż do momentu, gdy przypisania obserwacji przestaną się zmieniać.</p>
+<p>Celem algorytmu jest minimalizacja sumy kwadratów odległości pomiędzy obserwacjami a centroidem klastra. Wielkość tę określa się mianem inercji (<em>inertia</em>):</p>
+<p><span class="math display">\[\sum_{i=1}^{n}(x_i-c_j)^2\]</span></p>
+<p>gdzie (<span class="math inline">\(c_j\)</span>) oznacza centroid klastra, do którego należy obserwacja (<span class="math inline">\(x_i\)</span>).</p>
+<p>W notebooku przeprowadzono segmentację klientów sklepu na podstawie rocznego dochodu oraz wskaźnika wydatków:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    n_clusters<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    init<span class="op">=</span><span class="st">'k-means++'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>clusters_kmeans <span class="op">=</span> kmeans.fit_predict(z)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Parametr <code>n_clusters</code> określa liczbę grup, natomiast <code>init='k-means++'</code> wykorzystuje ulepszoną metodę inicjalizacji centroidów. Pozwala ona uniknąć wielu problemów związanych z losowym wyborem punktów startowych i zwykle prowadzi do lepszych rezultatów. Funkcja <code>fit_predict()</code> jednocześnie dopasowuje model i zwraca numer klastra przypisany do każdej obserwacji.</p>
+<p>Uzyskane etykiety grup zostały następnie dodane do zbioru danych i wykorzystane do wizualizacji:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>klienci[<span class="st">"clusters_kmeans"</span>] <span class="op">=</span> clusters_kmeans</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Kolorowanie punktów według numeru klastra pozwala ocenić, czy wyodrębnione segmenty klientów są logiczne i dobrze rozdzielone.</p>
+<section id="wybór-optymalnej-liczby-klastrów" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="wybór-optymalnej-liczby-klastrów"><span class="header-section-number">5.3.1</span> Wybór optymalnej liczby klastrów</h3>
+<p>Jednym z najważniejszych problemów w metodzie k-średnich jest dobór liczby grup. Zbyt mała liczba klastrów prowadzi do utraty informacji, natomiast zbyt duża może powodować sztuczny podział naturalnych segmentów.</p>
+<p>W notebooku wykorzystano dwa popularne kryteria oceny jakości grupowania. Pierwszym jest metoda łokcia (<em>Elbow Method</em>). Polega ona na obliczeniu wartości inercji dla różnych liczb klastrów:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>inertia <span class="op">=</span> []</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">11</span>):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>i,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                    init<span class="op">=</span><span class="st">'k-means++'</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                    random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    kmeans.fit(z)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    inertia.append(kmeans.inertia_)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Następnie tworzony jest wykres zależności inercji od liczby grup. Poszukuje się punktu załamania krzywej przypominającego kształtem łokieć. Oznacza on moment, w którym dalsze zwiększanie liczby klastrów przynosi już niewielką poprawę jakości podziału.</p>
+<p>Drugim zastosowanym kryterium jest indeks Calińskiego-Harabasza:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> calinski_harabasz_score</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ch_scores.append(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    calinski_harabasz_score(z, clusters_kmeans)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Miara ta uwzględnia jednocześnie zwartość klastrów i ich wzajemne oddalenie. Im większa wartość indeksu, tym lepiej rozdzielone są grupy. Najwyższa wartość wskaźnika sugeruje najbardziej odpowiednią liczbę klastrów.</p>
 </section>
-<section id="wykrywanie-anomalii" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="wykrywanie-anomalii"><span class="header-section-number">5.2.3</span> Wykrywanie anomalii</h3>
+</section>
+<section id="metoda-hierarchiczna" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="metoda-hierarchiczna"><span class="header-section-number">5.4</span> Metoda hierarchiczna</h2>
+<p>Alternatywą dla k-średnich jest grupowanie hierarchiczne. W podejściu aglomeracyjnym każda obserwacja początkowo tworzy osobny klaster. Następnie dwa najbardziej podobne klastry są sukcesywnie łączone aż do momentu utworzenia jednej grupy zawierającej wszystkie obiekty.</p>
+<p>Kluczowym elementem jest sposób definiowania odległości pomiędzy grupami. Metoda pojedynczego wiązania (<em>single linkage</em>) wykorzystuje najbliższe punkty należące do różnych klastrów. Metoda pełnego wiązania (<em>complete linkage</em>) bierze pod uwagę najbardziej odległe obserwacje. Metoda średnich połączeń (<em>average linkage</em>) wykorzystuje średnią odległość pomiędzy wszystkimi parami punktów. Szczególnie popularna jest metoda Warda, która minimalizuje przyrost wariancji wewnątrz klastrów i zwykle tworzy zwarte, dobrze rozdzielone grupy.</p>
+<p>W notebooku wykorzystano właśnie metodę Warda:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> AgglomerativeClustering</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>group_hier <span class="op">=</span> AgglomerativeClustering(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    n_clusters<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    linkage<span class="op">=</span><span class="st">'ward'</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>clusters_hier <span class="op">=</span> group_hier.fit_predict(z)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Podobnie jak wcześniej każda obserwacja otrzymuje numer klastra. Następnie można porównać wyniki obu metod:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    klienci[<span class="st">"clusters_kmeans"</span>],</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    klienci[<span class="st">"clusters_hier"</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tabela krzyżowa pozwala ocenić zgodność podziałów uzyskanych przez różne algorytmy.</p>
+<section id="dendrogram" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="dendrogram"><span class="header-section-number">5.4.1</span> Dendrogram</h3>
+<p>Szczególną zaletą grupowania hierarchicznego jest możliwość przedstawienia wyników w postaci dendrogramu. Jest to drzewo pokazujące kolejne etapy łączenia grup.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> dendrogram, linkage</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>linked <span class="op">=</span> linkage(z, method<span class="op">=</span><span class="st">'ward'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>dendrogram(linked, color_threshold<span class="op">=</span><span class="dv">8</span>)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wysokość połączenia na dendrogramie odpowiada odległości pomiędzy klastrami. Analizując wykres można określić liczbę naturalnych grup poprzez przecięcie drzewa poziomą linią. Duże pionowe odstępy sugerują istnienie dobrze odseparowanych klastrów.</p>
 </section>
 </section>
-<section id="grupowanie-cech" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="grupowanie-cech"><span class="header-section-number">5.3</span> Grupowanie cech</h2>
-<section id="metoda-głównych-składowych" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="metoda-głównych-składowych"><span class="header-section-number">5.3.1</span> Metoda głównych składowych</h3>
+<section id="redukcja-wymiarowości" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="redukcja-wymiarowości"><span class="header-section-number">5.5</span> Redukcja wymiarowości</h2>
+<p>W przypadku danych wielowymiarowych interpretacja wyników grupowania może być utrudniona. Pomocne stają się wtedy metody redukcji wymiarowości, których zadaniem jest odwzorowanie danych do przestrzeni o mniejszej liczbie wymiarów przy zachowaniu możliwie dużej ilości informacji.</p>
+<p>Najbardziej klasyczną metodą jest analiza głównych składowych (PCA). Poszukuje ona nowych zmiennych będących liniowymi kombinacjami cech pierwotnych. Nowe osie maksymalizują wyjaśnianą wariancję danych.</p>
+<p>W notebooku zastosowano PCA do redukcji czterech cech samochodów do dwóch wymiarów:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pca_auta <span class="op">=</span> pca.fit_transform(z_auta)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Następnie sprawdzono udział wyjaśnianej wariancji:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pca.explained_variance_ratio_)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Suma tych wartości informuje, jaka część całkowitej informacji została zachowana po redukcji wymiarów. Jeżeli wynik przekracza około 80–90%, dwuwymiarowa reprezentacja danych może być uznana za bardzo dobrą.</p>
+<p>Oprócz PCA coraz częściej wykorzystuje się nieliniowe metody redukcji wymiarowości, takie jak t-SNE oraz UMAP. W notebooku zastosowano UMAP:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> umap <span class="im">import</span> UMAP</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>umap <span class="op">=</span> UMAP(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    n_components<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>umap_auta <span class="op">=</span> umap.fit_transform(z_auta)</span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Metoda ta dobrze zachowuje lokalną strukturę danych i często umożliwia wyraźniejsze rozdzielenie klastrów niż PCA. Uzyskane współrzędne można wykorzystać do wizualizacji wyników grupowania na płaszczyźnie.</p>
 </section>
-<section id="umap" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="umap"><span class="header-section-number">5.3.2</span> UMAP</h3>
+<section id="podsumowanie" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="podsumowanie"><span class="header-section-number">5.6</span> Podsumowanie</h2>
+<p>Przed wykonaniem grupowania warto przeprowadzić analizę jakości danych, sprawdzić występowanie braków danych oraz obserwacji odstających. Nietypowe obiekty mogą znacząco wpływać na położenie centroidów i prowadzić do błędnej segmentacji. Dobór cech powinien opierać się nie tylko na dostępności danych, ale również na ich interpretacyjnej wartości oraz zmienności. W przypadku dużej liczby silnie skorelowanych zmiennych pomocne może być zastosowanie PCA przed grupowaniem.</p>
+<p>Nie istnieje uniwersalnie najlepszy algorytm grupowania. Metoda k-średnich dobrze sprawdza się dla zwartych i względnie kulistych klastrów, natomiast grupowanie hierarchiczne pozwala lepiej analizować strukturę danych i nie wymaga wielokrotnego uruchamiania algorytmu dla różnych wartości liczby grup. W danych zawierających szum lub klastry o nieregularnych kształtach często lepsze wyniki osiągają algorytmy gęstościowe, takie jak DBSCAN. Dlatego w praktyce zaleca się porównywanie wyników kilku metod oraz ocenę ich jakości przy użyciu odpowiednich miar i wiedzy dziedzinowej.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

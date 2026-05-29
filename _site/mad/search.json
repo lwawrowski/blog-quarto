@@ -254,17 +254,47 @@
     "href": "klasyfikacja.html",
     "title": "4  Klasyfikacja",
     "section": "",
-    "text": "4.1 Wprowadzenie\nPrezentacja",
+    "text": "4.1 Wprowadzenie\nPrezentacja\nKlasyfikacja jest jedną z podstawowych metod uczenia nadzorowanego, w której celem jest przypisanie obserwacji do jednej z wcześniej zdefiniowanych klas. W praktyce klasyfikacja wykorzystywana jest m.in. do oceny ryzyka kredytowego, diagnoz medycznych, wykrywania spamu czy segmentacji klientów. Kluczową cechą uczenia nadzorowanego jest dostępność danych treningowych zawierających poprawne etykiety klas.\nProblemy klasyfikacyjne można podzielić na trzy podstawowe typy. W klasyfikacji binarnej model rozróżnia tylko dwie klasy, co jest najczęstszym przypadkiem w zastosowaniach biznesowych. Klasyfikacja wieloklasowa obejmuje więcej niż dwie klasy, natomiast klasyfikacja wieloetykietowa pozwala przypisać jednej obserwacji wiele etykiet jednocześnie, co jest typowe np. w analizie tekstów.\nW praktyce najważniejszą decyzją na początku pracy analitycznej jest poprawne zdefiniowanie zmiennej docelowej. Warto upewnić się, że etykiety klas są jednoznaczne i nie zawierają błędów, ponieważ nawet niewielkie zanieczyszczenia danych uczą model nieprawidłowych wzorców.\nProces budowy modelu klasyfikacyjnego zawsze rozpoczyna się od przygotowania danych. Obejmuje to wczytanie danych, oczyszczenie nazw kolumn, obsługę braków danych oraz podział na zmienne objaśniające i zmienną docelową.\nPrzykładowy kod wczytujący dane i przygotowujący strukturę danych może wyglądać następująco:\nKolejnym krokiem jest podział danych na zbiór treningowy i testowy:\nPodział danych na zbiór treningowy i testowy jest absolutnie kluczowy dla rzetelnej oceny modelu. Ustawienie parametru random_state zapewnia powtarzalność eksperymentów, co jest szczególnie ważne podczas strojenia modeli i porównywania wyników.\nWarto również sprawdzić proporcje klas:\nJeżeli klasy są silnie niezrównoważone, model może nauczyć się przewidywać tylko dominującą klasę. W takich przypadkach warto stosować metody ważenia klas (class_weight) lub techniki równoważenia danych.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
-    "objectID": "klasyfikacja.html#drzewo-decyzyjne",
-    "href": "klasyfikacja.html#drzewo-decyzyjne",
+    "objectID": "klasyfikacja.html#wprowadzenie",
+    "href": "klasyfikacja.html#wprowadzenie",
     "title": "4  Klasyfikacja",
-    "section": "4.2 Drzewo decyzyjne",
-    "text": "4.2 Drzewo decyzyjne",
+    "section": "",
+    "text": "import pandas as pd\n\ncredit = pd.read_csv(\"data/german_credit_final.csv\")\n\nX = credit.drop(\"risk\", axis=1)\ny = credit[\"risk\"]\n\nfrom sklearn.model_selection import train_test_split\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.2,\n    random_state=42\n)\n\n\ny.value_counts(normalize=True)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "klasyfikacja.html#drzewa-decyzyjne",
+    "href": "klasyfikacja.html#drzewa-decyzyjne",
+    "title": "4  Klasyfikacja",
+    "section": "4.2 Drzewa decyzyjne",
+    "text": "4.2 Drzewa decyzyjne\nDrzewa decyzyjne należą do najbardziej intuicyjnych metod klasyfikacji. Model podejmuje decyzje poprzez kolejne podziały danych według wartości wybranych cech. Każdy podział ma na celu zwiększenie jednorodności klas w powstałych podzbiorach.\nNajwiększą zaletą drzew decyzyjnych jest ich interpretowalność. Struktura drzewa pozwala zrozumieć logikę podejmowanych decyzji, co jest szczególnie istotne w zastosowaniach wymagających transparentności modeli.\nPrzykład trenowania drzewa decyzyjnego:\nfrom sklearn.tree import DecisionTreeClassifier\n\nclf_tree = DecisionTreeClassifier(\n    max_depth=4,\n    random_state=42\n)\n\nclf_tree.fit(X_train, y_train)\nParametr max_depth ogranicza maksymalną głębokość drzewa i jest jednym z najważniejszych narzędzi kontroli przeuczenia. Drzewo bez ograniczeń bardzo szybko dopasowuje się idealnie do danych treningowych, ale traci zdolność generalizacji.\nW praktyce dobrą strategią jest rozpoczęcie od małej głębokości drzewa, a następnie jej stopniowe zwiększanie.\nJedną z unikalnych cech drzew decyzyjnych jest możliwość ich wizualizacji. Dzięki temu można zidentyfikować najważniejsze cechy wpływające na klasyfikację.\nfrom sklearn.tree import plot_tree\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(20, 10))\n\nplot_tree(\n    clf_tree,\n    feature_names=X.columns,\n    class_names=[\"bad\", \"good\"],\n    filled=True\n)\n\nplt.show()\nCechy pojawiające się w górnych poziomach drzewa mają zwykle największy wpływ na predykcję. Analiza struktury drzewa może ujawnić zależności, które nie są widoczne w klasycznych analizach statystycznych.\nW praktyce wizualizacja ma sens tylko dla stosunkowo płytkich drzew. W przypadku bardzo dużych modeli warto zamiast tego analizować ważność cech.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "klasyfikacja.html#miary-jakości-klasyfikacji",
+    "href": "klasyfikacja.html#miary-jakości-klasyfikacji",
+    "title": "4  Klasyfikacja",
+    "section": "4.3 Miary jakości klasyfikacji",
+    "text": "4.3 Miary jakości klasyfikacji\nPo wytrenowaniu modelu można wygenerować predykcje dla nowych danych. Predykcja polega na przejściu przez strukturę drzewa zgodnie z wartościami cech.\ny_pred_train = clf_tree.predict(X_train)\ny_pred_test = clf_tree.predict(X_test)\nIstotne jest, aby oddzielnie analizować wyniki dla zbioru treningowego i testowego. Jeżeli model osiąga bardzo wysoką skuteczność na danych treningowych, ale znacznie niższą na testowych, oznacza to przeuczenie.\nOcena jakości modelu klasyfikacyjnego jest równie ważna jak jego trenowanie. Najczęściej stosowaną miarą jest dokładność (accuracy), która określa procent poprawnie sklasyfikowanych przypadków.\nfrom sklearn.metrics import accuracy_score\n\naccuracy_score(y_test, y_pred_test)\nDokładność jest intuicyjna, ale w wielu przypadkach niewystarczająca. Szczególnie w sytuacjach, gdy klasy są niezrównoważone, model może osiągać wysoką dokładność mimo słabej jakości predykcji.\nDlatego stosuje się również inne miary, takie jak precyzja, czułość oraz miara F1:\nfrom sklearn.metrics import precision_score\nfrom sklearn.metrics import recall_score\nfrom sklearn.metrics import f1_score\n\nprecision_score(y_test, y_pred_test, pos_label=\"good\")\nrecall_score(y_test, y_pred_test, pos_label=\"good\")\nf1_score(y_test, y_pred_test, pos_label=\"good\")\nW praktyce wybór miary zależy od kontekstu problemu. W zadaniach medycznych ważniejsza jest czułość, ponieważ pominięcie chorego pacjenta może mieć poważne konsekwencje. W zadaniach finansowych większe znaczenie może mieć precyzja, aby uniknąć kosztownych błędów.\nMacierz pomyłek pozwala szczegółowo przeanalizować, jakie błędy popełnia model. Zawiera liczbę poprawnych i błędnych klasyfikacji dla każdej klasy.\nfrom sklearn.metrics import confusion_matrix\n\ncm = confusion_matrix(y_test, y_pred_test)\ncm\nAnaliza macierzy pomyłek jest jedną z najbardziej wartościowych praktyk w analizie modeli. Zamiast skupiać się tylko na jednej liczbie, analityk może zobaczyć strukturę błędów i zdecydować, czy model spełnia wymagania biznesowe.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "klasyfikacja.html#maszyna-wektorów-nośnych",
+    "href": "klasyfikacja.html#maszyna-wektorów-nośnych",
+    "title": "4  Klasyfikacja",
+    "section": "4.4 Maszyna wektorów nośnych",
+    "text": "4.4 Maszyna wektorów nośnych\nMaszyny wektorów nośnych (SVM — Support Vector Machines) należą do grupy algorytmów klasyfikacyjnych, które koncentrują się na znalezieniu optymalnej granicy decyzyjnej pomiędzy klasami. Kluczową ideą tej metody jest maksymalizacja marginesu, czyli odległości pomiędzy granicą decyzyjną a najbliższymi punktami danych należącymi do różnych klas. Punkty te nazywane są wektorami nośnymi i to właśnie one decydują o położeniu granicy klasyfikacyjnej.\nW praktyce SVM szczególnie dobrze radzi sobie z danymi, które nie są liniowo separowalne. Dzięki zastosowaniu funkcji jądra możliwe jest przekształcenie danych do przestrzeni o wyższym wymiarze, w której separacja klas staje się prostsza. Najczęściej stosowaną funkcją jądra jest funkcja radialna (RBF), która zapewnia dobrą jakość klasyfikacji w wielu zadaniach.\nPrzykładowa implementacja modelu SVM z wykorzystaniem standaryzacji danych:\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.svm import SVC\n\npipeline_svm = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svm\", SVC(\n        kernel=\"rbf\",\n        C=1.0,\n        gamma=\"scale\",\n        probability=True,\n        random_state=42\n    ))\n])\n\npipeline_svm.fit(X_train, y_train)\nW praktyce niezwykle istotne jest skalowanie danych przed użyciem SVM. Różne zakresy wartości cech mogą znacząco wpłynąć na działanie modelu, ponieważ SVM opiera się na obliczeniach odległości między punktami.\nDobrym zwyczajem jest rozpoczęcie pracy z parametrami C=1 i gamma=\"scale\", a następnie ich stopniowa modyfikacja. Zbyt duże wartości parametrów prowadzą często do przeuczenia modelu.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
@@ -273,18 +303,48 @@
     "objectID": "klasyfikacja.html#lasy-losowe",
     "href": "klasyfikacja.html#lasy-losowe",
     "title": "4  Klasyfikacja",
-    "section": "4.3 Lasy losowe",
-    "text": "4.3 Lasy losowe",
+    "section": "4.5 Lasy losowe",
+    "text": "4.5 Lasy losowe\nLasy losowe stanowią rozwinięcie drzew decyzyjnych i należą do najczęściej stosowanych metod klasyfikacyjnych w analizie danych tabelarycznych. Metoda ta polega na budowie wielu drzew decyzyjnych na losowych podzbiorach danych oraz losowych podzbiorach cech. Wynik końcowy uzyskiwany jest poprzez agregację predykcji wszystkich drzew.\nGłówną zaletą lasów losowych jest redukcja przeuczenia, które często występuje w pojedynczych drzewach decyzyjnych. Losowość wprowadzana podczas budowy modelu powoduje, że poszczególne drzewa uczą się różnych aspektów danych, co zwiększa stabilność modelu.\nPrzykładowa implementacja lasu losowego:\nfrom sklearn.ensemble import RandomForestClassifier\n\nclf_rf = RandomForestClassifier(\n    n_estimators=200,\n    max_depth=8,\n    random_state=42,\n    n_jobs=-1\n)\n\nclf_rf.fit(X_train, y_train)\nParametr n_estimators określa liczbę drzew w lesie i ma bezpośredni wpływ na jakość modelu. W praktyce zwiększanie liczby drzew zwykle poprawia wyniki, jednak kosztem wydłużenia czasu obliczeń.\nWarto pamiętać, że lasy losowe dobrze radzą sobie z danymi o mieszanych typach zmiennych oraz nie wymagają skalowania danych, co stanowi ich istotną przewagę nad SVM.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
   },
   {
-    "objectID": "klasyfikacja.html#xgboost",
-    "href": "klasyfikacja.html#xgboost",
+    "objectID": "klasyfikacja.html#boosting-gradientowy",
+    "href": "klasyfikacja.html#boosting-gradientowy",
     "title": "4  Klasyfikacja",
-    "section": "4.4 XGBoost",
-    "text": "4.4 XGBoost",
+    "section": "4.6 Boosting gradientowy",
+    "text": "4.6 Boosting gradientowy\nXGBoost należy do grupy metod boostingowych i jest jedną z najskuteczniejszych metod klasyfikacji dostępnych współcześnie. W odróżnieniu od lasów losowych, gdzie drzewa budowane są niezależnie, w boostingach kolejne drzewa uczą się na błędach poprzednich modeli.\nIdea działania XGBoost polega na stopniowym poprawianiu jakości modelu poprzez minimalizację funkcji kosztu. Dzięki zastosowaniu regularyzacji model ten jest odporny na przeuczenie oraz osiąga bardzo dobre wyniki w wielu konkursach analizy danych.\nPrzykład implementacji modelu XGBoost:\nfrom xgboost import XGBClassifier\n\nclf_xgb = XGBClassifier(\n    n_estimators=300,\n    max_depth=6,\n    learning_rate=0.05,\n    subsample=0.8,\n    colsample_bytree=0.8,\n    random_state=42\n)\n\nclf_xgb.fit(X_train, y_train)\nParametr learning_rate kontroluje tempo uczenia modelu. Mniejsze wartości powodują wolniejsze uczenie, ale zwykle prowadzą do lepszej jakości modelu.\nW praktyce XGBoost jest szczególnie skuteczny w zadaniach złożonych, jednak wymaga starannego strojenia parametrów. Z tego powodu często stosuje się go jako model końcowy po analizie prostszych metod.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "klasyfikacja.html#krzywe-roc-i-auc",
+    "href": "klasyfikacja.html#krzywe-roc-i-auc",
+    "title": "4  Klasyfikacja",
+    "section": "4.7 Krzywe ROC i AUC",
+    "text": "4.7 Krzywe ROC i AUC\nKrzywa ROC (Receiver Operating Characteristic) jest narzędziem służącym do oceny jakości klasyfikatorów binarnych. Przedstawia zależność pomiędzy czułością (True Positive Rate) a odsetkiem fałszywych alarmów (False Positive Rate) dla różnych progów decyzyjnych.\nPole pod krzywą ROC, czyli AUC (Area Under Curve), stanowi jedną z najważniejszych miar jakości modelu. Wartość AUC bliska 1 oznacza bardzo dobrą jakość klasyfikacji, natomiast wartość bliska 0.5 oznacza działanie porównywalne z losowym zgadywaniem.\nPrzykład generowania krzywej ROC:\nfrom sklearn.metrics import roc_curve\nfrom sklearn.metrics import roc_auc_score\nimport matplotlib.pyplot as plt\n\ny_prob = clf_rf.predict_proba(X_test)[:, 1]\n\nfpr, tpr, thresholds = roc_curve(y_test, y_prob)\n\nplt.plot(fpr, tpr)\nplt.xlabel(\"False Positive Rate\")\nplt.ylabel(\"True Positive Rate\")\nplt.title(\"ROC Curve\")\nplt.show()\n\nroc_auc_score(y_test, y_prob)\nW praktyce analiza krzywej ROC pozwala dobrać optymalny próg decyzyjny. Domyślna wartość 0.5 nie zawsze jest najlepsza — w niektórych zadaniach warto stosować bardziej konserwatywne progi.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "klasyfikacja.html#walidacja-krzyżowa",
+    "href": "klasyfikacja.html#walidacja-krzyżowa",
+    "title": "4  Klasyfikacja",
+    "section": "4.8 Walidacja krzyżowa",
+    "text": "4.8 Walidacja krzyżowa\nWalidacja krzyżowa jest techniką oceny modelu polegającą na wielokrotnym trenowaniu i testowaniu modelu na różnych podzbiorach danych. Najczęściej stosowaną metodą jest walidacja k-krotna, w której dane dzielone są na k części.\nGłówną zaletą walidacji krzyżowej jest bardziej wiarygodna ocena jakości modelu. Zamiast jednorazowego podziału danych, model oceniany jest na wielu różnych zestawach treningowych i testowych.\nPrzykład zastosowania walidacji krzyżowej:\nfrom sklearn.model_selection import cross_val_score\n\nscores = cross_val_score(\n    clf_rf,\n    X,\n    y,\n    cv=5,\n    scoring=\"roc_auc\"\n)\n\nscores.mean()\nW praktyce walidacja krzyżowa jest niezbędna podczas porównywania modeli. Pozwala uniknąć sytuacji, w której model przypadkowo dobrze dopasowuje się do jednego konkretnego podziału danych.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "klasyfikacja.html#tuning-hiperparametrów",
+    "href": "klasyfikacja.html#tuning-hiperparametrów",
+    "title": "4  Klasyfikacja",
+    "section": "4.9 Tuning hiperparametrów",
+    "text": "4.9 Tuning hiperparametrów\nHiperparametry modelu mają ogromny wpływ na jego jakość. Domyślne wartości parametrów rzadko prowadzą do optymalnych wyników, dlatego konieczne jest ich dostrajanie.\nNajczęściej stosowaną metodą jest przeszukiwanie siatki parametrów (Grid Search) lub przeszukiwanie losowe (Random Search).\nPrzykład strojenia parametrów lasu losowego:\nfrom sklearn.model_selection import GridSearchCV\n\nparam_grid = {\n    \"n_estimators\": [100, 200, 300],\n    \"max_depth\": [5, 8, 12],\n    \"min_samples_split\": [2, 5]\n}\n\ngrid_search = GridSearchCV(\n    estimator=clf_rf,\n    param_grid=param_grid,\n    cv=5,\n    scoring=\"roc_auc\",\n    n_jobs=-1\n)\n\ngrid_search.fit(X_train, y_train)\n\ngrid_search.best_params_\nW praktyce należy uważać na zbyt duże przestrzenie parametrów, ponieważ mogą one znacząco wydłużyć czas obliczeń. Dobrym podejściem jest rozpoczęcie od losowego przeszukiwania parametrów, a następnie dokładniejsze strojenie w wybranym zakresie.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
@@ -293,8 +353,18 @@
     "objectID": "klasyfikacja.html#xai",
     "href": "klasyfikacja.html#xai",
     "title": "4  Klasyfikacja",
-    "section": "4.5 XAI",
-    "text": "4.5 XAI",
+    "section": "4.10 XAI",
+    "text": "4.10 XAI\nWyjaśnialna sztuczna inteligencja (Explainable AI — XAI) obejmuje metody pozwalające zrozumieć działanie modeli uczenia maszynowego. Wraz ze wzrostem złożoności modeli rośnie potrzeba ich interpretacji, szczególnie w zastosowaniach biznesowych i medycznych.\nJedną z podstawowych metod interpretacji modeli jest analiza ważności cech. Pozwala ona określić, które zmienne mają największy wpływ na decyzje modelu.\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nfeature_importances = clf_rf.feature_importances_\n\nimportance_df = pd.DataFrame({\n    \"feature\": X.columns,\n    \"importance\": feature_importances\n}).sort_values(by=\"importance\", ascending=False)\n\nimportance_df.head(10)\nW bardziej zaawansowanych analizach stosuje się metody takie jak SHAP (SHapley Additive exPlanations), które pozwalają analizować wpływ cech na pojedyncze predykcje.\nimport shap\n\nexplainer = shap.TreeExplainer(clf_rf)\nshap_values = explainer.shap_values(X_test)\n\nshap.summary_plot(shap_values, X_test)\nW praktyce interpretacja modeli jest równie ważna jak ich skuteczność. Model o wysokiej dokładności, którego działania nie można wyjaśnić, może być trudny do zastosowania w środowisku produkcyjnym.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
+    ]
+  },
+  {
+    "objectID": "klasyfikacja.html#podsumowanie",
+    "href": "klasyfikacja.html#podsumowanie",
+    "title": "4  Klasyfikacja",
+    "section": "4.11 Podsumowanie",
+    "text": "4.11 Podsumowanie\nW pracy z modelami klasyfikacyjnymi najważniejsze jest podejście iteracyjne. Rzadko zdarza się, aby pierwszy model był najlepszym rozwiązaniem — zwykle konieczne jest wielokrotne testowanie różnych metod, parametrów oraz sposobów przygotowania danych.\nDobrym podejściem jest rozpoczęcie od prostych modeli interpretowalnych, takich jak drzewa decyzyjne, a następnie przechodzenie do bardziej zaawansowanych metod, takich jak lasy losowe i boosting gradientowy. Dopiero po uzyskaniu stabilnych wyników warto skupić się na strojeniach parametrów i interpretacji modeli.\nNajwiększy wpływ na jakość modelu ma zwykle nie sam algorytm, lecz jakość danych wejściowych oraz odpowiednie przygotowanie cech. Z tego powodu w praktyce znaczna część czasu analityka poświęcana jest nie na budowę modeli, lecz na przygotowanie i analizę danych.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Klasyfikacja</span>"
     ]
@@ -304,27 +374,57 @@
     "href": "grupowanie.html",
     "title": "5  Grupowanie",
     "section": "",
-    "text": "5.1 Wprowadzenie\nPrezentacja",
+    "text": "5.1 Wprowadzenie\nPrezentacja\nGrupowanie (ang. clustering) należy do podstawowych metod uczenia nienadzorowanego. Jego celem jest podział zbioru obserwacji na grupy (klastry) w taki sposób, aby obiekty należące do tej samej grupy były do siebie możliwie podobne, natomiast obiekty z różnych grup różniły się od siebie jak najbardziej. W przeciwieństwie do metod klasyfikacji nie dysponujemy tutaj zmienną objaśnianą wskazującą poprawną przynależność do grup. Algorytm samodzielnie poszukuje naturalnych struktur występujących w danych.\nPodstawą większości metod grupowania jest wyznaczanie odległości pomiędzy obserwacjami. Najczęściej wykorzystywana jest odległość euklidesowa, jednak jej interpretacja wymaga zachowania porównywalnej skali wszystkich zmiennych. W praktyce dane opisujące obiekty często są wyrażone w różnych jednostkach. W analizie klientów mogą to być jednocześnie wiek wyrażony w latach, roczne wydatki w walucie oraz liczba wizyt w sklepie. Bez odpowiedniego przygotowania danych zmienna o największych wartościach liczbowych mogłaby całkowicie zdominować proces grupowania.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
     ]
   },
   {
-    "objectID": "grupowanie.html#grupowanie-obiektów",
-    "href": "grupowanie.html#grupowanie-obiektów",
+    "objectID": "grupowanie.html#standaryzacja-zmiennych",
+    "href": "grupowanie.html#standaryzacja-zmiennych",
     "title": "5  Grupowanie",
-    "section": "5.2 Grupowanie obiektów",
-    "text": "5.2 Grupowanie obiektów\n\n5.2.1 Metoda k-średnich\n\n\n5.2.2 Metoda hierarchiczna\n\n\n5.2.3 Wykrywanie anomalii",
+    "section": "5.2 Standaryzacja zmiennych",
+    "text": "5.2 Standaryzacja zmiennych\nZ tego względu przed wykonaniem grupowania zazwyczaj przeprowadza się normalizację danych. Najpopularniejszą metodą jest standaryzacja, polegająca na przekształceniu każdej obserwacji według wzoru:\n\\[z=\\frac{x-\\bar{x}}{s}\\]\ngdzie (\\(\\bar{x}\\)) oznacza średnią arytmetyczną, natomiast (\\(s\\)) odchylenie standardowe danej cechy.\nPo standaryzacji każda zmienna ma średnią równą zero i odchylenie standardowe równe jeden. Dzięki temu wszystkie cechy wpływają na obliczane odległości w podobnym stopniu.\nW prezentacji zilustrowano wpływ standaryzacji na dane dotyczące sklepów. Wartości liczby klientów oraz sprzedaży zostały przeskalowane do wspólnej jednostki bezwymiarowej. Choć względne położenie punktów pozostaje takie samo, zmienia się skala osi, dzięki czemu żadna zmienna nie dominuje nad drugą podczas obliczania odległości.\nW notebooku proces ten realizowany jest przy pomocy klasy StandardScaler z biblioteki scikit-learn:\nfrom sklearn.preprocessing import StandardScaler\n\nx = klienci[[\"roczny_dochod\", \"wskaznik_wydatkow\"]]\nscaler = StandardScaler()\nz = scaler.fit_transform(x)\nMetoda fit_transform() najpierw oblicza średnie i odchylenia standardowe dla każdej zmiennej, a następnie dokonuje standaryzacji wszystkich obserwacji. Wynik zapisywany jest w macierzy z, która stanowi wejście dla algorytmów grupowania.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
     ]
   },
   {
-    "objectID": "grupowanie.html#grupowanie-cech",
-    "href": "grupowanie.html#grupowanie-cech",
+    "objectID": "grupowanie.html#metoda-k-średnich",
+    "href": "grupowanie.html#metoda-k-średnich",
     "title": "5  Grupowanie",
-    "section": "5.3 Grupowanie cech",
-    "text": "5.3 Grupowanie cech\n\n5.3.1 Metoda głównych składowych\n\n\n5.3.2 UMAP",
+    "section": "5.3 Metoda k-średnich",
+    "text": "5.3 Metoda k-średnich\nJedną z najpopularniejszych metod grupowania jest algorytm k-średnich (k-means). Jego zadaniem jest podział danych na zadaną wcześniej liczbę grup (k). Algorytm rozpoczyna działanie od losowego wyboru punktów reprezentujących środki klastrów, nazywane centroidami. Następnie każda obserwacja zostaje przypisana do najbliższego centroidu. Po wykonaniu przypisania obliczane są nowe położenia środków grup jako średnie wartości wszystkich obiektów należących do danego klastra. Procedura jest powtarzana aż do momentu, gdy przypisania obserwacji przestaną się zmieniać.\nCelem algorytmu jest minimalizacja sumy kwadratów odległości pomiędzy obserwacjami a centroidem klastra. Wielkość tę określa się mianem inercji (inertia):\n\\[\\sum_{i=1}^{n}(x_i-c_j)^2\\]\ngdzie (\\(c_j\\)) oznacza centroid klastra, do którego należy obserwacja (\\(x_i\\)).\nW notebooku przeprowadzono segmentację klientów sklepu na podstawie rocznego dochodu oraz wskaźnika wydatków:\nfrom sklearn.cluster import KMeans\n\nkmeans = KMeans(\n    n_clusters=5,\n    init='k-means++',\n    random_state=42\n)\n\nclusters_kmeans = kmeans.fit_predict(z)\nParametr n_clusters określa liczbę grup, natomiast init='k-means++' wykorzystuje ulepszoną metodę inicjalizacji centroidów. Pozwala ona uniknąć wielu problemów związanych z losowym wyborem punktów startowych i zwykle prowadzi do lepszych rezultatów. Funkcja fit_predict() jednocześnie dopasowuje model i zwraca numer klastra przypisany do każdej obserwacji.\nUzyskane etykiety grup zostały następnie dodane do zbioru danych i wykorzystane do wizualizacji:\nklienci[\"clusters_kmeans\"] = clusters_kmeans\nKolorowanie punktów według numeru klastra pozwala ocenić, czy wyodrębnione segmenty klientów są logiczne i dobrze rozdzielone.\n\n5.3.1 Wybór optymalnej liczby klastrów\nJednym z najważniejszych problemów w metodzie k-średnich jest dobór liczby grup. Zbyt mała liczba klastrów prowadzi do utraty informacji, natomiast zbyt duża może powodować sztuczny podział naturalnych segmentów.\nW notebooku wykorzystano dwa popularne kryteria oceny jakości grupowania. Pierwszym jest metoda łokcia (Elbow Method). Polega ona na obliczeniu wartości inercji dla różnych liczb klastrów:\ninertia = []\n\nfor i in range(2,11):\n    kmeans = KMeans(n_clusters=i,\n                    init='k-means++',\n                    random_state=42)\n    kmeans.fit(z)\n    inertia.append(kmeans.inertia_)\nNastępnie tworzony jest wykres zależności inercji od liczby grup. Poszukuje się punktu załamania krzywej przypominającego kształtem łokieć. Oznacza on moment, w którym dalsze zwiększanie liczby klastrów przynosi już niewielką poprawę jakości podziału.\nDrugim zastosowanym kryterium jest indeks Calińskiego-Harabasza:\nfrom sklearn.metrics import calinski_harabasz_score\n\nch_scores.append(\n    calinski_harabasz_score(z, clusters_kmeans)\n)\nMiara ta uwzględnia jednocześnie zwartość klastrów i ich wzajemne oddalenie. Im większa wartość indeksu, tym lepiej rozdzielone są grupy. Najwyższa wartość wskaźnika sugeruje najbardziej odpowiednią liczbę klastrów.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
+    ]
+  },
+  {
+    "objectID": "grupowanie.html#metoda-hierarchiczna",
+    "href": "grupowanie.html#metoda-hierarchiczna",
+    "title": "5  Grupowanie",
+    "section": "5.4 Metoda hierarchiczna",
+    "text": "5.4 Metoda hierarchiczna\nAlternatywą dla k-średnich jest grupowanie hierarchiczne. W podejściu aglomeracyjnym każda obserwacja początkowo tworzy osobny klaster. Następnie dwa najbardziej podobne klastry są sukcesywnie łączone aż do momentu utworzenia jednej grupy zawierającej wszystkie obiekty.\nKluczowym elementem jest sposób definiowania odległości pomiędzy grupami. Metoda pojedynczego wiązania (single linkage) wykorzystuje najbliższe punkty należące do różnych klastrów. Metoda pełnego wiązania (complete linkage) bierze pod uwagę najbardziej odległe obserwacje. Metoda średnich połączeń (average linkage) wykorzystuje średnią odległość pomiędzy wszystkimi parami punktów. Szczególnie popularna jest metoda Warda, która minimalizuje przyrost wariancji wewnątrz klastrów i zwykle tworzy zwarte, dobrze rozdzielone grupy.\nW notebooku wykorzystano właśnie metodę Warda:\nfrom sklearn.cluster import AgglomerativeClustering\n\ngroup_hier = AgglomerativeClustering(\n    n_clusters=5,\n    linkage='ward'\n)\n\nclusters_hier = group_hier.fit_predict(z)\nPodobnie jak wcześniej każda obserwacja otrzymuje numer klastra. Następnie można porównać wyniki obu metod:\npd.crosstab(\n    klienci[\"clusters_kmeans\"],\n    klienci[\"clusters_hier\"]\n)\nTabela krzyżowa pozwala ocenić zgodność podziałów uzyskanych przez różne algorytmy.\n\n5.4.1 Dendrogram\nSzczególną zaletą grupowania hierarchicznego jest możliwość przedstawienia wyników w postaci dendrogramu. Jest to drzewo pokazujące kolejne etapy łączenia grup.\nfrom scipy.cluster.hierarchy import dendrogram, linkage\n\nlinked = linkage(z, method='ward')\ndendrogram(linked, color_threshold=8)\nWysokość połączenia na dendrogramie odpowiada odległości pomiędzy klastrami. Analizując wykres można określić liczbę naturalnych grup poprzez przecięcie drzewa poziomą linią. Duże pionowe odstępy sugerują istnienie dobrze odseparowanych klastrów.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
+    ]
+  },
+  {
+    "objectID": "grupowanie.html#redukcja-wymiarowości",
+    "href": "grupowanie.html#redukcja-wymiarowości",
+    "title": "5  Grupowanie",
+    "section": "5.5 Redukcja wymiarowości",
+    "text": "5.5 Redukcja wymiarowości\nW przypadku danych wielowymiarowych interpretacja wyników grupowania może być utrudniona. Pomocne stają się wtedy metody redukcji wymiarowości, których zadaniem jest odwzorowanie danych do przestrzeni o mniejszej liczbie wymiarów przy zachowaniu możliwie dużej ilości informacji.\nNajbardziej klasyczną metodą jest analiza głównych składowych (PCA). Poszukuje ona nowych zmiennych będących liniowymi kombinacjami cech pierwotnych. Nowe osie maksymalizują wyjaśnianą wariancję danych.\nW notebooku zastosowano PCA do redukcji czterech cech samochodów do dwóch wymiarów:\nfrom sklearn.decomposition import PCA\n\npca = PCA(n_components=2)\npca_auta = pca.fit_transform(z_auta)\nNastępnie sprawdzono udział wyjaśnianej wariancji:\nprint(pca.explained_variance_ratio_)\nSuma tych wartości informuje, jaka część całkowitej informacji została zachowana po redukcji wymiarów. Jeżeli wynik przekracza około 80–90%, dwuwymiarowa reprezentacja danych może być uznana za bardzo dobrą.\nOprócz PCA coraz częściej wykorzystuje się nieliniowe metody redukcji wymiarowości, takie jak t-SNE oraz UMAP. W notebooku zastosowano UMAP:\nfrom umap import UMAP\n\numap = UMAP(\n    n_components=2,\n    random_state=42\n)\n\numap_auta = umap.fit_transform(z_auta)\nMetoda ta dobrze zachowuje lokalną strukturę danych i często umożliwia wyraźniejsze rozdzielenie klastrów niż PCA. Uzyskane współrzędne można wykorzystać do wizualizacji wyników grupowania na płaszczyźnie.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
+    ]
+  },
+  {
+    "objectID": "grupowanie.html#podsumowanie",
+    "href": "grupowanie.html#podsumowanie",
+    "title": "5  Grupowanie",
+    "section": "5.6 Podsumowanie",
+    "text": "5.6 Podsumowanie\nPrzed wykonaniem grupowania warto przeprowadzić analizę jakości danych, sprawdzić występowanie braków danych oraz obserwacji odstających. Nietypowe obiekty mogą znacząco wpływać na położenie centroidów i prowadzić do błędnej segmentacji. Dobór cech powinien opierać się nie tylko na dostępności danych, ale również na ich interpretacyjnej wartości oraz zmienności. W przypadku dużej liczby silnie skorelowanych zmiennych pomocne może być zastosowanie PCA przed grupowaniem.\nNie istnieje uniwersalnie najlepszy algorytm grupowania. Metoda k-średnich dobrze sprawdza się dla zwartych i względnie kulistych klastrów, natomiast grupowanie hierarchiczne pozwala lepiej analizować strukturę danych i nie wymaga wielokrotnego uruchamiania algorytmu dla różnych wartości liczby grup. W danych zawierających szum lub klastry o nieregularnych kształtach często lepsze wyniki osiągają algorytmy gęstościowe, takie jak DBSCAN. Dlatego w praktyce zaleca się porównywanie wyników kilku metod oraz ocenę ich jakości przy użyciu odpowiednich miar i wiedzy dziedzinowej.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Grupowanie</span>"
     ]
