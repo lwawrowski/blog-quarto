@@ -66,11 +66,13 @@ class: inverse, center, middle
 
 # Projekt nr 1
 
+Jest rok 2018 i wspólnie z partnerami rozpoczynamy projekt:
+
 Zwiększenie poziomu cyberbezpieczeństwa w administracji publicznej poprzez opracowanie oraz pilotażowe wdrożenie centrum bezpieczeństwa cyfrowego dedykowanego instytucjom publicznym, z perspektywą objęcia wsparciem także podmiotów spoza sektora publicznego. Kluczowym celem badawczym projektu jest rozszerzenie zakresu źródeł informacji o incydentach sieciowych oraz stworzenie rozwiązań umożliwiających bardziej efektywne identyfikowanie zagrożeń.
 
----
-
-Wciel się w rolę osoby odpowiedzialnej za projekt w 2018 roku. Jakie widzisz możliwe do zastosowania metody i zbiory danych, jakie są szanse i ograniczenia projektu? 
+- Od czego zaczynamy?
+- Gdzie powstanie największa wartość?
+- Co jest największym ryzykiem?
 
 ---
 
@@ -215,7 +217,13 @@ Do implementacji wykorzystano [język R](https://www.r-project.org/) oraz [pakie
 
 # Projekt nr 2
 
+Jest rok 2021 i wspólnie z partnerami rozpoczynamy projekt:
+
 Opracowanie rozwiązania przeznaczonego do ochrony użytkowników, systemów oraz urządzeń internetu rzeczy z wykorzystaniem metod uczenia maszynowego i analizy zachowań. Projekt zakłada stworzenie systemu umożliwiającego stały nadzór nad bezpieczeństwem różnorodnych urządzeń IoT. Architektura rozwiązania obejmuje centralny moduł SOC (Security Operations Center) funkcjonujący w modelu SaaS oraz dedykowane oprogramowanie monitorujące dla urządzeń IoT, tzw. Agent. Agent odpowiada za gromadzenie i agregowanie danych oraz ich przekazywanie do SOC, gdzie prowadzone są analizy bezpieczeństwa z zastosowaniem algorytmów uczenia maszynowego.
+
+- co będzie najtrudniejsze przy wdrożeniu tego w praktyce?
+- gdzie może „wysypać się” taki system? (technicznie / organizacyjnie)
+- czy klienci będą chcieli z tego korzystać — i dlaczego (lub nie)?
 
 ---
 
@@ -300,7 +308,13 @@ Pierwotny zbiór danych zawierał 42 kolumny 74 272 772 obserwacji.
 
 # Projekt nr 3
 
+Jest rok 2025 i wspólnie z partnerami rozpoczynamy projekt:
+
 Projekt koncentruje się na wykorzystaniu sztucznej inteligencji do identyfikacji i analizy zagrożeń w cyberprzestrzeni na potrzeby Centrów Operacji Bezpieczeństwa (SOC) oraz krajowych struktur cyberbezpieczeństwa. Jego celem jest zwiększenie efektywności wykorzystania zasobów bezpieczeństwa cyfrowego, a także podniesienie poziomu zaawansowania procesów realizowanych w obszarze SOC i cyberwywiadu o zagrożeniach (CTI) dzięki wdrożeniu technologii opartych na AI. Realizacja przedsięwzięcia wspiera rozwój zastosowań sztucznej inteligencji w krajowych centrach bezpieczeństwa, wzmacnia ochronę infrastruktury krytycznej oraz przyczynia się do budowy bardziej odpornego systemu bezpieczeństwa państwa.
+
+- Jakie metody AI możemy wykorzystać?
+- Których decyzji nie powinniśmy oddawać AI?
+- Jakie nowe ryzyka wprowadza AI do cyberbezpieczeństwa?
 
 ---
 
