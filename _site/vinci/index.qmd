@@ -1,0 +1,68 @@
+---
+title: "Discovering Patterns and Selecting Features using AI Models"
+format:
+  html:
+    toc: true
+---
+
+![](vinci.png)
+
+# Building the Black Box
+
+## Dataset
+
+[RegSOC dataset](https://www.kaggle.com/datasets/wawrluk/regsoc-sensors2023) 
+
+[Anomaly Detection Module for Network Traffic Monitoring in Public Institutions](https://www.mdpi.com/1424-8220/23/6/2974)
+
+Ground truth = sum of RKOF10 + RKOF30 + RKOF60 + VAE60 + VAE180
+
+## Research questions
+
+- How well can a modern ML model distinguish benign from anomalous network traffic?
+
+- Which characteristics of the dataset appear to contain the most predictive information before any explainability methods are applied?
+
+- Which preprocessing decisions are likely to influence the interpretation of the model?
+
+- Which observations remain unexplained and require further investigation?
+
+## Learning objectives
+
+The objective of the first workshop is to build a high-quality predictive model that will later serve as the subject of Explainable AI analyses. Rather than focusing on maximizing predictive performance alone, the goal is to understand the dataset, formulate hypotheses about the data, and create a reproducible machine learning pipeline.
+
+## Understanding the dataset
+
+Read the accompanying publication, inspect the dataset, and document your observations together with the code that produced them.
+
+Use scikit-learn package to conduct Explonatory Data Analysis.
+
+## Data preparation
+
+Build a reproducible preprocessing pipeline and prepare the data for modelling.
+
+What preprocessing is needed for this task - standardization or one-hot-encoding? 
+
+## Building a black-box model
+
+Train and evaluate a predictive model using XGBoost, LightGBM or CatBoost. Use cross-validation method dedicated to time series. Select proper evaluation metrics and conduct hiperparameters tuning. 
+
+Models documentation:
+
+- [https://xgboost.readthedocs.io/](https://xgboost.readthedocs.io/)
+
+- [https://lightgbm.readthedocs.io/](https://lightgbm.readthedocs.io/)
+
+- [https://catboost.ai/](https://catboost.ai/)
+
+## Deliverables
+
+Submit a well-documented notebook together with concise answers to the research questions presented at the beginning of the workshop.
+
+# Explaining the Black Box
+
+# Interpretable Models
+
+# Trust and Deployment
+
+![](vinci_loga-2.png)
