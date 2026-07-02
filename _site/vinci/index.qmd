@@ -61,6 +61,15 @@ Submit a well-documented notebook together with concise answers to the research 
 
 # Explaining the Black Box
 
+[Detecting anomalies and attacks in network traffic monitoring with classification methods and XAI–based explainability](https://www.sciencedirect.com/science/article/pii/S1877050921017361)
+
+- try to train model on real targets - what difference between this and previus model is
+- try multiclass for each type of anomaly - use Flood, Bruteforce FTP, Bruteforce RDP, Bruteforce SSH, Reverse shell, compare quality beetween these models
+- it is possible to create binary model and select type of anomaly based on shap
+- add random variable, use top 5, 10, 15 variables - what is influence on model quality?
+
+
+
 # Interpretable Models
 
 # Trust and Deployment
