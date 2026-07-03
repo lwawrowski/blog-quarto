@@ -59,7 +59,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#building-a-black-box-model" id="toc-building-a-black-box-model" class="nav-link" data-scroll-target="#building-a-black-box-model">Building a black-box model</a></li>
   <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
   </ul></li>
-  <li><a href="#explaining-the-black-box" id="toc-explaining-the-black-box" class="nav-link" data-scroll-target="#explaining-the-black-box">Explaining the Black Box</a></li>
+  <li><a href="#explaining-the-black-box" id="toc-explaining-the-black-box" class="nav-link" data-scroll-target="#explaining-the-black-box">Explaining the Black Box</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#research-questions-1" id="toc-research-questions-1" class="nav-link" data-scroll-target="#research-questions-1">Research questions</a></li>
+  <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning objectives</a></li>
+  <li><a href="#background-reading" id="toc-background-reading" class="nav-link" data-scroll-target="#background-reading">Background reading</a></li>
+  <li><a href="#updating-the-predictive-model-using-the-original-labels" id="toc-updating-the-predictive-model-using-the-original-labels" class="nav-link" data-scroll-target="#updating-the-predictive-model-using-the-original-labels">Updating the predictive model using the original labels</a></li>
+  <li><a href="#multiclass-anomaly-classification" id="toc-multiclass-anomaly-classification" class="nav-link" data-scroll-target="#multiclass-anomaly-classification">Multiclass anomaly classification</a></li>
+  <li><a href="#global-explainable-ai" id="toc-global-explainable-ai" class="nav-link" data-scroll-target="#global-explainable-ai">Global Explainable AI</a></li>
+  <li><a href="#local-explainable-ai" id="toc-local-explainable-ai" class="nav-link" data-scroll-target="#local-explainable-ai">Local Explainable AI</a></li>
+  <li><a href="#feature-effect-analysis" id="toc-feature-effect-analysis" class="nav-link" data-scroll-target="#feature-effect-analysis">Feature effect analysis</a></li>
+  <li><a href="#deliverables-1" id="toc-deliverables-1" class="nav-link" data-scroll-target="#deliverables-1">Deliverables</a></li>
+  </ul></li>
   <li><a href="#interpretable-models" id="toc-interpretable-models" class="nav-link" data-scroll-target="#interpretable-models">Interpretable Models</a></li>
   <li><a href="#trust-and-deployment" id="toc-trust-and-deployment" class="nav-link" data-scroll-target="#trust-and-deployment">Trust and Deployment</a></li>
   </ul>
@@ -135,6 +147,90 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="explaining-the-black-box" class="level1">
 <h1>Explaining the Black Box</h1>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p><a href="https://www.kaggle.com/datasets/wawrluk/regsoc-sensors2023/data">Updated RegSOC dataset</a></p>
+<p><a href="https://ema.drwhy.ai/">Explanatory Model Analysis - Explore, Explain, and Examine Predictive Models. With examples in R and Python.</a></p>
+<p><a href="https://christophm.github.io/interpretable-ml-book/">Interpretable Machine Learning - A Guide for Making Black Box Models Explainable</a></p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S1877050921017361">Detecting anomalies and attacks in network traffic monitoring with classification methods and XAI–based explainability</a></p>
+</section>
+<section id="research-questions-1" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions-1">Research questions</h2>
+<p>The objective of today’s workshop is not simply to apply Explainable AI methods, but to investigate whether they help us better understand the behaviour of machine learning models used for anomaly detection in network traffic. Throughout the session, treat every explanation as a hypothesis that requires verification rather than unquestionable evidence.</p>
+<p>By the end of the workshop, you should be able to provide evidence-based answers to the following questions.</p>
+<ul>
+<li>How does access to the real ground truth influence the predictive performance of the model developed during the previous workshop?<br>
+</li>
+<li>Does learning individual attack classes instead of a binary anomaly detector change the behaviour of the model and the importance of individual features?<br>
+</li>
+<li>Can post-hoc explainability methods reveal meaningful relationships between network characteristics and specific attack types?<br>
+</li>
+<li>How many variables are actually required to achieve satisfactory predictive performance?<br>
+</li>
+<li>Can local explanations be used to infer the type of attack even when the predictive model performs only binary anomaly detection?</li>
+</ul>
+<p>Record your answers at the end of the notebook. Support every conclusion with experimental evidence, quantitative evaluation and visualisations.</p>
+</section>
+<section id="learning-objectives-1" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives-1">Learning objectives</h2>
+<p>During the first workshop you developed a predictive model using pseudo-labels obtained from an ensemble of unsupervised anomaly detection methods. Today you will revisit the same problem using the original labels describing the true attack categories. Your objective is to investigate how model performance and interpretability change when reliable supervision becomes available. You will also compare binary and multiclass classification models and evaluate different Explainable AI techniques from the perspective of a cybersecurity analyst.</p>
+</section>
+<section id="background-reading" class="level2">
+<h2 class="anchored" data-anchor-id="background-reading">Background reading</h2>
+<p>Before implementing any experiments, familiarize yourself with the current state of the art in Explainable Artificial Intelligence.</p>
+<p>Read the introductory chapters of <em>Explanatory Model Analysis</em> by Biecek and Burzykowski. Pay particular attention to the distinction between global and local explanations and the role of model diagnostics in understanding predictive behaviour.</p>
+<p>Continue with the corresponding chapters from <em>Interpretable Machine Learning</em> by Christoph Molnar. While reading, compare the assumptions behind feature importance, partial dependence plots and local explanation methods such as SHAP and LIME. Consider under which circumstances these methods may produce misleading conclusions.</p>
+<p>Finally, read the paper <em>Detecting anomalies and attacks in network traffic monitoring with classification methods and XAI-based explainability</em>. Compare the experimental methodology presented in the paper with the workflow developed during the first workshop. Identify similarities, differences and opportunities for improving your own experimental design.</p>
+</section>
+<section id="updating-the-predictive-model-using-the-original-labels" class="level2">
+<h2 class="anchored" data-anchor-id="updating-the-predictive-model-using-the-original-labels">Updating the predictive model using the original labels</h2>
+<p>Replace the pseudo-labels generated during the previous workshop with the original target variable describing the actual attack categories.</p>
+<p>Begin by retraining the binary classifier using the real labels. Compare its predictive performance with the model obtained during the first workshop. Analyse whether the differences originate from the quality of the labels, the complexity of the learning problem or characteristics of the dataset itself.</p>
+<p>Document all evaluation metrics and discuss whether the original model trained on pseudo-labels captured meaningful patterns despite the absence of ground truth.</p>
+</section>
+<section id="multiclass-anomaly-classification" class="level2">
+<h2 class="anchored" data-anchor-id="multiclass-anomaly-classification">Multiclass anomaly classification</h2>
+<p>Extend the binary classifier to a multiclass problem.</p>
+<p>Train a model capable of distinguishing between individual attack categories, including Flood, Bruteforce FTP, Bruteforce RDP, Bruteforce SSH and Reverse Shell.</p>
+<p>Evaluate the multiclass model using appropriate performance measures. Beyond overall accuracy, investigate which attack types are frequently confused and formulate hypotheses explaining these observations.</p>
+<p>Compare the binary and multiclass models from both predictive and operational perspectives. Consider whether distinguishing between attack types provides sufficient additional value to justify the increased modelling complexity.</p>
+</section>
+<section id="global-explainable-ai" class="level2">
+<h2 class="anchored" data-anchor-id="global-explainable-ai">Global Explainable AI</h2>
+<p>Investigate which variables have the greatest influence on the behaviour of the trained models.</p>
+<p>Instead of relying on the built-in feature importance provided by tree-based algorithms, calculate <strong>Permutation Feature Importance</strong> using the independent test set. Explain why evaluating feature importance on unseen data reduces the risk of information leakage and produces more reliable estimates.</p>
+<p>Introduce an additional random feature into the dataset. Recompute feature importance and verify whether the explainability method correctly assigns negligible importance to the artificial variable.</p>
+<p>Using the ranking obtained from permutation importance, construct reduced models using only the five, ten and fifteen most important variables. Compare predictive performance with the full model and discuss the relationship between model complexity and predictive accuracy.</p>
+</section>
+<section id="local-explainable-ai" class="level2">
+<h2 class="anchored" data-anchor-id="local-explainable-ai">Local Explainable AI</h2>
+<p>Select representative observations corresponding to both correct and incorrect predictions.</p>
+<p>Generate local explanations using SHAP or LIME and analyse which variables contributed most strongly to individual predictions.</p>
+<p>Compare explanations obtained for different attack categories. Investigate whether specific attacks are consistently characterised by particular groups of features or whether explanations vary substantially between observations belonging to the same class.</p>
+<p>Finally, consider whether local explanations could support a hybrid detection strategy in which a binary classifier identifies anomalous traffic while the explanation itself provides sufficient information to infer the likely attack category.</p>
+</section>
+<section id="feature-effect-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="feature-effect-analysis">Feature effect analysis</h2>
+<p>Investigate how individual variables influence model predictions beyond their overall importance.</p>
+<p>Generate Partial Dependence Plots for the most influential variables identified during the previous analysis. Examine whether feature effects appear monotonic, nonlinear or involve threshold behaviour.</p>
+<p>Where appropriate, compare these observations with the cybersecurity domain knowledge and discuss whether the learned relationships appear realistic.</p>
+<p>Reflect on the limitations of Partial Dependence Plots when features exhibit strong correlations.</p>
+</section>
+<section id="deliverables-1" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables-1">Deliverables</h2>
+<p>By the end of today’s workshop you should have produced a well-documented Jupyter notebook (or notebooks) containing:</p>
+<ul>
+<li>an updated binary classification model trained using the original target labels,</li>
+<li>a multiclass model capable of recognising individual attack categories,</li>
+<li>a comparative evaluation of both modelling approaches,</li>
+<li>a permutation-based feature importance analysis,</li>
+<li>experiments investigating the influence of feature selection on predictive performance,</li>
+<li>local explanations generated using SHAP or LIME,</li>
+<li>Partial Dependence Plots for selected variables,</li>
+<li>concise, evidence-based answers to the research questions presented at the beginning of the workshop.</li>
+</ul>
+<p>The notebook should clearly distinguish between <strong>experimental observations</strong>, <strong>interpretations</strong>, and <strong>conclusions</strong>, following the style of a reproducible machine learning research study rather than a sequence of programming exercises.</p>
+</section>
 </section>
 <section id="interpretable-models" class="level1">
 <h1>Interpretable Models</h1>
