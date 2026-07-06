@@ -72,7 +72,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#feature-effect-analysis" id="toc-feature-effect-analysis" class="nav-link" data-scroll-target="#feature-effect-analysis">Feature effect analysis</a></li>
   <li><a href="#deliverables-1" id="toc-deliverables-1" class="nav-link" data-scroll-target="#deliverables-1">Deliverables</a></li>
   </ul></li>
-  <li><a href="#interpretable-models" id="toc-interpretable-models" class="nav-link" data-scroll-target="#interpretable-models">Interpretable Models</a></li>
+  <li><a href="#interpretable-models" id="toc-interpretable-models" class="nav-link" data-scroll-target="#interpretable-models">Interpretable Models</a>
+  <ul class="collapse">
+  <li><a href="#background-1" id="toc-background-1" class="nav-link" data-scroll-target="#background-1">Background</a></li>
+  <li><a href="#research-questions-2" id="toc-research-questions-2" class="nav-link" data-scroll-target="#research-questions-2">Research questions</a></li>
+  <li><a href="#learning-objectives-2" id="toc-learning-objectives-2" class="nav-link" data-scroll-target="#learning-objectives-2">Learning objectives</a></li>
+  <li><a href="#background-reading-1" id="toc-background-reading-1" class="nav-link" data-scroll-target="#background-reading-1">Background reading</a></li>
+  <li><a href="#building-global-surrogate-models" id="toc-building-global-surrogate-models" class="nav-link" data-scroll-target="#building-global-surrogate-models">Building global surrogate models</a></li>
+  <li><a href="#local-rule-based-explanations" id="toc-local-rule-based-explanations" class="nav-link" data-scroll-target="#local-rule-based-explanations">Local rule-based explanations</a></li>
+  <li><a href="#how-much-interpretability-is-enough" id="toc-how-much-interpretability-is-enough" class="nav-link" data-scroll-target="#how-much-interpretability-is-enough">How much interpretability is enough?</a></li>
+  <li><a href="#learning-from-reality-versus-learning-from-another-model" id="toc-learning-from-reality-versus-learning-from-another-model" class="nav-link" data-scroll-target="#learning-from-reality-versus-learning-from-another-model">Learning from reality versus learning from another model</a></li>
+  <li><a href="#measuring-missing-knowledge" id="toc-measuring-missing-knowledge" class="nav-link" data-scroll-target="#measuring-missing-knowledge">Measuring missing knowledge</a></li>
+  <li><a href="#deliverables-2" id="toc-deliverables-2" class="nav-link" data-scroll-target="#deliverables-2">Deliverables</a></li>
+  </ul></li>
   <li><a href="#trust-and-deployment" id="toc-trust-and-deployment" class="nav-link" data-scroll-target="#trust-and-deployment">Trust and Deployment</a></li>
   </ul>
 </nav>
@@ -234,6 +246,103 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="interpretable-models" class="level1">
 <h1>Interpretable Models</h1>
+<section id="background-1" class="level2">
+<h2 class="anchored" data-anchor-id="background-1">Background</h2>
+<p><a href="https://arxiv.org/abs/2407.14543">Towards consistency of rule-based explainer and black box model – fusion of rule induction and XAI-based feature importance</a></p>
+<p><a href="https://christophm.github.io/interpretable-ml-book/global.html">Surrogate models</a></p>
+<p><a href="https://docs.seldon.ai/alibi-explain/explanations/methods/anchors">Anchors</a></p>
+<p><a href="https://github.com/christophM/rulefit">RuleFit</a>, <a href="https://github.com/adaa-polsl/RuleKit">RuleKit2</a>, <a href="https://github.com/csinva/imodels">imodels</a></p>
+</section>
+<section id="research-questions-2" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions-2">Research questions</h2>
+<p>The objective of today’s workshop is to investigate whether an interpretable model can faithfully reproduce the behaviour of a complex black-box classifier while remaining understandable to a human analyst. Rather than treating explainability methods as the only way to understand machine learning models, today you will explore the alternative paradigm of <strong>interpretable models by design</strong>.</p>
+<p>By the end of the workshop, you should be able to provide evidence-based answers to the following questions.</p>
+<ul>
+<li>How accurately can an interpretable model approximate the behaviour of a black-box classifier?<br>
+</li>
+<li>How much predictive performance is sacrificed in exchange for interpretability?<br>
+</li>
+<li>How many features are required to construct an interpretable surrogate model that faithfully represents the original model?<br>
+</li>
+<li>Is it easier to learn decision rules from the original ground truth than from the predictions of a black-box model?<br>
+</li>
+<li>Can we quantify the information that is lost when the learning objective changes from modelling reality to modelling another model?</li>
+</ul>
+<p>Compare your conclusions with the observations collected during the previous workshop and discuss whether post-hoc explanations and interpretable models provide complementary or competing perspectives on explainability.</p>
+</section>
+<section id="learning-objectives-2" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives-2">Learning objectives</h2>
+<p>During the previous workshop you investigated the behaviour of a black-box model using post-hoc explainability methods such as SHAP, LIME and Partial Dependence Plots. Although these techniques provide valuable insights, they explain an already trained model rather than replacing it with an inherently understandable alternative.</p>
+<p>Today’s objective is to investigate whether transparent models can directly describe the behaviour of complex classifiers. You will compare surrogate models, rule-based learners and local rule explanations, evaluating both their predictive fidelity and their usefulness for cybersecurity applications.</p>
+<p>The workshop should be approached as a series of experiments designed to answer a fundamental question:</p>
+<blockquote class="blockquote">
+<p><strong>Should we explain a black-box model, or should we replace it with a model that is interpretable by construction?</strong></p>
+</blockquote>
+</section>
+<section id="background-reading-1" class="level2">
+<h2 class="anchored" data-anchor-id="background-reading-1">Background reading</h2>
+<p>Begin by reviewing the literature describing surrogate models and rule-based explainability.</p>
+<p>Read the chapter on global surrogate models from <em>Interpretable Machine Learning</em>. Pay particular attention to the distinction between predictive performance and surrogate fidelity. Reflect on why a surrogate model should not necessarily be evaluated using the original target variable.</p>
+<p>Next, read the paper <em>Towards consistency of rule-based explainer and black box model – fusion of rule induction and XAI-based feature importance</em>. Consider how feature importance obtained from Explainable AI methods may support rule induction and whether combining these approaches could improve both interpretability and predictive performance.</p>
+<p>Finally, familiarise yourself with the documentation of Anchors, RuleFit, RuleKit and the interpretable models available in the different libraries. While reading, compare their assumptions, model representations and intended use cases.</p>
+</section>
+<section id="building-global-surrogate-models" class="level2">
+<h2 class="anchored" data-anchor-id="building-global-surrogate-models">Building global surrogate models</h2>
+<p>Train an interpretable model using the predictions of the black-box classifier as the target variable instead of the original class labels.</p>
+<p>Select an interpretable model such as a decision tree, RuleFit, RuleKit or another rule-based learner. Evaluate the surrogate model using two complementary perspectives.</p>
+<p>First, measure <strong>fidelity</strong>, that is, how well the surrogate reproduces the predictions of the black-box model.</p>
+<p>Second, compare the predictive performance of the surrogate against the original ground truth. Analyse situations in which high fidelity does not necessarily imply high predictive accuracy.</p>
+<p>Reflect on whether the surrogate captures the actual decision-making process of the black-box model or merely approximates its observable behaviour.</p>
+</section>
+<section id="local-rule-based-explanations" class="level2">
+<h2 class="anchored" data-anchor-id="local-rule-based-explanations">Local rule-based explanations</h2>
+<p>Select representative observations corresponding to different attack categories and generate explanations using the Anchors algorithm.</p>
+<p>Compare the generated rules with the SHAP and LIME explanations obtained during the previous workshop.</p>
+<p>Investigate whether the methods identify similar variables, whether they disagree, and whether the resulting explanations would be equally understandable for a cybersecurity analyst.</p>
+<p>Consider the practical implications of each approach. Ask yourself whether feature contributions or explicit decision rules would be more useful during incident investigation in a Security Operations Center.</p>
+</section>
+<section id="how-much-interpretability-is-enough" class="level2">
+<h2 class="anchored" data-anchor-id="how-much-interpretability-is-enough">How much interpretability is enough?</h2>
+<p>Investigate the relationship between model complexity and fidelity.</p>
+<p>Begin with all available variables and gradually reduce the number of features using the ranking obtained from Permutation Feature Importance during the previous workshop.</p>
+<p>Train surrogate models using progressively smaller feature subsets and evaluate both predictive fidelity and interpretability.</p>
+<p>Determine whether a small subset of carefully selected variables is sufficient to reproduce the behaviour of the original black-box model.</p>
+<p>Reflect on the trade-off between explanation simplicity and explanation completeness.</p>
+</section>
+<section id="learning-from-reality-versus-learning-from-another-model" class="level2">
+<h2 class="anchored" data-anchor-id="learning-from-reality-versus-learning-from-another-model">Learning from reality versus learning from another model</h2>
+<p>Conduct two independent experiments.</p>
+<p>In the first experiment, train a rule-based model directly on the original ground truth.</p>
+<p>In the second experiment, train exactly the same model using the predictions generated by the black-box classifier.</p>
+<p>Compare both models from several perspectives.</p>
+<p>Analyse predictive performance, rule complexity, the number of induced rules, average rule length and overall interpretability.</p>
+<p>Discuss which learning problem appears easier and formulate hypotheses explaining the observed differences.</p>
+<p>Finally, investigate whether the black-box model has introduced additional complexity that was not present in the original data distribution.</p>
+</section>
+<section id="measuring-missing-knowledge" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-missing-knowledge">Measuring missing knowledge</h2>
+<p>One of the central questions in Explainable Artificial Intelligence concerns the completeness of explanations.</p>
+<p>Treat the surrogate model as an approximation of the black-box classifier rather than its replacement.</p>
+<p>Investigate situations in which the surrogate fails to reproduce specific decisions of the original model.</p>
+<p>Analyse whether these discrepancies occur for particular attack categories, unusual observations or regions of the feature space characterised by low data density.</p>
+<p>Reflect on whether the disagreement represents missing information, insufficient model capacity or limitations of the chosen explanation method.</p>
+<p>Discuss how this missing knowledge could be quantified using fidelity metrics, disagreement analysis or prediction uncertainty.</p>
+</section>
+<section id="deliverables-2" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables-2">Deliverables</h2>
+<p>By the end of today’s workshop you should have produced a well-documented Jupyter notebook containing:</p>
+<ul>
+<li>a global surrogate model trained to reproduce the behaviour of the black-box classifier,</li>
+<li>a comparison between surrogate fidelity and predictive performance,</li>
+<li>local rule-based explanations generated using Anchors,</li>
+<li>a comparative analysis of Anchors, SHAP and LIME,</li>
+<li>experiments investigating the influence of feature selection on surrogate quality,</li>
+<li>rule-based models trained using both the original ground truth and the black-box predictions,</li>
+<li>an analysis of the complexity and interpretability of the induced rules,</li>
+<li>a discussion describing situations in which the surrogate fails to reproduce the behaviour of the original classifier.</li>
+</ul>
+<p>The notebook should conclude with concise answers to the research questions formulated at the beginning of the workshop. Particular attention should be paid to distinguishing <strong>prediction accuracy</strong>, <strong>surrogate fidelity</strong>, and <strong>interpretability</strong>, as these concepts represent different - and sometimes conflicting - objectives in Explainable Artificial Intelligence.</p>
+</section>
 </section>
 <section id="trust-and-deployment" class="level1">
 <h1>Trust and Deployment</h1>
