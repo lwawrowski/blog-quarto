@@ -287,6 +287,143 @@ By the end of today's workshop you should have produced a well-documented Jupyte
 
 The notebook should conclude with concise answers to the research questions formulated at the beginning of the workshop. Particular attention should be paid to distinguishing **prediction accuracy**, **surrogate fidelity**, and **interpretability**, as these concepts represent different - and sometimes conflicting - objectives in Explainable Artificial Intelligence.
 
-# Trust and Deployment
+# Large Language Models in Explainable Cybersecurity
+
+## Research questions
+
+The final workshop focuses on one of the emerging directions in Explainable Artificial Intelligence: the integration of Large Language Models into the machine learning workflow. Rather than treating LLMs as predictive models, today's objective is to investigate whether they can support cybersecurity analysts by improving model transparency, facilitating communication and assisting with decision making.
+
+By the end of the workshop, you should be be able to provide evidence-based answers to the following questions.
+
+- Can a Large Language Model improve the usability of machine learning models without modifying their predictive performance?   
+- Can feature attribution methods such as SHAP become more useful when translated into natural language explanations?   
+- Can LLMs support the investigation of anomalous network traffic beyond simply generating textual summaries?   
+- Which stages of the anomaly detection pipeline can realistically benefit from generative AI, and which should remain entirely data-driven?   
+- What risks should be considered before introducing LLMs into a Security Operations Center?   
+
+Record your conclusions together with examples illustrating both successful and unsuccessful applications.
+
+## Learning objectives
+
+During the previous workshops you developed predictive models, analysed their behaviour using Explainable AI techniques and investigated interpretable alternatives to black-box classifiers.
+
+Today's workshop extends this workflow by incorporating Large Language Models as reasoning and communication components rather than prediction engines.
+
+Throughout the workshop, consider the following principle:
+
+> **LLMs should complement machine learning models rather than replace them.**
+
+Your objective is to identify realistic scenarios in which LLMs increase the practical value of anomaly detection systems without compromising reliability or security.
+
+## Literature review
+
+Before starting the practical part of today's workshop, perform a brief literature review focused on recent applications of Large Language Models in network security and anomaly detection.
+
+Use **Google Scholar** and **arXiv** to identify recent publications published during the last three years. Your objective is not to perform a comprehensive survey, but rather to understand how the research community currently integrates LLMs with machine learning methods used for network traffic analysis.
+
+While searching the literature, focus on the following research questions.
+
+- How are Large Language Models currently used in network intrusion detection systems?   
+- Can LLMs directly detect anomalies from network traffic, or are they primarily used as reasoning and explanation engines? 
+- How are Explainable AI methods combined with LLMs?   
+- What are the most common practical applications of LLMs within Security Operations Centers?   
+- What limitations and risks are reported by researchers?   
+
+Prepare a short literature summary containing approximately five to ten publications. The objective of this exercise is to identify current research trends. Suggested search phrases: *large language models network intrusion detection*, *LLM network traffic analysis* , *LLM anomaly detection cybersecurity*, *LLM explainable AI cybersecurity*, *network traffic reasoning using LLM*, *LLM SOC analyst*.
+
+## Scenario 1: Explaining model decisions using an LLM
+
+Begin with the binary or multiclass classifier developed during the previous workshops.
+
+Generate local explanations using SHAP for several representative observations.
+
+Instead of presenting raw SHAP values, provide the explanation together with the feature names and values as structured input to an LLM.
+
+Design prompts that instruct the model to explain the prediction from the perspective of a cybersecurity analyst rather than a machine learning engineer.
+
+Compare several prompt designs and evaluate their influence on explanation quality.
+
+Consider whether the generated explanations remain faithful to the original model or whether the LLM introduces unsupported interpretations.
+
+Reflect on the distinction between explaining a prediction and generating a plausible narrative.
+
+## Scenario 2: Automated incident reports
+
+Assume that the anomaly detection system operates within a Security Operations Center.
+
+For each detected anomaly, automatically generate an incident report containing a concise description of the observed behaviour, the predicted attack type, the confidence of the prediction, the most influential features identified by SHAP and recommended next steps for investigation.
+
+Evaluate whether such reports would reduce the cognitive load of security analysts.
+
+Compare reports generated directly from structured model outputs with reports generated solely from raw network features.
+
+Discuss which information should always remain traceable to the underlying machine learning model.
+
+## Scenario 3: Interactive explanation assistant
+
+Treat the trained machine learning model as a backend service and the LLM as an interactive assistant.
+
+Design prompts that allow an analyst to ask questions such as:
+
+*"Why was this network flow classified as a Reverse Shell attack?"*
+
+*"Which variables contributed most strongly to this prediction?"*
+
+*"Which observations are similar to this incident?"*
+
+*"Would changing one or two feature values alter the prediction?"*
+
+Investigate how much of the answer can be generated directly from Explainable AI outputs and how much requires additional reasoning by the language model.
+
+Discuss whether such an assistant could support less experienced SOC analysts without replacing expert judgement.
+
+## Scenario 4: LLM-assisted feature engineering and hypothesis generation
+
+Large Language Models can also support earlier stages of the machine learning pipeline.
+
+Provide the model with metadata describing the available variables together with examples of anomalous observations.
+
+Ask the LLM to propose new derived features that could potentially improve anomaly detection.
+
+Compare these suggestions with your existing feature set and critically evaluate whether the proposed variables are technically feasible and likely to contain additional predictive information.
+
+Remember that feature engineering suggestions generated by an LLM should always be validated experimentally rather than accepted without verification.
+
+## Limitations and risks
+
+Every application of generative AI in cybersecurity introduces new challenges.
+
+Analyse potential risks including hallucinated explanations, overconfidence, prompt injection, information leakage, inconsistent reasoning and reduced analyst trust.
+
+Discuss which tasks should always remain under the control of deterministic machine learning models and which can safely be delegated to Large Language Models.
+
+Finally, formulate practical recommendations describing how Explainable AI and LLMs should cooperate within a trustworthy anomaly detection system.
+
+## Project presentation
+
+The second half of the workshop is dedicated to preparing the final project presentation summarising the work completed during the entire training. 
+
+The presentation should be prepared for an audience consisting of cybersecurity practitioners and machine learning researchers. Assume that the audience is interested not only in predictive performance but also in the transparency and trustworthiness of the proposed solution.
+
+The presentation should clearly describe the motivation behind the study, the characteristics of the dataset, the predictive models that were developed, the Explainable AI techniques that were investigated and the experiments involving interpretable models.
+
+Present the most important conclusions regarding feature importance, local explanations, surrogate models and the trade-off between predictive performance and interpretability.
+
+Finally, summarise the experiments involving Large Language Models and critically discuss their potential role within future anomaly detection systems.
+
+## Deliverables
+
+By the end of today's workshop you should have prepared:
+
+* experimental notebooks demonstrating at least three different applications of Large Language Models within the anomaly detection workflow,
+* a critical discussion describing both the benefits and limitations of integrating LLMs with Explainable AI,
+* a presentation summarising the complete project carried out during the four workshop sessions.
+
+The presentation should conclude by answering the following overarching question:
+
+> **Can Explainable Artificial Intelligence and Large Language Models together increase trust in machine learning-based anomaly detection systems, or do they introduce additional complexity that must itself be explained?**
+
+This final reflection should integrate the findings from all four workshop days and clearly distinguish between **prediction**, **explanation**, **interpretation**, and **communication**, emphasizing that each addresses a different aspect of building trustworthy AI systems for cybersecurity.
+
 
 ![](vinci_loga-2.png)
