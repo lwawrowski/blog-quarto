@@ -4,9 +4,6 @@ image: profile.jpg
 about:
   template: trestles
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com/wawrluk
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/%c5%82ukasz-wawrowski-2b106a149/
@@ -23,14 +20,11 @@ about:
 
 - machine learning
 - explainable artificial intelligence
-- small area estimation
-- poverty analysis
+- cybersecurity
 
 ## Current employment
 
 **[Research Network Łukasiewicz](https://emag.lukasiewicz.gov.pl/pl/)** | Senior Data Scientist
-
-**[University of Silesia](https://us.edu.pl/instytut/ii/strona-glowna/o-instytucie/)** | Assistant Professor
 
 ## Education
 
