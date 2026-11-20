@@ -12,8 +12,6 @@ website:
         href: index.qmd
       - text: "Publikacje"
         href: publikacje.qmd
-      - text: "Projekty"
-        href: projekty.qmd
       - text: "Dydaktyka"
         href: dydaktyka.qmd  
       - text: "O mnie"

@@ -8,6 +8,8 @@ title: "Publikacje"
 
 # Explainable artificial intelligence
 
+[Wawrowski, Ł., Biczyk, P., Ślęzak, D., Sikora, M. 2025. _Adversarial Attacks Detection Method for Tabular Data_. Machine Learning and Knowledge Extraction, 7(4):112.](https://doi.org/10.3390/make7040112)
+
 [Kozielski, M., Sikora, M., Wawrowski, Ł. 2025. _Towards consistency of rule-based explainer and black box model–fusion of rule induction and XAI-based feature importance_. Knowledge-Based Systems, 113092.](https://www.sciencedirect.com/science/article/abs/pii/S095070512500139X)
 
 [Janusz, A., Zalewska, A., Wawrowski, Ł., Biczyk, P., Ludziejewski, J., Sikora, M., Ślęzak, D., 2023, _BrightBox — A rough set based technology for diagnosing mistakes of machine learning models_, Applied Soft Computing, 110285.](https://www.sciencedirect.com/science/article/pii/S1568494623003034?casa_token=nDCjKI9F1m4AAAAA:64T2RssPagT6VatwfVQmfoSiWzzVu6La7YXuZMM5HOwoKhk_9TSQaqiZni4hSHdkNzPMofWP_CAN)
@@ -16,7 +18,11 @@ title: "Publikacje"
 
 [Biczyk, P., Wawrowski, Ł., 2023, _Towards automated detection of adversarial attacks on tabular data_, In: Ganzha, M., Maciaszek, L., Paprzycki, M., Ślęzak, D. (eds) Proceedings of the 18th Conference on Computer Science and Intelligence Systems. Annals of Computer Science and Information Systems, vol. 35, pp. 247–251. https://doi.org/10.15439/2023F3838](https://doi.org/10.15439/2023F3838)
 
-# Cyberbezpieczeństwo i wykrywanie anomalii
+# Cyberbezpieczeństwo
+
+[Wawrowski, Ł., Borys, D., Macha, D., Sikora, M. 2026. _From Classification to Decision Support: Mapping CTI Reports to MITRE ATT&CK with Transformers, Embeddings, and LLMs_. Procedia Computer Science, 292:5035-5044.](https://doi.org/10.1016/j.procs.2026.10.074)
+
+[Wawrowski, Ł., Chwełatiuk, K., Michalak, M., Kostorz, I., Ślęzak, D., Biczyk, P., Adamczyk, B., Brzęczek, M. 2025. _Information Granulation for Hierarchical Feature Selection in Detection of Anomalies in IoT Devices_. 2025 IEEE International Conference on Big Data, pp. 4207-4216.](https://doi.org/10.1109/BigData66926.2025.11401486)
 
 [Michalak, M., Biczyk, P., Adamczyk, B., Brzęczek, M., Hermansa, M., Kostorz, I., Wawrowski, Ł., Czerwiński, M. 2023, _A New Data Model for Behavioral Based Anomaly Detection in IoT Device Monitoring_. In International Joint Conference on Rough Sets, pp. 599-611. Cham: Springer Nature Switzerland.](https://link.springer.com/chapter/10.1007/978-3-031-50959-9_41)
 
@@ -81,5 +87,7 @@ Wawrowski, Ł., 2015, _Estymacja zasięgu ubóstwa w podregionach Polski z wykor
 [Łysoń, P., Szymkowiak, M., Wawrowski, Ł., 2016, _Badania porównawcze atrakcyjności turystycznej powiatów z uwzględnieniem ich otoczenia_, Wiadomości Statystyczne, 12, s. 45-57](articles/ws_2016_12.pdf)
 
 [Soniewicki, M. and Wawrowski, Ł., 2015, _The use of external knowledge sources by Polish private-owned and state-owned enterprises in the internationalization process_, Journal of Economics and Management, 22, s. 75-96](articles/jem_2015.pdf)
+
+[Beręsewicz, M., Szabelska, A., Zyprych-Walczak, J., Wawrowski, Ł., 2014, _Conference Report: Polish Academic R User Meeting_, The R Journal, 6 (2), s. 187-189.](https://journal.r-project.org/news/RJ-2014-2-beresewicz-szabelska-zyprychwalczak-etal)
 
 Wawrowski, Ł., 2012, _Wykorzystanie metod porządkowania liniowego do analizy lokalnego rynku pracy_, I Ogólnopolska Konferencja Naukowa ,,Narzędzia Analityczne w Naukach Ekonomicznych'' - recenzowane materiały pokonferencyjne, Fundacja Uniwersytetu Ekonomicznego w Krakowie, Kraków.

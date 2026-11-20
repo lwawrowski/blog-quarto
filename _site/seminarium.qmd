@@ -1,22 +1,10 @@
 ---
-title: "Seminarium dyplomowe 2025/2026"
+title: "Seminarium dyplomowe"
 format:
   html:
     embed-resources: true
     toc: true
 ---
-
-# Terminy seminarium 
-
-- 10.04 (piątek) 18:00-20:15 (3h)
-- 17.05 (niedziela) 16:15-18:30 (3h)
-- 6.06 (sobota) 17:00-18:30 (2h)
-- 21.06 (niedziela) 16:15-18:30 (3h)
-
-Obrony:
-
-- 04.07.2026 (sobota)
-- 12.09.2026 (sobota)
 
 # Minimalne wymagania techniczne pracy
 
@@ -112,6 +100,12 @@ Każda praca dyplomowa powinna zawierać:
 - Wyjaśnienia kontrfaktyczne z wykorzystaniem symulacji Monte Carlo
 - Wykorzystanie metod n-gramów w analizie wzorców utworów nadawanych przez polskie stacje radiowe
 - Analiza danych sprzedażowych H&M z zastosowaniem systemu rekomendacji produktów
+- Projekt hurtowni danych Lakehouse w Microsoft Fabric na potrzeby analityki finansowej
+- Detekcja temporalnych wzorców propagacji treści w sieciach informacyjnych za pomocą grafowych sieci neuronowych
+- Projekt i implementacja systemu wspomagania analizy spożycia składników odżywczych z wykorzystaniem RAG
+- Wpływ krótkoterminowej formy sportowej na prawdopodobieństwo zdobycia tytułu Mistrza Świata w snookerze
+- Analiza przestrzenna rozmieszczenia sklepów sieci Żabka w kontekście dostępności pieszej mieszkańców Poznania
+- Analiza konstruktu dziecka w wybranych lekturach szkolnych
 
 # Zasady korzystania z modeli językowych (LLM)
 
